@@ -2,6 +2,7 @@ package imnotjahan.mod.danmachi;
 
 import imnotjahan.mod.danmachi.keybinds.KeyInputHandler;
 import imnotjahan.mod.danmachi.keybinds.Keybinds;
+import imnotjahan.mod.danmachi.network.NetworkHandler;
 import imnotjahan.mod.danmachi.proxy.CommonProxy;
 import imnotjahan.mod.danmachi.tabs.CustomTab;
 import imnotjahan.mod.danmachi.util.Reference;
@@ -44,6 +45,8 @@ public class Main
     {
         proxy.init();
         RegistryHandler.initRegistries();
+
+        NetworkHandler.init();
     }
 
     @Mod.EventHandler

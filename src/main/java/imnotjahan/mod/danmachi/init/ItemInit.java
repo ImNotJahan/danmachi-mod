@@ -71,6 +71,9 @@ public class ItemInit
     //spears
     public static final Item FORTIA_SPEAR = new ToolSword("fortia_spear", hakugenAloy, 1);
 
+    //tools
+    public static final Item HAMMER = new ItemBase("hammer");
+
     //armor
     public static final Item RABBIT_ARMOR_CHESTPLATE = new ArmorBase("rabbit_armor_chestplate", rabbitArmor, 1, EntityEquipmentSlot.CHEST);
     public static final Item RABBIT_ARMOR_LEGGINGS = new ArmorBase("rabbit_armor_leggings", rabbitArmor, 2, EntityEquipmentSlot.LEGS);

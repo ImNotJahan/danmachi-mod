@@ -24,6 +24,6 @@ public class RenderHandler
 
         RenderingRegistry.registerEntityRenderingHandler(EntityKillerAnt.class, manager -> new RenderKillerAnt(manager));
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityGod.class, manager -> new RenderGod(manager));
+        RenderingRegistry.registerEntityRenderingHandler(EntityHestia.class, manager -> new RenderGod(manager));
     }
 }

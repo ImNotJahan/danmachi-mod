@@ -4,10 +4,13 @@ import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.init.ItemInit;
+import imnotjahan.mod.danmachi.network.MessageStatus;
+import imnotjahan.mod.danmachi.network.NetworkHandler;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -86,6 +89,8 @@ public class GodGUI extends GuiScreen
 
                 status.giveFalna();
                 status.setFamilia(godName);
+
+                NetworkHandler.sendToPlayer(new MessageStatus(mc.player.getName(), status, mc.player));
 
                 addButtons(new String[]{"Thanks"});
                 break;

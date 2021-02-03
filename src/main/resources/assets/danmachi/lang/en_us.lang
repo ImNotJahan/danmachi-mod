@@ -40,6 +40,7 @@ item.urga_blade.name=Urga Blade
 item.urga.name=Urga
 item.hades_head.name=Hades Head
 item.guide_book.name=Guide Book
+item.hammer.name=Hammer
 
 //blocks
 tile.adamantite_block.name=Adamantite Block
@@ -51,6 +52,7 @@ tile.orichalcum_ore.name=Orichalcum Ore
 tile.raging_inferno.name=Raging Inferno
 tile.orichalcum_wall.name=Orichalcum Wall
 tile.adamantite_wall.name=Adamantite Wall
+tile.smithing_anvil.name=Smithing Anvil
 
 //entities
 entity.goblin.name=Goblin
@@ -61,7 +63,7 @@ entity.needle_rabbit.name=Needle Rabbit
 entity.minotaur.name=Minotaur
 entity.lygerfang.name=Lygerfang
 entity.killer_ant.name=Killer Ant
-entity.god.name=God
+entity.hestia.name=Hestia
 
 //item groups
 itemGroup.danmachitab=Danmachi

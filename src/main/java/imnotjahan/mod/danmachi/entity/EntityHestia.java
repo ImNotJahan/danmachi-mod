@@ -11,13 +11,14 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class EntityGod extends EntityCreature
+public class EntityHestia extends EntityCreature
 {
     String godName = "hestia";
 
-    public EntityGod(World worldIn)
+    public EntityHestia(World worldIn)
     {
         super(worldIn);
     }

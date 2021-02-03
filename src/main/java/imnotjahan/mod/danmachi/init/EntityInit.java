@@ -26,7 +26,7 @@ public class EntityInit
         RegisterEntity("minotaur", EntityMinotaur.class, Reference.MINOTAUR, 100, 6968398, 14111828);
         RegisterEntity("lygerfang", EntityLygerfang.class, Reference.LYGERFANG, 100, 12025153, 2761239);
         RegisterEntity("unicorn", EntityUnicorn.class, Reference.UNICORN, 100, 0, 16777215);
-        RegisterEntity("god", EntityGod.class, Reference.GOD, 100, 15527148, 4609420);
+        RegisterEntity("hestia", EntityHestia.class, Reference.GOD, 100, 15527148, 4609420);
 
         EntityRegistry.addSpawn(EntityKobold.class, ModConfig.spawnRates.get("kobold"), 0, 10, EnumCreatureType.MONSTER, biomes);
         EntityRegistry.addSpawn(EntityGoblin.class, ModConfig.spawnRates.get("goblin"), 0, 10, EnumCreatureType.MONSTER, biomes);

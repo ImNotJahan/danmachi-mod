@@ -4,6 +4,8 @@ import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.config.ModConfig;
+import imnotjahan.mod.danmachi.network.MessageStatus;
+import imnotjahan.mod.danmachi.network.NetworkHandler;
 import imnotjahan.mod.danmachi.util.handlers.LootTableHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -68,6 +70,8 @@ public class EntityGoblin extends EntityZombie
             }
 
             status.increase(ModConfig.statusIncreases.get("goblin")[5], 7);
+
+            NetworkHandler.sendToPlayer(new MessageStatus(Minecraft.getMinecraft().player.getName(), status, Minecraft.getMinecraft().player));
         }
     }
 
