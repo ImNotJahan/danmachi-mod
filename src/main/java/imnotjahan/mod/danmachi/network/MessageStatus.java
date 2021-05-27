@@ -17,29 +17,25 @@ public class MessageStatus extends MessageBase<MessageStatus>
     @Override
     public void handleClientSide(MessageStatus message, EntityPlayer player)
     {
-        if(Thread.currentThread().getThreadGroup() == SidedThreadGroups.CLIENT)
+        IStatus statuss = message.status;
+
+        if (player != null)
         {
-            EntityPlayer playerMP = player;
-            IStatus statuss = message.status;
+            IStatus old = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
 
-            if (playerMP != null)
+            for (int k = 0; k < 8; k++)
             {
-                IStatus old = playerMP.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
-
-                for (int k = 0; k < 8; k++)
-                {
-                    old.set(k, statuss.get(k));
-                }
-
-                for (int k = 0; k < 6; k++)
-                {
-                    old.setP(k, statuss.getP(k));
-                }
-
-                old.setFamilia(statuss.getFamilia());
-                old.setSkills(message.status.getSkills());
-                old.setAbilities(message.status.getAbilities());
+                old.set(k, statuss.get(k));
             }
+
+            for (int k = 0; k < 6; k++)
+            {
+                old.setP(k, statuss.getP(k));
+            }
+
+            old.setFamilia(statuss.getFamilia());
+            old.setSkills(message.status.getSkills());
+            old.setAbilities(message.status.getAbilities());
         }
     }
 

@@ -81,6 +81,8 @@ public class RegistryHandler
         RecipeHandler.registerSmelting();
         Keybinds.RegisterKeybinds();
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
+        RenderHandler.registerEntityRenderers();
+
         if(Thread.currentThread().getThreadGroup() == SidedThreadGroups.CLIENT)
         {
             ClientProxy.preInitRegistries();
