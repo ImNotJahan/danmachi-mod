@@ -4,10 +4,15 @@ import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.keybinds.Keybinds;
+import imnotjahan.mod.danmachi.network.MessageStatus;
+import imnotjahan.mod.danmachi.network.NetworkHandler;
 import imnotjahan.mod.danmachi.util.Reference;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,33 +32,65 @@ public class StatusGUI extends GuiScreen
     public void initGui()
     {
         GuiLabel statusText;
+        GuiLabel skillsText;
+        GuiLabel abilitiesText;
 
         this.labelList.clear();
         this.labelList.add(statusText = new GuiLabel(fontRenderer, 1, this.width / 2, this.height / 2, 0, 20, 0xFFFFFF));
 
-        capability = mc.player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
+        this.labelList.add(skillsText = new GuiLabel(fontRenderer, 1, this.width / 2, this.height / 2, 0, 20, 0xFFFFFF));
+        this.labelList.add(abilitiesText = new GuiLabel(fontRenderer, 1, this.width / 2, this.height / 2, 0, 20, 0xFFFFFF));
 
-        int level = capability.getLevel();
+        capability = Minecraft.getMinecraft().player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
+
+        int level = capability.get(6);
         int strength = capability.get(1);
         int endurance = capability.get(2);
         int dexterity = capability.get(3);
         int agility = capability.get(4);
         int magic = capability.get(5);
 
+        Status.Ability[] abilities = capability.getAbilities();
+        Status.Skill[] skills = capability.getSkills();
+
         if(capability.getFalna())
         {
-            statusText.addLine("Level " + level);
-            statusText.addLine("Strength: " + getStatLetter(strength) + strength);
-            statusText.addLine("Endurance: " + getStatLetter(endurance) + endurance);
-            statusText.addLine("Dexterity: " + getStatLetter(dexterity) + dexterity);
-            statusText.addLine("Agility: " + getStatLetter(agility) + agility);
-            statusText.addLine("Magic: " + getStatLetter(magic) + magic);
+            statusText.addLine(I18n.format("gui.status.level") + " " + level);
+            statusText.addLine(I18n.format("gui.status.strength") + " " + getStatLetter(strength) + strength);
+            statusText.addLine(I18n.format("gui.status.endurance") + " " + getStatLetter(endurance) + endurance);
+            statusText.addLine(I18n.format("gui.status.dexterity") + " " + getStatLetter(dexterity) + dexterity);
+            statusText.addLine(I18n.format("gui.status.agility") + " " + getStatLetter(agility) + agility);
+            statusText.addLine(I18n.format("gui.status.magic") + " " + getStatLetter(magic) + magic);
+
+            if(skills.length > 0)
+            {
+                skillsText.addLine(I18n.format("gui.status.skills"));
+                for(int k = 0; k < skills.length; k++)
+                {
+                    skillsText.addLine(skills[k].toString());
+                }
+            }
+
+            if(abilities.length > 0)
+            {
+                abilitiesText.addLine(I18n.format("gui.status.abilities"));
+                for(int k = 0; k < abilities.length; k++)
+                {
+                    int abilityStat = abilities[k].getStat();
+                    abilitiesText.addLine(abilities[k].toString() + ": " + getStatLetter(abilityStat) + abilityStat);
+                }
+            }
         } else
         {
-            statusText.addLine("You need to get a falna first");
+            statusText.addLine(I18n.format("gui.status.no_falna"));
         }
 
         statusText.setCentered();
+        skillsText.setCentered();
+        abilitiesText.setCentered();
+
+        skillsText.x = 100;
+        abilitiesText.x = width - 100;
     }
 
     @Override

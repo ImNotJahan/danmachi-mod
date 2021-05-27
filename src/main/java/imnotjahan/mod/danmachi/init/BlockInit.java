@@ -1,8 +1,6 @@
 package imnotjahan.mod.danmachi.init;
 
-import imnotjahan.mod.danmachi.objects.blocks.BlockBase;
-import imnotjahan.mod.danmachi.objects.blocks.RagingInferno;
-import imnotjahan.mod.danmachi.objects.blocks.SmithingAnvil;
+import imnotjahan.mod.danmachi.objects.blocks.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
@@ -26,10 +24,14 @@ public class BlockInit
     //building
     public static final Block ORICHALCUM_WALL = new BlockBase("orichalcum_wall", Material.ROCK, 45);
     public static final Block ADAMANTITE_WALL = new BlockBase("adamantite_wall", Material.ROCK, 15);
+    public static final Block DUNGEON_WALL = new DungeonWall();
 
     //smithing
-    public static final Block SMITHING_ANVIL = new SmithingAnvil();
+    //public static final Block SMITHING_ANVIL = new SmithingAnvil();
 
     //other
+    public static final Block MAGIC_STONE_STOVE = new MagicStoneStove();
+    public static final Block MAGIC_STONE_LAMP = new BlockBase("magic_stone_lamp", Material.ROCK, 3.5f, 1);
     public static final Block RAGING_INFERNO = new RagingInferno();
+    public static final Block DUNGEON_PORTAL = new BlockBase("dungeon_portal", Material.ROCK, 100, false);
 }

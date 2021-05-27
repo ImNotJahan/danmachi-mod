@@ -4,7 +4,10 @@ import imnotjahan.mod.danmachi.init.BlockInit;
 import imnotjahan.mod.danmachi.init.ItemInit;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class RecipeHandler
 {
     public static void registerSmelting()

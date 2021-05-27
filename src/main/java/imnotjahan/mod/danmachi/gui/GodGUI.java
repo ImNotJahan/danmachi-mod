@@ -3,6 +3,7 @@ package imnotjahan.mod.danmachi.gui;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
+import imnotjahan.mod.danmachi.config.ModConfig;
 import imnotjahan.mod.danmachi.init.ItemInit;
 import imnotjahan.mod.danmachi.network.MessageStatus;
 import imnotjahan.mod.danmachi.network.NetworkHandler;
@@ -10,19 +11,19 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
+import java.util.Set;
 
 @SideOnly(Side.CLIENT)
 public class GodGUI extends GuiScreen
 {
     private GuiLabel godDialog;
 
-    String[] agressiveGreetings = { "What do you want?" };
-    String[] answers = { "I suppose", "Sure", "Hmmm okay" };
+    private static final String[] agressiveGreetings = { "What do you want?" };
+    private static final String[] answers = { "I suppose", "Sure", "Hmmm okay" };
 
     String godName;
     boolean hasBottle;
@@ -38,20 +39,24 @@ public class GodGUI extends GuiScreen
 
         status = mc.player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
 
+        assert status != null;
         String familia = status.getFamilia();
 
-        if(familia == "")
+        if(familia.equals(""))
         {
             godDialog.addLine(getRandom(agressiveGreetings));
             addButtons(new String[]{"Can I join your familia?", "Nothing"});
         }
-        else if(familia == godName)
+        else if(familia.equals(godName))
         {
             godDialog.addLine(getRandom(happyGreetings));
 
             if(hasBottle)
             {
                 addButtons(new String[]{"Can I take some of your blood?", "Can you update my status", "Nothing"});
+            } else if(status.canLevelUp())
+            {
+                addButtons(new String[]{"Can you update my status", "Can I level up now", "Nothing"});
             } else
             {
                 addButtons(new String[]{"Can you update my status", "Nothing"});
@@ -81,6 +86,7 @@ public class GodGUI extends GuiScreen
             case "Got it":
             case "Thanks":
             case "Nevermind":
+            case "Nice":
                 mc.displayGuiScreen(null);
                 break;
 
@@ -90,21 +96,62 @@ public class GodGUI extends GuiScreen
                 status.giveFalna();
                 status.setFamilia(godName);
 
-                NetworkHandler.sendToPlayer(new MessageStatus(mc.player.getName(), status, mc.player));
+                NetworkHandler.sendToServer(new MessageStatus(status, mc.player));
 
                 addButtons(new String[]{"Thanks"});
                 break;
 
-            case "Okay":
-                if(status.get(6) != status.getLevel())
+            case "Yes!":
+            case "Can I level up now":
+            {
+                Set<Status.Ability> setAbilities = status.levelUp();
+                Status.Ability[] abilities = new Status.Ability[setAbilities.size()];
+
+                for(int k = 0; k < abilities.length; k ++)
                 {
-                    godDialog.addLine("You've leveled up!");
-                    addButtons(new String[]{"Finally"});
+                    abilities[k] = setAbilities.iterator().next();
+                }
+
+                godDialog.addLine("Ok you are now level " + status.getLevel() + "!");
+                godDialog.addLine("You also now got a few abilities you can choose from!");
+                godDialog.addLine("Which of these do you want to  have");
+
+                String[] abilityStrings = new String[abilities.length];
+
+                for (int k = 0; k < abilities.length; k++)
+                {
+                    abilityStrings[k] = abilities[k].toString();
+                }
+                addButtons(abilityStrings);
+            }
+                break;
+
+            case "Okay":
+                if(status.getLevel() > status.get(6))
+                {
+                    godDialog.addLine("You can level up!");
+                    addButtons(new String[]{"Yes!"});
                 } else
                 {
-                    godDialog.addLine("Andd your status is now updated");
-                    addButtons(new String[]{"Thanks"});
+                    if(status.updateStatus() >= ModConfig.requiredSkillExcelia && Math.random() < ModConfig.skillChance)
+                    {
+                        if(status.grantSkill())
+                        {
+                            godDialog.addLine("Oh hey you got a skill!");
+                            addButtons(new String[]{"Nice"});
+                        } else
+                        {
+                            godDialog.addLine("Andd your status is now updated");
+                            addButtons(new String[]{"Thanks"});
+                        }
+                    } else
+                    {
+                        godDialog.addLine("Andd your status is now updated");
+                        addButtons(new String[]{"Thanks"});
+                    }
                 }
+
+                NetworkHandler.sendToServer(new MessageStatus(status, mc.player));
                 break;
 
             case "Can you update my status":
@@ -123,6 +170,24 @@ public class GodGUI extends GuiScreen
                 addButtons(new String[]{"Thanks"});
                 mc.player.inventory.setInventorySlotContents(mc.player.inventory.currentItem, new ItemStack(ItemInit.ICHOR));
                 break;
+
+            default:
+            {
+                Status.Ability[] abilities = Status.Ability.values();
+                for (int k = 0; k < abilities.length; k++)
+                {
+                    if (button.displayString == abilities[k].toString())
+                    {
+                        status.grantAbility(abilities[k]);
+                        godDialog.addLine("Ok I've added it to your status");
+                        addButtons(new String[]{"Thanks"});
+                    } else
+                    {
+                        addButtons(new String[]{"Nevermind"});
+                    }
+                }
+            }
+            break;
         }
     }
 

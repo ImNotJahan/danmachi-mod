@@ -6,18 +6,19 @@ import imnotjahan.mod.danmachi.entity.*;
 import imnotjahan.mod.danmachi.util.Reference;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class EntityInit
 {
     public static void RegisterEntities()
     {
-        Biome[] biomes = new Biome[]{Biome.getBiome(1), Biome.getBiome(2), Biome.getBiome(3), Biome.getBiome(4), Biome.getBiome(5),
-                Biome.getBiome(12), Biome.getBiome(13), Biome.getBiome(16), Biome.getBiome(17), Biome.getBiome(18),
-                Biome.getBiome(19), Biome.getBiome(20), Biome.getBiome(21), Biome.getBiome(22), Biome.getBiome(21)};
-
         RegisterEntity("goblin", EntityGoblin.class, Reference.GOBLIN_ID, 100, 32806,9240576);
         RegisterEntity("kobold", EntityKobold.class, Reference.KOBOLD_ID, 100, 9736335,5196618);
         RegisterEntity("killer_ant", EntityKillerAnt.class, Reference.KILLER_ANT, 100, 9520427, 5261118);
@@ -26,16 +27,24 @@ public class EntityInit
         RegisterEntity("minotaur", EntityMinotaur.class, Reference.MINOTAUR, 100, 6968398, 14111828);
         RegisterEntity("lygerfang", EntityLygerfang.class, Reference.LYGERFANG, 100, 12025153, 2761239);
         RegisterEntity("unicorn", EntityUnicorn.class, Reference.UNICORN, 100, 0, 16777215);
-        RegisterEntity("hestia", EntityHestia.class, Reference.GOD, 100, 15527148, 4609420);
+        RegisterEntity("hestia", EntityHestia.class, Reference.HESTIA, 100, 15527148, 4609420);
+        RegisterEntity("loki", EntityLoki.class, Reference.LOKI, 100, 2105895, 5530296);
+        RegisterEntity("guild_member", EntityGuildMember.class, Reference.GUILD_MEMBER, 100, 9849600, 16766720);
+        RegisterEntity("hellhound", EntityHellhound.class, Reference.HELLHOUND, 100, 0, 16711680);
+        RegisterEntity("dealer", EntityDealer.class, Reference.BLACK_MARKET, 100, 2105895, 5530296);
 
-        EntityRegistry.addSpawn(EntityKobold.class, ModConfig.spawnRates.get("kobold"), 0, 10, EnumCreatureType.MONSTER, biomes);
-        EntityRegistry.addSpawn(EntityGoblin.class, ModConfig.spawnRates.get("goblin"), 0, 10, EnumCreatureType.MONSTER, biomes);
-        EntityRegistry.addSpawn(EntityUnicorn.class, ModConfig.spawnRates.get("unicorn"), 0, 10, EnumCreatureType.MONSTER, biomes);
-        EntityRegistry.addSpawn(EntityAlmiraj.class, ModConfig.spawnRates.get("almiraj"), 0, 10, EnumCreatureType.MONSTER, biomes);
-        EntityRegistry.addSpawn(EntityNeedleRabbit.class, ModConfig.spawnRates.get("needle_rabbit"), 0, 10, EnumCreatureType.MONSTER, biomes);
-        EntityRegistry.addSpawn(EntityKillerAnt.class, ModConfig.spawnRates.get("killer_ant"), 0, 10, EnumCreatureType.MONSTER, biomes);
-        EntityRegistry.addSpawn(EntityMinotaur.class, ModConfig.spawnRates.get("minotaur"), 0, 10, EnumCreatureType.MONSTER, biomes);
-        EntityRegistry.addSpawn(EntityLygerfang.class, ModConfig.spawnRates.get("lygerfang"), 0, 10, EnumCreatureType.MONSTER, biomes);
+        if(ModConfig.spawnMonstersInOverworld)
+        {
+            EntityRegistry.addSpawn(EntityKobold.class, ModConfig.surfaceSpawnRates.get("kobold"), 0, 10, EnumCreatureType.MONSTER);
+            EntityRegistry.addSpawn(EntityGoblin.class, ModConfig.surfaceSpawnRates.get("goblin"), 0, 10, EnumCreatureType.MONSTER);
+            EntityRegistry.addSpawn(EntityUnicorn.class, ModConfig.surfaceSpawnRates.get("unicorn"), 0, 10, EnumCreatureType.MONSTER);
+            EntityRegistry.addSpawn(EntityAlmiraj.class, ModConfig.surfaceSpawnRates.get("almiraj"), 0, 10, EnumCreatureType.MONSTER);
+            EntityRegistry.addSpawn(EntityNeedleRabbit.class, ModConfig.surfaceSpawnRates.get("needle_rabbit"), 0, 10, EnumCreatureType.MONSTER);
+            EntityRegistry.addSpawn(EntityKillerAnt.class, ModConfig.surfaceSpawnRates.get("killer_ant"), 0, 10, EnumCreatureType.MONSTER);
+            EntityRegistry.addSpawn(EntityMinotaur.class, ModConfig.surfaceSpawnRates.get("minotaur"), 0, 10, EnumCreatureType.MONSTER);
+            EntityRegistry.addSpawn(EntityLygerfang.class, ModConfig.surfaceSpawnRates.get("lygerfang"), 0, 10, EnumCreatureType.MONSTER);
+            EntityRegistry.addSpawn(EntityHellhound.class, ModConfig.surfaceSpawnRates.get("hellhound"), 0, 10, EnumCreatureType.MONSTER);
+        }
     }
 
     private static void RegisterEntity(String name, Class<?extends Entity> entity, int id, int range, int color, int color2)

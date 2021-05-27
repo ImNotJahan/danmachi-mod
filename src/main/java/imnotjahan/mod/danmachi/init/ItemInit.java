@@ -3,9 +3,12 @@ package imnotjahan.mod.danmachi.init;
 import imnotjahan.mod.danmachi.objects.armor.ArmorBase;
 import imnotjahan.mod.danmachi.objects.items.FoodBase;
 import imnotjahan.mod.danmachi.objects.items.ItemBase;
+import imnotjahan.mod.danmachi.objects.items.MagicStoneCompass;
+import imnotjahan.mod.danmachi.objects.items.StructureBase;
 import imnotjahan.mod.danmachi.objects.tools.ToolShoot;
 import imnotjahan.mod.danmachi.objects.tools.ToolSword;
 import imnotjahan.mod.danmachi.util.Reference;
+import imnotjahan.mod.danmachi.world.gen.WorldGenCustomStructures;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -22,7 +25,8 @@ public class ItemInit
     //materials
     public static final Item.ToolMaterial hakugenAloy = EnumHelper.addToolMaterial("hakugen_aloy", 3, 180, 5.0F, 1.0F, 15);
     public static final Item.ToolMaterial hestiaKnifeAloy = EnumHelper.addToolMaterial("hestia_knife_aloy", 3, 100, 5.0F, 2.0F, 30);
-    public static final Item.ToolMaterial desperateAloy = EnumHelper.addToolMaterial("desperate_aloy", 3, 200, 5.0F, 4.0F, 10);
+    public static final Item.ToolMaterial desperateAloy = EnumHelper.addToolMaterial("desperate_aloy", 3, 300, 5.0F, 4.0F, 10);
+    public static final Item.ToolMaterial swordAirAloy = EnumHelper.addToolMaterial("sword_air_aloy", 3, 180, 5.0F, 2.0F, 10);
     public static final Item.ToolMaterial daggerAloy = EnumHelper.addToolMaterial("dagger_aloy", 2, 100, 5.0F, 1.0F, 10);
     public static final Item.ToolMaterial magicSwordAloy = EnumHelper.addToolMaterial("magic_sword_aloy", 2, 3, 5.0F, 3.0F, 30);
     public static final Item.ToolMaterial greatswordAloy = EnumHelper.addToolMaterial("greatsword_aloy", 2, 180, 5.0F, 3.0F, 10);
@@ -49,6 +53,7 @@ public class ItemInit
     public static final Item ORICHALCUM_INGOT = new ItemBase("orichalcum_ingot");
     public static final Item ADAMANTITE_INGOT = new ItemBase("adamantite_ingot");
     public static final Item MYTHRIL_INGOT = new ItemBase("mythril_ingot");
+    public static final Item DAMASCUS_STEEL = new ItemBase("damascus_steel");
 
     //weapons
     //long
@@ -66,7 +71,8 @@ public class ItemInit
     public static final Item HESTIA_KNIFE = new ToolSword("hestia_knife", hestiaKnifeAloy, 0.8f);
     public static final Item DAGGER = new ToolSword("dagger", daggerAloy, 1);
     public static final Item USHIWAKAMARU = new ToolSword("ushiwakamaru", hakugenAloy, 0.7f);
-    //shoots
+    public static final Item SWORD_AIR = new ToolSword("sword_air", swordAirAloy, 1.05f);
+    //shooting
     public static final Item LITTLE_BALLISTA = new ToolShoot("little_ballista", 400, 1.2f, 1.1f);
     //spears
     public static final Item FORTIA_SPEAR = new ToolSword("fortia_spear", hakugenAloy, 1);
@@ -95,5 +101,11 @@ public class ItemInit
     public static final Item MORBUL = new ItemBase("morbul");
     public static final Item ICHOR = new ItemBase("ichor");
     public static final Item URGA_BLADE = new ItemBase("urga_blade");
+    public static final Item MAGIC_STONE_COMPASS = new MagicStoneCompass();
     public static final Item GUIDE_BOOK = new ItemBase("guide_book");
+    //public static final Item VALIS = new ItemBase("valis").setMaxStackSize(10000);
+
+    //structures
+    public static final Item BABEL = new StructureBase(WorldGenCustomStructures.BABEL);
+    public static final Item GOD_HOUSE = new StructureBase(WorldGenCustomStructures.GOD_HOUSE);
 }

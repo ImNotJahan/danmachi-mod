@@ -4,6 +4,8 @@ import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.config.ModConfig;
+import imnotjahan.mod.danmachi.network.MessageStatus;
+import imnotjahan.mod.danmachi.network.NetworkHandler;
 import imnotjahan.mod.danmachi.util.handlers.LootTableHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -77,7 +79,15 @@ public class EntityKillerAnt extends EntityZombie
             }
 
             status.increase(ModConfig.statusIncreases.get("killer_ant")[5], 7);
+
+            NetworkHandler.sendToServer(new MessageStatus(status, Minecraft.getMinecraft().player));
         }
+    }
+
+    @Override
+    public boolean getCanSpawnHere()
+    {
+        return super.getCanSpawnHere() && world.provider.getDimension() == 0 ? Math.random() < ModConfig.overworldMonsterSpawnChance : true;
     }
 
     @Override

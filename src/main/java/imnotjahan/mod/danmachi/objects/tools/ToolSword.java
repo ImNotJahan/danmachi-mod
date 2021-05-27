@@ -31,7 +31,6 @@ import java.util.UUID;
 public class ToolSword extends ItemSword implements IHasModel
 {
     private float customAttackSpeed = 0;
-    private String name = "";
 
     public ToolSword(String name, ToolMaterial material, float attackSpeed)
     {
@@ -44,8 +43,6 @@ public class ToolSword extends ItemSword implements IHasModel
         ItemInit.ITEMS.add(this);
 
         customAttackSpeed = attackSpeed;
-
-        this.name = name;
     }
 
     @Override
@@ -69,13 +66,17 @@ public class ToolSword extends ItemSword implements IHasModel
     private void replaceModifier(Multimap<String, AttributeModifier> modifierMultimap, IAttribute attribute, UUID id, double multiplier) {
         final Collection<AttributeModifier> modifiers = modifierMultimap.get(attribute.getName());
 
-        final Optional<AttributeModifier> modifierOptional = modifiers.stream().filter(attributeModifier -> attributeModifier.getID().equals(id)).findFirst();
+        final Optional<AttributeModifier> modifierOptional =
+                modifiers.stream().filter(attributeModifier -> attributeModifier.getID().equals(id)).findFirst();
 
         if (modifierOptional.isPresent())
         {
             final AttributeModifier modifier = modifierOptional.get();
             modifiers.remove(modifier);
-            modifiers.add(new AttributeModifier(modifier.getID(), modifier.getName(), modifier.getAmount() * multiplier, modifier.getOperation()));
+            modifiers.add(new AttributeModifier(modifier.getID(),
+                    modifier.getName(),
+                    modifier.getAmount() * multiplier,
+                    modifier.getOperation()));
         }
     }
 
@@ -84,19 +85,27 @@ public class ToolSword extends ItemSword implements IHasModel
     {
         super.addInformation(stack, worldIn, tooltip, flagIn);
 
-        switch(name)
+        switch(getUnlocalizedName())
         {
-            case "hakugen":
+            case "item.hakugen":
                 tooltip.add("Right click to stab yourself");
+                break;
+
+            case "item.sword_air":
+                tooltip.add("\"Uaaaaaaaaaaaaaaaaaaaaaaa!\"");
+                break;
+
+            case "item.hestia_knife":
+                tooltip.add("It has an.. irony taste");
         }
     }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
-        switch(name)
+        switch(getUnlocalizedName())
         {
-            case "hakugen":
+            case "item.hakugen":
                 if(playerIn.isPotionActive(Potion.getPotionById(19)))
                 {
                     playerIn.removePotionEffect(Potion.getPotionById(19));
@@ -120,6 +129,8 @@ public class ToolSword extends ItemSword implements IHasModel
     {
         EntityPlayer entityplayer = entityLiving instanceof EntityPlayer ? (EntityPlayer)entityLiving : null;
 
+        String name = getUnlocalizedName();
+
         switch(name)
         {
             case "fire_magic_sword":
@@ -131,7 +142,7 @@ public class ToolSword extends ItemSword implements IHasModel
                 break;
         }
 
-        if((name == "ice_magic_sword" || name == "fire_magic_sword") && !entityplayer.capabilities.isCreativeMode)
+        if((name.equals("ice_magic_sword") || name.equals("fire_magic_sword")) && !entityplayer.capabilities.isCreativeMode)
         {
             setDamage(stack,getDamage(stack) + 1);
 

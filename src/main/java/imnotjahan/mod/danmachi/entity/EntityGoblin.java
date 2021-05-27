@@ -71,8 +71,14 @@ public class EntityGoblin extends EntityZombie
 
             status.increase(ModConfig.statusIncreases.get("goblin")[5], 7);
 
-            NetworkHandler.sendToPlayer(new MessageStatus(Minecraft.getMinecraft().player.getName(), status, Minecraft.getMinecraft().player));
+            NetworkHandler.sendToServer(new MessageStatus(status, Minecraft.getMinecraft().player));
         }
+    }
+
+    @Override
+    public boolean getCanSpawnHere()
+    {
+        return super.getCanSpawnHere() && world.provider.getDimension() == 0 ? Math.random() < ModConfig.overworldMonsterSpawnChance : true;
     }
 
     @Override

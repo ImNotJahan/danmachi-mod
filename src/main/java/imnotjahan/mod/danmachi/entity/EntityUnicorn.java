@@ -1,17 +1,15 @@
 package imnotjahan.mod.danmachi.entity;
 
-import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.config.ModConfig;
+import imnotjahan.mod.danmachi.network.MessageStatus;
+import imnotjahan.mod.danmachi.network.NetworkHandler;
 import imnotjahan.mod.danmachi.util.handlers.LootTableHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.Sound;
-import net.minecraft.client.model.ModelHorse;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -105,7 +103,15 @@ public class EntityUnicorn extends EntityZombie
             }
 
             status.increase(ModConfig.statusIncreases.get("unicorn")[5], 7);
+
+            NetworkHandler.sendToServer(new MessageStatus(status, Minecraft.getMinecraft().player));
         }
+    }
+
+    @Override
+    public boolean getCanSpawnHere()
+    {
+        return super.getCanSpawnHere() && world.provider.getDimension() == 0 ? Math.random() < ModConfig.overworldMonsterSpawnChance : true;
     }
 
     @Override

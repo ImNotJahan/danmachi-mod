@@ -1,20 +1,38 @@
 package imnotjahan.mod.danmachi;
 
-import imnotjahan.mod.danmachi.keybinds.KeyInputHandler;
-import imnotjahan.mod.danmachi.keybinds.Keybinds;
-import imnotjahan.mod.danmachi.network.NetworkHandler;
+import imnotjahan.mod.danmachi.gui.Professions;
 import imnotjahan.mod.danmachi.proxy.CommonProxy;
 import imnotjahan.mod.danmachi.tabs.CustomTab;
 import imnotjahan.mod.danmachi.util.Reference;
 import imnotjahan.mod.danmachi.util.handlers.RegistryHandler;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
+/*
+1. Work on attacking and defensive abilities and find a way
+2. Special system for ore such as special forge and anvil
+3. Summoner class
+4. More monsters tons of new monsters
+5. Better dungeon gen
+*/
+
+/*
+* Weapons to add:
+* Thunder sword
+* Fire sword
+* Frosvirt
+* Crimson Whip
+* Kaminari Ikazuchimaru
+* Supreme Black Sword
+* Udaeus' Black Sword
+* Victim Abyss
+* Dizaria
+* Violetta
+ * */
 @Mod(modid = Reference.MODID,
         name = Reference.NAME,
         version = Reference.VERSION,
@@ -35,23 +53,19 @@ public class Main
     {
         RegistryHandler.preInitRegistries();
         RegistryHandler.otherRegistries();
-        Keybinds.RegisterKeybinds();
-
-        MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
     }
 
     @Mod.EventHandler
     public static void init(FMLInitializationEvent event)
     {
+        Professions.associateCareersAndTrades();
         proxy.init();
         RegistryHandler.initRegistries();
-
-        NetworkHandler.init();
     }
 
     @Mod.EventHandler
-    public static void postInit(FMLPostInitializationEvent event)
+    public static void serverInit(FMLServerStartingEvent event)
     {
-
+        RegistryHandler.serverInitRegistries(event);
     }
 }

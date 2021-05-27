@@ -41,10 +41,4 @@ public class RagingInferno extends BlockFire implements IHasModel
         entityIn.attackEntityFrom(DamageSource.IN_FIRE, 3.0F);
         entityIn.setFire(5);
     }
-
-    @Override
-    public void setFireInfo(Block blockIn, int encouragement, int flammability)
-    {
-
-    }
 }

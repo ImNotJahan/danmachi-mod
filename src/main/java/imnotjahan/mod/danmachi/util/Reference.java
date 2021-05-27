@@ -1,11 +1,13 @@
 package imnotjahan.mod.danmachi.util;
 
+import net.minecraftforge.common.DimensionManager;
+
 public class Reference
 {
     //basic
     public static final String MODID = "danmachi";
     public static final String NAME = "Danmachi Mod";
-    public static final String VERSION = "1.1.0";
+    public static final String VERSION = "1.1.2";
     public static final String CLIENT = "imnotjahan.mod.danmachi.proxy.ClientProxy";
     public static final String COMMON = "imnotjahan.mod.danmachi.proxy.CommonProxy";
     public static final String GUI_FACTORY = "imnotjahan.mod.danmachi.config.GuiFactory";
@@ -23,5 +25,18 @@ public class Reference
     public static final int MINOTAUR = 129;
     public static final int NEEDLE_RABBIT = 130;
     public static final int LYGERFANG = 131;
-    public static final int GOD = 132;
+    public static final int HESTIA = 132;
+    public static final int LOKI = 135;
+    public static final int MONSTER_REX_GOLIATH = 133;
+    public static final int INFANT_DRAGON = 134;
+    public static final int BEHEMOTH = 136;
+    public static final int LEVIATHAN = 137;
+    public static final int OEBD = 138;
+    public static final int NIDHOGG = 139;
+    public static final int GUILD_MEMBER = 140;
+    public static final int HELLHOUND = 141;
+    public static final int BLACK_MARKET = 142;
+
+    //dimension ids
+    public static final int DUNGEON_ID = DimensionManager.getNextFreeDimId();
 }

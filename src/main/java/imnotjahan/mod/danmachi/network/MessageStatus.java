@@ -4,49 +4,67 @@ import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.thread.SidedThreadGroups;
 import org.jline.utils.Log;
 
 public class MessageStatus extends MessageBase<MessageStatus>
 {
     private IStatus status = new Status();
-    private String username = "";
-    private EntityPlayerSP player;
+    private EntityPlayer player;
 
     @Override
     public void handleClientSide(MessageStatus message, EntityPlayer player)
     {
-        String realUsername = Minecraft.getMinecraft().player.getName();
-        EntityPlayerMP playerMP = (EntityPlayerMP)player;
-
-        if(true)
+        if(Thread.currentThread().getThreadGroup() == SidedThreadGroups.CLIENT)
         {
+            EntityPlayerSP playerMP = (EntityPlayerSP) player;
             IStatus statuss = message.status;
 
-            IStatus old = playerMP.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
-            old.set(0, statuss.get(0));
-            old.set(1, statuss.get(1));
-            old.set(2, statuss.get(2));
-            old.set(3, statuss.get(3));
-            old.set(4, statuss.get(4));
-            old.set(5, statuss.get(5));
-            old.set(6, statuss.get(6));
-            old.set(7, statuss.get(7));
+            if (playerMP != null)
+            {
+                IStatus old = playerMP.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
 
-            Log.info("changed");
+                for (int k = 0; k < 8; k++)
+                {
+                    old.set(k, statuss.get(k));
+                }
+
+                for (int k = 0; k < 6; k++)
+                {
+                    old.setP(k, statuss.getP(k));
+                }
+
+                old.setFamilia(statuss.getFamilia());
+                old.setSkills(message.status.getSkills());
+                old.setAbilities(message.status.getAbilities());
+            }
         }
-
-        Log.info(realUsername + " equals " + message.username + "? " + (realUsername == message.username));
     }
 
     @Override
     public void handleServerSide(MessageStatus message, EntityPlayer player)
     {
+        EntityPlayerMP playerMP = (EntityPlayerMP)player;
+        IStatus statuss = message.status;
 
+        IStatus old = playerMP.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
+        for(int k = 0; k < 8; k++)
+        {
+            old.set(k, statuss.get(k));
+        }
+
+        for(int k = 0; k < 6; k++)
+        {
+            old.setP(k, statuss.getP(k));
+        }
+
+        old.setFamilia(statuss.getFamilia());
+        old.setSkills(message.status.getSkills());
+        old.setAbilities(message.status.getAbilities());
     }
 
     @Override
@@ -54,16 +72,44 @@ public class MessageStatus extends MessageBase<MessageStatus>
     {
         if(buf.isReadable())
         {
-            status.set(0, buf.readInt());
-            status.set(1, buf.readInt());
-            status.set(2, buf.readInt());
-            status.set(3, buf.readInt());
-            status.set(4, buf.readInt());
-            status.set(5, buf.readInt());
-            status.set(6, buf.readInt());
-            status.set(7, buf.readInt());
+            for(int k = 0; k < 8; k++)
+            {
+                status.set(k, buf.readInt());
+            }
 
-            username = ByteBufUtils.readUTF8String(buf);
+            for(int k = 0; k < 6; k++)
+            {
+                status.setP(k, buf.readInt());
+            }
+
+            status.setFamilia(ByteBufUtils.readUTF8String(buf));
+
+            int skillsLength = buf.readInt();
+            byte[] oldSkills = new byte[skillsLength];
+            buf.duplicate().readBytes(oldSkills);
+
+            Status.Skill[] skills = new Status.Skill[oldSkills.length];
+
+            for(int k = 0; k < oldSkills.length; k++)
+            {
+                skills[k] = Status.Skill.values()[(oldSkills[k] & 0xFF)];
+            }
+
+            status.setSkills(skills);
+
+            /*int abilitiesLength = buf.readInt();
+            byte[] oldAbilities = new byte[abilitiesLength];
+            buf.duplicate().readBytes(oldAbilities);
+
+            Status.Ability[] abilities = new Status.Ability[oldAbilities.length];
+
+            for(int k = 0; k < oldAbilities.length; k++)
+            {
+                abilities[k] = Status.Ability.values()[(oldAbilities[k] & 0xFF)];
+                abilities[k].setStat(buf.readByte());
+            }
+
+            status.setAbilities(abilities);*/
         }
     }
 
@@ -72,21 +118,54 @@ public class MessageStatus extends MessageBase<MessageStatus>
     {
         status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
 
-        buf.writeInt(status.get(0));
-        buf.writeInt(status.get(1));
-        buf.writeInt(status.get(2));
-        buf.writeInt(status.get(3));
-        buf.writeInt(status.get(4));
-        buf.writeInt(status.get(5));
-        buf.writeInt(status.get(6));
-        buf.writeInt(status.get(7));
+        for(int k = 0; k < 8; k++)
+        {
+            buf.writeInt(status.get(k));
+        }
 
-        ByteBufUtils.writeUTF8String(buf, username);
+        for(int k = 0; k < 6; k++)
+        {
+            buf.writeInt(status.getP(k));
+        }
+
+        ByteBufUtils.writeUTF8String(buf, status.getFamilia());
+
+        Status.Skill[] skills = status.getSkills();
+        byte[] skillBytes = new byte[skills.length];
+
+        buf.writeInt(skills.length);
+
+        for(int k = 0; k < skills.length; k++)
+        {
+            skillBytes[k] = (byte)skills[k].toInt();
+        }
+
+        buf.writeBytes(skillBytes);
+
+        Status.Ability[] abilities = status.getAbilities();
+        byte[] abilityBytes = new byte[abilities.length];
+
+        buf.writeInt(abilities.length);
+
+        for(int k = 0; k < abilities.length; k++)
+        {
+            abilityBytes[k] = (byte)abilities[k].toInt();
+        }
+
+        buf.writeBytes(abilityBytes);
+
+        byte[] abilityStats = new byte[abilities.length];
+
+        for(int k = 0; k < abilities.length; k++)
+        {
+            abilityStats[k] = (byte)abilities[k].getStat();
+        }
+
+        buf.writeBytes(abilityStats);
     }
 
-    public MessageStatus(String username, IStatus status, EntityPlayerSP player)
+    public MessageStatus(IStatus status, EntityPlayer player)
     {
-        this.username = username;
         this.status = status;
         this.player = player;
     }

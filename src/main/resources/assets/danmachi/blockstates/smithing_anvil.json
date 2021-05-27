@@ -1,8 +1,43 @@
 {
   "variants": {
-    "facing=south": { "model": "danmachi:smithing_anvil_undamaged" },
-    "facing=west": { "model": "danmachi:smithing_anvil_undamaged", "y": 90 },
-    "facing=north": { "model": "danmachi:smithing_anvil_undamaged", "y": 180 },
-    "facing=east": { "model": "danmachi:smithing_anvil_undamaged", "y": 270 }
+    "facing=south,holding=0": { "model": "danmachi:smithing_anvil_undamaged" },
+    "facing=west,holding=0": { "model": "danmachi:smithing_anvil_undamaged", "y": 90 },
+    "facing=north,holding=0": { "model": "danmachi:smithing_anvil_undamaged", "y": 180 },
+    "facing=east,holding=0": { "model": "danmachi:smithing_anvil_undamaged", "y": 270 },
+
+    "facing=south,holding=1": { "model": "danmachi:smithing_anvil_undamaged_1" },
+    "facing=west,holding=1": { "model": "danmachi:smithing_anvil_undamaged_1", "y": 90 },
+    "facing=north,holding=1": { "model": "danmachi:smithing_anvil_undamaged_1", "y": 180 },
+    "facing=east,holding=1": { "model": "danmachi:smithing_anvil_undamaged_1", "y": 270 },
+
+    "facing=south,holding=2": { "model": "danmachi:smithing_anvil_undamaged_2" },
+    "facing=west,holding=2": { "model": "danmachi:smithing_anvil_undamaged_2", "y": 90 },
+    "facing=north,holding=2": { "model": "danmachi:smithing_anvil_undamaged_2", "y": 180 },
+    "facing=east,holding=2": { "model": "danmachi:smithing_anvil_undamaged_2", "y": 270 },
+
+    "facing=south,holding=3": { "model": "danmachi:smithing_anvil_undamaged_3" },
+    "facing=west,holding=3": { "model": "danmachi:smithing_anvil_undamaged_3", "y": 90 },
+    "facing=north,holding=3": { "model": "danmachi:smithing_anvil_undamaged_3", "y": 180 },
+    "facing=east,holding=3": { "model": "danmachi:smithing_anvil_undamaged_3", "y": 270 },
+
+    "facing=south,holding=4": { "model": "danmachi:smithing_anvil_undamaged_4" },
+    "facing=west,holding=4": { "model": "danmachi:smithing_anvil_undamaged_4", "y": 90 },
+    "facing=north,holding=4": { "model": "danmachi:smithing_anvil_undamaged_4", "y": 180 },
+    "facing=east,holding=4": { "model": "danmachi:smithing_anvil_undamaged_4", "y": 270 },
+
+    "facing=south,holding=5": { "model": "danmachi:smithing_anvil_undamaged_5" },
+    "facing=west,holding=5": { "model": "danmachi:smithing_anvil_undamaged_5", "y": 90 },
+    "facing=north,holding=5": { "model": "danmachi:smithing_anvil_undamaged_5", "y": 180 },
+    "facing=east,holding=5": { "model": "danmachi:smithing_anvil_undamaged_5", "y": 270 },
+
+    "facing=south,holding=6": { "model": "danmachi:smithing_anvil_undamaged_6" },
+    "facing=west,holding=6": { "model": "danmachi:smithing_anvil_undamaged_6", "y": 90 },
+    "facing=north,holding=6": { "model": "danmachi:smithing_anvil_undamaged_6", "y": 180 },
+    "facing=east,holding=6": { "model": "danmachi:smithing_anvil_undamaged_6", "y": 270 },
+
+    "facing=south,holding=7": { "model": "danmachi:smithing_anvil_undamaged_7" },
+    "facing=west,holding=7": { "model": "danmachi:smithing_anvil_undamaged_7", "y": 90 },
+    "facing=north,holding=7": { "model": "danmachi:smithing_anvil_undamaged_7", "y": 180 },
+    "facing=east,holding=7": { "model": "danmachi:smithing_anvil_undamaged_7", "y": 270 }
   }
 }

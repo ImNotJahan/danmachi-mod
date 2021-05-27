@@ -1,18 +1,61 @@
 package imnotjahan.mod.danmachi.capabilities;
 
+import java.util.Set;
+
 public interface IStatus
 {
-    public void giveFalna();
-    public boolean getFalna();
+    void giveFalna();
+    boolean getFalna();
 
-    public String getFamilia();
-    public void setFamilia(String familiaName);
+    String getFamilia();
 
-    public void increase(int points, int id);
-    public void decrease(int points);
-    public void set(int id, int stat);
+    void setFamilia(String familiaName);
 
-    public int get(int id);
+    /**
+     * @param points how much the stat should increase by,
+     *               is cut in half n - 1 times, n being level.
+     *               doesn't cut in half if your adding excelia
+     * @param id the id of the stat your increasing
+     */
+    void increase(int points, int id);
 
-    public int getLevel();
+    /**
+     * @param id the id of the stat your changing
+     * @param amount the amount your setting the stat to
+     */
+    void set(int id, int amount);
+
+    /**
+     * @param id the id of the stat your changing
+     * @param amount the amount your setting the stat to
+     */
+    void setP(int id, int amount);
+
+    /**
+     * @param id the id of the stat your grabbing
+     */
+    int get(int id);
+
+    /**
+     * @param id the id of the stat your grabbing
+     */
+    int getP(int id);
+
+    int updateStatus();
+
+    int getLevel();
+
+    void grantAbility(Status.Ability ability);
+    boolean grantSkill();
+
+    void setAbilities(Status.Ability[] abilities);
+    void setSkills(Status.Skill[] skills);
+
+    Set<Status.Ability> levelUp();
+
+    boolean canLevelUp();
+    void setCanLevelUp(boolean canLevelUp);
+
+    Status.Ability[] getAbilities();
+    Status.Skill[] getSkills();
 }

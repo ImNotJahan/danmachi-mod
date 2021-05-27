@@ -3,13 +3,14 @@ package imnotjahan.mod.danmachi.gui;
 import imnotjahan.mod.danmachi.util.Reference;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.client.config.GuiConfig;
 
 public class ConfigGUI extends GuiConfig
 {
     public ConfigGUI(GuiScreen parent)
     {
-        super(parent, Reference.MODID, "Danmachi Config");
+        super(parent, Reference.MODID, I18n.format("config.danmachi.title"));
     }
 
     @Override

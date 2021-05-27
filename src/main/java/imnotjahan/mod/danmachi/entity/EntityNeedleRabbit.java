@@ -4,6 +4,8 @@ import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.config.ModConfig;
+import imnotjahan.mod.danmachi.network.MessageStatus;
+import imnotjahan.mod.danmachi.network.NetworkHandler;
 import imnotjahan.mod.danmachi.util.handlers.LootTableHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -54,7 +56,9 @@ public class EntityNeedleRabbit extends EntityRabbit
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && isValidLightLevel() && super.getCanSpawnHere();
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && isValidLightLevel()
+                && super.getCanSpawnHere()
+                && world.provider.getDimension() == 0 ? Math.random() < ModConfig.overworldMonsterSpawnChance : true;
     }
 
     private boolean isValidLightLevel()
@@ -126,6 +130,8 @@ public class EntityNeedleRabbit extends EntityRabbit
             }
 
             status.increase(ModConfig.statusIncreases.get("needle_rabbit")[5], 7);
+
+            NetworkHandler.sendToServer(new MessageStatus(status, Minecraft.getMinecraft().player));
         }
     }
 

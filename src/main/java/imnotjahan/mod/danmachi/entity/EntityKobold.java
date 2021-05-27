@@ -1,10 +1,11 @@
 package imnotjahan.mod.danmachi.entity;
 
-import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.config.ModConfig;
+import imnotjahan.mod.danmachi.network.MessageStatus;
+import imnotjahan.mod.danmachi.network.NetworkHandler;
 import imnotjahan.mod.danmachi.util.handlers.LootTableHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -69,8 +70,16 @@ public class EntityKobold extends EntityZombie
             }
 
             status.increase(ModConfig.statusIncreases.get("kobold")[5], 7);
+
+			NetworkHandler.sendToServer(new MessageStatus(status, Minecraft.getMinecraft().player));
         }
     }
+
+	@Override
+	public boolean getCanSpawnHere()
+	{
+		return super.getCanSpawnHere() && world.provider.getDimension() == 0 ? Math.random() < ModConfig.overworldMonsterSpawnChance : true;
+	}
 
     @Override
     public boolean isChild()

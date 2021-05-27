@@ -3,7 +3,6 @@
   "textures": {
     "particle": "danmachi:blocks/smithing_anvil_base",
     "body": "danmachi:blocks/smithing_anvil_base",
-    "top": "danmachi:blocks/smithing_anvil_top",
-    "ingot": "danmachi:items/adamantite_ingot"
+    "top": "danmachi:blocks/smithing_anvil_top"
   }
 }

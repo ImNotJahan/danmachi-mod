@@ -41,6 +41,12 @@ item.urga.name=Urga
 item.hades_head.name=Hades Head
 item.guide_book.name=Guide Book
 item.hammer.name=Hammer
+item.babel.name=Babel
+item.god_house.name=God House
+item.magic_stone_compass.name=Magic Stone Compass
+item.sword_air.name=Sword Air
+item.valis.name=Valis
+item.damascus_steel.name=Damascus Steel
 
 //blocks
 tile.adamantite_block.name=Adamantite Block
@@ -49,10 +55,12 @@ tile.adamantite_ore.name=Adamantite Ore
 tile.mythril_ore.name=Mythril Ore
 tile.orichalcum_block.name=Orichalcum Block
 tile.orichalcum_ore.name=Orichalcum Ore
-tile.raging_inferno.name=Raging Inferno
 tile.orichalcum_wall.name=Orichalcum Wall
 tile.adamantite_wall.name=Adamantite Wall
 tile.smithing_anvil.name=Smithing Anvil
+tile.dungeon_wall.name=Dungeon Wall
+tile.magic_stone_stove.name=Magic Stone Stove
+tile.magic_stone_lamp.name=Magic Stone Lamp
 
 //entities
 entity.goblin.name=Goblin
@@ -64,6 +72,10 @@ entity.minotaur.name=Minotaur
 entity.lygerfang.name=Lygerfang
 entity.killer_ant.name=Killer Ant
 entity.hestia.name=Hestia
+entity.guild_member.name=Guild Member
+entity.Villager.guild_member=Guild Member
+entity.loki.name=Loki
+entity.hellhound.name=Hellhound
 
 //item groups
 itemGroup.danmachitab=Danmachi
@@ -74,3 +86,50 @@ key.categories.danmachi=Danmachi
 
 //enchantments
 enchantment.durandal=Durandal
+
+//gui
+gui.status.level=Level
+gui.status.strength=Strength:
+gui.status.endurance=Endurance:
+gui.status.dexterity=Dexterity:
+gui.status.agility=Agility:
+gui.status.magic=Magic:
+gui.status.skills=Skills:
+gui.status.abilities=Abilities:
+gui.status.no_falna=You need a falna to view your status
+
+//config
+config.danmachi.title=Danmachi Config
+config.danmachi.drop_magic_crystals=Drop magic crystals
+config.danmachi.generate_caves_in_dungeon=Generate caves in dungeon dimension
+config.danmachi.dungeon_height=Dungeon height
+config.danmachi.dungeon_floor_height=Dungeon floor height
+config.danmachi.spawn_monsters_in_overworld=Spawn dungeon monsters in the overworld
+config.danmachi.required_skill_excelia=Required excelia to get a skill
+config.danmachi.skill_chance=Skill chance
+config.danmachi.overworld_monster_spawn_chance=Overworld monster spawn chance
+config.danmachi.generate_adamantite_floor=Generate adamantite below floor
+config.danmachi.generate_orichalcum_floor=Generate orichalcum below floor
+config.danmachi.status_increases=Status increases
+config.danmachi.ore_generation_chances=Ore generation chances
+config.danmachi.guide_book_text=Guide book text
+config.danmachi.surface_spawn_rates=Monster surface spawn rates
+config.danmachi.spawn_rates=Monster spawn rates
+config.danmachi.generate_custom_structures=Generate custom structures
+config.danmachi.god_house_generation_chance=God house generation chance
+config.danmachi.stat_multiplier=Stat multiplier
+
+//abilities
+abilities.abnormal_resistance=Abnormal Resistance
+abilities.blacksmith=Blacksmith
+abilities.mage=Mage
+abilities.mystery=Mystery
+abilities.hunter=Hunter
+abilities.spirit_healing=Spirit Healing
+abilities.luck=Luck
+
+//skills
+skills.aero_mana=Aero Mana
+skills.ail_mac_midna=Ail Mac Midna
+skills.avenger=Avenger
+skills.mind_load=Mind Load

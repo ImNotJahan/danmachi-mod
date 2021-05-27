@@ -14,6 +14,7 @@ public class LootTableHandler
     public static final ResourceLocation MINOTAUR = LootTableList.register(new ResourceLocation(Reference.MODID, "minotaur"));
     public static final ResourceLocation LYGERFANG = LootTableList.register(new ResourceLocation(Reference.MODID, "lygerfang"));
     public static final ResourceLocation KILLER_ANT = LootTableList.register(new ResourceLocation(Reference.MODID, "killer_ant"));
+    public static final ResourceLocation HELLHOUND = LootTableList.register(new ResourceLocation(Reference.MODID, "hellhound"));
 
     public static final ResourceLocation GOBLIN_STONE = LootTableList.register(new ResourceLocation(Reference.MODID, "stones/goblin"));
     public static final ResourceLocation KOBOLD_STONE = LootTableList.register(new ResourceLocation(Reference.MODID, "stones/kobold"));
@@ -23,4 +24,5 @@ public class LootTableHandler
     public static final ResourceLocation MINOTAUR_STONE = LootTableList.register(new ResourceLocation(Reference.MODID, "stones/minotaur"));
     public static final ResourceLocation LYGERFANG_STONE = LootTableList.register(new ResourceLocation(Reference.MODID, "stones/lygerfang"));
     public static final ResourceLocation KILLER_ANT_STONE = LootTableList.register(new ResourceLocation(Reference.MODID, "stones/killer_ant"));
+    public static final ResourceLocation HELLHOUND_STONE = LootTableList.register(new ResourceLocation(Reference.MODID, "stones/hellhound"));
 }
