@@ -4,6 +4,7 @@ import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.config.ModConfig;
+import imnotjahan.mod.danmachi.network.ClientMessageBase;
 import imnotjahan.mod.danmachi.network.MessageStatus;
 import imnotjahan.mod.danmachi.network.NetworkHandler;
 import imnotjahan.mod.danmachi.util.handlers.LootTableHandler;
@@ -61,17 +62,21 @@ public class EntityKobold extends EntityZombie
 
         if(cause.getTrueSource() instanceof EntityPlayer)
         {
-            IStatus status = Minecraft.getMinecraft().player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
-            if(!status.getFalna()) return;
-
-            for(int k = 0; k < 5; k++)
+            if(cause.getTrueSource().world.isRemote)
             {
-                status.increase(ModConfig.statusIncreases.get("kobold")[k], k + 1);
+                EntityPlayer player = ClientMessageBase.getPlayer();
+                IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
+                if(!status.getFalna()) return;
+
+                for(int k = 0; k < 5; k++)
+                {
+                    status.increase(ModConfig.statusIncreases.get("kobold")[k], k + 1);
+                }
+
+                status.increase(ModConfig.statusIncreases.get("kobold")[5], 7);
+
+                NetworkHandler.sendToServer(new MessageStatus(status, player));
             }
-
-            status.increase(ModConfig.statusIncreases.get("kobold")[5], 7);
-
-			NetworkHandler.sendToServer(new MessageStatus(status, Minecraft.getMinecraft().player));
         }
     }
 

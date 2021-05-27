@@ -1,8 +1,12 @@
 package imnotjahan.mod.danmachi.proxy;
 
+import imnotjahan.mod.danmachi.keybinds.KeyInputHandler;
+import imnotjahan.mod.danmachi.keybinds.Keybinds;
+import imnotjahan.mod.danmachi.util.handlers.RenderHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -15,13 +19,11 @@ public class ClientProxy extends CommonProxy
         ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }
 
-    public static void preInitRegistries()
+    @Override
+    public void preInit()
     {
-
-    }
-
-    public static void initRegistries()
-    {
-
+        Keybinds.RegisterKeybinds();
+        MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
+        RenderHandler.registerEntityRenderers();
     }
 }

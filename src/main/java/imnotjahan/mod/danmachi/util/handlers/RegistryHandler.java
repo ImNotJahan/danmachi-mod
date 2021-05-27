@@ -3,32 +3,23 @@ package imnotjahan.mod.danmachi.util.handlers;
 import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.commands.CommandDanmachiDebug;
 import imnotjahan.mod.danmachi.commands.CommandDungeon;
-import imnotjahan.mod.danmachi.config.ModConfig;
-import imnotjahan.mod.danmachi.entity.*;
 import imnotjahan.mod.danmachi.init.*;
 import imnotjahan.mod.danmachi.keybinds.KeyInputHandler;
 import imnotjahan.mod.danmachi.keybinds.Keybinds;
 import imnotjahan.mod.danmachi.network.NetworkHandler;
 import imnotjahan.mod.danmachi.proxy.ClientProxy;
-import imnotjahan.mod.danmachi.util.Reference;
 import imnotjahan.mod.danmachi.util.interfaces.IHasModel;
 import imnotjahan.mod.danmachi.world.gen.GenerateOres;
 import imnotjahan.mod.danmachi.world.gen.WorldGenCustomStructures;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.thread.SidedThreadGroups;
 
@@ -79,14 +70,6 @@ public class RegistryHandler
         DimensionInit.RegisterDimensions();
         EntityInit.RegisterEntities();
         RecipeHandler.registerSmelting();
-        Keybinds.RegisterKeybinds();
-        MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
-        RenderHandler.registerEntityRenderers();
-
-        if(Thread.currentThread().getThreadGroup() == SidedThreadGroups.CLIENT)
-        {
-            ClientProxy.preInitRegistries();
-        }
     }
 
     public static void otherRegistries()
@@ -101,10 +84,6 @@ public class RegistryHandler
         SoundHandler.registerSounds();
         NetworkHandler.init();
         RecipeHandler.registerSmelting();
-        if(Thread.currentThread().getThreadGroup() == SidedThreadGroups.CLIENT)
-        {
-            ClientProxy.initRegistries();
-        }
     }
 
     public static void serverInitRegistries(FMLServerStartingEvent event)

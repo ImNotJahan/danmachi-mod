@@ -12,10 +12,11 @@ public abstract class MessageBase<REQ extends IMessage> implements IMessage, IMe
 
     @Override
     public REQ onMessage(REQ message, MessageContext ctx){
-        if(ctx.side == Side.SERVER) {
+        if(ctx.side == Side.SERVER)
+        {
             handleServerSide(message, ctx.getServerHandler().player);
         } else {
-            EntityPlayer player = Minecraft.getMinecraft().player;
+            EntityPlayer player = ClientMessageBase.getPlayer();
             if(player != null)
             {
                 handleClientSide(message, player);

@@ -13,6 +13,11 @@ public class CommonProxy
 {
     public void registerItemRenderer(Item item, int meta) {}
 
+    public void preInit()
+    {
+
+    }
+
     public void init()
     {
         CapabilityManager.INSTANCE.register(IStatus.class, new StatusStorage(), Status::new);

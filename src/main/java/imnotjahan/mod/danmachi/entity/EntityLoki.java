@@ -1,6 +1,7 @@
 package imnotjahan.mod.danmachi.entity;
 
 import imnotjahan.mod.danmachi.gui.GodGUI;
+import imnotjahan.mod.danmachi.network.ClientMessageBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -53,7 +54,7 @@ public class EntityLoki extends EntityCreature
 
             if (hand == EnumHand.MAIN_HAND)
             {
-                Minecraft.getMinecraft().displayGuiScreen(new GodGUI(godName, flag));
+                ClientMessageBase.showGodGUI(godName, flag);
             }
         }
 

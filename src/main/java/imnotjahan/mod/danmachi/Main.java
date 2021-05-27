@@ -53,6 +53,7 @@ public class Main
     {
         RegistryHandler.preInitRegistries();
         RegistryHandler.otherRegistries();
+        proxy.preInit();
     }
 
     @Mod.EventHandler
