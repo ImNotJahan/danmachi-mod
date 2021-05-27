@@ -77,7 +77,10 @@ public class RegistryHandler
     {
         GameRegistry.registerWorldGenerator(new WorldGenCustomStructures(), 0);
         DimensionInit.RegisterDimensions();
-
+        EntityInit.RegisterEntities();
+        RecipeHandler.registerSmelting();
+        Keybinds.RegisterKeybinds();
+        MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
         if(Thread.currentThread().getThreadGroup() == SidedThreadGroups.CLIENT)
         {
             ClientProxy.preInitRegistries();
@@ -93,10 +96,12 @@ public class RegistryHandler
 
     public static void initRegistries()
     {
+        SoundHandler.registerSounds();
+        NetworkHandler.init();
+        RecipeHandler.registerSmelting();
         if(Thread.currentThread().getThreadGroup() == SidedThreadGroups.CLIENT)
         {
             ClientProxy.initRegistries();
-            NetworkHandler.init();
         }
     }
 

@@ -15,11 +15,9 @@ public class NetworkHandler
     public static void init()
     {
         INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MODID);
-
         INSTANCE.registerMessage(MessageStatus.class, MessageStatus.class, 0, Side.SERVER);
 
         INSTANCE_2 = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MODID + "_client");
-
         INSTANCE_2.registerMessage(MessageStatus.class, MessageStatus.class, 0, Side.CLIENT);
     }
 

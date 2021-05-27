@@ -24,16 +24,11 @@ public class ClientProxy extends CommonProxy
 
     public static void preInitRegistries()
     {
-        EntityInit.RegisterEntities();
         RenderHandler.registerEntityRenderers();
-        RecipeHandler.registerSmelting();
-        Keybinds.RegisterKeybinds();
-        MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
     }
 
     public static void initRegistries()
     {
-        RecipeHandler.registerSmelting();
-        SoundHandler.registerSounds();
+
     }
 }

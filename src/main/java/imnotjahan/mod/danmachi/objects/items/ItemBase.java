@@ -10,7 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ActionResult;
@@ -21,7 +20,7 @@ import net.minecraftforge.fml.common.thread.SidedThreadGroups;
 
 public class ItemBase extends Item implements IHasModel
 {
-    private String name;
+    private final String name;
 
     public ItemBase(String name)
     {
@@ -43,29 +42,33 @@ public class ItemBase extends Item implements IHasModel
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
-        /*switch (name)
+        switch (name)
         {
             case "guide_book":
                 if(Thread.currentThread().getThreadGroup() == SidedThreadGroups.CLIENT)
                 {
-                    ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
-
-                    NBTTagList bookPages = new NBTTagList();
-
-                    for (int k = 0; k < ModConfig.guideBookText.length; k++)
-                    {
-                        bookPages.appendTag(new NBTTagString(ModConfig.guideBookText[k]));
-                    }
-
-                    book.setTagInfo("pages", bookPages);
-                    book.setTagInfo("author", new NBTTagString("Albert Valdstejn"));
-                    book.setTagInfo("title", new NBTTagString("Guide Book"));
-
-                    Minecraft.getMinecraft().displayGuiScreen(new GuiScreenBook(playerIn, book, false));
-
+                    openGuidebook(playerIn);
                     return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.inventory.getStackInSlot(playerIn.inventory.currentItem));
                 }
-        }*/
+        }
         return super.onItemRightClick(worldIn, playerIn, handIn);
+    }
+
+    private void openGuidebook(EntityPlayer playerIn)
+    {
+        /*ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
+
+        NBTTagList bookPages = new NBTTagList();
+
+        for (int k = 0; k < ModConfig.guideBookText.length; k++)
+        {
+            bookPages.appendTag(new NBTTagString(ModConfig.guideBookText[k]));
+        }
+
+        book.setTagInfo("pages", bookPages);
+        book.setTagInfo("author", new NBTTagString("Albert Valdstejn"));
+        book.setTagInfo("title", new NBTTagString("Guide Book"));
+
+        Minecraft.getMinecraft().displayGuiScreen(new GuiScreenBook(playerIn, book, false));*/
     }
 }

@@ -4,12 +4,10 @@ import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.thread.SidedThreadGroups;
-import org.jline.utils.Log;
 
 public class MessageStatus extends MessageBase<MessageStatus>
 {
@@ -21,7 +19,7 @@ public class MessageStatus extends MessageBase<MessageStatus>
     {
         if(Thread.currentThread().getThreadGroup() == SidedThreadGroups.CLIENT)
         {
-            EntityPlayerSP playerMP = (EntityPlayerSP) player;
+            EntityPlayer playerMP = player;
             IStatus statuss = message.status;
 
             if (playerMP != null)
