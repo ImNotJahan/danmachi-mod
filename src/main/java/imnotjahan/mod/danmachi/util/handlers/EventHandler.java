@@ -41,7 +41,7 @@ public class EventHandler
             {
                 player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20 + Math.floor((cap.get(2) + (cap.getLevel() - 1) * 1000)) / 100);
                 player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.1F + (cap.get(3) + (cap.getLevel() - 1) * 1000) / 10000);
-                int dmg = (cap.get(1) + (cap.getLevel() - 1)) * 1000 / 300 + 2;
+                int dmg = (cap.get(1) + (cap.getLevel() - 1) * 1000) / 300 + 2;
 
                 Status.Skill[] skills = cap.getSkills();
                 for (Status.Skill skill : skills)
