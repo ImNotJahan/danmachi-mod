@@ -8,6 +8,7 @@ import imnotjahan.mod.danmachi.network.MessageStatus;
 import imnotjahan.mod.danmachi.network.NetworkHandler;
 import imnotjahan.mod.danmachi.util.handlers.LootTableHandler;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -40,10 +41,13 @@ public class MonsterBase extends EntityZombie
     {
         super.applyEntityAttributes();
 
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(ModConfig.mobStats.get(name)[0]);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(ModConfig.mobStats.get(name)[1]);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(ModConfig.mobStats.get(name)[2]);
-        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(ModConfig.mobStats.get(name)[3]);
+        if(name != null)
+        {
+            this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(ModConfig.mobStats.get(name)[0]);
+            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(ModConfig.mobStats.get(name)[1]);
+            this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(ModConfig.mobStats.get(name)[2]);
+            this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(ModConfig.mobStats.get(name)[3]);
+        }
     }
 
     @Override
@@ -67,16 +71,21 @@ public class MonsterBase extends EntityZombie
         {
             EntityPlayerMP player = (EntityPlayerMP)cause.getTrueSource();
             IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
-            if(!status.getFalna()) return;
-
-            for(int k = 0; k < 5; k++)
+            if (status.getFalna())
             {
-                status.increase(ModConfig.statusIncreases.get(name)[k], k + 1);
+                for (int k = 0; k < 5; k++)
+                {
+                    status.increase(ModConfig.statusIncreases.get(name)[k], k + 1);
+                }
+
+                status.increase(ModConfig.statusIncreases.get(name)[5], 7);
+
+                NetworkHandler.refreshThing(new MessageStatus(status, player), player);
+            } else
+            {
+                return;
             }
 
-            status.increase(ModConfig.statusIncreases.get(name)[5], 7);
-
-            NetworkHandler.refreshThing(new MessageStatus(status, player), player);
         }
     }
 
