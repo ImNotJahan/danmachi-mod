@@ -65,6 +65,18 @@ public class ModConfig
         put("hellhound", new int[]{5, 4, 5, 6, 0, 6});
     }};
 
+    @Config.Comment("The order of their stats is: dmg, health, speed, armor")
+    @Config.LangKey("config.danmachi.mob_stats")
+    public static Map<String, double[]> mobStats = new HashMap<String, double[]>(){{
+        put("goblin", new double[]{3, 10, .25D, 2});
+        put("kobold", new double[]{4, 7, .26D, 2});
+        put("killer_ant", new double[]{5, 5, .2D, 4});
+        put("minotaur", new double[]{14, 10, .25D, 7});
+        put("lygerfang", new double[]{10, 15, .4D, 3});
+        put("hellhound", new double[]{8, 10, .3D, 2});
+        put("unicorn", new double[]{10, 20, .45D, 2});
+    }};
+
     @Config.LangKey("config.danmachi.ore_generation_chances")
     public static Map<String, Integer> oreGenerationChances = new HashMap<String, Integer>(){{
         put("mythril", 15);

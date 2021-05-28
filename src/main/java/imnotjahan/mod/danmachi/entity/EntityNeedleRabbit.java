@@ -58,6 +58,12 @@ public class EntityNeedleRabbit extends EntityRabbit
     @Override
     public boolean getCanSpawnHere()
     {
+        System.out.println(this.world.getDifficulty() != EnumDifficulty.PEACEFUL && isValidLightLevel()
+                && super.getCanSpawnHere()
+                && world.provider.getDimension() == 0 ? Math.random() < ModConfig.overworldMonsterSpawnChance : true);
+        System.out.println(this.world.getDifficulty() == EnumDifficulty.PEACEFUL || !isValidLightLevel()
+                || !super.getCanSpawnHere()
+                || world.provider.getDimension() != 0 || Math.random() < ModConfig.overworldMonsterSpawnChance);
         return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && isValidLightLevel()
                 && super.getCanSpawnHere()
                 && world.provider.getDimension() == 0 ? Math.random() < ModConfig.overworldMonsterSpawnChance : true;
@@ -113,7 +119,7 @@ public class EntityNeedleRabbit extends EntityRabbit
     @Override
     protected ResourceLocation getLootTable()
     {
-        return LootTableHandler.NEEDLE_RABBIT;
+        return LootTableHandler.mobDrops.get("needle_rabbit");
     }
 
     @Override
@@ -164,7 +170,7 @@ public class EntityNeedleRabbit extends EntityRabbit
 
         if(ModConfig.dropMagicCrystals)
         {
-            ResourceLocation resource = LootTableHandler.NEEDLE_RABBIT_STONE;
+            ResourceLocation resource = LootTableHandler.magicStones.get("needle_rabbit");
             LootTable loottable = this.world.getLootTableManager().getLootTableFromLocation(resource);
 
             LootContext.Builder lootcontext$builder = (new LootContext.Builder((WorldServer)this.world)).withLootedEntity(this).withDamageSource(source);

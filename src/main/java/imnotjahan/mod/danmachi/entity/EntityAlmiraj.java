@@ -113,7 +113,7 @@ public class EntityAlmiraj extends EntityRabbit
     @Override
     protected ResourceLocation getLootTable()
     {
-        return LootTableHandler.ALMIRAJ;
+        return LootTableHandler.mobDrops.get("almiraj");
     }
 
     @Override
@@ -164,7 +164,7 @@ public class EntityAlmiraj extends EntityRabbit
 
         if(ModConfig.dropMagicCrystals)
         {
-            ResourceLocation resource = LootTableHandler.ALMIRAJ_STONE;
+            ResourceLocation resource = LootTableHandler.magicStones.get("almiraj");
             LootTable loottable = this.world.getLootTableManager().getLootTableFromLocation(resource);
 
             LootContext.Builder lootcontext$builder = (new LootContext.Builder((WorldServer)this.world)).withLootedEntity(this).withDamageSource(source);

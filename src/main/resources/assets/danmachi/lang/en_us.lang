@@ -118,6 +118,7 @@ config.danmachi.spawn_rates=Monster spawn rates
 config.danmachi.generate_custom_structures=Generate custom structures
 config.danmachi.god_house_generation_chance=God house generation chance
 config.danmachi.stat_multiplier=Stat multiplier
+config.danmachi.mob_stats=Monster stats
 
 //abilities
 abilities.abnormal_resistance=Abnormal Resistance
