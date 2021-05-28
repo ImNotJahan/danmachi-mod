@@ -6,31 +6,26 @@ import imnotjahan.mod.danmachi.entity.*;
 import imnotjahan.mod.danmachi.util.Reference;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.biome.Biome;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityInit
 {
     public static void RegisterEntities()
     {
-        RegisterEntity("goblin", EntityGoblin.class, Reference.GOBLIN_ID, 100, 32806,9240576);
-        RegisterEntity("kobold", EntityKobold.class, Reference.KOBOLD_ID, 100, 9736335,5196618);
-        RegisterEntity("killer_ant", EntityKillerAnt.class, Reference.KILLER_ANT, 100, 9520427, 5261118);
-        RegisterEntity("needle_rabbit", EntityNeedleRabbit.class, Reference.NEEDLE_RABBIT, 100, 16777215, 11796480);
-        RegisterEntity("almiraj", EntityAlmiraj.class, Reference.ALMIRAJ, 100,11796480, 16777215);
-        RegisterEntity("minotaur", EntityMinotaur.class, Reference.MINOTAUR, 100, 6968398, 14111828);
-        RegisterEntity("lygerfang", EntityLygerfang.class, Reference.LYGERFANG, 100, 12025153, 2761239);
-        RegisterEntity("unicorn", EntityUnicorn.class, Reference.UNICORN, 100, 0, 16777215);
-        RegisterEntity("hestia", EntityHestia.class, Reference.HESTIA, 100, 15527148, 4609420);
-        RegisterEntity("loki", EntityLoki.class, Reference.LOKI, 100, 2105895, 5530296);
-        RegisterEntity("guild_member", EntityGuildMember.class, Reference.GUILD_MEMBER, 100, 9849600, 16766720);
-        RegisterEntity("hellhound", EntityHellhound.class, Reference.HELLHOUND, 100, 0, 16711680);
-        RegisterEntity("dealer", EntityDealer.class, Reference.BLACK_MARKET, 100, 2105895, 5530296);
+        RegisterEntity("goblin", EntityGoblin.class, Reference.GOBLIN_ID, 32806,9240576);
+        RegisterEntity("kobold", EntityKobold.class, Reference.KOBOLD_ID, 9736335,5196618);
+        RegisterEntity("killer_ant", EntityKillerAnt.class, Reference.KILLER_ANT, 9520427, 5261118);
+        RegisterEntity("needle_rabbit", EntityNeedleRabbit.class, Reference.NEEDLE_RABBIT, 16777215, 11796480);
+        RegisterEntity("almiraj", EntityAlmiraj.class, Reference.ALMIRAJ, 11796480, 16777215);
+        RegisterEntity("minotaur", EntityMinotaur.class, Reference.MINOTAUR, 6968398, 14111828);
+        RegisterEntity("lygerfang", EntityLygerfang.class, Reference.LYGERFANG, 12025153, 2761239);
+        RegisterEntity("unicorn", EntityUnicorn.class, Reference.UNICORN, 0, 16777215);
+        RegisterEntity("hestia", EntityHestia.class, Reference.HESTIA, 15527148, 4609420);
+        RegisterEntity("loki", EntityLoki.class, Reference.LOKI, 2105895, 5530296);
+        RegisterEntity("guild_member", EntityGuildMember.class, Reference.GUILD_MEMBER, 9849600, 16766720);
+        RegisterEntity("hellhound", EntityHellhound.class, Reference.HELLHOUND, 0, 16711680);
+        RegisterEntity("dealer", EntityDealer.class, Reference.BLACK_MARKET, 2105895, 5530296);
 
         if(ModConfig.spawnMonstersInOverworld)
         {
@@ -46,8 +41,8 @@ public class EntityInit
         }
     }
 
-    private static void RegisterEntity(String name, Class<?extends Entity> entity, int id, int range, int color, int color2)
+    private static void RegisterEntity(String name, Class<? extends Entity> entity, int id, int color, int color2)
     {
-        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID + ":" + name), entity, name, id, Main.instance, range, 1, true, color, color2);
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID + ":" + name), entity, name, id, Main.instance, 100, 1, true, color, color2);
     }
 }
