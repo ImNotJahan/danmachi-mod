@@ -17,6 +17,7 @@ import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -57,9 +58,9 @@ public class EntityAlmiraj extends EntityRabbit
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && isValidLightLevel()
-                && super.getCanSpawnHere()
-                && world.provider.getDimension() == 0 ? Math.random() < ModConfig.overworldMonsterSpawnChance : true;
+        return this.world.getDifficulty() == EnumDifficulty.PEACEFUL || !isValidLightLevel()
+                || !super.getCanSpawnHere()
+                || world.provider.getDimension() != 0 || Math.random() < ModConfig.overworldMonsterSpawnChance;
     }
 
     private boolean isValidLightLevel()
@@ -122,21 +123,18 @@ public class EntityAlmiraj extends EntityRabbit
 
         if(cause.getTrueSource() instanceof EntityPlayer)
         {
-            if(cause.getTrueSource().world.isRemote)
+            EntityPlayerMP player = (EntityPlayerMP)cause.getTrueSource();
+            IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
+            if(!status.getFalna()) return;
+
+            for(int k = 0; k < 5; k++)
             {
-                EntityPlayer player = ClientMessageBase.getPlayer();
-                IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
-                if(!status.getFalna()) return;
-
-                for(int k = 0; k < 5; k++)
-                {
-                    status.increase(ModConfig.statusIncreases.get("almiraj")[k], k + 1);
-                }
-
-                status.increase(ModConfig.statusIncreases.get("almiraj")[5], 7);
-
-                NetworkHandler.sendToServer(new MessageStatus(status, player));
+                status.increase(ModConfig.statusIncreases.get("almiraj")[k], k + 1);
             }
+
+            status.increase(ModConfig.statusIncreases.get("almiraj")[5], 7);
+
+            NetworkHandler.refreshThing(new MessageStatus(status, player), player);
         }
     }
 

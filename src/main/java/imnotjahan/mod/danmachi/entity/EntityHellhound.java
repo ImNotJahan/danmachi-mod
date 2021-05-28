@@ -12,6 +12,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -61,21 +62,18 @@ public class EntityHellhound extends EntityZombie
 
         if(cause.getTrueSource() instanceof EntityPlayer)
         {
-            if(cause.getTrueSource().world.isRemote)
+            EntityPlayerMP player = (EntityPlayerMP)cause.getTrueSource();
+            IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
+            if(!status.getFalna()) return;
+
+            for(int k = 0; k < 5; k++)
             {
-                EntityPlayer player = ClientMessageBase.getPlayer();
-                IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
-                if(!status.getFalna()) return;
-
-                for(int k = 0; k < 5; k++)
-                {
-                    status.increase(ModConfig.statusIncreases.get("hellhound")[k], k + 1);
-                }
-
-                status.increase(ModConfig.statusIncreases.get("hellhound")[5], 7);
-
-                NetworkHandler.sendToServer(new MessageStatus(status, player));
+                status.increase(ModConfig.statusIncreases.get("hellhound")[k], k + 1);
             }
+
+            status.increase(ModConfig.statusIncreases.get("hellhound")[5], 7);
+
+            NetworkHandler.refreshThing(new MessageStatus(status, player), player);
         }
     }
 

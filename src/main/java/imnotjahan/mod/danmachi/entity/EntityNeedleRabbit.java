@@ -17,6 +17,7 @@ import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -122,21 +123,18 @@ public class EntityNeedleRabbit extends EntityRabbit
 
         if(cause.getTrueSource() instanceof EntityPlayer)
         {
-            if(cause.getTrueSource().world.isRemote)
+            EntityPlayerMP player = (EntityPlayerMP)cause.getTrueSource();
+            IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
+            if(!status.getFalna()) return;
+
+            for(int k = 0; k < 5; k++)
             {
-                EntityPlayer player = ClientMessageBase.getPlayer();
-                IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
-                if(!status.getFalna()) return;
-
-                for(int k = 0; k < 5; k++)
-                {
-                    status.increase(ModConfig.statusIncreases.get("needle_rabbit")[k], k + 1);
-                }
-
-                status.increase(ModConfig.statusIncreases.get("needle_rabbit")[5], 7);
-
-                NetworkHandler.sendToServer(new MessageStatus(status, player));
+                status.increase(ModConfig.statusIncreases.get("needle_rabbit")[k], k + 1);
             }
+
+            status.increase(ModConfig.statusIncreases.get("needle_rabbit")[5], 7);
+
+            NetworkHandler.refreshThing(new MessageStatus(status, player), player);
         }
     }
 
