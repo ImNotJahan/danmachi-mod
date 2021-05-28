@@ -10,7 +10,8 @@
       "item": "minecraft:stick"
     },
     "o": {
-      "item": "danmachi:orichalcum_ingot"
+      "type": "forge:ore_dict",
+      "ore": "ingotOrichalcum"
     },
     "l": {
       "item": "minecraft:dye",

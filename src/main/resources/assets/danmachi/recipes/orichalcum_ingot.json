@@ -5,7 +5,8 @@
   ],
   "key": {
     "#": {
-      "item": "danmachi:orichalcum_block"
+      "type": "forge:ore_dict",
+      "ore": "blockOrichalcum"
     }
   },
   "result": {

@@ -10,7 +10,8 @@
       "item": "minecraft:stick"
     },
     "a": {
-      "item": "danmachi:adamantite_ingot"
+      "type": "forge:ore_dict",
+      "ore": "ingotAdamantite"
     },
     "i": {
       "item": "minecraft:ice"

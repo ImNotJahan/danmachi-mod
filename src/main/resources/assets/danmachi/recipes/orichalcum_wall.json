@@ -9,7 +9,8 @@
       "item": "minecraft:cobblestone"
     },
     "a": {
-      "item": "danmachi:orichalcum_ingot"
+      "type": "forge:ore_dict",
+      "ore": "ingotOrichalcum"
     }
   },
   "result": {

@@ -10,7 +10,8 @@
       "item": "minecraft:stick"
     },
     "m": {
-      "item": "danmachi:mythril_ingot"
+      "type": "forge:ore_dict",
+      "ore": "ingotMythril"
     },
     "i": {
       "item": "danmachi:ichor"

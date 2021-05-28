@@ -8,6 +8,7 @@ import imnotjahan.mod.danmachi.keybinds.KeyInputHandler;
 import imnotjahan.mod.danmachi.keybinds.Keybinds;
 import imnotjahan.mod.danmachi.network.NetworkHandler;
 import imnotjahan.mod.danmachi.proxy.ClientProxy;
+import imnotjahan.mod.danmachi.util.compat.OreDict;
 import imnotjahan.mod.danmachi.util.interfaces.IHasModel;
 import imnotjahan.mod.danmachi.world.gen.GenerateOres;
 import imnotjahan.mod.danmachi.world.gen.WorldGenCustomStructures;
@@ -84,6 +85,7 @@ public class RegistryHandler
         SoundHandler.registerSounds();
         NetworkHandler.init();
         RecipeHandler.registerSmelting();
+        OreDict.registerOres();
     }
 
     public static void serverInitRegistries(FMLServerStartingEvent event)

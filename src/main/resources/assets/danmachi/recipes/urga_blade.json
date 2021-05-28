@@ -6,7 +6,8 @@
   ],
   "key": {
     "a": {
-      "item": "danmachi:adamantite_ingot"
+      "type": "forge:ore_dict",
+      "ore": "ingotAdamantite"
     }
   },
   "result": {
