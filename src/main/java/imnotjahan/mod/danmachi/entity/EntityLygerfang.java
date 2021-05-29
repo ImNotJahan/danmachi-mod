@@ -16,6 +16,12 @@ public class EntityLygerfang extends MonsterBase
     }
 
     @Override
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+    }
+
+    @Override
     protected SoundEvent getAmbientSound()
     {
         return SoundHandler.ENTITY_LYGERFANG_AMBIENT;

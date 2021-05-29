@@ -41,7 +41,7 @@ public class MonsterBase extends EntityZombie
     {
         super.applyEntityAttributes();
 
-        if(name != null)
+        if(ModConfig.mobStats.containsKey(name))
         {
             this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(ModConfig.mobStats.get(name)[0]);
             this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(ModConfig.mobStats.get(name)[1]);

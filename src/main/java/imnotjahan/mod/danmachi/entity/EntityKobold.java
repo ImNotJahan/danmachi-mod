@@ -14,6 +14,12 @@ public class EntityKobold extends MonsterBase
     }
 
     @Override
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+    }
+
+    @Override
     protected SoundEvent getStepSound()
     {
         return SoundEvents.ENTITY_WOLF_STEP;

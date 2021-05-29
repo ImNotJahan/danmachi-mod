@@ -9,4 +9,10 @@ public class EntityGoblin extends MonsterBase
     {
         super(worldIn, "goblin");
     }
+
+    @Override
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+    }
 }

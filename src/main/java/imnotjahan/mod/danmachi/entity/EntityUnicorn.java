@@ -16,6 +16,12 @@ public class EntityUnicorn extends MonsterBase
     }
 
     @Override
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+    }
+
+    @Override
     protected SoundEvent getAmbientSound()
     {
         return SoundEvents.ENTITY_HORSE_AMBIENT;

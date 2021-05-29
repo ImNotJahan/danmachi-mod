@@ -11,4 +11,10 @@ public class EntityKillerAnt extends MonsterBase
 
         this.setSize(2.3F, 0.8F);
     }
+
+    @Override
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+    }
 }

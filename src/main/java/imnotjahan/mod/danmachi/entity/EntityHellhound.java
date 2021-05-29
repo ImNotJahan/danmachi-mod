@@ -15,6 +15,12 @@ public class EntityHellhound extends MonsterBase
     }
 
     @Override
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+    }
+
+    @Override
     protected boolean shouldBurnInDay()
     {
         return false;
