@@ -58,15 +58,9 @@ public class EntityNeedleRabbit extends EntityRabbit
     @Override
     public boolean getCanSpawnHere()
     {
-        System.out.println(this.world.getDifficulty() != EnumDifficulty.PEACEFUL && isValidLightLevel()
-                && super.getCanSpawnHere()
-                && world.provider.getDimension() == 0 ? Math.random() < ModConfig.overworldMonsterSpawnChance : true);
-        System.out.println(this.world.getDifficulty() == EnumDifficulty.PEACEFUL || !isValidLightLevel()
+        return this.world.getDifficulty() == EnumDifficulty.PEACEFUL || !isValidLightLevel()
                 || !super.getCanSpawnHere()
-                || world.provider.getDimension() != 0 || Math.random() < ModConfig.overworldMonsterSpawnChance);
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && isValidLightLevel()
-                && super.getCanSpawnHere()
-                && world.provider.getDimension() == 0 ? Math.random() < ModConfig.overworldMonsterSpawnChance : true;
+                || world.provider.getDimension() != 0 || Math.random() < ModConfig.overworldMonsterSpawnChance;
     }
 
     private boolean isValidLightLevel()
@@ -101,12 +95,14 @@ public class EntityNeedleRabbit extends EntityRabbit
         this.tasks.addTask(11, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
     }
 
+    private static final String name = "needle_rabbit";
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
+
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(ModConfig.mobStats.get(name)[1]);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(ModConfig.mobStats.get(name)[2]);
     }
 
     @Override

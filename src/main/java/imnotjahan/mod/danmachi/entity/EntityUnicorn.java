@@ -1,6 +1,8 @@
 package imnotjahan.mod.danmachi.entity;
 
+import imnotjahan.mod.danmachi.config.ModConfig;
 import imnotjahan.mod.danmachi.entity.templates.MonsterBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -8,9 +10,11 @@ import net.minecraft.world.World;
 
 public class EntityUnicorn extends MonsterBase
 {
+    private static final String name = "unicorn";
+
     public EntityUnicorn(World worldIn)
     {
-        super(worldIn, "unicorn");
+        super(worldIn, name);
 
         this.setSize(1.3964844F, 1.6F);
     }
@@ -19,6 +23,11 @@ public class EntityUnicorn extends MonsterBase
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
+
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(ModConfig.mobStats.get(name)[0] / 2);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(ModConfig.mobStats.get(name)[1]);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(ModConfig.mobStats.get(name)[2]);
+        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(ModConfig.mobStats.get(name)[3]);
     }
 
     @Override

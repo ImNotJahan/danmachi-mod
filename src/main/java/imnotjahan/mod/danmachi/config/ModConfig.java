@@ -75,6 +75,8 @@ public class ModConfig
         put("lygerfang", new double[]{10, 15, .4D, 3});
         put("hellhound", new double[]{8, 10, .3D, 2});
         put("unicorn", new double[]{10, 20, .45D, 2});
+        put("needle_rabbit", new double[]{8, 12, .3D, 2});
+        put("almiraj", new double[]{8, 20, .3D, 2});
     }};
 
     @Config.LangKey("config.danmachi.ore_generation_chances")

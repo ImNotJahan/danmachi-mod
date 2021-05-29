@@ -6,9 +6,9 @@ import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.config.ModConfig;
 import imnotjahan.mod.danmachi.network.MessageStatus;
 import imnotjahan.mod.danmachi.network.NetworkHandler;
+import imnotjahan.mod.danmachi.util.Reference;
 import imnotjahan.mod.danmachi.util.handlers.LootTableHandler;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -34,20 +34,6 @@ public class MonsterBase extends EntityZombie
     protected boolean shouldBurnInDay()
     {
         return false;
-    }
-
-    @Override
-    protected void applyEntityAttributes()
-    {
-        super.applyEntityAttributes();
-
-        if(ModConfig.mobStats.containsKey(name))
-        {
-            this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(ModConfig.mobStats.get(name)[0]);
-            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(ModConfig.mobStats.get(name)[1]);
-            this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(ModConfig.mobStats.get(name)[2]);
-            this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(ModConfig.mobStats.get(name)[3]);
-        }
     }
 
     @Override

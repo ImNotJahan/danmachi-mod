@@ -7,7 +7,7 @@ public class Reference
     //basic
     public static final String MODID = "danmachi";
     public static final String NAME = "Danmachi Mod";
-    public static final String VERSION = "1.1.2";
+    public static final String VERSION = "1.1.3";
     public static final String CLIENT = "imnotjahan.mod.danmachi.proxy.ClientProxy";
     public static final String COMMON = "imnotjahan.mod.danmachi.proxy.CommonProxy";
     public static final String GUI_FACTORY = "imnotjahan.mod.danmachi.config.GuiFactory";
