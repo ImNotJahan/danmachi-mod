@@ -1,23 +1,14 @@
 package imnotjahan.mod.danmachi.entity;
 
-import imnotjahan.mod.danmachi.gui.Professions;
-import imnotjahan.mod.danmachi.init.ItemInit;
-import net.minecraft.entity.EntityLeashKnot;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemLead;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.VillagerRegistry;
-
-import java.util.Random;
 
 public class EntityDealer extends EntityMob
 {

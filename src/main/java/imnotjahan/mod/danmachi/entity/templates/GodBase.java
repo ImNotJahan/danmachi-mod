@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.entity.templates;
 
-import imnotjahan.mod.danmachi.network.ClientMessageBase;
+import imnotjahan.mod.danmachi.util.ClientThings;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.*;
@@ -48,7 +48,7 @@ public class GodBase extends EntityCreature
 
         if(hand == EnumHand.MAIN_HAND)
         {
-            ClientMessageBase.showGodGUI(godName, flag);
+            ClientThings.showGodGUI(godName, flag);
         }
 
         return true;

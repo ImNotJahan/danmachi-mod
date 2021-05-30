@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi;
 
-import imnotjahan.mod.danmachi.gui.Professions;
+import imnotjahan.mod.danmachi.entity.EntityGuildMember;
 import imnotjahan.mod.danmachi.proxy.CommonProxy;
 import imnotjahan.mod.danmachi.tabs.CustomTab;
 import imnotjahan.mod.danmachi.util.Reference;
@@ -59,7 +59,6 @@ public class Main
     @Mod.EventHandler
     public static void init(FMLInitializationEvent event)
     {
-        Professions.associateCareersAndTrades();
         proxy.init();
         RegistryHandler.initRegistries();
     }

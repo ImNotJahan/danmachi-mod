@@ -1,7 +1,6 @@
 package imnotjahan.mod.danmachi.network;
 
-import imnotjahan.mod.danmachi.Main;
-import net.minecraft.client.Minecraft;
+import imnotjahan.mod.danmachi.util.ClientThings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -16,7 +15,7 @@ public abstract class MessageBase<REQ extends IMessage> implements IMessage, IMe
         {
             handleServerSide(message, ctx.getServerHandler().player);
         } else {
-            EntityPlayer player = ClientMessageBase.getPlayer();
+            EntityPlayer player = ClientThings.getPlayer();
             if(player != null)
             {
                 handleClientSide(message, player);
