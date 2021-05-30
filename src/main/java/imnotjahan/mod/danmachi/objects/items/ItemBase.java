@@ -45,7 +45,7 @@ public class ItemBase extends Item implements IHasModel
         switch (name)
         {
             case "guide_book":
-                if(Thread.currentThread().getThreadGroup() == SidedThreadGroups.CLIENT)
+                if(playerIn.world.isRemote)
                 {
                     openGuidebook(playerIn);
                     return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.inventory.getStackInSlot(playerIn.inventory.currentItem));

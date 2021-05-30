@@ -79,6 +79,29 @@ public class ModConfig
         put("almiraj", new double[]{8, 20, .3D, 2});
     }};
 
+    @Config.LangKey("config.danmachi.guild_trades")
+    public static Map<String, Integer> guildTrades = new HashMap<String, Integer>(){{
+        put("item.goblin_fang", 3);
+        put("item.lygerfang_fang", 5);
+        put("item.kobold_nail", 3);
+        put("item.almiraj_fur", 4);
+        put("item.lygerfang_fur", 5);
+        put("item.minotaur_horn", 7);
+        put("item.unicorn_horn", 10);
+    }};
+
+    @Config.LangKey("config.danmachi.magic_stone_trades")
+    public static Map<String, Integer> magicStoneTrades = new HashMap<String, Integer>(){{
+        put("goblin", 1);
+        put("lygerfang", 4);
+        put("kobold", 1);
+        put("almiraj", 2);
+        put("killer ant", 2);
+        put("minotaur", 5);
+        put("unicorn", 7);
+        put("hellhound", 3);
+    }};
+
     @Config.LangKey("config.danmachi.ore_generation_chances")
     public static Map<String, Integer> oreGenerationChances = new HashMap<String, Integer>(){{
         put("mythril", 15);
