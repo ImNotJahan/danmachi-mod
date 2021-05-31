@@ -104,14 +104,22 @@ public class ModConfig
 
     @Config.LangKey("config.danmachi.required_smithing_dex")
     public static Map<String, Integer> requiredSmithingDex = new HashMap<String, Integer>(){{
-        put("goblin", 1);
-        put("lygerfang", 4);
-        put("kobold", 1);
-        put("almiraj", 2);
-        put("killer ant", 2);
-        put("minotaur", 5);
-        put("unicorn", 7);
-        put("hellhound", 3);
+        put("item.fire_magic_stone", 1);
+        put("item.ice_magic_stone", 1);
+        put("item.greatsword", 1);
+        put("item.kotetsu", 1);
+        put("item.desperate", 1);
+        put("item.kodachi_futaba", 1);
+        put("item.great_podao_zaga", 1);
+        put("item.protagonista", 1);
+        put("item.urga", 1);
+        put("item.urga_blade", 1);
+        put("item.hakugen", 1);
+        put("item.hestia_knife", 1);
+        put("item.dagger", 1);
+        put("item.ushiwakamaru", 1);
+        put("item.sword_air", 1);
+        put("fortia_spear", 1);
     }};
 
     @Config.LangKey("config.danmachi.ore_generation_chances")
