@@ -1,6 +1,5 @@
 package imnotjahan.mod.danmachi;
 
-import imnotjahan.mod.danmachi.entity.EntityGuildMember;
 import imnotjahan.mod.danmachi.proxy.CommonProxy;
 import imnotjahan.mod.danmachi.tabs.CustomTab;
 import imnotjahan.mod.danmachi.util.Reference;
