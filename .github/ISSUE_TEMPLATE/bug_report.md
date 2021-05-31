@@ -1,3 +1,12 @@
+---
+name: Bug report
+about: Report an issue with the mod
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 **Describe the bug"**
 A clear and concise description of what the bug is.
 
