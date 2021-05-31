@@ -51,17 +51,12 @@ public class SmithingAnvil extends Block implements IHasModel
     public SmithingAnvil()
     {
         super(Material.ANVIL);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HOLDING, 0));
-        this.setCreativeTab(Main.creativeTab);
-
-        setHardness(5.0F);
-        setSoundType(SoundType.ANVIL);
-        setResistance(2000.0F);
         setUnlocalizedName("smithing_anvil");
         setRegistryName("smithing_anvil");
+        setCreativeTab(Main.creativeTab);
 
         BlockInit.BLOCKS.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(Objects.requireNonNull(this.getRegistryName())));
+        ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     @Override
@@ -70,16 +65,10 @@ public class SmithingAnvil extends Block implements IHasModel
         Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0);
     }
 
-    @Override
+    /*@Override
     public boolean isFullCube(IBlockState state)
     {
         return false;
-    }
-
-    @Override
-    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
-    {
-        return BlockFaceShape.UNDEFINED;
     }
 
     @Override
@@ -102,16 +91,16 @@ public class SmithingAnvil extends Block implements IHasModel
     {
         return BlockRenderLayer.CUTOUT;
     }
-
+*/
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if (playerIn.inventory.getCurrentItem().getItem() == ItemInit.HAMMER)
+        if(!player.world.isRemote)
         {
-            Minecraft.getMinecraft().displayGuiScreen(new SmithingGUI(state.getValue(HOLDING)));
+            player.openGui(Main.instance, 1, player.world, (int)player.posX, (int)player.posY, (int)player.posZ);
         }
 
-        Item[] craftingMaterials = new Item[]{ ItemInit.ORICHALCUM_INGOT,
+        /*Item[] craftingMaterials = new Item[]{ ItemInit.ORICHALCUM_INGOT,
                 ItemInit.ADAMANTITE_INGOT,
                 Items.IRON_INGOT,
                 ItemInit.UNICORN_HORN,
@@ -196,11 +185,11 @@ public class SmithingAnvil extends Block implements IHasModel
             SmithingGUI.forgableItem = SmithingGUI.ForgableItem.NONE;
             state = state.withProperty(FACING, state.getValue(FACING)).withProperty(HOLDING, 0);
             worldIn.setBlockState(pos, state);
-        }
+        }*/
 
         return true;
     }
-
+/*
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
@@ -208,7 +197,6 @@ public class SmithingAnvil extends Block implements IHasModel
         return enumfacing.getAxis() == EnumFacing.Axis.X ? X_AXIS_AABB : Z_AXIS_AABB;
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
@@ -240,5 +228,5 @@ public class SmithingAnvil extends Block implements IHasModel
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, new IProperty[] {FACING, HOLDING});
-    }
+    }*/
 }

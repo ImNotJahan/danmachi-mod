@@ -12,31 +12,30 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 
-public class GuildContainer extends Container
+public class SmithingContainer extends Container
 {
-    private IInventory guildInventory = new InventoryBasic(new TextComponentString("Guild Member"), 5);
-    private IInventory guildOutput = new InventoryBasic(new TextComponentString("Guild Output"), 3);
+    private IInventory guildInventory = new InventoryBasic(new TextComponentString("Guild Member"), 3);
+    private IInventory guildOutput = new InventoryBasic(new TextComponentString("Guild Output"), 1);
 
-    public GuildContainer(InventoryPlayer playerInventory)
+    public SmithingContainer(InventoryPlayer playerInventory)
     {
-        for (int k = 0; k < 5; ++k)
-        {
-            this.addSlotToContainer(new Slot(guildInventory, k, 8 + k * 18, 20));
-        }
+        this.addSlotToContainer(new Slot(guildInventory, 0, 81, 10));
+        this.addSlotToContainer(new Slot(guildInventory, 1, 36, 35));
+        this.addSlotToContainer(new Slot(guildInventory, 2, 81, 58));
 
-        this.addSlotToContainer(new GuildOutputSlot(guildOutput, guildInventory, 0, 152, 20));
+        this.addSlotToContainer(new GuildOutputSlot(guildOutput, guildInventory, 0, 144, 34));
 
         for (int i = 0; i < 3; ++i)
         {
             for (int j = 0; j < 9; ++j)
             {
-                this.addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 51 + i * 18));
+                this.addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
 
         for (int k = 0; k < 9; ++k)
         {
-            this.addSlotToContainer(new Slot(playerInventory, k, 8 + k * 18, 109));
+            this.addSlotToContainer(new Slot(playerInventory, k, 8 + k * 18, 142));
         }
     }
 

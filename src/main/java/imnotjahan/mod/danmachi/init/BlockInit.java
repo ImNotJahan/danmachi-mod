@@ -27,7 +27,7 @@ public class BlockInit
     public static final Block DUNGEON_WALL = new DungeonWall();
 
     //smithing
-    //public static final Block SMITHING_ANVIL = new SmithingAnvil();
+    public static final Block SMITHING_ANVIL = new SmithingAnvil();
 
     //other
     public static final Block MAGIC_STONE_STOVE = new MagicStoneStove();

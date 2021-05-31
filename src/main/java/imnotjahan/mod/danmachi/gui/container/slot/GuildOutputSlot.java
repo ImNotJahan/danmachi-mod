@@ -5,11 +5,11 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class OutputSlot extends Slot
+public class GuildOutputSlot extends Slot
 {
     IInventory inventoryIn;
 
-    public OutputSlot(IInventory inventoryIn, IInventory otherInvIn, int index, int xPosition, int yPosition)
+    public GuildOutputSlot(IInventory inventoryIn, IInventory otherInvIn, int index, int xPosition, int yPosition)
     {
         super(inventoryIn, index, xPosition, yPosition);
         this.inventoryIn = otherInvIn;

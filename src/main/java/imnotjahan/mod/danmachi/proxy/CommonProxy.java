@@ -4,7 +4,7 @@ import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusStorage;
-import imnotjahan.mod.danmachi.gui.handler.GuildHandler;
+import imnotjahan.mod.danmachi.util.handlers.GuiHandler;
 import imnotjahan.mod.danmachi.util.handlers.CapabilityHandler;
 import imnotjahan.mod.danmachi.util.handlers.EventHandler;
 import net.minecraft.item.Item;
@@ -28,6 +28,6 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
         MinecraftForge.EVENT_BUS.register(new EventHandler());
 
-        NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, new GuildHandler());
+        NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, new GuiHandler());
     }
 }

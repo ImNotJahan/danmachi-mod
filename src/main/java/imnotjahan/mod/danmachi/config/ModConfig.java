@@ -102,6 +102,18 @@ public class ModConfig
         put("hellhound", 3);
     }};
 
+    @Config.LangKey("config.danmachi.required_smithing_dex")
+    public static Map<String, Integer> requiredSmithingDex = new HashMap<String, Integer>(){{
+        put("goblin", 1);
+        put("lygerfang", 4);
+        put("kobold", 1);
+        put("almiraj", 2);
+        put("killer ant", 2);
+        put("minotaur", 5);
+        put("unicorn", 7);
+        put("hellhound", 3);
+    }};
+
     @Config.LangKey("config.danmachi.ore_generation_chances")
     public static Map<String, Integer> oreGenerationChances = new HashMap<String, Integer>(){{
         put("mythril", 15);

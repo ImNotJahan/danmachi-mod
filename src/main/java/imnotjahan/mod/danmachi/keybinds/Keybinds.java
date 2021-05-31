@@ -7,11 +7,19 @@ import org.lwjgl.input.Keyboard;
 public class Keybinds
 {
     public static KeyBinding status;
+    public static KeyBinding magic;
 
     public static void RegisterKeybinds()
     {
-        status = new KeyBinding("key.status", Keyboard.KEY_V, "key.categories.danmachi");
+        status = addKeybind("key.status", Keyboard.KEY_V);
+        magic = addKeybind("key.magic", Keyboard.KEY_F);
+    }
 
-        ClientRegistry.registerKeyBinding(status);
+    private static KeyBinding addKeybind(String description, int keyCode)
+    {
+        KeyBinding binding = new KeyBinding(description, keyCode, "key.categories.danmachi");
+        ClientRegistry.registerKeyBinding(binding);
+
+        return binding;
     }
 }

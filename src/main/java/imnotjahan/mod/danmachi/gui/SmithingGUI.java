@@ -1,89 +1,53 @@
 package imnotjahan.mod.danmachi.gui;
 
+import imnotjahan.mod.danmachi.gui.container.GuildContainer;
+import imnotjahan.mod.danmachi.gui.container.SmithingContainer;
 import imnotjahan.mod.danmachi.init.ItemInit;
+import imnotjahan.mod.danmachi.util.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import java.io.IOException;
 
-public class SmithingGUI extends GuiScreen
+public class SmithingGUI extends GuiContainer
 {
-    public SmithingGUI(int value)
-    {
-        //forgableItem = value;
-    }
+    private static final ResourceLocation GuiTextures = new ResourceLocation(Reference.MODID + ":textures/gui/container/smithing.png");
+    private final InventoryPlayer playerInventory;
 
-    public enum ForgableItem
+    public SmithingGUI(InventoryPlayer playerInventory)
     {
-        ORICHALCUM,
-        ADAMANTITE,
-        IRON,
-        WOOD,
-        UNICORN_HORN,
-        MINOTAUR_HORN,
-        MYTHRIL,
-        NONE
-    }
-
-    static public ForgableItem forgableItem = ForgableItem.NONE;
-
-    @Override
-    public void initGui()
-    {
-        if(forgableItem.equals(ForgableItem.ORICHALCUM))
-        {
-            createButton("Desperate", 0, 16);
-        } else if(forgableItem.equals(ForgableItem.ADAMANTITE))
-        {
-            createButton("Fire Magic Sword", 0, 12);
-            createButton("Ice Magic Sword", 1, 13);
-            createButton("Fortia Spear", 2, 27);
-            createButton("Urga Blade", 3, 40);
-        } else if(forgableItem.equals(ForgableItem.IRON))
-        {
-            createButton("Kotetsu", 0, 15);
-            createButton("Kodachi Futaba", 1, 17);
-            createButton("Greatsword", 2, 14);
-            createButton("Great Podao Zaga", 3, 18);
-            createButton("Dagger", 4, 23);
-        } else if(forgableItem.equals(ForgableItem.MYTHRIL))
-        {
-            createButton("Hestia Knife", 0, 22);
-        } else if(forgableItem.equals(ForgableItem.UNICORN_HORN))
-        {
-            createButton("Hakugen", 0, 21);
-        } else if(forgableItem.equals(ForgableItem.MINOTAUR_HORN))
-        {
-            createButton("Ushiwakamaru", 0, 24);
-        }
-    }
-
-    private void createButton(String name, int index, int id)
-    {
-        buttonList.add(new GuiButton(id, this.width / 2 - 100, 100 + 30 * index, name));
-    }
-
-    @Override
-    public boolean doesGuiPauseGame()
-    {
-        return true;
+        super(new SmithingContainer(playerInventory));
+        this.playerInventory = playerInventory;
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
-        drawDefaultBackground();
+        this.drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
+        this.renderHoveredToolTip(mouseX, mouseY);
     }
 
     @Override
-    protected void actionPerformed(GuiButton button) throws IOException
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        Minecraft.getMinecraft().player.inventory.addItemStackToInventory(
-                new ItemStack(ItemInit.ITEMS.get(button.id)));
-        forgableItem = ForgableItem.NONE;
-        mc.displayGuiScreen(null);
+        this.fontRenderer.drawString("Smithing Anvil", 8, 6, 4210752);
+        this.fontRenderer.drawString(this.playerInventory.getDisplayName().getUnformattedText(), 8, 70, 4210752);
+    }
+
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+    {
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        this.mc.getTextureManager().bindTexture(GuiTextures);
+        int i = (this.width - this.xSize) / 2;
+        int j = (this.height - this.ySize) / 2;
+        this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
     }
 }
