@@ -1,29 +1,33 @@
 package imnotjahan.mod.danmachi.gui.container;
 
-import imnotjahan.mod.danmachi.config.ModConfig;
-import imnotjahan.mod.danmachi.gui.container.slot.GuildOutputSlot;
+import imnotjahan.mod.danmachi.gui.container.slot.SmithingInputSlot;
+import imnotjahan.mod.danmachi.gui.container.slot.SmithingSlot;
+import imnotjahan.mod.danmachi.init.ItemInit;
+import net.minecraft.block.BlockIce;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 
+import java.util.ArrayList;
+
 public class SmithingContainer extends Container
 {
-    private IInventory guildInventory = new InventoryBasic(new TextComponentString("Guild Member"), 3);
-    private IInventory guildOutput = new InventoryBasic(new TextComponentString("Guild Output"), 1);
+    private IInventory smithingInventory = new InventoryBasic(new TextComponentString("Guild Member"), 3);
+    private IInventory smithingOutput = new InventoryBasic(new TextComponentString("Guild Output"), 1);
 
     public SmithingContainer(InventoryPlayer playerInventory)
     {
-        this.addSlotToContainer(new Slot(guildInventory, 0, 81, 10));
-        this.addSlotToContainer(new Slot(guildInventory, 1, 36, 35));
-        this.addSlotToContainer(new Slot(guildInventory, 2, 81, 58));
+        this.addSlotToContainer(new SmithingInputSlot(smithingInventory, 0, 81, 10));
+        this.addSlotToContainer(new SmithingInputSlot(smithingInventory, 1, 36, 35));
+        this.addSlotToContainer(new SmithingInputSlot(smithingInventory, 2, 81, 58));
 
-        this.addSlotToContainer(new GuildOutputSlot(guildOutput, guildInventory, 0, 144, 34));
+        this.addSlotToContainer(new SmithingSlot(smithingOutput, smithingInventory, 0, 144, 34));
 
         for (int i = 0; i < 3; ++i)
         {
@@ -42,7 +46,7 @@ public class SmithingContainer extends Container
     @Override
     public boolean canInteractWith(EntityPlayer playerIn)
     {
-        return this.guildInventory.isUsableByPlayer(playerIn);
+        return this.smithingInventory.isUsableByPlayer(playerIn);
     }
 
     @Override
@@ -52,9 +56,9 @@ public class SmithingContainer extends Container
 
         if (!playerIn.world.isRemote)
         {
-            for(int k = 0; k < guildInventory.getSizeInventory(); k++)
+            for(int k = 0; k < smithingInventory.getSizeInventory(); k++)
             {
-                ItemStack itemstack = this.guildInventory.removeStackFromSlot(k);
+                ItemStack itemstack = this.smithingInventory.removeStackFromSlot(k);
 
                 if (!itemstack.isEmpty())
                 {
@@ -69,35 +73,95 @@ public class SmithingContainer extends Container
     {
         super.detectAndSendChanges();
 
-        int value = 0;
+        ArrayList<String> materials = new ArrayList<>();
 
-        for(int k = 0; k < guildInventory.getSizeInventory(); k++)
+        for(int k = 0; k < smithingInventory.getSizeInventory(); k++)
         {
-            ItemStack stack = guildInventory.getStackInSlot(k);
-            for(int j = 0; j < ModConfig.guildTrades.size(); j++)
-            {
-                if (ModConfig.guildTrades.containsKey(stack.getItem().getUnlocalizedName()))
-                {
-                    value += ModConfig.guildTrades.get(stack.getItem().getUnlocalizedName())
-                            * stack.getCount();
-                    break;
-                } else if(stack.getItem().getUnlocalizedName().equals("item.magic_stone"))
-                {
-                    String droppedFrom = stack.getTagCompound().getCompoundTag("display").getTag("Lore").toString();
-                    droppedFrom = droppedFrom.replace("]", "");
-                    droppedFrom = droppedFrom.replace("\"", "");
-                    droppedFrom = droppedFrom.split(" ")[2];
-
-                    if (ModConfig.magicStoneTrades.containsKey(droppedFrom))
-                    {
-                        value += ModConfig.magicStoneTrades.get(droppedFrom)
-                                * stack.getCount();
-                        break;
-                    }
-                }
-            }
+            materials.add(smithingInventory.getStackInSlot(k).getUnlocalizedName());
         }
 
-        guildOutput.setInventorySlotContents(0, new ItemStack(Items.EMERALD, value));
+        if(materials.contains("item.adamantite_ingot") &&
+                materials.contains("item.stick") &&
+                materials.contains("item.flintAndSteel"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.FIRE_MAGIC_SWORD));
+        } else if(materials.contains("item.adamantite_ingot") &&
+                materials.contains("item.stick") &&
+                materials.contains("tile.ice"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.ICE_MAGIC_SWORD));
+        } else if(materials.contains("tile.blockIron") &&
+                materials.contains("item.stick") &&
+                materials.contains("tile.blockIron"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.GREATSWORD));
+        } else if(materials.contains("item.ingotIron") &&
+                materials.contains("item.stick") &&
+                materials.contains("item.lygerfang_fang"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.KOTETSU));
+        } else if(materials.contains("item.orichalcum_ingot") &&
+                materials.contains("item.stick") &&
+                materials.contains("item.dyePowder"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.DESPERATE));
+        } else if(materials.contains("item.ingotIron") &&
+                materials.contains("item.ingotGold") &&
+                materials.contains("item.ingotGold"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.KODACHI_FUTABA));
+        } else if(materials.contains("tile.planks") &&
+                materials.contains("tile.blockIron") &&
+                materials.contains("tile.blockIron"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.GREAT_PODAO_ZAGA));
+        } else if(materials.contains("item.ingotIron") &&
+                materials.contains("item.ingotGold") &&
+                materials.contains("item.ingotEmerald"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.PROTAGONISTA));
+        } else if(materials.contains("item.urga_blade") &&
+                materials.contains("item.stick") &&
+                materials.contains("item.urga_blade"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.URGA));
+        } else if(materials.contains("item.adamantite_ingot") &&
+                materials.contains("item.stick") &&
+                materials.contains("item.unicorn_horn"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.HAKUGEN));
+        } else if(materials.contains("item.adamantite_ingot") &&
+                materials.contains("item.ingotIron") &&
+                materials.contains("item.adamantite_ingot"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.URGA_BLADE));
+        } else if(materials.contains("item.mythril_ingot") &&
+                materials.contains("item.stick") &&
+                materials.contains("item.ichor"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.HESTIA_KNIFE));
+        } else if(materials.contains("item.ingotIron") &&
+                materials.contains("item.stick") &&
+                materials.contains("item.ingotIron"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.DAGGER));
+        } else if(materials.contains("item.minotaur_horn") &&
+                materials.contains("item.stick"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.USHIWAKAMARU));
+        } else if(materials.contains("item.damascus_steel") &&
+                materials.contains("item.stick") &&
+                materials.contains("item.damascus_steel"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.SWORD_AIR));
+        } else if(materials.contains("item.adamantite_ingot") &&
+                materials.contains("item.stick") &&
+                materials.contains("item.adamantite_ingot"))
+        {
+            smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.FORTIA_SPEAR));
+        } else
+        {
+            smithingOutput.setInventorySlotContents(0, ItemStack.EMPTY);
+        }
     }
 }

@@ -104,8 +104,8 @@ public class ModConfig
 
     @Config.LangKey("config.danmachi.required_smithing_dex")
     public static Map<String, Integer> requiredSmithingDex = new HashMap<String, Integer>(){{
-        put("item.fire_magic_stone", 1);
-        put("item.ice_magic_stone", 1);
+        put("item.fire_magic_sword", 1);
+        put("item.ice_magic_sword", 1);
         put("item.greatsword", 1);
         put("item.kotetsu", 1);
         put("item.desperate", 1);
@@ -119,7 +119,7 @@ public class ModConfig
         put("item.dagger", 1);
         put("item.ushiwakamaru", 1);
         put("item.sword_air", 1);
-        put("fortia_spear", 1);
+        put("item.fortia_spear", 1);
     }};
 
     @Config.LangKey("config.danmachi.ore_generation_chances")
