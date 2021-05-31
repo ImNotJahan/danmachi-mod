@@ -41,7 +41,8 @@ public class SmithingSlot extends Slot
         {
             int requiredDex = ModConfig.requiredSmithingDex.get(inventory.getStackInSlot(0).getUnlocalizedName());
 
-            if (playerIn.getCapability(StatusProvider.STATUS_CAP, Status.capSide).get(3) >= requiredDex)
+            if (playerIn.getCapability(StatusProvider.STATUS_CAP, Status.capSide).get(3) +
+                    (playerIn.getCapability(StatusProvider.STATUS_CAP, Status.capSide).getLevel() - 1) * 1000 >= requiredDex)
             {
                 return true;
             }

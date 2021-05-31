@@ -47,6 +47,7 @@ item.magic_stone_compass.name=Magic Stone Compass
 item.sword_air.name=Sword Air
 item.valis.name=Valis
 item.damascus_steel.name=Damascus Steel
+item.grimoire.name=Grimoire
 
 //blocks
 tile.adamantite_block.name=Adamantite Block
@@ -119,6 +120,9 @@ config.danmachi.generate_custom_structures=Generate custom structures
 config.danmachi.god_house_generation_chance=God house generation chance
 config.danmachi.stat_multiplier=Stat multiplier
 config.danmachi.mob_stats=Monster stats
+config.danmachi.guild_trades=Guild trades
+config.danmachi.magic_stone_trades=Magic stone trades
+config.danmachi.required_smithing_dex=Required smithing dexterity
 
 //abilities
 abilities.abnormal_resistance=Abnormal Resistance
@@ -134,3 +138,6 @@ skills.aero_mana=Aero Mana
 skills.ail_mac_midna=Ail Mac Midna
 skills.avenger=Avenger
 skills.mind_load=Mind Load
+
+//magic
+spell.firebolt=Firebolt

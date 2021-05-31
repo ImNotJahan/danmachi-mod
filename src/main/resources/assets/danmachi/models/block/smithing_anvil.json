@@ -54,18 +54,6 @@
         "west":  { "uv": [ 10, 0, 16, 16 ], "texture": "#body", "rotation":  90 },
         "east":  { "uv": [ 16, 0, 10, 16 ], "texture": "#body", "rotation": 270 }
       }
-    },
-    {   "__comment": "Ingot",
-      "from": [ 3, 17, 3 ],
-      "to": [ 13, 18, 13 ],
-      "faces": {
-        "down":  { "uv": [  3, 0, 13, 16 ], "texture": "#ingot_side", "rotation": 180 },
-        "up":    { "uv": [  0, 0, 16, 16 ], "texture": "#ingot",   "rotation": 180 },
-        "north": { "uv": [  3, 0, 6,  6 ], "texture": "#ingot_side" },
-        "south": { "uv": [  3, 0, 13,  6 ], "texture": "#ingot_side" },
-        "west":  { "uv": [ 10, 0, 16, 16 ], "texture": "#ingot_side", "rotation":  90 },
-        "east":  { "uv": [ 16, 0, 10, 16 ], "texture": "#ingot_side", "rotation": 270 }
-      }
     }
   ]
 }

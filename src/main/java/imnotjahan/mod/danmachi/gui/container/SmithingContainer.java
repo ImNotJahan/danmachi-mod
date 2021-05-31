@@ -1,16 +1,13 @@
 package imnotjahan.mod.danmachi.gui.container;
 
-import imnotjahan.mod.danmachi.gui.container.slot.SmithingInputSlot;
 import imnotjahan.mod.danmachi.gui.container.slot.SmithingSlot;
 import imnotjahan.mod.danmachi.init.ItemInit;
-import net.minecraft.block.BlockIce;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 
@@ -23,9 +20,9 @@ public class SmithingContainer extends Container
 
     public SmithingContainer(InventoryPlayer playerInventory)
     {
-        this.addSlotToContainer(new SmithingInputSlot(smithingInventory, 0, 81, 10));
-        this.addSlotToContainer(new SmithingInputSlot(smithingInventory, 1, 36, 35));
-        this.addSlotToContainer(new SmithingInputSlot(smithingInventory, 2, 81, 58));
+        this.addSlotToContainer(new Slot(smithingInventory, 0, 81, 10));
+        this.addSlotToContainer(new Slot(smithingInventory, 1, 36, 35));
+        this.addSlotToContainer(new Slot(smithingInventory, 2, 81, 58));
 
         this.addSlotToContainer(new SmithingSlot(smithingOutput, smithingInventory, 0, 144, 34));
 
@@ -79,7 +76,7 @@ public class SmithingContainer extends Container
         {
             materials.add(smithingInventory.getStackInSlot(k).getUnlocalizedName());
         }
-
+        System.out.println(materials);
         if(materials.contains("item.adamantite_ingot") &&
                 materials.contains("item.stick") &&
                 materials.contains("item.flintAndSteel"))
@@ -102,7 +99,7 @@ public class SmithingContainer extends Container
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.KOTETSU));
         } else if(materials.contains("item.orichalcum_ingot") &&
                 materials.contains("item.stick") &&
-                materials.contains("item.dyePowder"))
+                materials.contains("item.dyePowder.blue"))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.DESPERATE));
         } else if(materials.contains("item.ingotIron") &&
