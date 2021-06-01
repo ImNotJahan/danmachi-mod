@@ -76,89 +76,94 @@ public class SmithingContainer extends Container
         {
             materials.add(smithingInventory.getStackInSlot(k).getUnlocalizedName());
         }
-        System.out.println(materials);
-        if(materials.contains("item.adamantite_ingot") &&
-                materials.contains("item.stick") &&
-                materials.contains("item.flintAndSteel"))
+
+        if(materialsContains("item.adamantite_ingot",
+                "item.stick", "item.flintAndSteel", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.FIRE_MAGIC_SWORD));
-        } else if(materials.contains("item.adamantite_ingot") &&
-                materials.contains("item.stick") &&
-                materials.contains("tile.ice"))
+        } else if(materialsContains("item.adamantite_ingot",
+                "item.stick", "tile.ice", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.ICE_MAGIC_SWORD));
-        } else if(materials.contains("tile.blockIron") &&
-                materials.contains("item.stick") &&
-                materials.contains("tile.blockIron"))
+        } else if(materialsContains("tile.blockIron",
+                "item.stick", "tile.blockIron", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.GREATSWORD));
-        } else if(materials.contains("item.ingotIron") &&
-                materials.contains("item.stick") &&
-                materials.contains("item.lygerfang_fang"))
+        } else if(materialsContains("item.ingotIron",
+                "item.stick", "item.lygerfang_fang", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.KOTETSU));
-        } else if(materials.contains("item.orichalcum_ingot") &&
-                materials.contains("item.stick") &&
-                materials.contains("item.dyePowder.blue"))
+        } else if(materialsContains("item.orichalcum_ingot",
+                "item.stick", "item.dyePowder.blue", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.DESPERATE));
-        } else if(materials.contains("item.ingotIron") &&
-                materials.contains("item.ingotGold") &&
-                materials.contains("item.ingotGold"))
+        } else if(materialsContains("item.ingotIron",
+                "item.ingotGold", "item.ingotGold", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.KODACHI_FUTABA));
-        } else if(materials.contains("tile.planks") &&
-                materials.contains("tile.blockIron") &&
-                materials.contains("tile.blockIron"))
+        } else if(materialsContains("tile.wood.oak",
+                "tile.blockIron", "tile.blockIron", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.GREAT_PODAO_ZAGA));
-        } else if(materials.contains("item.ingotIron") &&
-                materials.contains("item.ingotGold") &&
-                materials.contains("item.ingotEmerald"))
+        } else if(materialsContains("item.ingotIron",
+                "item.ingotGold", "item.ingotEmerald", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.PROTAGONISTA));
-        } else if(materials.contains("item.urga_blade") &&
-                materials.contains("item.stick") &&
-                materials.contains("item.urga_blade"))
+        } else if(materialsContains("item.urga_blade",
+                "item.stick", "item.urga_blade", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.URGA));
-        } else if(materials.contains("item.adamantite_ingot") &&
-                materials.contains("item.stick") &&
-                materials.contains("item.unicorn_horn"))
+        } else if(materialsContains("item.adamantite_ingot",
+                "item.stick", "item.unicorn_horn", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.HAKUGEN));
-        } else if(materials.contains("item.adamantite_ingot") &&
-                materials.contains("item.ingotIron") &&
-                materials.contains("item.adamantite_ingot"))
+        } else if(materialsContains("item.adamantite_ingot",
+                "item.ingotIron", "item.adamantite_ingot", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.URGA_BLADE));
-        } else if(materials.contains("item.mythril_ingot") &&
-                materials.contains("item.stick") &&
-                materials.contains("item.ichor"))
+        } else if(materialsContains("item.mythril_ingot",
+                "item.stick", "item.ichor", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.HESTIA_KNIFE));
-        } else if(materials.contains("item.ingotIron") &&
-                materials.contains("item.stick") &&
-                materials.contains("item.ingotIron"))
+        } else if(materialsContains("item.ingotIron",
+                "item.stick", "tile.air", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.DAGGER));
-        } else if(materials.contains("item.minotaur_horn") &&
-                materials.contains("item.stick"))
+        } else if(materialsContains("item.minotaur_horn",
+                "item.stick", "tile.air", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.USHIWAKAMARU));
-        } else if(materials.contains("item.damascus_steel") &&
-                materials.contains("item.stick") &&
-                materials.contains("item.damascus_steel"))
+        } else if(materialsContains("item.damascus_steel",
+                "item.stick", "item.damascus_steel", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.SWORD_AIR));
-        } else if(materials.contains("item.adamantite_ingot") &&
-                materials.contains("item.stick") &&
-                materials.contains("item.adamantite_ingot"))
+        } else if(materialsContains("item.adamantite_ingot",
+                "item.stick", "item.adamantite_ingot", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.FORTIA_SPEAR));
         } else
         {
             smithingOutput.setInventorySlotContents(0, ItemStack.EMPTY);
         }
+    }
+
+    private static boolean materialsContains(String item0, String item1, String item2, ArrayList<String> materials)
+    {
+        if(materials.contains(item0))
+        {
+            materials.remove(item0);
+
+            if(materials.contains(item1))
+            {
+                materials.remove(item1);
+
+                if(materials.contains(item2))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
