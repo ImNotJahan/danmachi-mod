@@ -5,6 +5,7 @@ import imnotjahan.mod.danmachi.keybinds.Keybinds;
 import imnotjahan.mod.danmachi.util.handlers.RenderHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemCloth;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,7 +17,14 @@ public class ClientProxy extends CommonProxy
     @Override
     public void registerItemRenderer(Item item, int meta)
     {
-        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+        registerItemRenderer(item, meta, "inventory");
+    }
+
+    @Override
+    public void registerItemRenderer(Item item, int meta, String variant)
+    {
+        ModelLoader.setCustomModelResourceLocation(item, meta,
+                new ModelResourceLocation(item.getRegistryName(), variant));
     }
 
     @Override

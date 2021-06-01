@@ -60,6 +60,9 @@ tile.orichalcum_wall.name=Orichalcum Wall
 tile.adamantite_wall.name=Adamantite Wall
 tile.smithing_anvil.name=Smithing Anvil
 tile.dungeon_wall.name=Dungeon Wall
+tile.dungeon_wall.1.name=Cracked Dungeon Wall
+tile.dungeon_wall.2.name=Viney Dungeon Wall
+tile.dungeon_wall.3.name=Cracked and Viney Dungeon Wall
 tile.magic_stone_stove.name=Magic Stone Stove
 tile.magic_stone_lamp.name=Magic Stone Lamp
 

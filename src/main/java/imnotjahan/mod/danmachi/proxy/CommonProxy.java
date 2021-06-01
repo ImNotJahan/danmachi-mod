@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 public class CommonProxy
 {
     public void registerItemRenderer(Item item, int meta) {}
+    public void registerItemRenderer(Item item, int meta, String variant) {}
 
     public void preInit()
     {

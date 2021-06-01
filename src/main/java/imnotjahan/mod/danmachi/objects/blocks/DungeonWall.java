@@ -3,6 +3,7 @@ package imnotjahan.mod.danmachi.objects.blocks;
 import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.init.BlockInit;
 import imnotjahan.mod.danmachi.init.ItemInit;
+import imnotjahan.mod.danmachi.objects.itemblocks.DungeonWallItem;
 import imnotjahan.mod.danmachi.util.interfaces.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -12,9 +13,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
@@ -34,7 +33,7 @@ public class DungeonWall extends Block implements IHasModel
         setHardness(7);
 
         BlockInit.BLOCKS.add(this);
-        ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
+        ItemInit.ITEMS.add(new DungeonWallItem(this).setRegistryName(this.getRegistryName()));
 
         this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, Integer.valueOf(0)));
     }
@@ -58,9 +57,9 @@ public class DungeonWall extends Block implements IHasModel
     public void registerModels()
     {
         Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0);
-        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this.getStateFromMeta(1).getBlock()), 1);
-        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 2);
-        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 3);
+        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 1, "type=1");
+        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 2, "type=2");
+        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 3, "type=3");
     }
 
     @Override
