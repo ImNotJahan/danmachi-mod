@@ -10,8 +10,15 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class DungeonWall extends Block implements IHasModel
 {
@@ -51,5 +58,23 @@ public class DungeonWall extends Block implements IHasModel
     public void registerModels()
     {
         Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0);
+        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this.getStateFromMeta(1).getBlock()), 1);
+        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 2);
+        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 3);
+    }
+
+    @Override
+    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
+    {
+        items.add(new ItemStack(this));
+        items.add(new ItemStack(this, 1, 1));
+        items.add(new ItemStack(this, 1, 2));
+        items.add(new ItemStack(this, 1, 3));
+    }
+
+    @Override
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
+        return super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(TYPE, Integer.valueOf(meta));
     }
 }
