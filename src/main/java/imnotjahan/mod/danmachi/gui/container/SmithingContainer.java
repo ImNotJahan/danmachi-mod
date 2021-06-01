@@ -10,6 +10,7 @@ import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
+import org.lwjgl.Sys;
 
 import java.util.ArrayList;
 
@@ -106,7 +107,7 @@ public class SmithingContainer extends Container
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.GREAT_PODAO_ZAGA));
         } else if(materialsContains("item.ingotIron",
-                "item.ingotGold", "item.ingotEmerald", materials))
+                "item.ingotGold", "item.emerald", materials))
         {
             smithingOutput.setInventorySlotContents(0, new ItemStack(ItemInit.PROTAGONISTA));
         } else if(materialsContains("item.urga_blade",
@@ -149,21 +150,87 @@ public class SmithingContainer extends Container
 
     private static boolean materialsContains(String item0, String item1, String item2, ArrayList<String> materials)
     {
-        if(materials.contains(item0))
+        ArrayList<String> newMaterials = new ArrayList<>(materials);
+
+        System.out.println(newMaterials);
+
+        if(newMaterials.contains(item0))
         {
-            materials.remove(item0);
+            newMaterials.remove(item0);
+            System.out.println(0);
 
-            if(materials.contains(item1))
+            if(newMaterials.contains(item1))
             {
-                materials.remove(item1);
+                newMaterials.remove(item1);
+                System.out.println(1);
 
-                if(materials.contains(item2))
+                if(newMaterials.contains(item2))
                 {
+                    System.out.println(2);
                     return true;
                 }
             }
         }
 
         return false;
+    }
+
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
+    {
+        ItemStack itemstack = null;
+        Slot slot = (Slot)this.inventorySlots.get(par2);
+
+        if (slot != null && slot.getHasStack())
+        {
+            ItemStack itemstack1 = slot.getStack();
+            itemstack = itemstack1.copy();
+
+            if (par2 == 3)
+            {
+                if (!this.mergeItemStack(itemstack1, 4, 41, true))
+                {
+                    return ItemStack.EMPTY;
+                }
+
+                slot.onSlotChange(itemstack1, itemstack);
+            } else if (par2 != 0 && par2 != 1 && par2 != 2)
+            {
+                if (!this.mergeItemStack(itemstack1, 0, 4, false))
+                {
+                    return ItemStack.EMPTY;
+                } else if (par2 >= 5 && par2 < 32)
+                {
+                    if (!this.mergeItemStack(itemstack1, 32, 41, false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (par2 >= 32 && par2 < 41 && !this.mergeItemStack(itemstack1, 5, 32, false))
+                {
+                    return ItemStack.EMPTY;
+                }
+            }
+            else if (!this.mergeItemStack(itemstack1, 5, 41, false))
+            {
+                return ItemStack.EMPTY;
+            }
+
+            if (itemstack1.getCount() == 0)
+            {
+                slot.putStack(ItemStack.EMPTY);
+            }
+            else
+            {
+                slot.onSlotChanged();
+            }
+
+            if (itemstack1.getCount() == itemstack.getCount())
+            {
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTake(par1EntityPlayer, itemstack1);
+        }
+        return itemstack;
     }
 }
