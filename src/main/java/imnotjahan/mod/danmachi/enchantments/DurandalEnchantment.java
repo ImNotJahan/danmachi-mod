@@ -6,6 +6,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.init.Enchantments;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.util.EnumHand;
@@ -51,5 +52,11 @@ public class DurandalEnchantment extends Enchantment
     public void onEntityDamaged(EntityLivingBase user, Entity target, int level)
     {
         user.getHeldItem(EnumHand.MAIN_HAND).setItemDamage(0);
+    }
+
+    @Override
+    public float calcDamageByCreature(int level, EnumCreatureAttribute creatureType)
+    {
+        return -1.0F;
     }
 }
