@@ -103,6 +103,7 @@ public class ItemInit
     public static final Item URGA_BLADE = new ItemBase("urga_blade");
     public static final Item MAGIC_STONE_COMPASS = new MagicStoneCompass();
     public static final Item GUIDE_BOOK = new ItemBase("guide_book");
+    public static final Item GRIMOIRE = new ItemBase("grimoire");
     //public static final Item VALIS = new ItemBase("valis").setMaxStackSize(10000);
 
     //structures

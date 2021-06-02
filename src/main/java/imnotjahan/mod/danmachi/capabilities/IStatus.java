@@ -47,9 +47,11 @@ public interface IStatus
 
     void grantAbility(Status.Ability ability);
     boolean grantSkill();
+    boolean grantMagic();
 
     void setAbilities(Status.Ability[] abilities);
     void setSkills(Status.Skill[] skills);
+    void setSpells(Status.Magic[] spells);
 
     Set<Status.Ability> levelUp();
 
@@ -58,4 +60,5 @@ public interface IStatus
 
     Status.Ability[] getAbilities();
     Status.Skill[] getSkills();
+    Status.Magic[] getSpells();
 }

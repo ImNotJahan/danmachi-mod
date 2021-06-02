@@ -14,7 +14,8 @@ public abstract class MessageBase<REQ extends IMessage> implements IMessage, IMe
         if(ctx.side == Side.SERVER)
         {
             handleServerSide(message, ctx.getServerHandler().player);
-        } else {
+        } else
+        {
             EntityPlayer player = ClientThings.getPlayer();
             if(player != null)
             {

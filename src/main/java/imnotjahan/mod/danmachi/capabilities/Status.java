@@ -119,6 +119,41 @@ public class Status implements IStatus
         }
     }
 
+    public enum Magic
+    {
+        Firebolt(0);
+
+        private final int index;
+        Magic(int index)
+        {
+            this.index = index;
+        }
+
+        public int toInt()
+        {
+            return index;
+        }
+
+        private static final List<Magic> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
+        private static final int SIZE = VALUES.size();
+        private static final Random RANDOM = new Random();
+
+        public static Magic randomSkill()
+        {
+            return VALUES.get(RANDOM.nextInt(SIZE));
+        }
+
+        @Override
+        public String toString()
+        {
+            String name = super.toString();
+
+            name = name.replaceAll("\\d+", "").replaceAll("(.)([A-Z])", "$1_$2").toLowerCase();
+
+            return I18n.format("spell." + name);
+        }
+    }
+
     private int hasFalna = 0;
     private int strength = 0;
     private int endurance = 0;
@@ -132,6 +167,7 @@ public class Status implements IStatus
     private String familia = "";
     private List<Skill> skills = new ArrayList<>();
     private List<Ability> abilities = new ArrayList<>();
+    private List<Magic> spells = new ArrayList<>();
 
     private int strengthP = 0;
     private int enduranceP = 0;
@@ -428,6 +464,19 @@ public class Status implements IStatus
     }
 
     @Override
+    public boolean grantMagic()
+    {
+        Magic chosenMagic = Magic.randomSkill();
+        if(!spells.contains(chosenMagic))
+        {
+            spells.add(chosenMagic);
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
     public void setAbilities(Ability[] abilities)
     {
         for(int k = 0; k < abilities.length; k++)
@@ -442,6 +491,15 @@ public class Status implements IStatus
         for(int k = 0; k < skills.length; k++)
         {
             this.skills.add(k, skills[k]);
+        }
+    }
+
+    @Override
+    public void setSpells(Magic[] spells)
+    {
+        for(int k = 0; k < spells.length; k++)
+        {
+            this.spells.add(k, spells[k]);
         }
     }
 
@@ -469,6 +527,19 @@ public class Status implements IStatus
         }
 
         return skillArray;
+    }
+
+    @Override
+    public Magic[] getSpells()
+    {
+        Magic[] spellArray = new Magic[spells.toArray().length];
+
+        for(int k = 0; k < spellArray.length; k++)
+        {
+            spellArray[k] = spells.get(k);
+        }
+
+        return spellArray;
     }
 
     @Override

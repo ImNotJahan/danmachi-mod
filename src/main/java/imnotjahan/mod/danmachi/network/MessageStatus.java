@@ -44,14 +44,14 @@ public class MessageStatus extends MessageBase<MessageStatus>
     {
         EntityPlayerMP playerMP = (EntityPlayerMP)player;
         IStatus statuss = message.status;
-
         IStatus old = playerMP.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
-        for(int k = 0; k < 8; k++)
+
+        for (int k = 0; k < 8; k++)
         {
             old.set(k, statuss.get(k));
         }
 
-        for(int k = 0; k < 6; k++)
+        for (int k = 0; k < 6; k++)
         {
             old.setP(k, statuss.getP(k));
         }
@@ -59,6 +59,7 @@ public class MessageStatus extends MessageBase<MessageStatus>
         old.setFamilia(statuss.getFamilia());
         old.setSkills(message.status.getSkills());
         old.setAbilities(message.status.getAbilities());
+        old.setSpells(message.status.getSpells());
     }
 
     @Override
@@ -87,6 +88,19 @@ public class MessageStatus extends MessageBase<MessageStatus>
             for(int k = 0; k < oldSkills.length; k++)
             {
                 skills[k] = Status.Skill.values()[(oldSkills[k] & 0xFF)];
+            }
+
+            status.setSkills(skills);
+
+            int spellsLength = buf.readInt();
+            byte[] oldSpells = new byte[spellsLength];
+            buf.duplicate().readBytes(oldSkills);
+
+            Status.Magic[] spells = new Status.Magic[oldSpells.length];
+
+            for(int k = 0; k < oldSpells.length; k++)
+            {
+                spells[k] = Status.Magic.values()[(oldSpells[k] & 0xFF)];
             }
 
             status.setSkills(skills);
@@ -135,6 +149,18 @@ public class MessageStatus extends MessageBase<MessageStatus>
         }
 
         buf.writeBytes(skillBytes);
+
+        Status.Magic[] spells = status.getSpells();
+        byte[] spellBytes = new byte[spells.length];
+
+        buf.writeInt(spells.length);
+
+        for(int k = 0; k < spells.length; k++)
+        {
+            spellBytes[k] = (byte)spells[k].toInt();
+        }
+
+        buf.writeBytes(spellBytes);
 
         Status.Ability[] abilities = status.getAbilities();
         byte[] abilityBytes = new byte[abilities.length];

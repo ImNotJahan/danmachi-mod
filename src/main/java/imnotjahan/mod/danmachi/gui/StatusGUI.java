@@ -8,19 +8,14 @@ import imnotjahan.mod.danmachi.network.MessageStatus;
 import imnotjahan.mod.danmachi.network.NetworkHandler;
 import imnotjahan.mod.danmachi.util.Reference;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.IOException;
 import java.util.Collections;
 
-@SideOnly(Side.CLIENT)
 public class StatusGUI extends GuiScreen
 {
 
@@ -52,6 +47,7 @@ public class StatusGUI extends GuiScreen
 
         Status.Ability[] abilities = capability.getAbilities();
         Status.Skill[] skills = capability.getSkills();
+        Status.Magic[] spells = capability.getSpells();
 
         if(capability.getFalna())
         {
@@ -65,19 +61,29 @@ public class StatusGUI extends GuiScreen
             if(skills.length > 0)
             {
                 skillsText.addLine(I18n.format("gui.status.skills"));
-                for(int k = 0; k < skills.length; k++)
+                for (Status.Skill skill : skills)
                 {
-                    skillsText.addLine(skills[k].toString());
+                    skillsText.addLine(skill.toString());
+                }
+            }
+
+            if(spells.length > 0)
+            {
+                skillsText.addLine("");
+                skillsText.addLine(I18n.format("gui.status.spells"));
+                for(int k = 0; k < spells.length; k++)
+                {
+                    skillsText.addLine(spells[k].toString());
                 }
             }
 
             if(abilities.length > 0)
             {
                 abilitiesText.addLine(I18n.format("gui.status.abilities"));
-                for(int k = 0; k < abilities.length; k++)
+                for (Status.Ability ability : abilities)
                 {
-                    int abilityStat = abilities[k].getStat();
-                    abilitiesText.addLine(abilities[k].toString() + ": " + getStatLetter(abilityStat) + abilityStat);
+                    int abilityStat = ability.getStat();
+                    abilitiesText.addLine(ability.toString() + ": " + getStatLetter(abilityStat) + abilityStat);
                 }
             }
         } else
@@ -91,12 +97,6 @@ public class StatusGUI extends GuiScreen
 
         skillsText.x = 100;
         abilitiesText.x = width - 100;
-    }
-
-    @Override
-    protected void actionPerformed(GuiButton button)
-    {
-
     }
 
     @Override

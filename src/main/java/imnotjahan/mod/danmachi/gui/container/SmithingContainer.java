@@ -10,7 +10,6 @@ import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
-import org.lwjgl.Sys;
 
 import java.util.ArrayList;
 

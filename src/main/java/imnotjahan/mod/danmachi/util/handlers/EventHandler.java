@@ -4,8 +4,10 @@ import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.config.ModConfig;
+import imnotjahan.mod.danmachi.gui.MindGUI;
 import imnotjahan.mod.danmachi.network.MessageStatus;
 import imnotjahan.mod.danmachi.network.NetworkHandler;
+import imnotjahan.mod.danmachi.util.ClientThings;
 import imnotjahan.mod.danmachi.util.Reference;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -14,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -23,7 +26,6 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import net.minecraftforge.fml.common.thread.SidedThreadGroups;
 
 import java.util.Arrays;
 
@@ -83,6 +85,15 @@ public class EventHandler
                                     Status.capSide),
                             (EntityPlayer)event.getEntity()),
                     (EntityPlayerMP) event.getEntity());
+        }
+    }
+
+    @SubscribeEvent
+    public void onRenderGui(RenderGameOverlayEvent.Post event)
+    {
+        if(ClientThings.getPlayer().getCapability(StatusProvider.STATUS_CAP, Status.capSide).getSpells().length > 0)
+        {
+            new MindGUI();
         }
     }
 

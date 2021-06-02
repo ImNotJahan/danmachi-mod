@@ -12,7 +12,7 @@ public class Keybinds
     public static void RegisterKeybinds()
     {
         status = addKeybind("key.status", Keyboard.KEY_V);
-        magic = addKeybind("key.magic", Keyboard.KEY_F);
+        magic = addKeybind("key.magic", Keyboard.KEY_R);
     }
 
     private static KeyBinding addKeybind(String description, int keyCode)

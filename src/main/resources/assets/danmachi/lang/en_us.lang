@@ -100,6 +100,7 @@ gui.status.agility=Agility:
 gui.status.magic=Magic:
 gui.status.skills=Skills:
 gui.status.abilities=Abilities:
+gui.status.spells=Magic:
 gui.status.no_falna=You need a falna to view your status
 
 //config

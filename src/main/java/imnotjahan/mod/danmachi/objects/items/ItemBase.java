@@ -1,8 +1,11 @@
 package imnotjahan.mod.danmachi.objects.items;
 
 import imnotjahan.mod.danmachi.Main;
+import imnotjahan.mod.danmachi.capabilities.Status;
+import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.config.ModConfig;
 import imnotjahan.mod.danmachi.init.ItemInit;
+import imnotjahan.mod.danmachi.util.ClientThings;
 import imnotjahan.mod.danmachi.util.interfaces.IHasModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreenBook;
@@ -47,28 +50,16 @@ public class ItemBase extends Item implements IHasModel
             case "guide_book":
                 if(playerIn.world.isRemote)
                 {
-                    openGuidebook(playerIn);
+                    ClientThings.openGuidebook(playerIn);
                     return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.inventory.getStackInSlot(playerIn.inventory.currentItem));
                 }
+                break;
+
+            case "grimoire":
+                playerIn.inventory.getCurrentItem().setCount(0);
+                playerIn.getCapability(StatusProvider.STATUS_CAP, Status.capSide).grantMagic();
+                return new ActionResult<>(EnumActionResult.SUCCESS, new ItemStack(Items.AIR));
         }
         return super.onItemRightClick(worldIn, playerIn, handIn);
-    }
-
-    private void openGuidebook(EntityPlayer playerIn)
-    {
-        /*ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
-
-        NBTTagList bookPages = new NBTTagList();
-
-        for (int k = 0; k < ModConfig.guideBookText.length; k++)
-        {
-            bookPages.appendTag(new NBTTagString(ModConfig.guideBookText[k]));
-        }
-
-        book.setTagInfo("pages", bookPages);
-        book.setTagInfo("author", new NBTTagString("Albert Valdstejn"));
-        book.setTagInfo("title", new NBTTagString("Guide Book"));
-
-        Minecraft.getMinecraft().displayGuiScreen(new GuiScreenBook(playerIn, book, false));*/
     }
 }
