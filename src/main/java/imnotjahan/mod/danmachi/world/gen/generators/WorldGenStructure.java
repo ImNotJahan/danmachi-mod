@@ -44,11 +44,11 @@ public class WorldGenStructure extends WorldGenerator implements IStructure
         {
             IBlockState state = world.getBlockState(pos);
             world.notifyBlockUpdate(pos, state, state, 3);
-            template.addBlocksToWorldChunk(world, pos, settings);
 
             switch(name)
             {
                 case "babel":
+                    template.addBlocksToWorldChunk(world, pos, settings);
                     world.setBlockState(pos.offset(EnumFacing.SOUTH, 14).offset(EnumFacing.EAST, 10).offset(EnumFacing.UP, 1), BlockInit.DUNGEON_PORTAL.getDefaultState());
                     world.setBlockState(pos.offset(EnumFacing.SOUTH, 14).offset(EnumFacing.EAST, 10).offset(EnumFacing.UP, 2), BlockInit.DUNGEON_PORTAL.getDefaultState());
 
@@ -60,7 +60,15 @@ public class WorldGenStructure extends WorldGenerator implements IStructure
 
                     world.setBlockState(pos.offset(EnumFacing.SOUTH, 14).offset(EnumFacing.EAST, 18).offset(EnumFacing.UP, 1), BlockInit.DUNGEON_PORTAL.getDefaultState());
                     world.setBlockState(pos.offset(EnumFacing.SOUTH, 14).offset(EnumFacing.EAST, 18).offset(EnumFacing.UP, 2), BlockInit.DUNGEON_PORTAL.getDefaultState());
+                    break;
 
+                case "cave":
+                    pos.down(20);
+                    template.addBlocksToWorldChunk(world, pos, settings);
+                    break;
+
+                case "god_house":
+                    template.addBlocksToWorldChunk(world, pos, settings);
                     break;
             }
         }

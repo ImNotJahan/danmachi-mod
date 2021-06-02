@@ -185,7 +185,12 @@ public class ModConfig
     @Config.RequiresMcRestart
     @Config.LangKey("config.danmachi.god_house_generation_chance")
     @Config.Comment("The higher the number the less chance of it generating")
-    public static int godHouseGenerationChance = 300;
+    public static int godHouseGenerationChance = 400;
+
+    @Config.RequiresMcRestart
+    @Config.LangKey("config.danmachi.cave_generation_chance")
+    @Config.Comment("The higher the number the less chance of it generating")
+    public static int caveGenerationChance = 1000;
 
     @Config.LangKey("config.danmachi.stat_multiplier")
     public static int statMultiplier = 1;

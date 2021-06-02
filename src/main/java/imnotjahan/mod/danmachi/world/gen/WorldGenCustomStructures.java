@@ -25,6 +25,7 @@ public class WorldGenCustomStructures implements IWorldGenerator
 {
     public static final WorldGenStructure GOD_HOUSE = new WorldGenStructure("god_house");
     public static final WorldGenStructure BABEL = new WorldGenStructure("babel");
+    public static final WorldGenStructure CAVE = new WorldGenStructure("cave");
     private boolean tempGeneratedBabel = false;
 
     @Override
@@ -33,6 +34,7 @@ public class WorldGenCustomStructures implements IWorldGenerator
         if (world.provider.getDimension() == 0)
         {
             generateStructure(GOD_HOUSE, world, random, chunkX, chunkZ, ModConfig.godHouseGenerationChance, Blocks.GRASS, BiomePlains.class);
+            generateStructure(CAVE, world, random, chunkX, chunkZ, ModConfig.caveGenerationChance, Blocks.GRASS, BiomePlains.class);
 
             WorldData data = WorldData.get(world);
             if (!data.babelCreated() && world.getWorldType() != WorldType.FLAT && !tempGeneratedBabel)
