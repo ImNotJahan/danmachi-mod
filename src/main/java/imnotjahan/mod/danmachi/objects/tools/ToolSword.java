@@ -85,17 +85,17 @@ public class ToolSword extends ItemSword implements IHasModel
     {
         super.addInformation(stack, worldIn, tooltip, flagIn);
 
-        switch(getUnlocalizedName())
+        switch(getRegistryName().toString())
         {
-            case "item.hakugen":
+            case "danmachi:hakugen":
                 tooltip.add("Right click to stab yourself");
                 break;
 
-            case "item.sword_air":
+            case "danmachi:sword_air":
                 tooltip.add("\"Uaaaaaaaaaaaaaaaaaaaaaaa!\"");
                 break;
 
-            case "item.hestia_knife":
+            case "danmachi:hestia_knife":
                 tooltip.add("It has an.. irony taste");
         }
     }
@@ -103,9 +103,9 @@ public class ToolSword extends ItemSword implements IHasModel
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
-        switch(getUnlocalizedName())
+        switch(getRegistryName().toString())
         {
-            case "item.hakugen":
+            case "danmachi:hakugen":
                 if(playerIn.isPotionActive(Potion.getPotionById(19)))
                 {
                     playerIn.removePotionEffect(Potion.getPotionById(19));
@@ -129,20 +129,20 @@ public class ToolSword extends ItemSword implements IHasModel
     {
         EntityPlayer entityplayer = entityLiving instanceof EntityPlayer ? (EntityPlayer)entityLiving : null;
 
-        String name = getUnlocalizedName();
+        String name = getRegistryName().toString();
 
         switch(name)
         {
-            case "fire_magic_sword":
+            case "danmachi:fire_magic_sword":
                 placeMagicSwordBlocks(entityLiving, BlockInit.RAGING_INFERNO.getDefaultState());
                 break;
 
-            case "ice_magic_sword":
+            case "danmachi:ice_magic_sword":
                 placeMagicSwordBlocks(entityLiving, Blocks.ICE.getDefaultState());
                 break;
         }
 
-        if((name.equals("ice_magic_sword") || name.equals("fire_magic_sword")) && !entityplayer.capabilities.isCreativeMode)
+        if((name.equals("danmachi:ice_magic_sword") || name.equals("danmachi:fire_magic_sword")) && !entityplayer.capabilities.isCreativeMode)
         {
             setDamage(stack,getDamage(stack) + 1);
 

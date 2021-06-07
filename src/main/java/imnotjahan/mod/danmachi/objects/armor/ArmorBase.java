@@ -20,8 +20,6 @@ import java.util.List;
 
 public class ArmorBase extends ItemArmor implements IHasModel
 {
-    private String name;
-
     public ArmorBase(String name, ArmorMaterial armorMaterial, int renderIndex, EntityEquipmentSlot entityEquipmentSlot)
     {
         super(armorMaterial, renderIndex, entityEquipmentSlot);
@@ -30,8 +28,6 @@ public class ArmorBase extends ItemArmor implements IHasModel
         setCreativeTab(Main.creativeTab);
 
         ItemInit.ITEMS.add(this);
-
-        this.name = name;
     }
 
     @Override
@@ -43,13 +39,13 @@ public class ArmorBase extends ItemArmor implements IHasModel
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        switch(name)
+        switch(getRegistryName().toString())
         {
-            case "salamander_wool_cloak":
+            case "danmachi:salamander_wool_cloak":
                 player.addPotionEffect(new PotionEffect(Potion.getPotionById(12), 1, 1, false, false));
                 break;
 
-            case "hades_head":
+            case "danmachi:hades_head":
                 player.addPotionEffect(new PotionEffect(Potion.getPotionById(14), 2, 1, false, false));
                 break;
         }

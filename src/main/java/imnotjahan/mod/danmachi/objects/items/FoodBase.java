@@ -21,7 +21,6 @@ import net.minecraft.world.World;
 
 public class FoodBase extends ItemFood implements IHasModel
 {
-    String name;
     boolean drink;
 
     public FoodBase(String name, int hungerQuench, boolean isWolfFood, boolean drink)
@@ -38,7 +37,6 @@ public class FoodBase extends ItemFood implements IHasModel
 
         ItemInit.ITEMS.add(this);
 
-        this.name = name;
         this.drink = drink;
     }
 
@@ -61,15 +59,15 @@ public class FoodBase extends ItemFood implements IHasModel
     {
         EntityPlayer player = entityLiving instanceof EntityPlayer ? (EntityPlayer)entityLiving : null;
 
-        switch(name)
+        switch(getRegistryName().toString())
         {
-            case "soma":
+            case "danmachi:soma":
                 player.addPotionEffect(new PotionEffect(Potion.getPotionById(9), 600, 1, false, false));
                 player.addPotionEffect(new PotionEffect(Potion.getPotionById(15), 600, 1, false, false));
                 player.addPotionEffect(new PotionEffect(Potion.getPotionById(18), 600, 1, false, false));
                 break;
 
-            case "mermaid_blood":
+            case "danmachi:mermaid_blood":
                 entityLiving.heal(entityLiving.getMaxHealth() / 2);
                 break;
         }
