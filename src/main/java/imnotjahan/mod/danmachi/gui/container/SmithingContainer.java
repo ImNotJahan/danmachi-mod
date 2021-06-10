@@ -151,21 +151,16 @@ public class SmithingContainer extends Container
     {
         ArrayList<String> newMaterials = new ArrayList<>(materials);
 
-        System.out.println(newMaterials);
-
         if(newMaterials.contains(item0))
         {
             newMaterials.remove(item0);
-            System.out.println(0);
 
             if(newMaterials.contains(item1))
             {
                 newMaterials.remove(item1);
-                System.out.println(1);
 
                 if(newMaterials.contains(item2))
                 {
-                    System.out.println(2);
                     return true;
                 }
             }

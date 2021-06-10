@@ -104,22 +104,22 @@ public class ModConfig
 
     @Config.LangKey("config.danmachi.required_smithing_dex")
     public static Map<String, Integer> requiredSmithingDex = new HashMap<String, Integer>(){{
-        put("item.fire_magic_sword", 2000);
-        put("item.ice_magic_sword", 2000);
-        put("item.greatsword", 300);
-        put("item.kotetsu", 1000);
-        put("item.desperate", 3000);
-        put("item.kodachi_futaba", 1000);
-        put("item.great_podao_zaga", 700);
-        put("item.protagonista", 1000);
-        put("item.urga", 300);
-        put("item.urga_blade", 3000);
-        put("item.hakugen", 1000);
-        put("item.hestia_knife", 5000);
-        put("item.dagger", 0);
-        put("item.ushiwakamaru", 1000);
-        put("item.sword_air", 500);
-        put("item.fortia_spear", 1400);
+        put("danmachi:fire_magic_sword", 2000);
+        put("danmachi:ice_magic_sword", 2000);
+        put("danmachi:greatsword", 300);
+        put("danmachi:kotetsu", 1000);
+        put("danmachi:desperate", 3000);
+        put("danmachi:kodachi_futaba", 1000);
+        put("danmachi:great_podao_zaga", 700);
+        put("danmachi:protagonista", 1000);
+        put("danmachi:urga", 300);
+        put("danmachi:urga_blade", 3000);
+        put("danmachi:hakugen", 1000);
+        put("danmachi:hestia_knife", 5000);
+        put("danmachi:dagger", 0);
+        put("danmachi:ushiwakamaru", 1000);
+        put("danmachi:sword_air", 500);
+        put("danmachi:fortia_spear", 1400);
     }};
 
     @Config.LangKey("config.danmachi.ore_generation_chances")

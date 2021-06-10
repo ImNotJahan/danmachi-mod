@@ -1,15 +1,25 @@
 package imnotjahan.mod.danmachi.entity.templates;
 
 import imnotjahan.mod.danmachi.util.ClientThings;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
+import net.minecraft.init.PotionTypes;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.tileentity.TileEntityBeacon;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class GodBase extends EntityCreature
@@ -19,7 +29,7 @@ public class GodBase extends EntityCreature
     public GodBase(World worldIn, String godName)
     {
         super(worldIn);
-        this.godName = godName;
+        GodBase.godName = godName;
     }
 
     @Override
@@ -78,5 +88,37 @@ public class GodBase extends EntityCreature
     protected boolean canDespawn()
     {
         return false;
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount)
+    {
+        if(!(source instanceof EntityDamageSourceIndirect))
+        {
+            if(source.getTrueSource() instanceof EntityLiving)
+                ((EntityLiving) source.getTrueSource()).addPotionEffect(new PotionEffect(
+                        Potion.getPotionById(18), 600, 3));
+        }
+        return super.attackEntityFrom(source, amount);
+    }
+
+    @Override
+    public void awardKillScore(Entity entity, int p_191956_2_, DamageSource source)
+    {
+        super.awardKillScore(entity, p_191956_2_, source);
+
+        if (!this.world.isRemote)
+        {
+            double x = entity.posX;
+            double y = entity.posY;
+            double z = entity.posZ;
+
+            for (EntityPlayerMP entityplayermp : this.world.getEntitiesWithinAABB(EntityPlayerMP.class,
+                    (new AxisAlignedBB(x, y, z,
+                            x, y - 4, z)).grow(10.0D, 5.0D, 10.0D)))
+            {
+                CriteriaTriggers.CONSTRUCT_BEACON.trigger(entityplayermp, new TileEntityBeacon());
+            }
+        }
     }
 }
