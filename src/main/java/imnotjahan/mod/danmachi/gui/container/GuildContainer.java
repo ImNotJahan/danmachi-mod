@@ -5,20 +5,20 @@ import imnotjahan.mod.danmachi.gui.container.slot.GuildOutputSlot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryBasic;
-import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 
 public class GuildContainer extends Container
 {
-    private IInventory guildInventory = new InventoryBasic(new TextComponentString("Guild Member"), 5);
-    private IInventory guildOutput = new InventoryBasic(new TextComponentString("Guild Output"), 3);
+    private IInventory guildInventory;
+    private IInventory guildOutput;
 
     public GuildContainer(InventoryPlayer playerInventory)
     {
+        guildInventory = new InventoryBasic(new TextComponentString("Guild Member"), 5);
+        guildOutput = new InventoryBasic(new TextComponentString("Guild Output"), 3);
+
         for (int k = 0; k < 5; ++k)
         {
             this.addSlotToContainer(new Slot(guildInventory, k, 8 + k * 18, 20));

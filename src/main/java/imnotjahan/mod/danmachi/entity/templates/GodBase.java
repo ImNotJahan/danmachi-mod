@@ -6,12 +6,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
-import net.minecraft.init.PotionTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -24,12 +22,12 @@ import net.minecraft.world.World;
 
 public class GodBase extends EntityCreature
 {
-    static String godName;
+    String godName;
 
     public GodBase(World worldIn, String godName)
     {
         super(worldIn);
-        GodBase.godName = godName;
+        this.godName = godName;
     }
 
     @Override
