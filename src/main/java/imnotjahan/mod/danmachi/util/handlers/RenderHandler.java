@@ -2,37 +2,26 @@ package imnotjahan.mod.danmachi.util.handlers;
 
 import imnotjahan.mod.danmachi.entity.*;
 import imnotjahan.mod.danmachi.entity.render.*;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class RenderHandler
 {
     public static void registerEntityRenderers()
     {
-        RenderingRegistry.registerEntityRenderingHandler(EntityGoblin.class, manager -> new RenderGoblin(manager));
-
-        RenderingRegistry.registerEntityRenderingHandler(EntityGuildMember.class, manager -> new RenderGuildMember(manager));
-
-        RenderingRegistry.registerEntityRenderingHandler(EntityDealer.class, manager -> new RenderDealer(manager));
-
-        RenderingRegistry.registerEntityRenderingHandler(EntityHellhound.class, manager -> new RenderHellhound(manager));
-
-        RenderingRegistry.registerEntityRenderingHandler(EntityKobold.class, manager -> new RenderKobold(manager));
-
-        RenderingRegistry.registerEntityRenderingHandler(EntityUnicorn.class, manager -> new RenderUnicorn(manager));
-
-        RenderingRegistry.registerEntityRenderingHandler(EntityAlmiraj.class, manager -> new RenderAlmiraj(manager));
-
-        RenderingRegistry.registerEntityRenderingHandler(EntityMinotaur.class, manager -> new RenderMinotaur(manager));
-
-        RenderingRegistry.registerEntityRenderingHandler(EntityNeedleRabbit.class, manager -> new RenderNeedleRabbit(manager));
-
-        RenderingRegistry.registerEntityRenderingHandler(EntityLygerfang.class, manager -> new RenderLygerfang(manager));
-
-        RenderingRegistry.registerEntityRenderingHandler(EntityKillerAnt.class, manager -> new RenderKillerAnt(manager));
-
-        RenderingRegistry.registerEntityRenderingHandler(EntityHestia.class, manager -> new RenderHestia(manager));
-
-        RenderingRegistry.registerEntityRenderingHandler(EntityLoki.class, manager -> new RenderLoki(manager));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGoblin.class, RenderGoblin::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGuildMember.class, RenderGuildMember::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityDealer.class, RenderDealer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityHellhound.class, RenderHellhound::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityKobold.class, RenderKobold::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityUnicorn.class, RenderUnicorn::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityAlmiraj.class, RenderAlmiraj::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityMinotaur.class, RenderMinotaur::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityNeedleRabbit.class, RenderNeedleRabbit::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityLygerfang.class, RenderLygerfang::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityKillerAnt.class, RenderKillerAnt::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityHestia.class, RenderHestia::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityLoki.class, RenderLoki::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInfantDragon.class, RenderInfantDragon::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityHermes.class, RenderHermes::new);
     }
 }

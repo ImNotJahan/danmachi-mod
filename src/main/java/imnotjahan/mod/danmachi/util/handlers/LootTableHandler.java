@@ -19,6 +19,8 @@ public class LootTableHandler
         put("lygerfang", LootTableList.register(new ResourceLocation(Reference.MODID, "lygerfang")));
         put("killer_ant", LootTableList.register(new ResourceLocation(Reference.MODID, "killer_ant")));
         put("hellhound", LootTableList.register(new ResourceLocation(Reference.MODID, "hellhound")));
+        put("dragon", LootTableList.register(new ResourceLocation(Reference.MODID, "dragon")));
+        put("infant_dragon", LootTableList.register(new ResourceLocation(Reference.MODID, "infant_dragon")));
     }};
 
     public static final Map<String, ResourceLocation> magicStones = new HashMap<String, ResourceLocation>(){{
@@ -31,5 +33,7 @@ public class LootTableHandler
         put("lygerfang", LootTableList.register(new ResourceLocation(Reference.MODID, "stones/lygerfang")));
         put("killer_ant", LootTableList.register(new ResourceLocation(Reference.MODID, "stones/killer_ant")));
         put("hellhound", LootTableList.register(new ResourceLocation(Reference.MODID, "stones/hellhound")));
+        put("dragon", LootTableList.register(new ResourceLocation(Reference.MODID, "stones/dragon")));
+        put("infant_dragon", LootTableList.register(new ResourceLocation(Reference.MODID, "stones/infant_dragon")));
     }};
 }

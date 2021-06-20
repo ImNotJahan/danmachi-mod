@@ -23,9 +23,11 @@ public class EntityInit
         RegisterEntity("unicorn", EntityUnicorn.class, Reference.UNICORN, 0, 16777215);
         RegisterEntity("hestia", EntityHestia.class, Reference.HESTIA, 15527148, 4609420);
         RegisterEntity("loki", EntityLoki.class, Reference.LOKI, 2105895, 5530296);
+        RegisterEntity("infant_dragon", EntityInfantDragon.class, Reference.INFANT_DRAGON, 2105895, 5530296);
         RegisterEntity("guild_member", EntityGuildMember.class, Reference.GUILD_MEMBER, 9849600, 16766720);
         RegisterEntity("hellhound", EntityHellhound.class, Reference.HELLHOUND, 0, 16711680);
         RegisterEntity("dealer", EntityDealer.class, Reference.BLACK_MARKET, 2105895, 5530296);
+        RegisterEntity("hermes", EntityHermes.class, Reference.HERMES, 2105895, 5530296);
 
         if(ModConfig.spawnMonstersInOverworld)
         {
