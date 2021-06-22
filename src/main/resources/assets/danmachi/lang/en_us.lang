@@ -80,6 +80,8 @@ entity.guild_member.name=Guild Member
 entity.Villager.guild_member=Guild Member
 entity.loki.name=Loki
 entity.hellhound.name=Hellhound
+entity.hermes.name=Hermes
+entity.soma.name=Soma
 
 //item groups
 itemGroup.danmachitab=Danmachi
