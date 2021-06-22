@@ -10,6 +10,7 @@ import imnotjahan.mod.danmachi.network.NetworkHandler;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -22,7 +23,6 @@ public class GodGUI extends GuiScreen
 {
     private GuiLabel godDialog;
 
-    private static final String[] agressiveGreetings = { "What do you want?" };
     private static final String[] answers = { "I suppose", "Sure", "Hmmm okay" };
 
     String godName;
@@ -35,8 +35,6 @@ public class GodGUI extends GuiScreen
     {
         refreshGui();
 
-        String[] happyGreetings = { "Hi!", "Ah if it isn't " + mc.player.getName() };
-
         status = mc.player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
 
         assert status != null;
@@ -44,12 +42,13 @@ public class GodGUI extends GuiScreen
 
         if(familia.equals(""))
         {
-            godDialog.addLine(getRandom(agressiveGreetings));
+            godDialog.addLine(I18n.format("god." + godName + ".stranger_greeting"));
             addButtons(new String[]{"Can I join your familia?", "Nothing"});
         }
         else if(familia.equals(godName))
         {
-            godDialog.addLine(getRandom(happyGreetings));
+            godDialog.addLine(String.format(I18n.format("god." + godName + ".familia_greeting"),
+                    mc.player.getDisplayName()));
 
             if(hasBottle)
             {
@@ -63,7 +62,7 @@ public class GodGUI extends GuiScreen
             }
         } else
         {
-            godDialog.addLine("Ah what would a child of " + familia + " need from me");
+            godDialog.addLine(String.format(I18n.format("god." + godName + ".other_familia_greeting"), familia));
             addButtons(new String[]{"Nothing"});
         }
     }
@@ -76,8 +75,8 @@ public class GodGUI extends GuiScreen
         switch(button.displayString)
         {
             case "Can I join your familia?":
-                godDialog.addLine(getRandom(answers));
-                godDialog.addLine("Give me a second and I'll give you a falna");
+                godDialog.addLine(I18n.format("god." + godName + ".can_join_answer"));
+                godDialog.addLine(I18n.format("god." + godName + ".can_join_secondary_answer"));
 
                 addButtons(new String[]{"Ok"});
                 break;
@@ -91,7 +90,7 @@ public class GodGUI extends GuiScreen
                 break;
 
             case "Ok":
-                godDialog.addLine("Anddd finished");
+                godDialog.addLine(I18n.format("god." + godName + ".added_falna"));
 
                 status.giveFalna();
                 status.setFamilia(godName);
@@ -112,9 +111,10 @@ public class GodGUI extends GuiScreen
                     abilities[k] = setAbilities.iterator().next();
                 }
 
-                godDialog.addLine("Ok you are now level " + status.getLevel() + "!");
-                godDialog.addLine("You also now got a few abilities you can choose from!");
-                godDialog.addLine("Which of these do you want to  have");
+                godDialog.addLine(String.format(I18n.format("god." + godName + ".leveled_up"),
+                        status.getLevel()));
+                godDialog.addLine(I18n.format("god." + godName + ".choosable_abilities"));
+                godDialog.addLine(I18n.format("god." + godName + ".ability_ask"));
 
                 String[] abilityStrings = new String[abilities.length];
 
@@ -129,7 +129,7 @@ public class GodGUI extends GuiScreen
             case "Okay":
                 if(status.getLevel() > status.get(6))
                 {
-                    godDialog.addLine("You can level up!");
+                    godDialog.addLine(I18n.format("god." + godName + ".can_level"));
                     addButtons(new String[]{"Yes!"});
                 } else
                 {
@@ -137,16 +137,16 @@ public class GodGUI extends GuiScreen
                     {
                         if(status.grantSkill())
                         {
-                            godDialog.addLine("Oh hey you got a skill!");
+                            godDialog.addLine(I18n.format("god." + godName + ".achieved_skill"));
                             addButtons(new String[]{"Nice"});
                         } else
                         {
-                            godDialog.addLine("Andd your status is now updated");
+                            godDialog.addLine(I18n.format("god." + godName + ".updated_status"));
                             addButtons(new String[]{"Thanks"});
                         }
                     } else
                     {
-                        godDialog.addLine("Andd your status is now updated");
+                        godDialog.addLine(I18n.format("god." + godName + ".updated_status"));
                         addButtons(new String[]{"Thanks"});
                     }
                 }
@@ -155,18 +155,18 @@ public class GodGUI extends GuiScreen
                 break;
 
             case "Can you update my status":
-                godDialog.addLine("Sure thing, just give me one second");
+                godDialog.addLine(I18n.format("god." + godName + ".updating_status"));
                 addButtons(new String[]{"Okay"});
                 break;
 
             case "Can I take some of your blood?":
-                godDialog.addLine("Excuse me?");
+                godDialog.addLine(I18n.format("god." + godName + ".blood_response"));
                 addButtons(new String[]{"It's for a weapon", "Nevermind"});
                 break;
 
             case "It's for a weapon":
-                godDialog.addLine("Oh ok...");
-                godDialog.addLine("Well here, don't do anything weird with it though");
+                godDialog.addLine(I18n.format("god." + godName + ".explained_blood"));
+                godDialog.addLine(I18n.format("god." + godName + ".gave_blood"));
                 addButtons(new String[]{"Thanks"});
                 mc.player.inventory.setInventorySlotContents(mc.player.inventory.currentItem, new ItemStack(ItemInit.ICHOR));
                 break;
@@ -179,7 +179,7 @@ public class GodGUI extends GuiScreen
                     if (button.displayString == abilities[k].toString())
                     {
                         status.grantAbility(abilities[k]);
-                        godDialog.addLine("Ok I've added it to your status");
+                        godDialog.addLine(I18n.format("god." + godName + ".added_ability"));
                         addButtons(new String[]{"Thanks"});
                     } else
                     {
