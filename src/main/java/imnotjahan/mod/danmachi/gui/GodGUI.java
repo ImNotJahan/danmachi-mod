@@ -166,7 +166,8 @@ public class GodGUI extends GuiScreen
                 break;
 
             case "Can I have some soma?":
-                mc.player.inventory.setInventorySlotContents(mc.player.inventory.currentItem, new ItemStack(ItemInit.SOMA));
+                mc.player.inventory.setInventorySlotContents(mc.player.inventory.getFirstEmptyStack(),
+                        new ItemStack(ItemInit.SOMA));
                 mc.displayGuiScreen(null);
                 break;
 
@@ -209,7 +210,8 @@ public class GodGUI extends GuiScreen
         buttonList.clear();
         labelList.clear();
 
-        this.labelList.add(godDialog = new GuiLabel(fontRenderer, 1, this.width / 2, 50, 0, 20, 0xFFFFFF));
+        this.labelList.add(godDialog = new GuiLabel(fontRenderer, 1, this.width / 2,
+                50, 0, 20, 0xFFFFFF));
 
         godDialog.setCentered();
     }
