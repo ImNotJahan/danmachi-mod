@@ -23,8 +23,6 @@ public class GodGUI extends GuiScreen
 {
     private GuiLabel godDialog;
 
-    private static final String[] answers = { "I suppose", "Sure", "Hmmm okay" };
-
     String godName;
     boolean hasBottle;
 
@@ -62,7 +60,7 @@ public class GodGUI extends GuiScreen
             }
         } else
         {
-            godDialog.addLine(String.format(I18n.format("god." + godName + ".other_familia_greeting"), familia));
+            godDialog.addLine(I18n.format("god." + godName + ".other_familia_greeting", familia));
             addButtons(new String[]{"Nothing"});
         }
     }
@@ -111,8 +109,7 @@ public class GodGUI extends GuiScreen
                     abilities[k] = setAbilities.iterator().next();
                 }
 
-                godDialog.addLine(String.format(I18n.format("god." + godName + ".leveled_up"),
-                        status.getLevel()));
+                godDialog.addLine(I18n.format("god." + godName + ".leveled_up", status.getLevel()));
                 godDialog.addLine(I18n.format("god." + godName + ".choosable_abilities"));
                 godDialog.addLine(I18n.format("god." + godName + ".ability_ask"));
 
@@ -189,11 +186,6 @@ public class GodGUI extends GuiScreen
             }
             break;
         }
-    }
-
-    private static String getRandom(String[] array) {
-        int rnd = new Random().nextInt(array.length);
-        return array[rnd];
     }
 
     @Override
