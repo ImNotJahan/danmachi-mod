@@ -27,8 +27,8 @@ public class EntityInit
         RegisterEntity("guild_member", EntityGuildMember.class, Reference.GUILD_MEMBER, 9849600, 16766720);
         RegisterEntity("hellhound", EntityHellhound.class, Reference.HELLHOUND, 0, 16711680);
         RegisterEntity("dealer", EntityDealer.class, Reference.BLACK_MARKET, 2105895, 5530296);
-        RegisterEntity("hermes", EntityHermes.class, Reference.HERMES, 2105895, 5530296);
-        RegisterEntity("soma", EntitySoma.class, Reference.SOMA, 2105895, 5530296);
+        RegisterEntity("hermes", EntityHermes.class, Reference.HERMES, 13087862, 2773329);
+        RegisterEntity("soma", EntitySoma.class, Reference.SOMA, 6256533, 3947572);
 
         if(ModConfig.spawnMonstersInOverworld)
         {

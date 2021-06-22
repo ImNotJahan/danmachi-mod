@@ -55,7 +55,7 @@ public class Status implements IStatus
 
             name = name.replaceAll("\\d+", "").replaceAll("(.)([A-Z])", "$1_$2").toLowerCase();
 
-            return I18n.format("skills." + name);
+            return I18n.format("abilities." + name);
         }
 
         private static final List<Ability> VALUES = Collections.unmodifiableList(Arrays.asList(values()));

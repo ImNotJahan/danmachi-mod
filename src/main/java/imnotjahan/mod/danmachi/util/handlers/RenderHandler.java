@@ -23,5 +23,6 @@ public class RenderHandler
         RenderingRegistry.registerEntityRenderingHandler(EntityLoki.class, RenderLoki::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInfantDragon.class, RenderInfantDragon::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityHermes.class, RenderHermes::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntitySoma.class, RenderSoma::new);
     }
 }
