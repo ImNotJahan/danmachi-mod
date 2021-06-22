@@ -12,13 +12,10 @@ import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Random;
+import java.util.ArrayList;
 import java.util.Set;
 
-@SideOnly(Side.CLIENT)
 public class GodGUI extends GuiScreen
 {
     private GuiLabel godDialog;
@@ -48,16 +45,16 @@ public class GodGUI extends GuiScreen
             godDialog.addLine(String.format(I18n.format("god." + godName + ".familia_greeting"),
                     mc.player.getDisplayName()));
 
-            if(hasBottle)
-            {
-                addButtons(new String[]{"Can I take some of your blood?", "Can you update my status", "Nothing"});
-            } else if(status.canLevelUp())
-            {
-                addButtons(new String[]{"Can you update my status", "Can I level up now", "Nothing"});
-            } else
-            {
-                addButtons(new String[]{"Can you update my status", "Nothing"});
-            }
+            ArrayList<String> questions = new ArrayList<>();
+            questions.add("Can you update my status?");
+
+            if(hasBottle) questions.add("Can I have some of your blood?");
+            if(status.canLevelUp()) questions.add("Can I level up now");
+            if(familia.equals("soma")) questions.add("Can I have some soma?");
+
+            questions.add("Nothing");
+
+            addButtons((String[])questions.toArray());
         } else
         {
             godDialog.addLine(I18n.format("god." + godName + ".other_familia_greeting", familia));
@@ -168,14 +165,19 @@ public class GodGUI extends GuiScreen
                 mc.player.inventory.setInventorySlotContents(mc.player.inventory.currentItem, new ItemStack(ItemInit.ICHOR));
                 break;
 
+            case "Can I have some soma?":
+                mc.player.inventory.setInventorySlotContents(mc.player.inventory.currentItem, new ItemStack(ItemInit.SOMA));
+                mc.displayGuiScreen(null);
+                break;
+
             default:
             {
                 Status.Ability[] abilities = Status.Ability.values();
-                for (int k = 0; k < abilities.length; k++)
+                for(Status.Ability ability : abilities)
                 {
-                    if (button.displayString == abilities[k].toString())
+                    if (button.displayString.equals(ability.toString()))
                     {
-                        status.grantAbility(abilities[k]);
+                        status.grantAbility(ability);
                         godDialog.addLine(I18n.format("god." + godName + ".added_ability"));
                         addButtons(new String[]{"Thanks"});
                     } else
