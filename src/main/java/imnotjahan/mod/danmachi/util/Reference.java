@@ -26,16 +26,25 @@ public class Reference
     public static final int NEEDLE_RABBIT = 130;
     public static final int LYGERFANG = 131;
     public static final int HESTIA = 132;
-    public static final int LOKI = 135;
     public static final int MONSTER_REX_GOLIATH = 133;
     public static final int INFANT_DRAGON = 134;
+    public static final int LOKI = 135;
     public static final int BEHEMOTH = 136;
     public static final int LEVIATHAN = 137;
-    public static final int OEBD = 138;
-    public static final int NIDHOGG = 139;
+    public static final int BLACK_DRAGON = 138;
+    public static final int NIDDHOG = 139;
     public static final int GUILD_MEMBER = 140;
     public static final int HELLHOUND = 141;
     public static final int BLACK_MARKET = 142;
+    public static final int WYVERN = 143;
+    public static final int GREEN_DRAGON = 144;
+    public static final int PELUDA = 145;
+    public static final int DELPHYNE = 146;
+    public static final int CADMUS = 147;
+    public static final int ILL_WYVERN = 148;
+    public static final int VALGANG_DRAGON = 149;
+    public static final int HERMES = 150;
+    public static final int SOMA = 151;
 
     //dimension ids
     public static final int DUNGEON_ID = DimensionManager.getNextFreeDimId();

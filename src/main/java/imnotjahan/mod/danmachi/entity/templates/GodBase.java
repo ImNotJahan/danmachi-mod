@@ -8,13 +8,16 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public class GodBase extends EntityCreature
 {
-    static String godName;
+    String godName;
 
     public GodBase(World worldIn, String godName)
     {
@@ -78,5 +81,17 @@ public class GodBase extends EntityCreature
     protected boolean canDespawn()
     {
         return false;
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount)
+    {
+        if(!(source instanceof EntityDamageSourceIndirect))
+        {
+            if(source.getTrueSource() instanceof EntityLiving)
+                ((EntityLiving) source.getTrueSource()).addPotionEffect(new PotionEffect(
+                        Potion.getPotionById(18), 600, 3));
+        }
+        return super.attackEntityFrom(source, amount);
     }
 }

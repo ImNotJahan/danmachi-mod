@@ -63,6 +63,8 @@ public class ModConfig
         put("minotaur", new int[]{6, 6, 2, 4, 0, 6});
         put("unicorn", new int[]{4, 4, 2, 6, 0, 6});
         put("hellhound", new int[]{5, 4, 5, 6, 0, 6});
+        put("infant_dragon", new int[]{5, 4, 5, 6, 0, 6});
+        put("dragon", new int[]{5, 4, 5, 6, 0, 6});
     }};
 
     @Config.Comment("The order of their stats is: dmg, health, speed, armor")
@@ -77,6 +79,8 @@ public class ModConfig
         put("unicorn", new double[]{10, 20, .45D, 2});
         put("needle_rabbit", new double[]{8, 12, .3D, 2});
         put("almiraj", new double[]{8, 20, .3D, 2});
+        put("infant_dragon", new double[]{8, 20, .3D, 2});
+        put("dragon", new double[]{8, 20, .3D, 2});
     }};
 
     @Config.LangKey("config.danmachi.guild_trades")
@@ -104,22 +108,22 @@ public class ModConfig
 
     @Config.LangKey("config.danmachi.required_smithing_dex")
     public static Map<String, Integer> requiredSmithingDex = new HashMap<String, Integer>(){{
-        put("item.fire_magic_sword", 2000);
-        put("item.ice_magic_sword", 2000);
-        put("item.greatsword", 300);
-        put("item.kotetsu", 1000);
-        put("item.desperate", 3000);
-        put("item.kodachi_futaba", 1000);
-        put("item.great_podao_zaga", 700);
-        put("item.protagonista", 1000);
-        put("item.urga", 300);
-        put("item.urga_blade", 3000);
-        put("item.hakugen", 1000);
-        put("item.hestia_knife", 5000);
-        put("item.dagger", 0);
-        put("item.ushiwakamaru", 1000);
-        put("item.sword_air", 500);
-        put("item.fortia_spear", 1400);
+        put("danmachi:fire_magic_sword", 2000);
+        put("danmachi:ice_magic_sword", 2000);
+        put("danmachi:greatsword", 300);
+        put("danmachi:kotetsu", 1000);
+        put("danmachi:desperate", 3000);
+        put("danmachi:kodachi_futaba", 1000);
+        put("danmachi:great_podao_zaga", 700);
+        put("danmachi:protagonista", 1000);
+        put("danmachi:urga", 300);
+        put("danmachi:urga_blade", 3000);
+        put("danmachi:hakugen", 1000);
+        put("danmachi:hestia_knife", 5000);
+        put("danmachi:dagger", 0);
+        put("danmachi:ushiwakamaru", 1000);
+        put("danmachi:sword_air", 500);
+        put("danmachi:fortia_spear", 1400);
     }};
 
     @Config.LangKey("config.danmachi.ore_generation_chances")

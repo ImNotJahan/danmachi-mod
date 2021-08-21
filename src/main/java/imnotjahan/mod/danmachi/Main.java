@@ -12,11 +12,22 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 /*
-1. Work on attacking and defensive abilities and find a way
-2. Special system for ore such as special forge and anvil
-3. Summoner class
-4. More monsters tons of new monsters
-5. Better dungeon gen
+Danmachi Mod - Literally just a mod about danmachi
+Created by Jahan Rashidi
+
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see http://www.gnu.org/licenses.
 */
 
 /*

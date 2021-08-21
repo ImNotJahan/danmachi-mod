@@ -35,8 +35,10 @@ public class ItemInit
     public static final Item.ToolMaterial urgaAloy = EnumHelper.addToolMaterial("urga_aloy", 2, 200, 5.0F, 6.0F, 5);
 
     public static final ItemArmor.ArmorMaterial rabbitArmor = EnumHelper.addArmorMaterial("rabbit_armor", Reference.MODID + ":rabbit_armor", 10, new int[]{2, 3, 5, 0}, 15, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F);
+    public static final ItemArmor.ArmorMaterial armorDress = EnumHelper.addArmorMaterial("armor_dress", Reference.MODID + ":armor_dress", 12, new int[]{2, 5, 6, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F);
+    public static final ItemArmor.ArmorMaterial amazonArmor = EnumHelper.addArmorMaterial("amazon_armor", Reference.MODID + ":amazon_armor", 12, new int[]{0, 1, 1, 0}, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F);
     public static final ItemArmor.ArmorMaterial salamanderWool = EnumHelper.addArmorMaterial("salamander_wool_cloak", Reference.MODID + ":salamander_wool", 5, new int[]{0, 0, 2, 0}, 20, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F);
-    public static final ItemArmor.ArmorMaterial hadesHead = EnumHelper.addArmorMaterial("hades_head", Reference.MODID + ":hades_head", 10, new int[]{0, 0, 0, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
+    public static final ItemArmor.ArmorMaterial hadesHead = EnumHelper.addArmorMaterial("hades_head", Reference.MODID + ":hades_head", 10, new int[]{0, 0, 0, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F);
 
     //mob drops
     public static final Item UNICORN_HORN = new ItemBase("unicorn_horn");
@@ -81,13 +83,22 @@ public class ItemInit
     public static final Item HAMMER = new ItemBase("hammer");
 
     //armor
-    public static final Item RABBIT_ARMOR_CHESTPLATE = new ArmorBase("rabbit_armor_chestplate", rabbitArmor, 1, EntityEquipmentSlot.CHEST);
-    public static final Item RABBIT_ARMOR_LEGGINGS = new ArmorBase("rabbit_armor_leggings", rabbitArmor, 2, EntityEquipmentSlot.LEGS);
-    public static final Item RABBIT_ARMOR_BOOTS = new ArmorBase("rabbit_armor_boots", rabbitArmor, 1, EntityEquipmentSlot.FEET);
+    public static final Item RABBIT_ARMOR_CHESTPLATE = new ArmorBase("rabbit_armor_chestplate", rabbitArmor, EntityEquipmentSlot.CHEST);
+    public static final Item RABBIT_ARMOR_LEGGINGS = new ArmorBase("rabbit_armor_leggings", rabbitArmor, EntityEquipmentSlot.LEGS);
+    public static final Item RABBIT_ARMOR_BOOTS = new ArmorBase("rabbit_armor_boots", rabbitArmor, EntityEquipmentSlot.FEET);
 
-    public static final Item SALAMANDER_WOOL_CLOAK = new ArmorBase("salamander_wool_cloak", salamanderWool, 1, EntityEquipmentSlot.CHEST);
+    public static final Item ARMOR_DRESS_CHEST = new ArmorBase("armor_dress_chest", armorDress, EntityEquipmentSlot.CHEST);
+    public static final Item ARMOR_DRESS_LEGGINGS = new ArmorBase("armor_dress_leggings", armorDress, EntityEquipmentSlot.LEGS);
+    public static final Item ARMOR_DRESS_BOOTS = new ArmorBase("armor_dress_boots", armorDress, EntityEquipmentSlot.FEET);
+    public static final Item ARMOR_DRESS_HELMET = new ArmorBase("armor_dress_helmet", armorDress, EntityEquipmentSlot.HEAD);
 
-    public static final Item HADES_HEAD = new ArmorBase("hades_head", hadesHead,1, EntityEquipmentSlot.HEAD);
+    public static final Item AMAZON_ARMOR_CHEST = new ArmorBase("amazon_armor_chest", amazonArmor, EntityEquipmentSlot.CHEST);
+    public static final Item AMAZON_ARMOR_LEGGINGS = new ArmorBase("amazon_armor_leggings", amazonArmor, EntityEquipmentSlot.LEGS);
+    public static final Item AMAZON_ARMOR_BOOTS = new ArmorBase("amazon_armor_boots", amazonArmor, EntityEquipmentSlot.FEET);
+
+    public static final Item SALAMANDER_WOOL_CLOAK = new ArmorBase("salamander_wool_cloak", salamanderWool, EntityEquipmentSlot.CHEST);
+
+    public static final Item HADES_HEAD = new ArmorBase("hades_head", hadesHead,EntityEquipmentSlot.HEAD);
 
     //food
     public static final Item JAGAMARUKUN = new FoodBase("jagamarukun", 3, false, false);

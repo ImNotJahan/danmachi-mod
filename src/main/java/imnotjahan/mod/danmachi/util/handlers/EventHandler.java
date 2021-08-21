@@ -14,6 +14,8 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.PotionTypes;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -60,6 +62,23 @@ public class EventHandler
                         case 1:
                             player.removePotionEffect(MobEffects.NAUSEA);
                             player.removePotionEffect(MobEffects.MINING_FATIGUE);
+                            break;
+                    }
+                }
+
+                Status.Ability[] abilities = cap.getAbilities();
+                for (Status.Ability ability : abilities)
+                {
+                    switch (ability.toInt())
+                    {
+                        case 0:
+                            player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 1));
+                            player.removePotionEffect(Potion.getPotionById(19));
+                            break;
+
+                        case 6:
+                            player.addPotionEffect(new PotionEffect(MobEffects.LUCK, 1,
+                                    ability.getStat() + 1));
                             break;
                     }
                 }

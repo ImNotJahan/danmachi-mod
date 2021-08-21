@@ -7,6 +7,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
+import net.minecraftforge.common.util.Constants;
+
+import java.util.stream.IntStream;
 
 public class SmithingSlot extends Slot
 {
@@ -37,17 +42,39 @@ public class SmithingSlot extends Slot
     @Override
     public boolean canTakeStack(EntityPlayer playerIn)
     {
-        if(ModConfig.requiredSmithingDex.containsKey(inventory.getStackInSlot(0).getUnlocalizedName()))
+        ItemStack output = inventory.getStackInSlot(0);
+
+        NBTTagList tag = new NBTTagList();
+
+        if(output.hasTagCompound() && output.getTagCompound().hasKey("displayd") && output.getTagCompound().getCompoundTag("displayd").hasKey("a"))
         {
-            int requiredDex = ModConfig.requiredSmithingDex.get(inventory.getStackInSlot(0).getUnlocalizedName());
+            tag = output.getTagCompound().getCompoundTag("display")
+                    .getTagList("Lore", Constants.NBT.TAG_STRING);
+        }
+
+        if(ModConfig.requiredSmithingDex.containsKey(output.getItem()
+                .getRegistryName().toString()))
+        {
+            int requiredDex = ModConfig.requiredSmithingDex.get(output.getItem()
+                    .getRegistryName().toString());
 
             if (playerIn.getCapability(StatusProvider.STATUS_CAP, Status.capSide).get(3) +
                     (playerIn.getCapability(StatusProvider.STATUS_CAP, Status.capSide).getLevel() - 1) * 1000 >= requiredDex)
             {
+                resetTags(tag);
                 return true;
+            } else
+            {
+                resetTags(tag);
+                tag.appendTag(new NBTTagString("Not enough dexterity"));
             }
         }
 
         return false;
+    }
+
+    private static void resetTags(NBTTagList tags)
+    {
+        IntStream.range(0, tags.tagCount()).forEach(tags::removeTag);
     }
 }

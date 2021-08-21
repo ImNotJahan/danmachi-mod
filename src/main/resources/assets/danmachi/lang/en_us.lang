@@ -48,6 +48,13 @@ item.sword_air.name=Sword Air
 item.valis.name=Valis
 item.damascus_steel.name=Damascus Steel
 item.grimoire.name=Grimoire
+item.armor_dress_chest.name=Armor Dress Chestpiece
+item.armor_dress_leggings.name=Armor Dress Leggings
+item.armor_dress_boots.name=Armor Dress Boots
+item.armor_dress_helmet.name=Armor Dress Headpiece
+item.amazon_armor_chest.name=Amazonian Chestpiece
+item.amazon_armor_leggings.name=Amazonian Skirt
+item.amazon_armor_boots.name=Amazonian Anklet
 
 //blocks
 tile.adamantite_block.name=Adamantite Block
@@ -80,6 +87,8 @@ entity.guild_member.name=Guild Member
 entity.Villager.guild_member=Guild Member
 entity.loki.name=Loki
 entity.hellhound.name=Hellhound
+entity.hermes.name=Hermes
+entity.soma.name=Soma
 
 //item groups
 itemGroup.danmachitab=Danmachi
@@ -145,3 +154,89 @@ skills.mind_load=Mind Load
 
 //magic
 spell.firebolt=Firebolt
+
+//god interactions
+god.hestia.can_join_answer=Sure, I don't have any familia members anyways
+god.loki.can_join_answer=
+god.hermes.can_join_answer=
+god.soma.can_join_answer=
+
+god.hestia.can_join_secondary_answer=Give me a second and I'll grant you a falna
+god.loki.can_join_secondary_answer=
+god.hermes.can_join_secondary_answer=
+god.soma.can_join_secondary_answer=
+
+god.hestia.added_falna=Anddd finished
+god.loki.added_falna=
+god.hermes.added_falna=
+god.soma.added_falna=
+
+god.hestia.stranger_greeting=What do you want
+god.loki.stranger_greeting=
+god.hermes.stranger_greeting=
+god.soma.stranger_greeting=
+
+god.hestia.familia_greeting=Hi %s
+god.loki.familia_greeting=
+god.hermes.familia_greeting=
+god.soma.familia_greeting=
+
+god.hestia.other_familia_greeting=What would a child of %s need from me
+god.loki.other_familia_greeting=
+god.hermes.other_familia_greeting=
+god.soma.other_familia_greeting=
+
+god.hestia.leveled_up=You're now level %s!
+god.loki.leveled_up=
+god.hermes.leveled_up=
+god.soma.leveled_up=
+
+god.hestia.choosable_abilities=You also have some abilities you can choose from
+god.loki.choosable_abilities=
+god.hermes.choosable_abilities=
+god.soma.choosable_abilities=
+
+god.hestia.ability_ask=Which of these sound good
+god.loki.ability_ask=
+god.hermes.ability_ask=
+god.soma.ability_ask=
+
+god.hestia.added_ability=Ok I've added it to your status
+god.loki.added_ability=
+god.hermes.added_ability=
+god.soma.added_ability=
+
+god.hestia.can_level=You can level up!
+god.loki.can_level=
+god.hermes.can_level=
+god.soma.can_level=
+
+god.hestia.achieved_skill=You got a skill!
+god.loki.achieved_skill=
+god.hermes.achieved_skill=
+god.soma.achieved_skill=
+
+god.hestia.updating_status=Sure, just give me a second
+god.loki.updating_status=
+god.hermes.updating_status=
+god.soma.updating_status=
+
+god.hestia.updated_status=Anddd your status is now updated
+god.loki.updated_status=
+god.hermes.updated_status=
+god.soma.updated_status=
+
+god.hestia.blood_response=Excuse me?
+god.loki.blood_response=
+god.hermes.blood_response=
+god.soma.blood_response=
+
+god.hestia.explained_blood=Oh ok..
+god.loki.explained_blood=
+god.hermes.explained_blood=
+god.soma.explained_blood=
+
+god.hestia.gave_blood=Well here, don't do anything weird with it though
+god.loki.gave_blood=
+god.hermes.gave_blood=
+god.soma.gave_blood=
