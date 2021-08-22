@@ -26,5 +26,6 @@ public class RenderHandler
         RenderingRegistry.registerEntityRenderingHandler(EntitySoma.class, RenderSoma::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityBugbear.class, RenderBugbear::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityHobgoblin.class, RenderHobgoblin::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityMetalRabbit.class, RenderMetalRabbit::new);
     }
 }

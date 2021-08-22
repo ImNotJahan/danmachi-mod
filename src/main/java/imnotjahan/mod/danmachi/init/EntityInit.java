@@ -31,6 +31,7 @@ public class EntityInit
         RegisterEntity("soma", EntitySoma.class, Reference.SOMA, 6256533, 3947572);
         RegisterEntity("bugbear", EntityBugbear.class, Reference.BUGBEAR, 726570, 13121539);
         RegisterEntity("hobgoblin", EntityHobgoblin.class, Reference.HOBGOBLIN, 3637294, 8224125);
+        RegisterEntity("metal_rabbit", EntityMetalRabbit.class, Reference.METAL_RABBIT, 11184557, 11796480);
 
         if(ModConfig.spawnMonstersInOverworld)
         {

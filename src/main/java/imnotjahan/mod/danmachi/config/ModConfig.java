@@ -85,6 +85,7 @@ public class ModConfig
         put("dragon", new double[]{8, 20, .3D, 2}); //change this
         put("bugbear", new double[]{14, 10, .3D, 7});
         put("hobgoblin", new double[]{14, 10, .3D, 7}); //change this
+        put("metal_rabbit", new double[]{14, 10, .3D, 7}); //change this
     }};
 
     @Config.LangKey("config.danmachi.guild_trades")

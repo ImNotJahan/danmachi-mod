@@ -47,6 +47,8 @@ public class Reference
     public static final int SOMA = 151;
     public static final int BUGBEAR = 152;
     public static final int HOBGOBLIN = 153;
+    public static final int METAL_RABBIT = 154;
+    public static final int SWORD_STAG = 155;
 
     //dimension ids
     public static final int DUNGEON_ID = DimensionManager.getNextFreeDimId();
