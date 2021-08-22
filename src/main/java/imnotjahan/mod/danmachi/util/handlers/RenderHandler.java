@@ -24,5 +24,7 @@ public class RenderHandler
         RenderingRegistry.registerEntityRenderingHandler(EntityInfantDragon.class, RenderInfantDragon::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityHermes.class, RenderHermes::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySoma.class, RenderSoma::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityBugbear.class, RenderBugbear::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityHobgoblin.class, RenderHobgoblin::new);
     }
 }

@@ -1,7 +1,7 @@
 {
   "display": {
     "title": {
-      "text": "Aiz is jealous",
+      "text": "Aiz is Jealous",
       "italic": false,
       "obfuscated": false
     },
@@ -17,7 +17,7 @@
     "hidden": false,
     "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
   },
-  "parent": "danmachi:the_start_of_an_adventurer",
+  "parent": "danmachi:root",
   "criteria": {
     "c1": {
       "trigger": "minecraft:consume_item",

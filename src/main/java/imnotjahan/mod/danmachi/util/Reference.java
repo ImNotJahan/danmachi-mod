@@ -7,7 +7,7 @@ public class Reference
     //basic
     public static final String MODID = "danmachi";
     public static final String NAME = "Danmachi Mod";
-    public static final String VERSION = "1.2.0";
+    public static final String VERSION = "1.2.2";
     public static final String CLIENT = "imnotjahan.mod.danmachi.proxy.ClientProxy";
     public static final String COMMON = "imnotjahan.mod.danmachi.proxy.CommonProxy";
     public static final String GUI_FACTORY = "imnotjahan.mod.danmachi.config.GuiFactory";
@@ -45,6 +45,8 @@ public class Reference
     public static final int VALGANG_DRAGON = 149;
     public static final int HERMES = 150;
     public static final int SOMA = 151;
+    public static final int BUGBEAR = 152;
+    public static final int HOBGOBLIN = 153;
 
     //dimension ids
     public static final int DUNGEON_ID = DimensionManager.getNextFreeDimId();

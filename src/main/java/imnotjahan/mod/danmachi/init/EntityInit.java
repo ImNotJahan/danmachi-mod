@@ -29,6 +29,8 @@ public class EntityInit
         RegisterEntity("dealer", EntityDealer.class, Reference.BLACK_MARKET, 2105895, 5530296);
         RegisterEntity("hermes", EntityHermes.class, Reference.HERMES, 13087862, 2773329);
         RegisterEntity("soma", EntitySoma.class, Reference.SOMA, 6256533, 3947572);
+        RegisterEntity("bugbear", EntityBugbear.class, Reference.BUGBEAR, 726570, 13121539);
+        RegisterEntity("hobgoblin", EntityHobgoblin.class, Reference.HOBGOBLIN, 3637294, 8224125);
 
         if(ModConfig.spawnMonstersInOverworld)
         {
@@ -41,6 +43,8 @@ public class EntityInit
             EntityRegistry.addSpawn(EntityMinotaur.class, ModConfig.surfaceSpawnRates.get("minotaur"), 0, 10, EnumCreatureType.MONSTER);
             EntityRegistry.addSpawn(EntityLygerfang.class, ModConfig.surfaceSpawnRates.get("lygerfang"), 0, 10, EnumCreatureType.MONSTER);
             EntityRegistry.addSpawn(EntityHellhound.class, ModConfig.surfaceSpawnRates.get("hellhound"), 0, 10, EnumCreatureType.MONSTER);
+            EntityRegistry.addSpawn(EntityBugbear.class, ModConfig.surfaceSpawnRates.get("bugbear"), 0, 10, EnumCreatureType.MONSTER);
+            EntityRegistry.addSpawn(EntityHobgoblin.class, ModConfig.surfaceSpawnRates.get("hobgoblin"), 0, 10, EnumCreatureType.MONSTER);
         }
     }
 

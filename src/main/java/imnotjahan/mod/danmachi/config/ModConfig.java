@@ -63,8 +63,10 @@ public class ModConfig
         put("minotaur", new int[]{6, 6, 2, 4, 0, 6});
         put("unicorn", new int[]{4, 4, 2, 6, 0, 6});
         put("hellhound", new int[]{5, 4, 5, 6, 0, 6});
-        put("infant_dragon", new int[]{5, 4, 5, 6, 0, 6});
-        put("dragon", new int[]{5, 4, 5, 6, 0, 6});
+        put("infant_dragon", new int[]{5, 4, 5, 6, 0, 6}); //change this
+        put("dragon", new int[]{5, 4, 5, 6, 0, 6}); //change this
+        put("bugbear", new int[]{6, 6, 2, 6, 0, 7});
+        put("hobgoblin", new int[]{6, 6, 2, 6, 0, 7}); //change this
     }};
 
     @Config.Comment("The order of their stats is: dmg, health, speed, armor")
@@ -79,8 +81,10 @@ public class ModConfig
         put("unicorn", new double[]{10, 20, .45D, 2});
         put("needle_rabbit", new double[]{8, 12, .3D, 2});
         put("almiraj", new double[]{8, 20, .3D, 2});
-        put("infant_dragon", new double[]{8, 20, .3D, 2});
-        put("dragon", new double[]{8, 20, .3D, 2});
+        put("infant_dragon", new double[]{8, 20, .3D, 2}); //change this
+        put("dragon", new double[]{8, 20, .3D, 2}); //change this
+        put("bugbear", new double[]{14, 10, .3D, 7});
+        put("hobgoblin", new double[]{14, 10, .3D, 7}); //change this
     }};
 
     @Config.LangKey("config.danmachi.guild_trades")
@@ -104,6 +108,8 @@ public class ModConfig
         put("minotaur", 5);
         put("unicorn", 7);
         put("hellhound", 3);
+        put("bugbear", 4);
+        put("hobgoblin", 3);
     }};
 
     @Config.LangKey("config.danmachi.required_smithing_dex")
@@ -164,6 +170,8 @@ public class ModConfig
         put("minotaur", 1);
         put("unicorn", 1);
         put("hellhound", 2);
+        put("hobgoblin", 1);
+        put("bugbear", 1);
     }};
 
     @Config.RequiresMcRestart
@@ -180,6 +188,8 @@ public class ModConfig
         put("minotaur", 100);
         put("unicorn", 10);
         put("hellhound", 100);
+        put("hobgoblin", 100);
+        put("bugbear", 100);
     }};
 
     @Config.RequiresMcRestart

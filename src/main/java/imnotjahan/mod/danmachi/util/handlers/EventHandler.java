@@ -224,6 +224,10 @@ public class EventHandler
                     }
                     break;
 
+                case "Bugbear":
+                    if(floor != 19) event.setResult((Event.Result.DENY));
+                    break;
+
                 case "Unicorn":
                     if(!((floor >= 19 && floor <= 24)))
                     {

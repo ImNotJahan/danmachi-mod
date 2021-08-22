@@ -1,0 +1,54 @@
+{
+  "display": {
+    "title": {
+      "text": "Does This Count as Armor?"
+    },
+    "description": {
+      "text": "Wear a full set of amazonian armor"
+    },
+    "icon": {
+      "item": "danmachi:amazon_armor_chest"
+    },
+    "frame": "task",
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+  },
+  "parent": "danmachi:root",
+  "iron_helmet": {
+    "trigger": "minecraft:inventory_changed",
+    "conditions": {
+      "items": [
+        {
+          "item": "danmachi:amazon_armor_chest"
+        }
+      ]
+    }
+  },
+  "iron_chestplate": {
+    "trigger": "minecraft:inventory_changed",
+    "conditions": {
+      "items": [
+        {
+          "item": "danmachi:amazon_armor_leggings"
+        }
+      ]
+    }
+  },
+  "iron_leggings": {
+    "trigger": "minecraft:inventory_changed",
+    "conditions": {
+      "items": [
+        {
+          "item": "danmachi:amazon_armor_boots"
+        }
+      ]
+    }
+  },
+  "requirements": [
+    [
+      "iron_helmet",
+      "iron_chestplate",
+      "iron_leggings",
+      "iron_boots"
+    ]
+  ]
+}

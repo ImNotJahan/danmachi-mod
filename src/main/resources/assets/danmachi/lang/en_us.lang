@@ -89,6 +89,10 @@ entity.loki.name=Loki
 entity.hellhound.name=Hellhound
 entity.hermes.name=Hermes
 entity.soma.name=Soma
+entity.bugbear.name=Bugbear
+entity.hobgoblin.name=Hobgoblin
+entity.sword_stag.name=Sword Stag
+entity.metal_rabbit.name=Metal Rabbit
 
 //item groups
 itemGroup.danmachitab=Danmachi
