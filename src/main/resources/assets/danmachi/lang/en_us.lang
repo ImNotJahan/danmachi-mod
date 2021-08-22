@@ -140,6 +140,7 @@ config.danmachi.mob_stats=Monster stats
 config.danmachi.guild_trades=Guild trades
 config.danmachi.magic_stone_trades=Magic stone trades
 config.danmachi.required_smithing_dex=Required smithing dexterity
+config.danmachi.armor_closeness=Armor closeness
 
 //abilities
 abilities.abnormal_resistance=Abnormal Resistance

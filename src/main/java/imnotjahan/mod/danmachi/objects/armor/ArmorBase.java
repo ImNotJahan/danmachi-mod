@@ -23,6 +23,8 @@ import java.util.List;
 
 public class ArmorBase extends ItemArmor implements IHasModel
 {
+    String name = "";
+
     public ArmorBase(String name, ArmorMaterial armorMaterial, EntityEquipmentSlot entityEquipmentSlot)
     {
         super(armorMaterial, 1, entityEquipmentSlot);
@@ -30,6 +32,8 @@ public class ArmorBase extends ItemArmor implements IHasModel
         setRegistryName(name);
         setCreativeTab(Main.creativeTab);
         ItemInit.ITEMS.add(this);
+
+        this.name = name;
     }
 
     @Override
@@ -60,7 +64,7 @@ public class ArmorBase extends ItemArmor implements IHasModel
         {
             if(itemStack.getItem() instanceof ItemArmor)
             {
-                ModelPlayer model = new ModelPlayer(0.1f, false);
+                ModelPlayer model = new ModelPlayer(ModConfig.armorCloseness.get(name), false);
 
                 model.bipedHead.showModel = true;
 

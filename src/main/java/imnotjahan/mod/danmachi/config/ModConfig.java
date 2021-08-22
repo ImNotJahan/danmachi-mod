@@ -67,6 +67,8 @@ public class ModConfig
         put("dragon", new int[]{5, 4, 5, 6, 0, 6}); //change this
         put("bugbear", new int[]{6, 6, 2, 6, 0, 7});
         put("hobgoblin", new int[]{6, 6, 2, 6, 0, 7}); //change this
+        put("sword_stag", new int[]{6, 6, 2, 6, 0, 7}); //change this
+        put("metal_rabbit", new int[]{6, 6, 2, 6, 0, 7}); //change this
     }};
 
     @Config.Comment("The order of their stats is: dmg, health, speed, armor")
@@ -86,6 +88,7 @@ public class ModConfig
         put("bugbear", new double[]{14, 10, .3D, 7});
         put("hobgoblin", new double[]{14, 10, .3D, 7}); //change this
         put("metal_rabbit", new double[]{14, 10, .3D, 7}); //change this
+        put("sword_stag", new double[]{14, 10, .3D, 7}); //change this
     }};
 
     @Config.LangKey("config.danmachi.guild_trades")
@@ -111,6 +114,8 @@ public class ModConfig
         put("hellhound", 3);
         put("bugbear", 4);
         put("hobgoblin", 3);
+        put("sword_stag", 5);
+        put("metal_rabbit", 4);
     }};
 
     @Config.LangKey("config.danmachi.required_smithing_dex")
@@ -173,6 +178,23 @@ public class ModConfig
         put("hellhound", 2);
         put("hobgoblin", 1);
         put("bugbear", 1);
+        put("sword_stag", 1);
+        put("metal_rabbit", 1);
+    }};
+
+    @Config.LangKey("config.danmachi.armor_closeness")
+    @Config.Comment("1 is normal armor distance, 0 is touching the skin")
+    public static Map<String, Float> armorCloseness = new HashMap<String, Float>(){{
+        put("rabbit_armor_chestplate", 0.2f);
+        put("rabbit_armor_leggings", 0.2f);
+        put("rabbit_armor_boots", 0.2f);
+        put("armor_dress_chest", 0.2f);
+        put("armor_dress_leggings", 0.2f);
+        put("armor_dress_helmet", 0.2f);
+        put("armor_dress_boots", 0.2f);
+        put("amazon_armor_chest", 0.2f);
+        put("amazon_armor_leggings", 0.2f);
+        put("amazon_armor_boots", 0.2f);
     }};
 
     @Config.RequiresMcRestart
@@ -191,6 +213,8 @@ public class ModConfig
         put("hellhound", 100);
         put("hobgoblin", 100);
         put("bugbear", 100);
+        put("sword_stag", 100);
+        put("metal_rabbit", 100);
     }};
 
     @Config.RequiresMcRestart

@@ -32,6 +32,7 @@ public class EntityInit
         RegisterEntity("bugbear", EntityBugbear.class, Reference.BUGBEAR, 726570, 13121539);
         RegisterEntity("hobgoblin", EntityHobgoblin.class, Reference.HOBGOBLIN, 3637294, 8224125);
         RegisterEntity("metal_rabbit", EntityMetalRabbit.class, Reference.METAL_RABBIT, 11184557, 11796480);
+        RegisterEntity("sword_stag", EntitySwordStag.class, Reference.SWORD_STAG, 16777215, 6968398);
 
         if(ModConfig.spawnMonstersInOverworld)
         {
@@ -46,6 +47,8 @@ public class EntityInit
             EntityRegistry.addSpawn(EntityHellhound.class, ModConfig.surfaceSpawnRates.get("hellhound"), 0, 10, EnumCreatureType.MONSTER);
             EntityRegistry.addSpawn(EntityBugbear.class, ModConfig.surfaceSpawnRates.get("bugbear"), 0, 10, EnumCreatureType.MONSTER);
             EntityRegistry.addSpawn(EntityHobgoblin.class, ModConfig.surfaceSpawnRates.get("hobgoblin"), 0, 10, EnumCreatureType.MONSTER);
+            EntityRegistry.addSpawn(EntityMetalRabbit.class, ModConfig.surfaceSpawnRates.get("metal_rabbit"), 0, 10, EnumCreatureType.MONSTER);
+            EntityRegistry.addSpawn(EntitySwordStag.class, ModConfig.surfaceSpawnRates.get("sword_stag"), 0, 10, EnumCreatureType.MONSTER);
         }
     }
 
