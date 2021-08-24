@@ -234,6 +234,21 @@ public class EventHandler
                         event.setResult(Event.Result.DENY);
                     }
                     break;
+
+                case "Sword Stag":
+                    if(!((floor >= 20 && floor <= 24)))
+                    {
+                        event.setResult(Event.Result.DENY);
+                    }
+                    break;
+
+                case "Metal Rabbit":
+                case "Hobgoblin":
+                    if(floor != 24)
+                    {
+                        event.setResult(Event.Result.DENY);
+                    }
+                    break;
             }
         }
     }
