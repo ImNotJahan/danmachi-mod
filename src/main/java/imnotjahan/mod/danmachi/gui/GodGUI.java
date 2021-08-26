@@ -54,7 +54,7 @@ public class GodGUI extends GuiScreen
 
             questions.add("Nothing");
 
-            addButtons((String[])questions.toArray());
+            addButtons((String[])questions.toArray(new String[questions.size()]));
         } else
         {
             godDialog.addLine(I18n.format("god." + godName + ".other_familia_greeting", familia));

@@ -48,6 +48,9 @@ public class ItemInit
     public static final Item LYGERFANG_FANG = new ItemBase("lygerfang_fang");
     public static final Item LYGERFANG_FUR = new ItemBase("lygerfang_fur");
     public static final Item MINOTAUR_HORN = new ItemBase("minotaur_horn");
+    public static final Item BUGBEAR_NAIL = new ItemBase("bugbear_nail");
+    public static final Item METAL_RABBIT_FUR = new ItemBase("metal_rabbit_fur");
+    public static final Item SWORD_STAG_ANTLER = new ItemBase("sword_stag_antler");
     public static final Item MAGIC_STONE = new ItemBase("magic_stone");
     public static final Item SPECIAL_MAGIC_STONE = new ItemBase("special_magic_stone");
 
@@ -115,7 +118,6 @@ public class ItemInit
     public static final Item MAGIC_STONE_COMPASS = new MagicStoneCompass();
     public static final Item GUIDE_BOOK = new ItemBase("guide_book");
     public static final Item GRIMOIRE = new ItemBase("grimoire");
-    //public static final Item VALIS = new ItemBase("valis").setMaxStackSize(10000);
 
     //structures
     public static final Item BABEL = new StructureBase(WorldGenCustomStructures.BABEL);
