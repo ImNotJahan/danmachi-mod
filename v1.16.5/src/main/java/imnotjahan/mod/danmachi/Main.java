@@ -3,6 +3,7 @@ package imnotjahan.mod.danmachi;
 import imnotjahan.mod.danmachi.init.Entities;
 import imnotjahan.mod.danmachi.init.Items;
 import imnotjahan.mod.danmachi.init.Paintings;
+import imnotjahan.mod.danmachi.util.subscribers.ClientEventSubscriber;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;

@@ -1,5 +1,7 @@
-package imnotjahan.mod.danmachi;
+package imnotjahan.mod.danmachi.util.subscribers;
 
+import imnotjahan.mod.danmachi.Main;
+import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.init.Blocks;
 import imnotjahan.mod.danmachi.materials.ArmorMaterials;
 import imnotjahan.mod.danmachi.materials.ItemTiers;

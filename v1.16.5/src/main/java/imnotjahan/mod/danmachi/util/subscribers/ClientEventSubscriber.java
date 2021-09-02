@@ -1,5 +1,6 @@
-package imnotjahan.mod.danmachi;
+package imnotjahan.mod.danmachi.util.subscribers;
 
+import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.entities.rendering.GoblinRenderer;
 import imnotjahan.mod.danmachi.entities.rendering.HestiaRenderer;
 import imnotjahan.mod.danmachi.entities.rendering.MinotaurRenderer;
@@ -28,17 +29,6 @@ public final class ClientEventSubscriber
     {
         ClientRegistry.registerKeyBinding(STATUS);
         ClientRegistry.registerKeyBinding(ARMOR_DRESS);
-    }
-
-    @SubscribeEvent
-    public void onClientTickEvent(TickEvent.ClientTickEvent event)
-    {
-        if(STATUS.isDown())
-        {
-            Minecraft.getInstance().setScreen(new Status());
-        }
-
-        System.out.println(0);
     }
 
     @SubscribeEvent

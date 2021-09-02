@@ -45,9 +45,7 @@ public final class GodGui extends Screen
         buttons.add(
                 new Button(this.width / 2 + 4 + 50, this.height - 52 * 2, 100,
                         20, new StringTextComponent("Nothing"), (p_214288_1_) ->
-                {
-                    minecraft.setScreen(null);
-                }
+                        minecraft.setScreen(null)
                 ));
     }
 
@@ -55,14 +53,9 @@ public final class GodGui extends Screen
     public void render(MatrixStack stack, int mouseX, int mouseY, float tick)
     {
         this.renderBackground(stack);
+        drawCenteredString(stack, font, currentGodResponse, width / 2, 50, 0xFFFFFF);
 
-
-        font.draw(stack, currentGodResponse, width / 2, 20, 8);
-
-        buttons.forEach(button ->
-        {
-            addButton(button);
-        });
+        buttons.forEach(button -> addButton(button));
 
         super.render(stack, mouseX, mouseY, tick);
     }
