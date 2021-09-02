@@ -1,6 +1,0 @@
-{
-  "parent": "danmachi:item/little_ballista",
-  "textures": {
-    "layer0": "danmachi:items/little_ballista_pulling_2"
-  }
-}

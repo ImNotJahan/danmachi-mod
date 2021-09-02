@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "danmachi:blocks/cracked_and_viney_dungeon_wall"
-  }
-}

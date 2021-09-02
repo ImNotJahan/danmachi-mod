@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "danmachi:blocks/orichalcum_block"
-  }
-}
