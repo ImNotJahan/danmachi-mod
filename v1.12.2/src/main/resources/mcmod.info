@@ -1,0 +1,16 @@
+[
+    {
+      "modid": "danmachi",
+      "name": "Danmachi Mod",
+      "description": "Lots of stuff from danmachi.",
+      "version": "1.2.2",
+      "mcversion": "1.12.2",
+      "url": "https://www.curseforge.com/minecraft/mc-mods/danmachi-mod",
+      "updateUrl": "https://www.jahanrashidi.com/version.json",
+      "authorList": ["Jahan Rashidi"],
+      "credits": "flammeprinsessen1 for the amazing hestia skin\nxanax for a ton of ideas",
+      "logoFile": "",
+      "screenshots": [],
+      "dependencies": []
+    }
+]
