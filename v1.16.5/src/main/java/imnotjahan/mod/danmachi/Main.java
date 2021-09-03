@@ -1,14 +1,19 @@
 package imnotjahan.mod.danmachi;
 
+import imnotjahan.mod.danmachi.capabilities.IStatus;
+import imnotjahan.mod.danmachi.capabilities.Status;
+import imnotjahan.mod.danmachi.capabilities.StatusStorage;
 import imnotjahan.mod.danmachi.init.Entities;
 import imnotjahan.mod.danmachi.init.Items;
 import imnotjahan.mod.danmachi.init.Paintings;
 import imnotjahan.mod.danmachi.util.subscribers.ClientEventSubscriber;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(Reference.MODID)
@@ -31,6 +36,7 @@ public class Main
         final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         eventBus.addListener(this::SetupClient);
+        eventBus.addListener(this::SetupCommon);
 
         registerDeferredRegistries(eventBus);
         Paintings.PAINTING_TYPES.register(eventBus);
@@ -39,6 +45,11 @@ public class Main
     public void SetupClient(final FMLClientSetupEvent event)
     {
         ClientEventSubscriber.init();
+    }
+
+    public void SetupCommon(final FMLCommonSetupEvent event)
+    {
+        CapabilityManager.INSTANCE.register(IStatus.class, new StatusStorage(), () -> new Status());
     }
 
     public static void registerDeferredRegistries(IEventBus modBus)

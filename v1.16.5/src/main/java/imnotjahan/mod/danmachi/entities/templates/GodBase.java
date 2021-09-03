@@ -4,8 +4,6 @@ import imnotjahan.mod.danmachi.util.ClientThings;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.AttributeModifierManager;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;

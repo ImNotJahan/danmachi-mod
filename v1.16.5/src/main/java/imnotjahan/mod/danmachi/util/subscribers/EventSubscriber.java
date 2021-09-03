@@ -2,6 +2,9 @@ package imnotjahan.mod.danmachi.util.subscribers;
 
 import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.capabilities.IStatus;
+import imnotjahan.mod.danmachi.capabilities.Status;
+import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.init.Blocks;
 import imnotjahan.mod.danmachi.materials.ArmorMaterials;
 import imnotjahan.mod.danmachi.materials.ItemTiers;
@@ -16,17 +19,29 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.SwordItem;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+
+import javax.annotation.Nullable;
 
 import static net.minecraft.item.Items.GLASS_BOTTLE;
 
@@ -197,5 +212,17 @@ public final class EventSubscriber
     {
         entry.setRegistryName(registryName);
         return entry;
+    }
+
+    //capabilities stuff from here on out
+    @CapabilityInject(IStatus.class)
+    public static final Capability<IStatus> STATUS_CAP = null;
+
+    @SubscribeEvent
+    public void attachCapability(AttachCapabilitiesEvent<Entity> event) {
+        if (!(event.getObject() instanceof PlayerEntity)) return;
+
+        event.addCapability(new ResourceLocation(Reference.MODID, "status"),
+                new StatusProvider());
     }
 }
