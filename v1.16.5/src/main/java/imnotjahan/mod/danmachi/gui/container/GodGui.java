@@ -5,12 +5,14 @@ import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
+import imnotjahan.mod.danmachi.init.Items;
 import net.minecraft.client.gui.screen.AddServerScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -20,10 +22,13 @@ import java.util.List;
 public final class GodGui extends Screen
 {
     String godName;
-    public GodGui(String godName)
+    boolean wantsBlood = false;
+
+    public GodGui(String godName, boolean wantsBlood)
     {
         super(new StringTextComponent(godName));
         this.godName = godName;
+        this.wantsBlood = wantsBlood;
     }
 
     public GodGui()
@@ -44,34 +49,66 @@ public final class GodGui extends Screen
                         minecraft.setScreen(null)
                 ));
 
-        buttons.add(
-                new Button(this.width / 2 - 100, 100 + 30, 200,
-                20, new StringTextComponent("Could I join your familia"), (p_214288_1_) ->
+        if(!GetStatus().getFalna())
+        {
+            buttons.add(
+                    new Button(this.width / 2 - 100, 100 + 30, 200,
+                            20, new StringTextComponent("Could I join your familia"), (p_214288_1_) ->
+                    {
+                        currentGodResponse = "Well I don't seem to have any at the moment, so why not";
+                        currentGodResponse2 = "Give me a moment, and I'll give you a falna";
+
+                        ClearButtons();
+                        buttons.add(
+                                new Button(this.width / 2 - 100, 100 + 30, 200,
+                                        20, new StringTextComponent("Okay"), (p_214288_2_) ->
+                                {
+                                    ClearButtons();
+                                    currentGodResponse = "Anddddd done";
+                                    currentGodResponse2 = "";
+
+                                    GetStatus().setFamilia(godName);
+                                    GetStatus().giveFalna();
+
+                                    buttons.add(
+                                            new Button(this.width / 2 - 100, 100 + 30, 200,
+                                                    20, new StringTextComponent("Thanks!"), (p_214288_3_) ->
+                                            {
+                                                minecraft.setScreen(null);
+                                            }));
+                                }));
+                    }
+                    ));
+        }
+
+        if(wantsBlood)
+        {
+            buttons.add(
+                new Button(this.width / 2 - 100, 100, 200,
+                        20, new StringTextComponent("Can I have some blood?"), (p_214288_1_) ->
                 {
-                    currentGodResponse = "Well I don't seem to have any at the moment, so why not";
-                    currentGodResponse2 = "Give me a moment, and I'll give you a falna";
-
                     ClearButtons();
+                    currentGodResponse = "Excuse me?";
+
                     buttons.add(
-                        new Button(this.width / 2 - 100, 100 + 30, 200,
-                        20, new StringTextComponent("Okay"), (p_214288_2_) ->
-                        {
-                            ClearButtons();
-                            currentGodResponse = "Anddddd done";
-                            currentGodResponse2 = "";
+                            new Button(this.width / 2 - 100, 100 + 30, 200,
+                                    20, new StringTextComponent("I need it for a weapon"), (p_214288_2_) ->
+                            {
+                                ClearButtons();
+                                currentGodResponse = "Oh okay.. Well don't do anything weird with it";
 
-                            GetStatus().setFamilia(godName);
-                            GetStatus().giveFalna();
+                                minecraft.player.inventory.setItem(minecraft.player.inventory.selected,
+                                        new ItemStack(Items.ICHOR));
 
-                            buttons.add(
-                                    new Button(this.width / 2 - 100, 100 + 30, 200,
-                                            20, new StringTextComponent("Thanks!"), (p_214288_3_) ->
-                                    {
-                                        minecraft.setScreen(null);
-                                    }));
-                        }));
-                }
-        ));
+                                buttons.add(
+                                        new Button(this.width / 2 - 100, 100 + 30, 200,
+                                                20, new StringTextComponent("Thanks"), (p_214288_3_) ->
+                                        {
+                                            minecraft.setScreen(null);
+                                        }));
+                            }));
+                }));
+        }
     }
 
     @Override

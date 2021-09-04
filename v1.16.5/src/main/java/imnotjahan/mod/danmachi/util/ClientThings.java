@@ -13,6 +13,6 @@ public class ClientThings
      */
     public static void showGodGui(String godName, boolean wantingBlood)
     {
-        Minecraft.getInstance().setScreen(new GodGui(godName));
+        Minecraft.getInstance().setScreen(new GodGui(godName, wantingBlood));
     }
 }

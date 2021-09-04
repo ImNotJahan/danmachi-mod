@@ -3,7 +3,6 @@ package imnotjahan.mod.danmachi.util.subscribers;
 import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
-import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.init.Blocks;
 import imnotjahan.mod.danmachi.materials.ArmorMaterials;
@@ -26,22 +25,15 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.SwordItem;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistryEntry;
-
-import javax.annotation.Nullable;
 
 import static net.minecraft.item.Items.GLASS_BOTTLE;
 
@@ -91,15 +83,15 @@ public final class EventSubscriber
                 //long
                 setup(new SwordItem(ItemTiers.DESPERATE, 4, -2.4F,
                         (new Item.Properties()).tab(Main.ToolGroup)), "desperate"),
-                setup(new SwordItem(ItemTiers.URGA, 4, -0.7F,
+                setup(new SwordItem(ItemTiers.URGA, 4, -4.1F,
                         (new Item.Properties()).tab(Main.ToolGroup)), "urga"),
-                setup(new TooltipSword(ItemTiers.MAGIC_SWORD, 4, -1.4F,
+                setup(new TooltipSword(ItemTiers.MAGIC_SWORD, 4, -3.4F,
                         (new Item.Properties()).tab(Main.ToolGroup),
                         new StringTextComponent("Right click to spray fire")), "fire_magic_sword"),
-                setup(new TooltipSword(ItemTiers.MAGIC_SWORD, 4, -1.4F,
+                setup(new TooltipSword(ItemTiers.MAGIC_SWORD, 4, -3.4F,
                         (new Item.Properties()).tab(Main.ToolGroup),
                         new StringTextComponent("Right click to spread ice")), "ice_magic_sword"),
-                setup(new SwordItem(ItemTiers.GREATSWORD, 4, -1.4F,
+                setup(new SwordItem(ItemTiers.GREATSWORD, 4, -3.4F,
                         (new Item.Properties()).tab(Main.ToolGroup)), "greatsword"),
                 setup(new SwordItem(ItemTiers.KOTETSU, 4, -2.F,
                         (new Item.Properties()).tab(Main.ToolGroup)), "kotetsu"),
