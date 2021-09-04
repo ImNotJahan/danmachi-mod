@@ -5,13 +5,15 @@ import com.google.common.collect.Lists;
 import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.entities.Goblin;
-import imnotjahan.mod.danmachi.entities.Hestia;
+import imnotjahan.mod.danmachi.entities.gods.Hermes;
+import imnotjahan.mod.danmachi.entities.gods.Hestia;
 import imnotjahan.mod.danmachi.entities.Minotaur;
+import imnotjahan.mod.danmachi.entities.gods.Loki;
+import imnotjahan.mod.danmachi.entities.gods.Soma;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ResourceLocation;
@@ -38,6 +40,12 @@ public class Entities
             1F, 2.2F, 0x000000, 0xFFFFFF);
     public static final RegistryObject<EntityType<Hestia>> HESTIA = createEntity("hestia", Hestia::new,
             1F, 2F, 0x000000, 0xFFFFFF);
+    public static final RegistryObject<EntityType<Hermes>> HERMES = createEntity("hermes", Hermes::new,
+            1F, 2F, 0x000000, 0xFFFFFF);
+    public static final RegistryObject<EntityType<Soma>> SOMA = createEntity("soma", Soma::new,
+            1F, 2F, 0x000000, 0xFFFFFF);
+    public static final RegistryObject<EntityType<Loki>> LOKI = createEntity("loki", Loki::new,
+            1F, 2F, 0x000000, 0xFFFFFF);
 
     private static <T extends Entity> RegistryObject<EntityType<T>>
     createEntity(String name, EntityType.IFactory<T> factory, float width, float height, int eggPrimary, int eggSecondary)
@@ -61,6 +69,12 @@ public class Entities
                 Heightmap.Type.WORLD_SURFACE, Minotaur::checkMobSpawnRules);
         EntitySpawnPlacementRegistry.register(HESTIA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
                 Heightmap.Type.WORLD_SURFACE, Hestia::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(HERMES.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Hermes::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(LOKI.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Loki::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(SOMA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Soma::checkMobSpawnRules);
     }
 
     @SubscribeEvent
@@ -69,6 +83,9 @@ public class Entities
         event.put(GOBLIN.get(), Goblin.createAttributes().build());
         event.put(MINOTAUR.get(), Minotaur.createAttributes().build());
         event.put(HESTIA.get(), Hestia.createGodAttributes().build());
+        event.put(HERMES.get(), Hermes.createGodAttributes().build());
+        event.put(SOMA.get(), Soma.createGodAttributes().build());
+        event.put(LOKI.get(), Loki.createGodAttributes().build());
     }
 
     @SubscribeEvent

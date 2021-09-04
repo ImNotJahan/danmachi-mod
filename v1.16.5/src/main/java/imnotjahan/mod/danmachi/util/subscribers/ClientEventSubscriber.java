@@ -1,9 +1,7 @@
 package imnotjahan.mod.danmachi.util.subscribers;
 
 import imnotjahan.mod.danmachi.Reference;
-import imnotjahan.mod.danmachi.entities.rendering.GoblinRenderer;
-import imnotjahan.mod.danmachi.entities.rendering.HestiaRenderer;
-import imnotjahan.mod.danmachi.entities.rendering.MinotaurRenderer;
+import imnotjahan.mod.danmachi.entities.rendering.*;
 import imnotjahan.mod.danmachi.init.Entities;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.api.distmarker.Dist;
@@ -37,6 +35,12 @@ public final class ClientEventSubscriber
                 MinotaurRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.HESTIA.get(),
                 HestiaRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.HERMES.get(),
+                HermesRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.LOKI.get(),
+                LokiRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.SOMA.get(),
+                SomaRenderer::new);
     }
 
     public static void init() {}

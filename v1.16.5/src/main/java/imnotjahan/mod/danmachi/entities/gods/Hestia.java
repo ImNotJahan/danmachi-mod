@@ -1,4 +1,4 @@
-package imnotjahan.mod.danmachi.entities;
+package imnotjahan.mod.danmachi.entities.gods;
 
 import imnotjahan.mod.danmachi.entities.templates.GodBase;
 import net.minecraft.entity.CreatureEntity;

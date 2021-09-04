@@ -1,7 +1,8 @@
 package imnotjahan.mod.danmachi.entities.rendering;
 
 import imnotjahan.mod.danmachi.Reference;
-import imnotjahan.mod.danmachi.entities.gods.Hestia;
+import imnotjahan.mod.danmachi.entities.gods.Hermes;
+import imnotjahan.mod.danmachi.entities.gods.Loki;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
@@ -10,16 +11,16 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class HestiaRenderer extends MobRenderer<Hestia, PlayerModel<Hestia>>
+public class LokiRenderer extends MobRenderer<Loki, PlayerModel<Loki>>
 {
-    public HestiaRenderer(EntityRendererManager context)
+    public LokiRenderer(EntityRendererManager context)
     {
-        super(context, new PlayerModel<Hestia>(0, false), 1f);
+        super(context, new PlayerModel<Loki>(0, false), 1f);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(Hestia p_110775_1_)
+    public ResourceLocation getTextureLocation(Loki p_110775_1_)
     {
-        return new ResourceLocation(Reference.MODID, "textures/entity/hestia.png");
+        return new ResourceLocation(Reference.MODID, "textures/entity/loki.png");
     }
 }
