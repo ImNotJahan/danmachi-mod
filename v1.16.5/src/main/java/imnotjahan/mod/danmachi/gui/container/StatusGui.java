@@ -32,30 +32,37 @@ public final class StatusGui extends Screen
             status = lazyStatus.orElse(new Status());
         }
 
-        int level = status.get(6);
-        int strength = status.get(1);
-        int endurance = status.get(2);
-        int dexterity = status.get(3);
-        int agility = status.get(4);
-        int magic = status.get(5);
+        if(status != null && status.getFalna())
+        {
+            int level = status.get(6);
+            int strength = status.get(1);
+            int endurance = status.get(2);
+            int dexterity = status.get(3);
+            int agility = status.get(4);
+            int magic = status.get(5);
 
-        minecraft.getTextureManager().bind(new ResourceLocation(String.format("%s:textures/gui/falnas/%s.png",
-                Reference.MODID, "hestia")));
-        blit(stack, 0, 0, 0, 0, width,height, width, height);
+            minecraft.getTextureManager().bind(new ResourceLocation(String.format("%s:textures/gui/falnas/%s.png",
+                    Reference.MODID, status.getFamilia())));
+            blit(stack, 0, 0, 0, 0, width, height, width, height);
 
-        drawCenteredString(stack, font, new StringTextComponent("Level " + level),
-                width / 2, 20, 0xFFFFFF);
-        drawCenteredString(stack, font, new StringTextComponent("Strength: " + strength),
-                width / 2, 40, 0xFFFFFF);
-        drawCenteredString(stack, font, new StringTextComponent("Endurance: " + endurance),
-                width / 2, 60, 0xFFFFFF);
-        drawCenteredString(stack, font, new StringTextComponent("Dexterity: " + dexterity),
-                width / 2, 80, 0xFFFFFF);
-        drawCenteredString(stack, font, new StringTextComponent("Agility: " + agility),
-                width / 2, 100, 0xFFFFFF);
-        drawCenteredString(stack, font, new StringTextComponent("Magic: " + magic),
-                width / 2, 120, 0xFFFFFF);
-
+            drawCenteredString(stack, font, new StringTextComponent("Level " + level),
+                    width / 2, 20, 0xFFFFFF);
+            drawCenteredString(stack, font, new StringTextComponent("Strength: " + strength),
+                    width / 2, 40, 0xFFFFFF);
+            drawCenteredString(stack, font, new StringTextComponent("Endurance: " + endurance),
+                    width / 2, 60, 0xFFFFFF);
+            drawCenteredString(stack, font, new StringTextComponent("Dexterity: " + dexterity),
+                    width / 2, 80, 0xFFFFFF);
+            drawCenteredString(stack, font, new StringTextComponent("Agility: " + agility),
+                    width / 2, 100, 0xFFFFFF);
+            drawCenteredString(stack, font, new StringTextComponent("Magic: " + magic),
+                    width / 2, 120, 0xFFFFFF);
+        } else
+        {
+            drawCenteredString(stack, font, new StringTextComponent(
+                    "You need a falna to view your status"
+                    ), width / 2, 20, 0xFFFFFF);
+        }
         super.render(stack, mouseX, mouseY, tick);
     }
 }

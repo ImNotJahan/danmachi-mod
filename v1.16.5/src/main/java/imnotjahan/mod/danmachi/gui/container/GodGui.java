@@ -51,12 +51,12 @@ public final class GodGui extends Screen
                     currentGodResponse = "Well I don't seem to have any at the moment, so why not";
                     currentGodResponse2 = "Give me a moment, and I'll give you a falna";
 
-                    buttons.clear();
+                    ClearButtons();
                     buttons.add(
                         new Button(this.width / 2 - 100, 100 + 30, 200,
                         20, new StringTextComponent("Okay"), (p_214288_2_) ->
                         {
-                            buttons.clear();
+                            ClearButtons();
                             currentGodResponse = "Anddddd done";
                             currentGodResponse2 = "";
 
@@ -90,5 +90,16 @@ public final class GodGui extends Screen
     {
         return minecraft.player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
                 .orElse(new Status());
+    }
+
+    void ClearButtons()
+    {
+        for(Button button : buttons)
+        {
+            button.active = false;
+            button.visible = false;
+        }
+
+        buttons.clear();
     }
 }

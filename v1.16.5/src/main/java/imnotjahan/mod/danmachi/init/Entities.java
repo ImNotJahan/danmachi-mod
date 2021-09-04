@@ -34,10 +34,13 @@ public class Entities
     public static final DeferredRegister<EntityType<?>> ENTITY_DEFERRED = DeferredRegister.create(ForgeRegistries.ENTITIES, Reference.MODID);
     private static final List<Item> SPAWN_EGGS = Lists.newArrayList();
 
+    //Monsters
     public static final RegistryObject<EntityType<Goblin>> GOBLIN = createEntity("goblin", Goblin::new,
             1F, 1.7F, 0x000000, 0xFFFFFF);
     public static final RegistryObject<EntityType<Minotaur>> MINOTAUR = createEntity("minotaur", Minotaur::new,
             1F, 2.2F, 0x000000, 0xFFFFFF);
+
+    //Gods
     public static final RegistryObject<EntityType<Hestia>> HESTIA = createEntity("hestia", Hestia::new,
             1F, 2F, 0x000000, 0xFFFFFF);
     public static final RegistryObject<EntityType<Hermes>> HERMES = createEntity("hermes", Hermes::new,
