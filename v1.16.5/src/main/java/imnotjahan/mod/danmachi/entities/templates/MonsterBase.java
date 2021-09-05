@@ -3,6 +3,8 @@ package imnotjahan.mod.danmachi.entities.templates;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
+import imnotjahan.mod.danmachi.util.STDTS;
+import imnotjahan.mod.danmachi.util.config.Config;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,6 +12,8 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
+import java.util.Map;
 
 public class MonsterBase extends ZombieEntity
 {
@@ -52,12 +56,15 @@ public class MonsterBase extends ZombieEntity
 
             if (status.getFalna())
             {
+                Integer[] statusIncreases = STDTS.SIAStringToDict(
+                        Config.COMMON.statusIncreases.get()).get(name);
+
                 for (int k = 0; k < 5; k++)
                 {
-                    status.increase(1, k + 1);
+                    status.increase(statusIncreases[k], k + 1);
                 }
 
-                status.increase(1, 7);
+                status.increase(statusIncreases[5], 7);
             } else
             {
                 return;

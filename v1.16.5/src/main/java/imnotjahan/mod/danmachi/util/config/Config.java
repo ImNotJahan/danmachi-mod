@@ -12,7 +12,7 @@ public class Config
     public static class Common
     {
         //d stands for default
-        private static final Map<String, Integer[]> dStatusIncreases = new HashMap<String, Integer[]>()
+        public static final Map<String, Integer[]> dStatusIncreases = new HashMap<String, Integer[]>()
         {{
             put("goblin", new Integer[]{2, 2, 1, 1, 0, 2});
             put("kobold", new Integer[]{2, 2, 1, 2, 0, 2});
