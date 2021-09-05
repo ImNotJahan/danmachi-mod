@@ -11,6 +11,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.util.LazyOptional;
 
+import java.util.Collections;
+
 public final class StatusGui extends Screen
 {
     LazyOptional<IStatus> lazyStatus;
@@ -46,17 +48,17 @@ public final class StatusGui extends Screen
             blit(stack, 0, 0, 0, 0, width, height, width, height);
 
             drawCenteredString(stack, font, new StringTextComponent("Level " + level),
-                    width / 2, 20, 0xFFFFFF);
+                    width / 2, this.height / 2, 0xFFFFFF);
             drawCenteredString(stack, font, new StringTextComponent("Strength: " + strength),
-                    width / 2, 40, 0xFFFFFF);
+                    width / 2, this.height / 2 + 20, 0xFFFFFF);
             drawCenteredString(stack, font, new StringTextComponent("Endurance: " + endurance),
-                    width / 2, 60, 0xFFFFFF);
+                    width / 2, this.height / 2 + 40, 0xFFFFFF);
             drawCenteredString(stack, font, new StringTextComponent("Dexterity: " + dexterity),
-                    width / 2, 80, 0xFFFFFF);
+                    width / 2, this.height / 2 + 60, 0xFFFFFF);
             drawCenteredString(stack, font, new StringTextComponent("Agility: " + agility),
-                    width / 2, 100, 0xFFFFFF);
+                    width / 2, this.height / 2 + 80, 0xFFFFFF);
             drawCenteredString(stack, font, new StringTextComponent("Magic: " + magic),
-                    width / 2, 120, 0xFFFFFF);
+                    width / 2, this.height / 2 + 100, 0xFFFFFF);
         } else
         {
             drawCenteredString(stack, font, new StringTextComponent(
@@ -64,5 +66,18 @@ public final class StatusGui extends Screen
                     ), width / 2, 20, 0xFFFFFF);
         }
         super.render(stack, mouseX, mouseY, tick);
+    }
+
+    private static final char[] statLetters = new char[]{'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A', 'S'};
+    private static String getStatLetter(int stat)
+    {
+        int index = (int) Math.floor(stat / 100);
+        if (index > 9)
+        {
+            return String.join("", Collections.nCopies(Math.min(index - 8, 3), "S"));
+        } else
+        {
+            return Character.toString(statLetters[index]);
+        }
     }
 }

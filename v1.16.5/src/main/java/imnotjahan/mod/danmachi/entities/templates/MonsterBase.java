@@ -13,8 +13,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-import java.util.Map;
-
 public class MonsterBase extends ZombieEntity
 {
     String name = "";
