@@ -1,7 +1,7 @@
 modLoader="javafml"
 
 loaderVersion="[28,)"
-license="GNU GENERAL PUBLIC LICENSE"
+license="MIT LICENSE"
 
 [[mods]]
 modId="danmachi"
@@ -9,5 +9,5 @@ version="${file.jarVersion}"
 displayName="Danmachi Mod"
 authors="ImNotJahan"
 description='''
-Adds vodka. That's about it.
+Adds stuff from the wonderful world of danmachi.
 '''

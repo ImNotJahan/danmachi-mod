@@ -5,10 +5,12 @@ import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.init.Blocks;
 import imnotjahan.mod.danmachi.materials.ArmorMaterials;
 import imnotjahan.mod.danmachi.materials.ItemTiers;
-import imnotjahan.mod.danmachi.objects.SmithingAnvil;
+import imnotjahan.mod.danmachi.objects.blocks.DungeonPortal;
+import imnotjahan.mod.danmachi.objects.blocks.SmithingAnvil;
 import imnotjahan.mod.danmachi.objects.armor.HadesHead;
 import imnotjahan.mod.danmachi.objects.armor.SalamanderWool;
 import imnotjahan.mod.danmachi.objects.armor.SizeableArmor;
+import imnotjahan.mod.danmachi.objects.items.Needle;
 import imnotjahan.mod.danmachi.objects.sword.Hakugen;
 import imnotjahan.mod.danmachi.objects.sword.SwordAir;
 import imnotjahan.mod.danmachi.objects.sword.TooltipSword;
@@ -61,7 +63,7 @@ public final class EventSubscriber
                 setup(new Item(new Item.Properties().tab(Main.MaterialsGroup)), "urga_blade"),
                 setup(new Item(new Item.Properties().tab(Main.MaterialsGroup)), "guide_book"),
                 setup(new Item(new Item.Properties().tab(Main.MaterialsGroup)), "grimoire"),
-                setup(new Item(new Item.Properties().tab(Main.MaterialsGroup)), "needle"),
+                setup(new Needle(), "needle"),
 
                 // weapons & tools
                 //short
@@ -184,6 +186,7 @@ public final class EventSubscriber
                         .strength(45)), "orichalcum_wall"),
                 setup(new Block(Block.Properties.of(Material.HEAVY_METAL)
                         .strength(15)), "adamantite_wall"),
+                setup(new DungeonPortal(), "dungeon_portal"),
                 setup(new SmithingAnvil(AbstractBlock.Properties.of(Material.HEAVY_METAL, MaterialColor.METAL)),
                         "smithing_anvil")
         );
