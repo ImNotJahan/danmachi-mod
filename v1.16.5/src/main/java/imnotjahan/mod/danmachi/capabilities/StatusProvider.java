@@ -11,18 +11,14 @@ public class StatusProvider implements ICapabilitySerializable<INBT>
 {
     @CapabilityInject(IStatus.class)
     public static final Capability<IStatus> STATUS_CAP = null;
+    private static final LazyOptional<IStatus> lazyStatus = LazyOptional.of(Status::new);
 
     private IStatus instance = STATUS_CAP.getDefaultInstance();
 
-    public boolean hasCapability(Capability<?> capability, Direction facing)
-    {
-        return capability == STATUS_CAP && facing == Status.capSide;
-    }
-
     @Override
-    public <IStatus> LazyOptional<IStatus> getCapability(Capability<IStatus> capability, Direction facing)
+    public <T> LazyOptional<T> getCapability(Capability<T> capability, Direction side)
     {
-        return hasCapability(capability, facing) ? (LazyOptional<IStatus>)this.instance : null;
+        return capability == STATUS_CAP ? lazyStatus.cast() : LazyOptional.empty();
     }
 
     @Override

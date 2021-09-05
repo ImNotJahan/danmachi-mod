@@ -15,7 +15,7 @@ public class LokiRenderer extends MobRenderer<Loki, PlayerModel<Loki>>
 {
     public LokiRenderer(EntityRendererManager context)
     {
-        super(context, new PlayerModel<Loki>(0, false), 1f);
+        super(context, new PlayerModel<Loki>(0, true), 1f);
     }
 
     @Override

@@ -3,7 +3,6 @@ package imnotjahan.mod.danmachi.entities.templates;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
-import imnotjahan.mod.danmachi.networking.PacketHandler;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,7 +10,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.PacketDistributor;
 
 public class MonsterBase extends ZombieEntity
 {
@@ -36,6 +34,12 @@ public class MonsterBase extends ZombieEntity
     }
 
     @Override
+    protected void addBehaviourGoals()
+    {
+        super.addBehaviourGoals();
+    }
+
+    @Override
     public void die(DamageSource cause)
     {
         super.die(cause);
@@ -50,10 +54,10 @@ public class MonsterBase extends ZombieEntity
             {
                 for (int k = 0; k < 5; k++)
                 {
-                    status.increase(5, k + 1);
+                    status.increase(1, k + 1);
                 }
 
-                status.increase(5, 7);
+                status.increase(1, 7);
             } else
             {
                 return;

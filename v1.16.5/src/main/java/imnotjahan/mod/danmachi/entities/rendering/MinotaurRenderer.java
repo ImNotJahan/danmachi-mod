@@ -16,7 +16,7 @@ public class MinotaurRenderer extends MobRenderer<Minotaur, MinotaurModel>
 {
     public MinotaurRenderer(EntityRendererManager context)
     {
-        super(context, new MinotaurModel(), 1.2f);
+        super(context, new MinotaurModel(0), 1.2f);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package imnotjahan.mod.danmachi.util.subscribers;
+package imnotjahan.mod.danmachi.util.events;
 
 import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.gui.container.ArmorDressScreen;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Reference.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
-public class ForgeEventSubscriber
+public class ClientForgeEventSubscriber
 {
     @SubscribeEvent
     public static void onClientTickEvent(TickEvent.ClientTickEvent event)

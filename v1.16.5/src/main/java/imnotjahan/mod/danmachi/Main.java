@@ -6,12 +6,15 @@ import imnotjahan.mod.danmachi.capabilities.StatusStorage;
 import imnotjahan.mod.danmachi.init.Entities;
 import imnotjahan.mod.danmachi.init.Items;
 import imnotjahan.mod.danmachi.init.Paintings;
-import imnotjahan.mod.danmachi.util.subscribers.ClientEventSubscriber;
+import imnotjahan.mod.danmachi.util.config.Config;
+import imnotjahan.mod.danmachi.util.events.ClientEventSubscriber;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -40,6 +43,8 @@ public class Main
 
         registerDeferredRegistries(eventBus);
         Paintings.PAINTING_TYPES.register(eventBus);
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
     }
 
     public void SetupClient(final FMLClientSetupEvent event)

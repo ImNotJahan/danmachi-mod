@@ -15,7 +15,7 @@ public class HermesRenderer extends MobRenderer<Hermes, PlayerModel<Hermes>>
 {
     public HermesRenderer(EntityRendererManager context)
     {
-        super(context, new PlayerModel<Hermes>(0, false), 1f);
+        super(context, new PlayerModel<Hermes>(0, true), 1f);
     }
 
     @Override

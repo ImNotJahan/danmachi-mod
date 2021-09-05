@@ -15,7 +15,7 @@ public class SomaRenderer extends MobRenderer<Soma, PlayerModel<Soma>>
 {
     public SomaRenderer(EntityRendererManager context)
     {
-        super(context, new PlayerModel<Soma>(0, false), 1f);
+        super(context, new PlayerModel<Soma>(0, true), 1f);
     }
 
     @Override

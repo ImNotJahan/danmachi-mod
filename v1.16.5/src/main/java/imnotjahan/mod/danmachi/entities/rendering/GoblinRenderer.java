@@ -14,7 +14,7 @@ public class GoblinRenderer extends MobRenderer<Goblin, GoblinModel>
 {
     public GoblinRenderer(EntityRendererManager context)
     {
-        super(context, new GoblinModel(), 1);
+        super(context, new GoblinModel(0), 1);
     }
 
     @Override

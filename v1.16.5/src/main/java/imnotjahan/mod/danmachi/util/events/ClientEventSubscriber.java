@@ -1,4 +1,4 @@
-package imnotjahan.mod.danmachi.util.subscribers;
+package imnotjahan.mod.danmachi.util.events;
 
 import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.entities.rendering.*;

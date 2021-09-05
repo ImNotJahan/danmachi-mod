@@ -79,6 +79,37 @@ public final class GodGui extends Screen
                                 }));
                     }
                     ));
+        } else if(GetStatus().getFamilia() == godName)
+        {
+            currentGodResponse = "Hey " + minecraft.player.getName().getString();
+            buttons.add(
+                    new Button(this.width / 2 - 100, 100 + 30, 200,
+                            20, new StringTextComponent("Can you update my status"), (p_214288_1_) ->
+                    {
+                        currentGodResponse = "Sure, just give me a second to find a needle";
+
+                        ClearButtons();
+                        buttons.add(
+                                new Button(this.width / 2 - 100, 100 + 30, 200,
+                                        20, new StringTextComponent("Okay"), (p_214288_2_) ->
+                                {
+                                    ClearButtons();
+                                    currentGodResponse = "Anddd your status is now updated!";
+
+                                    GetStatus().updateStatus();
+
+                                    buttons.add(
+                                            new Button(this.width / 2 - 100, 100 + 30, 200,
+                                                    20, new StringTextComponent("Nice"), (p_214288_3_) ->
+                                            {
+                                                minecraft.setScreen(null);
+                                            }));
+                                }));
+                    }
+                    ));
+        } else
+        {
+            currentGodResponse = "Ah, what would a child of " + GetStatus().getFamilia() + "need from me";
         }
 
         if(wantsBlood)
