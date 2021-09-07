@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.util;
 
-import imnotjahan.mod.danmachi.gui.container.GodGui;
+import imnotjahan.mod.danmachi.gui.screen.GodGui;
 import net.minecraft.client.Minecraft;
 
 public class ClientThings

@@ -1,0 +1,46 @@
+{
+  "type": "minecraft:decorated",
+  "config": {
+    "feature": {
+      "type": "minecraft:decorated",
+      "name": "danmachi:ore_adamantite",
+      "config": {
+        "feature": {
+          "type": "minecraft:decorated",
+          "config": {
+            "feature": {
+              "config": {
+                "target": {
+                  "predicate_type": "minecraft:always_true"
+                },
+                "state": {
+                  "Name": "danmachi:orichalcum_ore"
+                },
+                "size": 30
+              },
+              "type": "minecraft:ore"
+            },
+            "decorator": {
+              "type": "minecraft:range",
+              "config": {
+                "bottom_offset": 0,
+                "top_offset": 0,
+                "maximum": 256
+              }
+            }
+          }
+        },
+        "decorator": {
+          "config": {},
+          "type": "minecraft:square"
+        }
+      }
+    },
+    "decorator": {
+      "type": "minecraft:count",
+      "config": {
+        "count": 4
+      }
+    }
+  }
+}

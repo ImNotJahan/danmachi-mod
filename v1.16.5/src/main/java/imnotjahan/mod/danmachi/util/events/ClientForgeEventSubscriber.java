@@ -1,8 +1,8 @@
 package imnotjahan.mod.danmachi.util.events;
 
 import imnotjahan.mod.danmachi.Reference;
-import imnotjahan.mod.danmachi.gui.container.ArmorDressScreen;
-import imnotjahan.mod.danmachi.gui.container.StatusGui;
+import imnotjahan.mod.danmachi.gui.screen.ArmorDressScreen;
+import imnotjahan.mod.danmachi.gui.screen.StatusGui;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;

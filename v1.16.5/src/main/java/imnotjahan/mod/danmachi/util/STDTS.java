@@ -33,6 +33,15 @@ public class STDTS
         }};
         System.out.println(SIADictToString(siaDict));
         System.out.println(SIADictToString(SIAStringToDict(SIADictToString(siaDict))));
+
+        Map<String, String> ssDict = new HashMap<String, String>()
+        {{
+            put("first letter", "a");
+            put("5 words", "very very very very words");
+            put("three", "3");
+        }};
+        System.out.println(SSDictToString(ssDict));
+        System.out.println(SSDictToString(SSStringToDict(SSDictToString(ssDict))));
     }
 
 
@@ -67,6 +76,7 @@ public class STDTS
 
         return remappedDict;
     }
+
 
     /**
      * SIA = String, Integer Array
@@ -109,6 +119,39 @@ public class STDTS
             }
 
             remappedDict.put(splitKAV[0], integerArray);
+        }
+
+        return remappedDict;
+    }
+
+    /**
+     * SS = String, String
+     */
+    public static String SSDictToString(Map<String, String> dictionary)
+    {
+        StringBuilder stringedDict = new StringBuilder();
+        for(String key : dictionary.keySet())
+        {
+            stringedDict.append(key).append(":").append(dictionary.get(key)).append(",");
+        }
+
+        return stringedDict.substring(0, stringedDict.length() - 1);
+    }
+
+
+    /**
+     * SS = String, String
+     */
+    public static Map<String, String> SSStringToDict(String string)
+    {
+        Map<String, String> remappedDict = new HashMap<>();
+        String[] keysAndValues = string.split(",");
+
+        for(String keyAndValue : keysAndValues)
+        {
+            //KAV = Key and Value
+            String[] splitKAV = keyAndValue.split(":");
+            remappedDict.put(splitKAV[0], splitKAV[1]);
         }
 
         return remappedDict;

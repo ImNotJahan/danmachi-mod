@@ -1,5 +1,21 @@
 {
   "variants": {
-    "normal": { "model":  "danmachi:dungeon_portal" }
+    "": [
+      {
+        "model": "danmachi:block/dungeon_portal"
+      },
+      {
+        "model": "danmachi:block/dungeon_portal",
+        "y": 90
+      },
+      {
+        "model": "danmachi:block/dungeon_portal",
+        "y": 180
+      },
+      {
+        "model": "danmachi:block/dungeon_portal",
+        "y": 270
+      }
+    ]
   }
 }

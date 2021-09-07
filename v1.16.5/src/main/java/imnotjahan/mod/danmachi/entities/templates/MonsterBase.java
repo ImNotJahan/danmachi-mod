@@ -6,12 +6,21 @@ import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.util.STDTS;
 import imnotjahan.mod.danmachi.util.config.Config;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.IServerWorld;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.common.world.ForgeWorldType;
+
+import java.util.Random;
 
 public class MonsterBase extends ZombieEntity
 {
@@ -21,6 +30,17 @@ public class MonsterBase extends ZombieEntity
     {
         super(entityType, world);
         this.name = name;
+    }
+
+    @Override
+    public boolean checkSpawnRules(IWorld p_213380_1_, SpawnReason p_213380_2_)
+    {
+        return super.checkSpawnRules(p_213380_1_, p_213380_2_);
+    }
+
+    public static boolean checkMonsterSpawnRules(EntityType<? extends MonsterEntity> p_223325_0_, IServerWorld p_223325_1_, SpawnReason p_223325_2_, BlockPos p_223325_3_, Random p_223325_4_)
+    {
+        return checkMobSpawnRules(p_223325_0_, p_223325_1_, p_223325_2_, p_223325_3_, p_223325_4_);
     }
 
     @Override

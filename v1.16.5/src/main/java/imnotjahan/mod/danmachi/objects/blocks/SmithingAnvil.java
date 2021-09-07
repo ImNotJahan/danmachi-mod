@@ -1,17 +1,14 @@
-package imnotjahan.mod.danmachi.objects;
+package imnotjahan.mod.danmachi.objects.blocks;
 
-import imnotjahan.mod.danmachi.Main;
+import imnotjahan.mod.danmachi.gui.container.SmithingContainer;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.inventory.container.RepairContainer;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
-import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -38,7 +35,7 @@ public class SmithingAnvil extends AnvilBlock
     @Override
     public INamedContainerProvider getMenuProvider(BlockState state, World world, BlockPos pos) {
         return new SimpleNamedContainerProvider((a, b, c) ->
-                new RepairContainer(a, b, IWorldPosCallable.create(world, pos)),
+                new SmithingContainer(a, b),
                 new TranslationTextComponent("block.danmachi.smithing_anvil"));
     }
 }

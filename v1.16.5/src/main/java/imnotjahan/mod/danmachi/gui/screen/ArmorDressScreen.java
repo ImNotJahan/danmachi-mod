@@ -1,4 +1,4 @@
-package imnotjahan.mod.danmachi.gui.container;
+package imnotjahan.mod.danmachi.gui.screen;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.inventory.ChestScreen;

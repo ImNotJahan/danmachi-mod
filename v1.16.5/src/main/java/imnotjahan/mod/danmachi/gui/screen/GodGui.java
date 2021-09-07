@@ -1,4 +1,4 @@
-package imnotjahan.mod.danmachi.gui.container;
+package imnotjahan.mod.danmachi.gui.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
