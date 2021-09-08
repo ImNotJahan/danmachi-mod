@@ -4,7 +4,9 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.entities.Almiraj;
 import imnotjahan.mod.danmachi.entities.Goblin;
+import imnotjahan.mod.danmachi.entities.MetalRabbit;
 import imnotjahan.mod.danmachi.entities.gods.Hermes;
 import imnotjahan.mod.danmachi.entities.gods.Hestia;
 import imnotjahan.mod.danmachi.entities.Minotaur;
@@ -38,6 +40,10 @@ public class Entities
     public static final RegistryObject<EntityType<Goblin>> GOBLIN = createEntity("goblin", Goblin::new,
             1F, 1.7F, 0x000000, 0xFFFFFF);
     public static final RegistryObject<EntityType<Minotaur>> MINOTAUR = createEntity("minotaur", Minotaur::new,
+            1F, 2.2F, 0x000000, 0xFFFFFF);
+    public static final RegistryObject<EntityType<Almiraj>> ALMIRAJ = createEntity("almiraj", Almiraj::new,
+            1F, 2.2F, 0x000000, 0xFFFFFF);
+    public static final RegistryObject<EntityType<MetalRabbit>> METAL_RABBIT = createEntity("metal_rabbit", MetalRabbit::new,
             1F, 2.2F, 0x000000, 0xFFFFFF);
 
     //Gods
@@ -78,6 +84,10 @@ public class Entities
                 Heightmap.Type.WORLD_SURFACE, Loki::checkMobSpawnRules);
         EntitySpawnPlacementRegistry.register(SOMA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
                 Heightmap.Type.WORLD_SURFACE, Soma::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(ALMIRAJ.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Soma::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(METAL_RABBIT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Soma::checkMobSpawnRules);
     }
 
     @SubscribeEvent
@@ -89,6 +99,8 @@ public class Entities
         event.put(HERMES.get(), Hermes.createGodAttributes().build());
         event.put(SOMA.get(), Soma.createGodAttributes().build());
         event.put(LOKI.get(), Loki.createGodAttributes().build());
+        event.put(ALMIRAJ.get(), Loki.createGodAttributes().build());
+        event.put(METAL_RABBIT.get(), Loki.createGodAttributes().build());
     }
 
     @SubscribeEvent

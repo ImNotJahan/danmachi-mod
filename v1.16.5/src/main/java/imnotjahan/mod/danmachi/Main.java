@@ -54,7 +54,7 @@ public class Main
 
     public void SetupCommon(final FMLCommonSetupEvent event)
     {
-        CapabilityManager.INSTANCE.register(IStatus.class, new StatusStorage(), () -> new Status());
+        CapabilityManager.INSTANCE.register(IStatus.class, new StatusStorage(), Status::new);
     }
 
     public static void registerDeferredRegistries(IEventBus modBus)

@@ -41,6 +41,10 @@ public final class ClientEventSubscriber
                 LokiRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.SOMA.get(),
                 SomaRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.METAL_RABBIT.get(),
+                MetalRabbitRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.ALMIRAJ.get(),
+                AlmirajRenderer::new);
     }
 
     public static void init() {}
