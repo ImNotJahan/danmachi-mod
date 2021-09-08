@@ -7,10 +7,13 @@ import imnotjahan.mod.danmachi.entities.templates.MonsterBase;
 import imnotjahan.mod.danmachi.util.STDTS;
 import imnotjahan.mod.danmachi.util.config.Config;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.monster.ZombifiedPiglinEntity;
+import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.PolarBearEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,6 +22,8 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
+import java.util.function.Predicate;
 
 public class Bugbear extends PolarBearEntity
 {
@@ -68,5 +73,118 @@ public class Bugbear extends PolarBearEntity
     public boolean canBeLeashed(PlayerEntity player)
     {
         return true;
+    }
+
+    @Override
+    protected void registerGoals()
+    {
+        super.registerGoals();
+        this.goalSelector.addGoal(0, new SwimGoal(this));
+        this.goalSelector.addGoal(1, new Bugbear.MeleeAttackGoal());
+        this.goalSelector.addGoal(1, new Bugbear.PanicGoal());
+        this.goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
+        this.targetSelector.addGoal(1, new Bugbear.HurtByTargetGoal());
+        this.targetSelector.addGoal(2, new Bugbear.AttackPlayerGoal());
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, (Predicate<LivingEntity>) null));
+        this.targetSelector.addGoal(4, new ResetAngerGoal<>(this, false));
+    }
+
+
+    //Goals
+
+    class AttackPlayerGoal extends NearestAttackableTargetGoal<PlayerEntity>
+    {
+        public AttackPlayerGoal()
+        {
+            super(Bugbear.this, PlayerEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
+        }
+
+        public boolean canUse()
+        {
+            if (super.canUse())
+            {
+                for(PolarBearEntity polarbearentity : Bugbear.this.level.getEntitiesOfClass(PolarBearEntity.class, Bugbear.this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D)))
+                {
+                    if (polarbearentity.isBaby())
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        protected double getFollowDistance() {
+            return super.getFollowDistance() * 0.5D;
+        }
+    }
+
+    class HurtByTargetGoal extends net.minecraft.entity.ai.goal.HurtByTargetGoal
+    {
+        public HurtByTargetGoal() {
+            super(Bugbear.this);
+        }
+
+        public void start() {
+            super.start();
+        }
+
+        protected void alertOther(MobEntity p_220793_1_, LivingEntity p_220793_2_) {
+            if (p_220793_1_ instanceof PolarBearEntity) {
+                super.alertOther(p_220793_1_, p_220793_2_);
+            }
+
+        }
+    }
+
+    class MeleeAttackGoal extends net.minecraft.entity.ai.goal.MeleeAttackGoal {
+        public MeleeAttackGoal() {
+            super(Bugbear.this, 1.25D, true);
+        }
+
+        protected void checkAndPerformAttack(LivingEntity p_190102_1_, double p_190102_2_) {
+            double d0 = this.getAttackReachSqr(p_190102_1_);
+            if (p_190102_2_ <= d0 && this.isTimeToAttack()) {
+                this.resetAttackCooldown();
+                this.mob.doHurtTarget(p_190102_1_);
+                Bugbear.this.setStanding(false);
+            } else if (p_190102_2_ <= d0 * 2.0D) {
+                if (this.isTimeToAttack()) {
+                    Bugbear.this.setStanding(false);
+                    this.resetAttackCooldown();
+                }
+
+                if (this.getTicksUntilNextAttack() <= 10) {
+                    Bugbear.this.setStanding(true);
+                    Bugbear.this.playWarningSound();
+                }
+            } else {
+                this.resetAttackCooldown();
+                Bugbear.this.setStanding(false);
+            }
+
+        }
+
+        public void stop() {
+            Bugbear.this.setStanding(false);
+            super.stop();
+        }
+
+        protected double getAttackReachSqr(LivingEntity p_179512_1_) {
+            return 4.0F + p_179512_1_.getBbWidth();
+        }
+    }
+
+    class PanicGoal extends net.minecraft.entity.ai.goal.PanicGoal {
+        public PanicGoal() {
+            super(Bugbear.this, 2.0D);
+        }
+
+        public boolean canUse() {
+            return Bugbear.this.isOnFire() && super.canUse();
+        }
     }
 }

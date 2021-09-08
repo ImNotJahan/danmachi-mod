@@ -53,7 +53,7 @@ public class Entities
     public static final RegistryObject<EntityType<MetalRabbit>> METAL_RABBIT = createEntity("metal_rabbit", MetalRabbit::new,
             0.5F, 0.5F);
     public static final RegistryObject<EntityType<Bugbear>> BUGBEAR = createEntity("bugbear", Bugbear::new,
-            0.5F, 0.5F);
+            2, 1);
 
     //Gods
     public static final RegistryObject<EntityType<Hestia>> HESTIA = createEntity("hestia", Hestia::new,
