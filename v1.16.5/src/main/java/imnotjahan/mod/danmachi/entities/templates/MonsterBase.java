@@ -3,23 +3,29 @@ package imnotjahan.mod.danmachi.entities.templates;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
-import imnotjahan.mod.danmachi.util.STDTS;
+import imnotjahan.mod.danmachi.util.STD;
 import imnotjahan.mod.danmachi.util.config.Config;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.AttributeModifierManager;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.common.world.ForgeWorldType;
 
+import java.util.Map;
 import java.util.Random;
 
 public class MonsterBase extends ZombieEntity
@@ -74,7 +80,7 @@ public class MonsterBase extends ZombieEntity
 
             if (status.getFalna())
             {
-                Integer[] statusIncreases = STDTS.SIAStringToDict(
+                Integer[] statusIncreases = STD.SIAStringToDict(
                         Config.COMMON.statusIncreases.get()).get(name);
 
                 for (int k = 0; k < 5; k++)
@@ -101,6 +107,23 @@ public class MonsterBase extends ZombieEntity
     public boolean canBeLeashed(PlayerEntity player)
     {
         return true;
+    }
+
+    @Override
+    protected void handleAttributes(float p_207304_1_)
+    {
+        this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).addPermanentModifier(new AttributeModifier("Random spawn bonus", this.random.nextDouble() * (double)0.05F, AttributeModifier.Operation.ADDITION));
+        double d0 = this.random.nextDouble() * 1.5D * (double)p_207304_1_;
+        if (d0 > 1.0D)
+        {
+            this.getAttribute(Attributes.FOLLOW_RANGE).addPermanentModifier(new AttributeModifier("Random zombie-spawn bonus", d0, AttributeModifier.Operation.MULTIPLY_TOTAL));
+        }
+
+        if (this.random.nextFloat() < p_207304_1_ * 0.05F)
+        {
+            this.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("Leader zombie bonus", this.random.nextDouble() * 3.0D + 1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            this.setCanBreakDoors(this.supportsBreakDoorGoal());
+        }
     }
 
     /*@Override

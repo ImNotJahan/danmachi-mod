@@ -1,6 +1,5 @@
 package imnotjahan.mod.danmachi.util;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,12 +8,12 @@ import java.util.Map;
  *
  * Dict = Dictionary
  * */
-public class STDTS
+public class STD
 {
     /**
      * This is just for testing
      */
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args)
     {
         Map<String, Integer> siDict = new HashMap<String, Integer>()
         {{
@@ -42,6 +41,15 @@ public class STDTS
         }};
         System.out.println(SSDictToString(ssDict));
         System.out.println(SSDictToString(SSStringToDict(SSDictToString(ssDict))));
+
+        Map<String, double[]> sdaDict = new HashMap<String, double[]>()
+        {{
+            put("14", new double[]{14, 13, .25D, 4});
+            put("second is 5", new double[]{10, 5, .4D, 10});
+            put("7 values", new double[]{15, 20, .35D, 3, 8, 2, 1.4D});
+        }};
+        System.out.println(SDADictToString(sdaDict));
+        System.out.println(SDADictToString(SDAStringToDict(SDADictToString(sdaDict))));
     }
 
 
@@ -152,6 +160,52 @@ public class STDTS
             //KAV = Key and Value
             String[] splitKAV = keyAndValue.split(":");
             remappedDict.put(splitKAV[0], splitKAV[1]);
+        }
+
+        return remappedDict;
+    }
+
+    /**
+     * SDA = String, double Array
+     */
+    public static String SDADictToString(Map<String, double[]> dictionary)
+    {
+        StringBuilder stringedDict = new StringBuilder();
+        for(String key : dictionary.keySet())
+        {
+            StringBuilder stringedArray = new StringBuilder();
+            for(double number : dictionary.get(key))
+            {
+                stringedArray.append(number).append("-");
+            }
+            stringedArray.substring(0, stringedArray.length() - 1);
+            stringedDict.append(key).append(":").append(stringedArray.toString()).append(",");
+        }
+
+        return stringedDict.substring(0, stringedDict.length() - 1);
+    }
+
+    /**
+     * SDA = String, double Array
+     */
+    public static Map<String, double[]> SDAStringToDict(String string)
+    {
+        Map<String, double[]> remappedDict = new HashMap<>();
+        String[] keysAndValues = string.split(",");
+
+        for(String keyAndValue : keysAndValues)
+        {
+            //KAV = Key and Value
+            String[] splitKAV = keyAndValue.split(":");
+            String[] splitValues = splitKAV[1].split("-");
+
+            double[] doubleArray = new double[splitValues.length];
+            for(int k = 0; k < doubleArray.length; k++)
+            {
+                doubleArray[k] = Double.parseDouble(splitValues[k]);
+            }
+
+            remappedDict.put(splitKAV[0], doubleArray);
         }
 
         return remappedDict;

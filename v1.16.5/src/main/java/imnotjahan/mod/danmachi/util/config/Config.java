@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.util.config;
 
-import imnotjahan.mod.danmachi.util.STDTS;
+import imnotjahan.mod.danmachi.util.STD;
 import net.minecraftforge.common.ForgeConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -31,14 +31,35 @@ public class Config
             put("metal_rabbit", new Integer[]{6, 6, 2, 6, 0, 7}); //change this
         }};
 
+        public static Map<String, double[]> dMobStats = new HashMap<String, double[]>(){{
+            put("goblin", new double[]{3, 10, .25D, 2});
+            put("kobold", new double[]{4, 7, .26D, 2});
+            put("killer_ant", new double[]{5, 5, .2D, 4});
+            put("minotaur", new double[]{14, 10, .25D, 7});
+            put("lygerfang", new double[]{10, 15, .4D, 3});
+            put("hellhound", new double[]{8, 10, .3D, 2});
+            put("unicorn", new double[]{10, 20, .45D, 2});
+            put("needle_rabbit", new double[]{8, 12, .3D, 2});
+            put("almiraj", new double[]{8, 20, .3D, 2});
+            put("infant_dragon", new double[]{8, 20, .3D, 2}); //change this
+            put("dragon", new double[]{8, 20, .3D, 2}); //change this
+            put("bugbear", new double[]{14, 10, .3D, 7});
+            put("hobgoblin", new double[]{14, 13, .25D, 4});
+            put("metal_rabbit", new double[]{10, 5, .4D, 10});
+            put("sword_stag", new double[]{15, 20, .35D, 3});
+        }};
+
         public final ForgeConfigSpec.ConfigValue<String> statusIncreases;
+        public final ForgeConfigSpec.ConfigValue<String> mobStats;
 
 
         public Common(ForgeConfigSpec.Builder builder)
         {
             builder.push("Monsters");
             this.statusIncreases = builder.comment("The order of stat increases is: strength, endurance, dextarity, agility, magic, excelia")
-                    .define("Status Increases", STDTS.SIADictToString(dStatusIncreases));
+                    .define("Status Increases", STD.SIADictToString(dStatusIncreases));
+            this.mobStats = builder.comment("The order of their stats is: dmg, health, speed, armor")
+                    .define("Mob Stats", STD.SDADictToString(dMobStats));
             builder.pop();
         }
     }

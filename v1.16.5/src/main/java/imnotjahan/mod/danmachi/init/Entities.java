@@ -106,10 +106,10 @@ public class Entities
     {
         event.put(GOBLIN.get(), Goblin.createAttributes().build());
         event.put(MINOTAUR.get(), Minotaur.createAttributes().build());
-        event.put(HESTIA.get(), Hestia.createGodAttributes().build());
-        event.put(HERMES.get(), Hermes.createGodAttributes().build());
-        event.put(SOMA.get(), Soma.createGodAttributes().build());
-        event.put(LOKI.get(), Loki.createGodAttributes().build());
+        event.put(HESTIA.get(), Hestia.createAttributes().build());
+        event.put(HERMES.get(), Hermes.createAttributes().build());
+        event.put(SOMA.get(), Soma.createAttributes().build());
+        event.put(LOKI.get(), Loki.createAttributes().build());
         event.put(ALMIRAJ.get(), Almiraj.createAttributes().build());
         event.put(METAL_RABBIT.get(), MetalRabbit.createAttributes().build());
         event.put(BUGBEAR.get(), Bugbear.createAttributes().build());

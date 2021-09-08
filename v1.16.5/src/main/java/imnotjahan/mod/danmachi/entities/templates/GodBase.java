@@ -50,7 +50,7 @@ public class GodBase extends CreatureEntity
         this.goalSelector.addGoal(2, new LookRandomlyGoal(this));
     }
 
-    public static AttributeModifierMap.MutableAttribute createGodAttributes()
+    public static AttributeModifierMap.MutableAttribute createAttributes()
     {
         return LivingEntity.createLivingAttributes().add(Attributes.FOLLOW_RANGE, 16.0D)
                 .add(Attributes.ATTACK_KNOCKBACK).add(Attributes.MAX_HEALTH, 30);

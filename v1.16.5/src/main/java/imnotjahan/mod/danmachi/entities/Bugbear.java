@@ -3,23 +3,18 @@ package imnotjahan.mod.danmachi.entities;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
-import imnotjahan.mod.danmachi.entities.templates.MonsterBase;
-import imnotjahan.mod.danmachi.util.STDTS;
+import imnotjahan.mod.danmachi.util.STD;
 import imnotjahan.mod.danmachi.util.config.Config;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
-import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.entity.monster.ZombifiedPiglinEntity;
-import net.minecraft.entity.passive.FoxEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.PolarBearEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
@@ -31,6 +26,17 @@ public class Bugbear extends PolarBearEntity
     public Bugbear(EntityType<? extends PolarBearEntity> p_i50249_1_, World p_i50249_2_)
     {
         super(p_i50249_1_, p_i50249_2_);
+    }
+
+    public static AttributeModifierMap.MutableAttribute createAttributes()
+    {
+        final double[] attributes = STD.SDAStringToDict(Config.COMMON.mobStats.get()).get("bugbear");
+
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.ATTACK_DAMAGE, attributes[0])
+                .add(Attributes.MAX_HEALTH, attributes[1])
+                .add(Attributes.MOVEMENT_SPEED, attributes[2])
+                .add(Attributes.ARMOR, attributes[3]);
     }
 
     @Override
@@ -46,7 +52,7 @@ public class Bugbear extends PolarBearEntity
 
             if (status.getFalna())
             {
-                Integer[] statusIncreases = STDTS.SIAStringToDict(
+                Integer[] statusIncreases = STD.SIAStringToDict(
                         Config.COMMON.statusIncreases.get()).get("bugbear");
 
                 for (int k = 0; k < 5; k++)

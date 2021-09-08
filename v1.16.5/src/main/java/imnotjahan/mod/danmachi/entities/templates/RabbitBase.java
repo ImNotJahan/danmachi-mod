@@ -3,7 +3,7 @@ package imnotjahan.mod.danmachi.entities.templates;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
-import imnotjahan.mod.danmachi.util.STDTS;
+import imnotjahan.mod.danmachi.util.STD;
 import imnotjahan.mod.danmachi.util.config.Config;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -66,7 +66,7 @@ public class RabbitBase extends RabbitEntity
 
             if (status.getFalna())
             {
-                Integer[] statusIncreases = STDTS.SIAStringToDict(
+                Integer[] statusIncreases = STD.SIAStringToDict(
                         Config.COMMON.statusIncreases.get()).get(name);
 
                 for (int k = 0; k < 5; k++)
