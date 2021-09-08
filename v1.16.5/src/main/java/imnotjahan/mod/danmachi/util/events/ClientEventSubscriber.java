@@ -45,6 +45,8 @@ public final class ClientEventSubscriber
                 MetalRabbitRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.ALMIRAJ.get(),
                 AlmirajRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.BUGBEAR.get(),
+                BugbearRenderer::new);
     }
 
     public static void init() {}

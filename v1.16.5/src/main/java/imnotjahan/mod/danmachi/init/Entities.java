@@ -4,18 +4,12 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.Reference;
-import imnotjahan.mod.danmachi.entities.Almiraj;
-import imnotjahan.mod.danmachi.entities.Goblin;
-import imnotjahan.mod.danmachi.entities.MetalRabbit;
+import imnotjahan.mod.danmachi.entities.*;
 import imnotjahan.mod.danmachi.entities.gods.Hermes;
 import imnotjahan.mod.danmachi.entities.gods.Hestia;
-import imnotjahan.mod.danmachi.entities.Minotaur;
 import imnotjahan.mod.danmachi.entities.gods.Loki;
 import imnotjahan.mod.danmachi.entities.gods.Soma;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
-import net.minecraft.entity.EntityType;
+import net.minecraft.entity.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ResourceLocation;
@@ -30,6 +24,19 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
+/*
+- Entites not yet converted from 1.12.2
+Dealer
+Guild member
+Hellhound
+Hobgoblin
+Infant dragon
+Killer ant
+Kobold
+Lygerfang
+Sword stag
+Minotaur
+ */
 @Mod.EventBusSubscriber(modid = Reference.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Entities
 {
@@ -38,31 +45,33 @@ public class Entities
 
     //Monsters
     public static final RegistryObject<EntityType<Goblin>> GOBLIN = createEntity("goblin", Goblin::new,
-            1F, 1.7F, 0x000000, 0xFFFFFF);
+            1F, 1.7F);
     public static final RegistryObject<EntityType<Minotaur>> MINOTAUR = createEntity("minotaur", Minotaur::new,
-            1F, 2.2F, 0x000000, 0xFFFFFF);
+            1F, 2.2F);
     public static final RegistryObject<EntityType<Almiraj>> ALMIRAJ = createEntity("almiraj", Almiraj::new,
-            1F, 2.2F, 0x000000, 0xFFFFFF);
+            0.5F, 0.5F);
     public static final RegistryObject<EntityType<MetalRabbit>> METAL_RABBIT = createEntity("metal_rabbit", MetalRabbit::new,
-            1F, 2.2F, 0x000000, 0xFFFFFF);
+            0.5F, 0.5F);
+    public static final RegistryObject<EntityType<Bugbear>> BUGBEAR = createEntity("bugbear", Bugbear::new,
+            0.5F, 0.5F);
 
     //Gods
     public static final RegistryObject<EntityType<Hestia>> HESTIA = createEntity("hestia", Hestia::new,
-            1F, 2F, 0x000000, 0xFFFFFF);
+            1F, 2F);
     public static final RegistryObject<EntityType<Hermes>> HERMES = createEntity("hermes", Hermes::new,
-            1F, 2F, 0x000000, 0xFFFFFF);
+            1F, 2F);
     public static final RegistryObject<EntityType<Soma>> SOMA = createEntity("soma", Soma::new,
-            1F, 2F, 0x000000, 0xFFFFFF);
+            1F, 2F);
     public static final RegistryObject<EntityType<Loki>> LOKI = createEntity("loki", Loki::new,
-            1F, 2F, 0x000000, 0xFFFFFF);
+            1F, 2F);
 
     private static <T extends Entity> RegistryObject<EntityType<T>>
-    createEntity(String name, EntityType.IFactory<T> factory, float width, float height, int eggPrimary, int eggSecondary)
+    createEntity(String name, EntityType.IFactory<T> factory, float width, float height)
     {
         ResourceLocation location = new ResourceLocation(Reference.MODID, name);
         EntityType<T> entity = EntityType.Builder.of(factory, EntityClassification.MONSTER).sized(width, height)
                 .setTrackingRange(64).setUpdateInterval(1).build(location.toString());
-        Item spawnEgg = new SpawnEggItem(entity, eggPrimary, eggSecondary, (new Item.Properties()).tab(Main.EggGroup));
+        Item spawnEgg = new SpawnEggItem(entity, 0, 16777215, (new Item.Properties()).tab(Main.EggGroup));
         spawnEgg.setRegistryName(new ResourceLocation(Reference.MODID, name + "_spawn_egg"));
         SPAWN_EGGS.add(spawnEgg);
 
@@ -85,9 +94,11 @@ public class Entities
         EntitySpawnPlacementRegistry.register(SOMA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
                 Heightmap.Type.WORLD_SURFACE, Soma::checkMobSpawnRules);
         EntitySpawnPlacementRegistry.register(ALMIRAJ.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
-                Heightmap.Type.WORLD_SURFACE, Soma::checkMobSpawnRules);
+                Heightmap.Type.WORLD_SURFACE, Almiraj::checkMobSpawnRules);
         EntitySpawnPlacementRegistry.register(METAL_RABBIT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
-                Heightmap.Type.WORLD_SURFACE, Soma::checkMobSpawnRules);
+                Heightmap.Type.WORLD_SURFACE, MetalRabbit::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(BUGBEAR.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Bugbear::checkMobSpawnRules);
     }
 
     @SubscribeEvent
@@ -99,8 +110,9 @@ public class Entities
         event.put(HERMES.get(), Hermes.createGodAttributes().build());
         event.put(SOMA.get(), Soma.createGodAttributes().build());
         event.put(LOKI.get(), Loki.createGodAttributes().build());
-        event.put(ALMIRAJ.get(), Loki.createGodAttributes().build());
-        event.put(METAL_RABBIT.get(), Loki.createGodAttributes().build());
+        event.put(ALMIRAJ.get(), Almiraj.createAttributes().build());
+        event.put(METAL_RABBIT.get(), MetalRabbit.createAttributes().build());
+        event.put(BUGBEAR.get(), Bugbear.createAttributes().build());
     }
 
     @SubscribeEvent
