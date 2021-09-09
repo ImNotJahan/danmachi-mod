@@ -81,6 +81,12 @@ public class MinotaurModel extends BipedModel<Minotaur>
         nose.setPos(0.0F, 0.0F, 0.0F);
         nose.texOffs(56, 0).addBox(-2.0F, -4.0F, -6.0F, 4.0F, 4.0F, 2.0F, 0.0F, false);
 
+        head.addChild(nose);
+        head.addChild(rightHornBase);
+        head.addChild(rightHornTip);
+        head.addChild(leftHornTip);
+        head.addChild(leftHornBase);
+
         ModelHelper.animateZombieArms(this.leftArm, this.rightArm, false, this.attackTime, 64);
     }
 

@@ -25,6 +25,7 @@ public class Minotaur extends MonsterBase
                 .add(Attributes.ATTACK_DAMAGE, attributes[0])
                 .add(Attributes.MAX_HEALTH, attributes[1])
                 .add(Attributes.MOVEMENT_SPEED, attributes[2])
-                .add(Attributes.ARMOR, attributes[3]);
+                .add(Attributes.ARMOR, attributes[3])
+                .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
     }
 }
