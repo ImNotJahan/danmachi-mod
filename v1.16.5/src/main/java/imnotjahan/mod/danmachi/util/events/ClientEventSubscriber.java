@@ -47,6 +47,8 @@ public final class ClientEventSubscriber
                 AlmirajRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.BUGBEAR.get(),
                 BugbearRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.GUILD_MEMBER.get(),
+                GuildRenderer::new);
     }
 
     public static void init() {}

@@ -10,6 +10,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ContainerTypes<T extends Container> extends net.minecraftforge.registries.ForgeRegistryEntry<ContainerType<?>> implements net.minecraftforge.common.extensions.IForgeContainerType<T>
 {
     public static final ContainerType<SmithingContainer> SMITHING = register("smithing", SmithingContainer::new);
+    public static final ContainerType<GuildContainer> GUIlD = register("guild", GuildContainer::new);
     private final ContainerType.IFactory<T> constructor;
 
     public ContainerTypes(ContainerType.IFactory<T> p_i50072_1_) {

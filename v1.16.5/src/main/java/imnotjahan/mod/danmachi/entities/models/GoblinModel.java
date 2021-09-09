@@ -102,7 +102,7 @@ public class GoblinModel extends BipedModel<Goblin>
         this.rightArm.z = 0.0F;
         this.rightArm.x = -5.0F;
         this.leftArm.z = 0.0F;
-        this.leftArm.x = 5.0F;
+        this.leftArm.x = 0.0F;
         float f = 1.0F;
         if (flag) {
             f = (float)p_225597_1_.getDeltaMovement().lengthSqr();

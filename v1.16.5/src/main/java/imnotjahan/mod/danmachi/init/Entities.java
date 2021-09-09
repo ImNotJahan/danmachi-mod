@@ -53,7 +53,7 @@ public class Entities
     public static final RegistryObject<EntityType<MetalRabbit>> METAL_RABBIT = createEntity("metal_rabbit", MetalRabbit::new,
             0.5F, 0.5F);
     public static final RegistryObject<EntityType<Bugbear>> BUGBEAR = createEntity("bugbear", Bugbear::new,
-            2, 1);
+            1, 1);
 
     //Gods
     public static final RegistryObject<EntityType<Hestia>> HESTIA = createEntity("hestia", Hestia::new,
@@ -64,6 +64,10 @@ public class Entities
             1F, 2F);
     public static final RegistryObject<EntityType<Loki>> LOKI = createEntity("loki", Loki::new,
             1F, 2F);
+
+    //Other
+    public static final RegistryObject<EntityType<GuildMember>> GUILD_MEMBER = createEntity("guild", GuildMember::new,
+            1, 2);
 
     private static <T extends Entity> RegistryObject<EntityType<T>>
     createEntity(String name, EntityType.IFactory<T> factory, float width, float height)
@@ -99,6 +103,8 @@ public class Entities
                 Heightmap.Type.WORLD_SURFACE, MetalRabbit::checkMobSpawnRules);
         EntitySpawnPlacementRegistry.register(BUGBEAR.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
                 Heightmap.Type.WORLD_SURFACE, Bugbear::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(GUILD_MEMBER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, GuildMember::checkMobSpawnRules);
     }
 
     @SubscribeEvent
@@ -113,6 +119,7 @@ public class Entities
         event.put(ALMIRAJ.get(), Almiraj.createAttributes().build());
         event.put(METAL_RABBIT.get(), MetalRabbit.createAttributes().build());
         event.put(BUGBEAR.get(), Bugbear.createAttributes().build());
+        event.put(GUILD_MEMBER.get(), GuildMember.createAttributes().build());
     }
 
     @SubscribeEvent
