@@ -2,6 +2,11 @@ package imnotjahan.mod.danmachi.util.events;
 
 import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.entities.*;
+import imnotjahan.mod.danmachi.entities.gods.Hermes;
+import imnotjahan.mod.danmachi.entities.gods.Hestia;
+import imnotjahan.mod.danmachi.entities.gods.Loki;
+import imnotjahan.mod.danmachi.entities.gods.Soma;
 import imnotjahan.mod.danmachi.init.Blocks;
 import imnotjahan.mod.danmachi.materials.ArmorMaterials;
 import imnotjahan.mod.danmachi.materials.ItemTiers;
@@ -18,6 +23,8 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
+import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -25,11 +32,14 @@ import net.minecraft.item.ItemTier;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
+import static imnotjahan.mod.danmachi.init.Entities.*;
 import static net.minecraft.item.Items.GLASS_BOTTLE;
 
 @Mod.EventBusSubscriber(modid = Reference.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -201,5 +211,65 @@ public final class EventSubscriber
     {
         entry.setRegistryName(registryName);
         return entry;
+    }
+
+    //Entities
+    @SubscribeEvent
+    public static void registerEntities(RegistryEvent.Register<EntityType<?>> event)
+    {
+        EntitySpawnPlacementRegistry.register(GOBLIN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Goblin::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(MINOTAUR.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Minotaur::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(HESTIA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Hestia::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(HERMES.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Hermes::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(LOKI.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Loki::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(SOMA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Soma::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(ALMIRAJ.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Almiraj::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(METAL_RABBIT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, MetalRabbit::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(BUGBEAR.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Bugbear::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(GUILD_MEMBER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, GuildMember::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(HELLHOUND.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Hellhound::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(UNICORN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Unicorn::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(KOBOLD.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Kobold::checkMobSpawnRules);
+    }
+
+    @SubscribeEvent
+    public static void addEntityAttributes(EntityAttributeCreationEvent event)
+    {
+        event.put(GOBLIN.get(), Goblin.createAttributes().build());
+        event.put(MINOTAUR.get(), Minotaur.createAttributes().build());
+        event.put(HESTIA.get(), Hestia.createAttributes().build());
+        event.put(HERMES.get(), Hermes.createAttributes().build());
+        event.put(SOMA.get(), Soma.createAttributes().build());
+        event.put(LOKI.get(), Loki.createAttributes().build());
+        event.put(ALMIRAJ.get(), Almiraj.createAttributes().build());
+        event.put(METAL_RABBIT.get(), MetalRabbit.createAttributes().build());
+        event.put(BUGBEAR.get(), Bugbear.createAttributes().build());
+        event.put(GUILD_MEMBER.get(), GuildMember.createAttributes().build());
+        event.put(HELLHOUND.get(), Hellhound.createAttributes().build());
+        event.put(UNICORN.get(), Unicorn.createAttributes().build());
+        event.put(KOBOLD.get(), Kobold.createAttributes().build());
+    }
+
+    @SubscribeEvent
+    public static void registerSpawnEggs(RegistryEvent.Register<Item> event)
+    {
+        for (Item spawnEgg : SPAWN_EGGS)
+        {
+            //Preconditions.checkNotNull(spawnEgg.getRegistryName(), "registryName");
+            event.getRegistry().register(spawnEgg);
+        }
     }
 }

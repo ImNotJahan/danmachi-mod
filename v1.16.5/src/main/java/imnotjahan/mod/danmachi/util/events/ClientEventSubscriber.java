@@ -53,6 +53,8 @@ public final class ClientEventSubscriber
                 HellhoundRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.UNICORN.get(),
                 UnicornRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.KOBOLD.get(),
+                KoboldRenderer::new);
     }
 
     public static void init() {}
