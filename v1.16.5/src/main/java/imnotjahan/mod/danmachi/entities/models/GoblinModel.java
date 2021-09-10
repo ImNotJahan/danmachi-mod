@@ -62,6 +62,9 @@ public class GoblinModel extends BipedModel<Goblin>
         leftHorn.setPos(0.0F, 0.0F, 0.0F);
         leftHorn.texOffs(0, 0).addBox(2.0F, -3.0F, -5.0F, 1.0F, 2.0F, 1.0F, 0.0F, false);
 
+        head.addChild(leftHorn);
+        head.addChild(rightHorn);
+
         ModelHelper.animateZombieArms(this.leftArm, this.rightArm, false, this.attackTime, 64);
     }
 

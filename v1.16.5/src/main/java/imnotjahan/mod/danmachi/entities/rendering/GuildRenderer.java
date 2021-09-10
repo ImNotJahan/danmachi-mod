@@ -16,7 +16,7 @@ public class GuildRenderer extends MobRenderer<GuildMember, PlayerModel<GuildMem
 {
     public GuildRenderer(EntityRendererManager context)
     {
-        super(context, new PlayerModel<GuildMember>(0, false), 1);
+        super(context, new PlayerModel<GuildMember>(0, true), 1);
     }
 
     @Override
