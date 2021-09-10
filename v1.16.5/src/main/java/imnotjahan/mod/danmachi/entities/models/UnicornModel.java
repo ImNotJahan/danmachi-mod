@@ -108,7 +108,7 @@ public class UnicornModel<T extends AbstractHorseEntity> extends AgeableModel<T>
 
         this.horn = new ModelRenderer(this, 60, 0);
         this.horn.setPos(0.0F, 4.0F, -10.0F);
-        this.horn.addBox(-10.5F, -13.0F, 2.5F, 1, 9, 1, 0.0F);
+        this.horn.addBox(-0.5F, -23.0F, 12.5F, 1, 9, 1, 0.0F);
 
         headParts.addChild(horn);
     }
