@@ -54,6 +54,8 @@ public class Entities
             1, 1, 726570, 13121539);
     public static final RegistryObject<EntityType<Hellhound>> HELLHOUND = createEntity("hellhound", Hellhound::new,
             1, 1, 0, 16711680);
+    public static final RegistryObject<EntityType<Unicorn>> UNICORN = createEntity("unicorn", Unicorn::new,
+            1, 1, 0, 16777215);
 
     //Gods
     public static final RegistryObject<EntityType<Hestia>> HESTIA = createEntity("hestia", Hestia::new,
@@ -107,6 +109,8 @@ public class Entities
                 Heightmap.Type.WORLD_SURFACE, GuildMember::checkMobSpawnRules);
         EntitySpawnPlacementRegistry.register(HELLHOUND.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
                 Heightmap.Type.WORLD_SURFACE, Hellhound::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(UNICORN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Unicorn::checkMobSpawnRules);
     }
 
     @SubscribeEvent
@@ -123,6 +127,7 @@ public class Entities
         event.put(BUGBEAR.get(), Bugbear.createAttributes().build());
         event.put(GUILD_MEMBER.get(), GuildMember.createAttributes().build());
         event.put(HELLHOUND.get(), Hellhound.createAttributes().build());
+        event.put(UNICORN.get(), Unicorn.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -130,7 +135,7 @@ public class Entities
     {
         for (Item spawnEgg : SPAWN_EGGS)
         {
-            Preconditions.checkNotNull(spawnEgg.getRegistryName(), "registryName");
+            //Preconditions.checkNotNull(spawnEgg.getRegistryName(), "registryName");
             event.getRegistry().register(spawnEgg);
         }
     }

@@ -51,6 +51,8 @@ public final class ClientEventSubscriber
                 GuildRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.HELLHOUND.get(),
                 HellhoundRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.UNICORN.get(),
+                UnicornRenderer::new);
     }
 
     public static void init() {}
