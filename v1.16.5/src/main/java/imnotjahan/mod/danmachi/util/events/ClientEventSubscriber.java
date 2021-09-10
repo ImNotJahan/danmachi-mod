@@ -49,6 +49,8 @@ public final class ClientEventSubscriber
                 BugbearRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.GUILD_MEMBER.get(),
                 GuildRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.HELLHOUND.get(),
+                HellhoundRenderer::new);
     }
 
     public static void init() {}

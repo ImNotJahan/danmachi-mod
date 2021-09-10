@@ -27,8 +27,6 @@ import java.util.List;
 /*
 - Entites not yet converted from 1.12.2
 Dealer
-Guild member
-Hellhound
 Hobgoblin
 Infant dragon
 Killer ant
@@ -54,6 +52,8 @@ public class Entities
             0.5F, 0.5F, 11184557, 11796480);
     public static final RegistryObject<EntityType<Bugbear>> BUGBEAR = createEntity("bugbear", Bugbear::new,
             1, 1, 726570, 13121539);
+    public static final RegistryObject<EntityType<Hellhound>> HELLHOUND = createEntity("hellhound", Hellhound::new,
+            1, 1, 0, 16711680);
 
     //Gods
     public static final RegistryObject<EntityType<Hestia>> HESTIA = createEntity("hestia", Hestia::new,
@@ -105,6 +105,8 @@ public class Entities
                 Heightmap.Type.WORLD_SURFACE, Bugbear::checkMobSpawnRules);
         EntitySpawnPlacementRegistry.register(GUILD_MEMBER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
                 Heightmap.Type.WORLD_SURFACE, GuildMember::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(HELLHOUND.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Hellhound::checkMobSpawnRules);
     }
 
     @SubscribeEvent
@@ -120,6 +122,7 @@ public class Entities
         event.put(METAL_RABBIT.get(), MetalRabbit.createAttributes().build());
         event.put(BUGBEAR.get(), Bugbear.createAttributes().build());
         event.put(GUILD_MEMBER.get(), GuildMember.createAttributes().build());
+        event.put(HELLHOUND.get(), Hellhound.createAttributes().build());
     }
 
     @SubscribeEvent
