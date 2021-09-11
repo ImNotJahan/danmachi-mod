@@ -8,9 +8,14 @@ import imnotjahan.mod.danmachi.init.Items;
 import imnotjahan.mod.danmachi.init.Paintings;
 import imnotjahan.mod.danmachi.util.config.Config;
 import imnotjahan.mod.danmachi.util.events.ClientEventSubscriber;
+import imnotjahan.mod.danmachi.world.structures.ConfiguredStructures;
+import imnotjahan.mod.danmachi.world.structures.Structures;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -18,6 +23,8 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @Mod(Reference.MODID)
 public class Main
@@ -41,6 +48,8 @@ public class Main
         eventBus.addListener(this::SetupClient);
         eventBus.addListener(this::SetupCommon);
 
+        eventBus.addGenericListener(Structure.class, this::registerStructures);
+
         registerDeferredRegistries(eventBus);
         Paintings.PAINTING_TYPES.register(eventBus);
 
@@ -60,5 +69,20 @@ public class Main
     public static void registerDeferredRegistries(IEventBus modBus)
     {
         Entities.ENTITY_DEFERRED.register(modBus);
+    }
+
+    public void registerStructures(final RegistryEvent.Register<Structure<?>> event)
+    {
+        Structures.registerStructures(event);
+        ConfiguredStructures.registerConfiguredStructures();
+    }
+
+    /*
+     * Helper method to quickly register features, blocks, items, structures, biomes, anything that can be registered.
+     */
+    public static <T extends IForgeRegistryEntry<T>> T register(IForgeRegistry<T> registry, T entry, String registryKey) {
+        entry.setRegistryName(new ResourceLocation(Reference.MODID, registryKey));
+        registry.register(entry);
+        return entry;
     }
 }

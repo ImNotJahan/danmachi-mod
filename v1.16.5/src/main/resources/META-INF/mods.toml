@@ -5,9 +5,11 @@ license="MIT LICENSE"
 
 [[mods]]
 modId="danmachi"
-version="${file.jarVersion}"
+version="1.0.0"
 displayName="Danmachi Mod"
+updateJSONURL="https://raw.githubusercontent.com/ImNotJahan/danmachi-mod/master/update.json"
 authors="ImNotJahan"
+credits="flammeprinsessen1, Xanax"
 description='''
 Adds stuff from the wonderful world of danmachi.
 '''
