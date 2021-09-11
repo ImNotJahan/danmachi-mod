@@ -11,6 +11,7 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.StringNBT;
+import net.minecraft.util.IWorldPosCallable;
 import net.minecraftforge.common.util.Constants;
 
 import java.util.Map;
@@ -18,11 +19,12 @@ import java.util.stream.IntStream;
 
 public class SmithingSlot extends Slot
 {
-    IInventory inventoryIn;
-    public SmithingSlot(IInventory inventoryIn, IInventory otherInvIn, int index, int xPosition, int yPosition)
+    IInventory outputInventory;
+    IInventory inputInventory;
+    public SmithingSlot(IInventory outputInventory, IInventory inputInventory, int index, int xPosition, int yPosition)
     {
-        super(inventoryIn, index, xPosition, yPosition);
-        this.inventoryIn = inventoryIn;
+        super(outputInventory, index, xPosition, yPosition);
+        this.outputInventory = outputInventory;
     }
 
     @Override
@@ -36,7 +38,7 @@ public class SmithingSlot extends Slot
     {
         for(int k = 0; k < 3; k++)
         {
-            inventoryIn.setItem(k, ItemStack.EMPTY);
+            inputInventory.setItem(k, ItemStack.EMPTY);
         }
         return stack;
     }
@@ -46,7 +48,7 @@ public class SmithingSlot extends Slot
     @Override
     public boolean mayPickup(PlayerEntity playerIn)
     {
-        ItemStack output = inventoryIn.getItem(0);
+        ItemStack output = outputInventory.getItem(0);
 
         ListNBT tag = new ListNBT();
 

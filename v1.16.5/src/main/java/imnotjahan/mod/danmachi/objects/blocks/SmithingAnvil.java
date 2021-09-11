@@ -29,17 +29,14 @@ public class SmithingAnvil extends ContainerBlock
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity entity,
                                 Hand hand, BlockRayTraceResult result)
     {
-        System.out.println("use method called");
         if (world.isClientSide) return ActionResultType.SUCCESS;
-
-        System.out.println("method was called on the server");
 
         INamedContainerProvider namedContainerProvider = this.getMenuProvider(state, world, pos);
         if (namedContainerProvider != null)
         {
-            System.out.println("menu provider was not null");
+
             if (!(entity instanceof ServerPlayerEntity)) return ActionResultType.FAIL;
-            System.out.println("the entity was a serverplayerentity");
+
             ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)entity;
             NetworkHooks.openGui(serverPlayerEntity, namedContainerProvider, (packetBuffer)->{});
         }

@@ -8,6 +8,7 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 public class SmithingScreen extends ContainerScreen<SmithingContainer>
 {
@@ -16,7 +17,7 @@ public class SmithingScreen extends ContainerScreen<SmithingContainer>
 
     public SmithingScreen(SmithingContainer container, PlayerInventory playerInventory, ITextComponent title)
     {
-        super(container, playerInventory, title);
+        super(container, playerInventory, new StringTextComponent("Smithing Anvil"));
     }
 
     @Override
