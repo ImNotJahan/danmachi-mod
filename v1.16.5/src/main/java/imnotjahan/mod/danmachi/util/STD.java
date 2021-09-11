@@ -61,7 +61,7 @@ public class STD
         StringBuilder stringedDict = new StringBuilder();
         for(String key : dictionary.keySet())
         {
-            stringedDict.append(key).append("|").append(dictionary.get(key)).append(",");
+            stringedDict.append(key).append("'").append(dictionary.get(key)).append(",");
         }
 
         return stringedDict.substring(0, stringedDict.length() - 1);
@@ -78,7 +78,7 @@ public class STD
         for(String keyAndValue : keysAndValues)
         {
             //KAV = Key and Value
-            String[] splitKAV = keyAndValue.split("|");
+            String[] splitKAV = keyAndValue.split("'");
             remappedDict.put(splitKAV[0], Integer.valueOf(splitKAV[1]));
         }
 
