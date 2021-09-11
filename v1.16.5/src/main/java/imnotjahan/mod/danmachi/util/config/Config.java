@@ -49,8 +49,29 @@ public class Config
             put("sword_stag", new double[]{15, 20, .35D, 3});
         }};
 
+        public static Map<String, Integer> dRequiredSmithingDex = new HashMap<String, Integer>(){{
+            put("danmachi:fire_magic_sword", 2000);
+            put("danmachi:ice_magic_sword", 2000);
+            put("danmachi:greatsword", 300);
+            put("danmachi:kotetsu", 1000);
+            put("danmachi:desperate", 3000);
+            put("danmachi:kodachi_futaba", 1000);
+            put("danmachi:great_podao_zaga", 700);
+            put("danmachi:protagonista", 1000);
+            put("danmachi:urga", 300);
+            put("danmachi:urga_blade", 3000);
+            put("danmachi:hakugen", 1000);
+            put("danmachi:hestia_knife", 5000);
+            put("danmachi:dagger", 0);
+            put("danmachi:ushiwakamaru", 1000);
+            put("danmachi:sword_air", 500);
+            put("danmachi:fortia_spear", 1400);
+        }};
+
+
         public final ForgeConfigSpec.ConfigValue<String> statusIncreases;
         public final ForgeConfigSpec.ConfigValue<String> mobStats;
+        public final ForgeConfigSpec.ConfigValue<String> requiredSmithingDex; //Dex stands for dexterity
 
 
         public Common(ForgeConfigSpec.Builder builder)
@@ -60,6 +81,7 @@ public class Config
                     .define("Status Increases", STD.SIADictToString(dStatusIncreases));
             this.mobStats = builder.comment("The order of their stats is: dmg, health, speed, armor")
                     .define("Mob Stats", STD.SDADictToString(dMobStats));
+            this.requiredSmithingDex = builder.define("Required Smithing Dexterity", STD.SIDictToString(dRequiredSmithingDex));
             builder.pop();
         }
     }

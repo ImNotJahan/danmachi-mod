@@ -26,12 +26,6 @@ import java.util.function.Supplier;
 
 public class DungeonProvider implements IDataProvider
 {
-    /*static
-    {
-        Registry.register(Registry.BIOME_SOURCE,
-                new ResourceLocation("danmachi", "dungeon"), Biome.CODEC);
-    }*/
-
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
     private final DataGenerator generator;

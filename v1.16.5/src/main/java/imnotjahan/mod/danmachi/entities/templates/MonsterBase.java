@@ -3,8 +3,10 @@ package imnotjahan.mod.danmachi.entities.templates;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
+import imnotjahan.mod.danmachi.init.Items;
 import imnotjahan.mod.danmachi.util.STD;
 import imnotjahan.mod.danmachi.util.config.Config;
+import net.minecraft.command.arguments.NBTTagArgument;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierManager;
@@ -14,6 +16,7 @@ import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -76,6 +79,14 @@ public class MonsterBase extends ZombieEntity
             IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
                     .orElse(new Status());
 
+            ItemStack stone = new ItemStack(Items.MAGIC_STONE);
+            CompoundNBT nbt = stone.getOrCreateTag();
+
+            nbt.putString("droppedFrom", name);
+            nbt.putInt("value", 100);
+
+            player.addItem(stone);
+
             if (status.getFalna())
             {
                 Integer[] statusIncreases = STD.SIAStringToDict(
@@ -91,7 +102,6 @@ public class MonsterBase extends ZombieEntity
             {
                 return;
             }
-
         }
     }
 

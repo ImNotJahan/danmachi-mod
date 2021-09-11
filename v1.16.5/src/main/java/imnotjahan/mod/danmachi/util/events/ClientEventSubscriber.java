@@ -2,10 +2,13 @@ package imnotjahan.mod.danmachi.util.events;
 
 import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.entities.rendering.*;
+import imnotjahan.mod.danmachi.gui.screen.SmithingScreen;
 import imnotjahan.mod.danmachi.init.Entities;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -29,6 +32,9 @@ public final class ClientEventSubscriber
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event)
     {
+        DeferredWorkQueue.runLater(() -> ScreenManager.register(EventSubscriber.smithingContainer, SmithingScreen::new));
+
+        // Entity renderers
         RenderingRegistry.registerEntityRenderingHandler(Entities.GOBLIN.get(),
                 GoblinRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.MINOTAUR.get(),

@@ -17,6 +17,7 @@ import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class Goblin extends MonsterBase
@@ -54,5 +55,11 @@ public class Goblin extends MonsterBase
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+    }
+
+    @Override
+    protected ResourceLocation getDefaultLootTable()
+    {
+        return new ResourceLocation("danmachi", "goblin");
     }
 }

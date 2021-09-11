@@ -1,22 +1,20 @@
 package imnotjahan.mod.danmachi.entities.rendering;
 
 import imnotjahan.mod.danmachi.Reference;
-import imnotjahan.mod.danmachi.entities.Goblin;
 import imnotjahan.mod.danmachi.entities.Kobold;
-import imnotjahan.mod.danmachi.entities.models.GoblinModel;
+import imnotjahan.mod.danmachi.entities.models.KoboldModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.model.ZombieModel;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class KoboldRenderer extends MobRenderer<Kobold, ZombieModel<Kobold>>
+public class KoboldRenderer extends MobRenderer<Kobold, KoboldModel<Kobold>>
 {
     public KoboldRenderer(EntityRendererManager context)
     {
-        super(context, new ZombieModel<>(0, false), 1);
+        super(context, new KoboldModel<>(0), 1);
     }
 
     @Override

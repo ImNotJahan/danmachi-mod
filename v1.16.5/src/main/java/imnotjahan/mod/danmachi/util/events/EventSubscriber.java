@@ -1,5 +1,6 @@
 package imnotjahan.mod.danmachi.util.events;
 
+import com.google.common.base.Preconditions;
 import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.entities.*;
@@ -7,6 +8,7 @@ import imnotjahan.mod.danmachi.entities.gods.Hermes;
 import imnotjahan.mod.danmachi.entities.gods.Hestia;
 import imnotjahan.mod.danmachi.entities.gods.Loki;
 import imnotjahan.mod.danmachi.entities.gods.Soma;
+import imnotjahan.mod.danmachi.gui.container.SmithingContainer;
 import imnotjahan.mod.danmachi.init.Blocks;
 import imnotjahan.mod.danmachi.materials.ArmorMaterials;
 import imnotjahan.mod.danmachi.materials.ItemTiers;
@@ -15,6 +17,8 @@ import imnotjahan.mod.danmachi.objects.blocks.SmithingAnvil;
 import imnotjahan.mod.danmachi.objects.armor.HadesHead;
 import imnotjahan.mod.danmachi.objects.armor.SalamanderWool;
 import imnotjahan.mod.danmachi.objects.armor.SizeableArmor;
+import imnotjahan.mod.danmachi.objects.blocks.tileentities.SmithingTile;
+import imnotjahan.mod.danmachi.objects.items.MagicStone;
 import imnotjahan.mod.danmachi.objects.items.Needle;
 import imnotjahan.mod.danmachi.objects.sword.Hakugen;
 import imnotjahan.mod.danmachi.objects.sword.SwordAir;
@@ -26,21 +30,26 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.SwordItem;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
+import static imnotjahan.mod.danmachi.init.Blocks.SMITHING_ANVIL;
 import static imnotjahan.mod.danmachi.init.Entities.*;
 import static net.minecraft.item.Items.GLASS_BOTTLE;
+import static net.minecraft.item.Items.SMITHING_TABLE;
 
 @Mod.EventBusSubscriber(modid = Reference.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class EventSubscriber
@@ -65,7 +74,7 @@ public final class EventSubscriber
                 setup(new Item(new Item.Properties().tab(Main.MaterialsGroup)), "bugbear_nail"),
                 setup(new Item(new Item.Properties().tab(Main.MaterialsGroup)), "metal_rabbit_fur"),
                 setup(new Item(new Item.Properties().tab(Main.MaterialsGroup)), "sword_stag_antler"),
-                setup(new Item(new Item.Properties().tab(Main.MaterialsGroup)), "magic_stone"),
+                setup(new MagicStone(new Item.Properties().tab(Main.MaterialsGroup)), "magic_stone"),
                 setup(new Item(new Item.Properties().tab(Main.MaterialsGroup)), "special_magic_stone"),
 
                 // other
@@ -171,7 +180,7 @@ public final class EventSubscriber
                         (new Item.Properties()).tab(Main.BlockGroup)), "orichalcum_wall"),
                 setup(new BlockItem(Blocks.ADAMANTITE_WALL,
                         (new Item.Properties()).tab(Main.BlockGroup)), "adamantite_wall"),
-                setup(new BlockItem(Blocks.SMITHING_ANVIL,
+                setup(new BlockItem(SMITHING_ANVIL,
                         (new Item.Properties()).tab(Main.BlockGroup)), "smithing_anvil")
             );
     }
@@ -268,8 +277,29 @@ public final class EventSubscriber
     {
         for (Item spawnEgg : SPAWN_EGGS)
         {
-            //Preconditions.checkNotNull(spawnEgg.getRegistryName(), "registryName");
+            Preconditions.checkNotNull(spawnEgg.getRegistryName(), "registryName");
             event.getRegistry().register(spawnEgg);
         }
+    }
+
+    public static ContainerType<SmithingContainer> smithingContainer;
+
+    @SubscribeEvent
+    public static void registerContainers(final RegistryEvent.Register<ContainerType<?>> event)
+    {
+        smithingContainer = IForgeContainerType.create(SmithingContainer::new);
+        smithingContainer.setRegistryName("smithing_container");
+        event.getRegistry().register(smithingContainer);
+    }
+
+    public static TileEntityType<SmithingTile> smithingTile;
+
+    @SubscribeEvent
+    public static void onTileEntityTypeRegistration(final RegistryEvent.Register<TileEntityType<?>> event)
+    {
+        smithingTile = TileEntityType.Builder.of(SmithingTile::new, SMITHING_ANVIL).build(null);
+        smithingTile.setRegistryName("danmachi:smithing_tile");
+
+        event.getRegistry().register(smithingTile);
     }
 }

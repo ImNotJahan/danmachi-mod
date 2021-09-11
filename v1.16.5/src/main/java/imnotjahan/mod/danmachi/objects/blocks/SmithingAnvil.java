@@ -1,20 +1,24 @@
 package imnotjahan.mod.danmachi.objects.blocks;
 
-import imnotjahan.mod.danmachi.gui.container.SmithingContainer;
+import imnotjahan.mod.danmachi.objects.blocks.tileentities.SmithingTile;
 import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.AnvilBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ContainerBlock;
+import net.minecraft.entity.monster.piglin.PiglinTasks;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.inventory.container.SimpleNamedContainerProvider;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
-public class SmithingAnvil extends AnvilBlock
+public class SmithingAnvil extends ContainerBlock
 {
     public SmithingAnvil(AbstractBlock.Properties properties)
     {
@@ -23,19 +27,28 @@ public class SmithingAnvil extends AnvilBlock
 
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity entity,
-                                Hand hand, BlockRayTraceResult result) {
-        if (world.isClientSide) {
-            return ActionResultType.SUCCESS;
-        } else {
-            entity.openMenu(state.getMenuProvider(world, pos));
-            return ActionResultType.CONSUME;
+                                Hand hand, BlockRayTraceResult result)
+    {
+        System.out.println("use method called");
+        if (world.isClientSide) return ActionResultType.SUCCESS;
+
+        System.out.println("method was called on the server");
+
+        INamedContainerProvider namedContainerProvider = this.getMenuProvider(state, world, pos);
+        if (namedContainerProvider != null)
+        {
+            System.out.println("menu provider was not null");
+            if (!(entity instanceof ServerPlayerEntity)) return ActionResultType.FAIL;
+            System.out.println("the entity was a serverplayerentity");
+            ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)entity;
+            NetworkHooks.openGui(serverPlayerEntity, namedContainerProvider, (packetBuffer)->{});
         }
+        return ActionResultType.SUCCESS;
     }
-    
+
     @Override
-    public INamedContainerProvider getMenuProvider(BlockState state, World world, BlockPos pos) {
-        return new SimpleNamedContainerProvider((a, b, c) ->
-                new SmithingContainer(a, b),
-                new TranslationTextComponent("block.danmachi.smithing_anvil"));
+    public TileEntity newBlockEntity(IBlockReader p_196283_1_)
+    {
+        return new SmithingTile();
     }
 }
