@@ -1,6 +1,5 @@
 package imnotjahan.mod.danmachi.entities;
 
-import imnotjahan.mod.danmachi.gui.container.ContainerTypes;
 import imnotjahan.mod.danmachi.gui.container.GuildContainer;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;

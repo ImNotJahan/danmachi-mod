@@ -1,5 +1,6 @@
 package imnotjahan.mod.danmachi.gui.container;
 
+import imnotjahan.mod.danmachi.util.events.EventSubscriber;
 import net.minecraft.entity.merchant.IMerchant;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -20,7 +21,7 @@ public class GuildContainer extends Container
 
     public GuildContainer(int id, PlayerInventory playerInventory)
     {
-        super(ContainerTypes.GUIlD, id);
+        super(EventSubscriber.smithingContainer, id);
 
         for(int i = 0; i < 3; ++i) {
             for(int j = 0; j < 9; ++j) {
