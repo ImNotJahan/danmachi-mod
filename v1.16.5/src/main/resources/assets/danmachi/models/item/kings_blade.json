@@ -2,5 +2,17 @@
   "parent": "item/handheld",
   "textures": {
     "layer0": "danmachi:items/kings_blade"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [ 0, -90, 40 ],
+      "translation": [ 0, 10, 3 ],
+      "scale": [ 2, 2, 2 ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [ 0, -90, 40 ],
+      "translation": [ 0, 10, 3 ],
+      "scale": [ 2, 2, 2 ]
+    }
   }
 }

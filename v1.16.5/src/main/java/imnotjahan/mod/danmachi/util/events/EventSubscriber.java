@@ -123,6 +123,8 @@ public final class EventSubscriber
                         (new Item.Properties()).tab(Main.ToolGroup)), "kings_blade"), //change tier
                 setup(new SwordItem(ItemTiers.HAKUGEN, 4, -2.4F,
                         (new Item.Properties()).tab(Main.ToolGroup)), "supreme_black_sword"), //change tier
+                setup(new SwordItem(ItemTiers.HAKUGEN, 4, -2.4F,
+                        (new Item.Properties()).tab(Main.ToolGroup)), "alfs_lumina"), //change tier
 
                 //armor
                 setup(new SizeableArmor(ArmorMaterials.RABBIT, EquipmentSlotType.CHEST,
