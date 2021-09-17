@@ -23,7 +23,13 @@ public enum ArmorMaterials implements IArmorMaterial
     AMAZON("danmachi:amazon_armor", 12, new int[]{0, 1, 1, 0}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
         return Ingredient.of(Items.LEATHER);
     }),
-    SALAMANDER("danmachi:salamander_wool", 5, new int[]{0, 0, 2, 0}, 25, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
+    FIRE_SALAMANDER("danmachi:fire_salamander_wool", 5, new int[]{0, 0, 2, 0}, 25, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
+        return Ingredient.of(Items.LEATHER);
+    }),
+    WATER_SALAMANDER("danmachi:water_salamander_wool", 5, new int[]{0, 0, 2, 0}, 25, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
+        return Ingredient.of(Items.LEATHER);
+    }),
+    POISON_SALAMANDER("danmachi:poison_salamander_wool", 5, new int[]{0, 0, 2, 0}, 25, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
         return Ingredient.of(Items.LEATHER);
     }),
     HADES("danmachi:hades_head", 10, new int[]{0, 0, 0, 2}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> {

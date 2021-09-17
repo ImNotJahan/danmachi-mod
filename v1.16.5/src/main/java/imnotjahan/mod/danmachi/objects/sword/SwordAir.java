@@ -58,7 +58,7 @@ public class SwordAir extends SwordItem
 
                 ModifiableAttributeInstance gravity = context.getPlayer().getAttribute(
                         net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
-                gravity.setBaseValue(gravity.getValue() * 3);
+                //gravity.setBaseValue(gravity.getValue() * 3);
 
                 context.getPlayer().playSound(SoundEvents.ANCIENT_DEBRIS_BREAK, 5, 5);
 

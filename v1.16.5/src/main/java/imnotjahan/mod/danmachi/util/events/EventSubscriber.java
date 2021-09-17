@@ -12,6 +12,7 @@ import imnotjahan.mod.danmachi.gui.container.SmithingContainer;
 import imnotjahan.mod.danmachi.init.Blocks;
 import imnotjahan.mod.danmachi.materials.ArmorMaterials;
 import imnotjahan.mod.danmachi.materials.ItemTiers;
+import imnotjahan.mod.danmachi.objects.armor.SalamanderType;
 import imnotjahan.mod.danmachi.objects.blocks.DungeonPortal;
 import imnotjahan.mod.danmachi.objects.blocks.SmithingAnvil;
 import imnotjahan.mod.danmachi.objects.armor.HadesHead;
@@ -146,8 +147,9 @@ public final class EventSubscriber
                 setup(new HadesHead(ArmorMaterials.HADES, EquipmentSlotType.HEAD,
                         (new Item.Properties()).tab(Main.ToolGroup)), "hades_head"),
 
-                setup(new SalamanderWool(ArmorMaterials.SALAMANDER, EquipmentSlotType.CHEST,
-                        (new Item.Properties()).tab(Main.ToolGroup)), "salamander_wool"),
+                setup(new SalamanderWool(ArmorMaterials.FIRE_SALAMANDER, SalamanderType.Fire), "fire_salamander_wool"),
+                setup(new SalamanderWool(ArmorMaterials.WATER_SALAMANDER, SalamanderType.Water), "water_salamander_wool"),
+                setup(new SalamanderWool(ArmorMaterials.POISON_SALAMANDER, SalamanderType.Poison), "poison_salamander_wool"),
 
                 //food
                 setup(new Item((new Item.Properties()).tab(Main.MaterialsGroup)
