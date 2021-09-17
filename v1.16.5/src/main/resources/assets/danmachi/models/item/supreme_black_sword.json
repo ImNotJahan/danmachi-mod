@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "danmachi:items/supreme_black_sword"
+  }
+}
