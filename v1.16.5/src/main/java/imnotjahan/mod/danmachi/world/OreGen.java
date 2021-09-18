@@ -57,6 +57,8 @@ public class OreGen
     {
         BiomeGenerationSettingsBuilder generation = event.getGeneration();
 
+        OreGen.registerOres();
+
         for(ConfiguredFeature<?, ?> ore : overworldOres)
         {
             if (ore != null) generation.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);

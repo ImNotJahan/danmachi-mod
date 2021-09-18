@@ -58,8 +58,7 @@ public class Main
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
 
-        OreGen.registerOres();
-        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGen::gen);
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGHEST, OreGen::gen);
     }
 
     public void SetupClient(final FMLClientSetupEvent event)
