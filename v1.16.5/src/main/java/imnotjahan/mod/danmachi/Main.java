@@ -8,14 +8,17 @@ import imnotjahan.mod.danmachi.init.Items;
 import imnotjahan.mod.danmachi.init.Paintings;
 import imnotjahan.mod.danmachi.util.config.Config;
 import imnotjahan.mod.danmachi.util.events.ClientEventSubscriber;
+import imnotjahan.mod.danmachi.world.OreGen;
 import imnotjahan.mod.danmachi.world.structures.ConfiguredStructures;
 import imnotjahan.mod.danmachi.world.structures.Structures;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -54,6 +57,9 @@ public class Main
         Paintings.PAINTING_TYPES.register(eventBus);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
+
+        OreGen.registerOres();
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGen::gen);
     }
 
     public void SetupClient(final FMLClientSetupEvent event)

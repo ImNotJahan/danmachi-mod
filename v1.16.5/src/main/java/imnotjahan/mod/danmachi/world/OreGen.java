@@ -32,12 +32,22 @@ public class OreGen
                 .countRandom(64)));
 
         overworldOres.add(register("orichalcum_ore", Feature.ORE.configured(new OreFeatureConfig(
-                OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.ADAMANTITE_ORE.getBlock().defaultBlockState(), 4)) //Vein Size
+                OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.ORICHALCUM_ORE.getBlock().defaultBlockState(), 4)) //Vein Size
                 .range(64).squared()
                 .countRandom(64)));
 
         overworldOres.add(register("mythril_ore", Feature.ORE.configured(new OreFeatureConfig(
-                OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.ADAMANTITE_ORE.getBlock().defaultBlockState(), 4)) //Vein Size
+                OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.MYTHRIL_ORE.getBlock().defaultBlockState(), 4)) //Vein Size
+                .range(64).squared()
+                .countRandom(64)));
+
+        overworldOres.add(register("damascus_ore", Feature.ORE.configured(new OreFeatureConfig(
+                        OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.DAMASCUS_ORE.getBlock().defaultBlockState(), 4)) //Vein Size
+                .range(64).squared()
+                .countRandom(64)));
+
+        overworldOres.add(register("nosteel_ore", Feature.ORE.configured(new OreFeatureConfig(
+                        OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.NOSTEEL_ORE.getBlock().defaultBlockState(), 4)) //Vein Size
                 .range(64).squared()
                 .countRandom(64)));
     }

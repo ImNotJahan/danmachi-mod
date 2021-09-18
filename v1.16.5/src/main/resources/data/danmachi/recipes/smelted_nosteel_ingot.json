@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "danmachi:nosteel_ore"
+  },
+  "result": "danmachi:nosteel_ingot",
+  "experience": 0.1,
+  "cookingtime": 200
+}

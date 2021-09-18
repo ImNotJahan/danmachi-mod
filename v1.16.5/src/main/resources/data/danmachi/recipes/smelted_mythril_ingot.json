@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "danmachi:mythril_ore"
+  },
+  "result": "danmachi:mythril_ore",
+  "experience": 0.1,
+  "cookingtime": 200
+}

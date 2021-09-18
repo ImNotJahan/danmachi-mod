@@ -64,6 +64,7 @@ public final class EventSubscriber
                 setup(new Item(new Item.Properties().tab(Main.MaterialsGroup)), "adamantite_ingot"),
                 setup(new Item(new Item.Properties().tab(Main.MaterialsGroup)), "mythril_ingot"),
                 setup(new Item(new Item.Properties().tab(Main.MaterialsGroup)), "damascus_steel"),
+                setup(new Item(new Item.Properties().tab(Main.MaterialsGroup)), "nosteel_ingot"),
 
                 // mob drops
                 setup(new Item(new Item.Properties().tab(Main.MaterialsGroup)), "goblin_fang"),
@@ -184,10 +185,18 @@ public final class EventSubscriber
                         (new Item.Properties()).tab(Main.BlockGroup)), "adamantite_ore"),
                 setup(new BlockItem(Blocks.MYTHRIL_ORE,
                         (new Item.Properties()).tab(Main.BlockGroup)), "mythril_ore"),
+                setup(new BlockItem(Blocks.DAMASCUS_ORE,
+                        (new Item.Properties()).tab(Main.BlockGroup)), "damascus_ore"),
+                setup(new BlockItem(Blocks.NOSTEEL_ORE,
+                        (new Item.Properties()).tab(Main.BlockGroup)), "nosteel_ore"),
                 setup(new BlockItem(Blocks.ORICHALCUM_WALL,
                         (new Item.Properties()).tab(Main.BlockGroup)), "orichalcum_wall"),
                 setup(new BlockItem(Blocks.ADAMANTITE_WALL,
                         (new Item.Properties()).tab(Main.BlockGroup)), "adamantite_wall"),
+                setup(new BlockItem(Blocks.DAMASCUS_BLOCK,
+                        (new Item.Properties()).tab(Main.BlockGroup)), "damascus_block"),
+                setup(new BlockItem(Blocks.NOSTEEL_BLOCK,
+                        (new Item.Properties()).tab(Main.BlockGroup)), "nosteel_block"),
                 setup(new BlockItem(SMITHING_ANVIL,
                         (new Item.Properties()).tab(Main.BlockGroup)), "smithing_anvil")
             );
@@ -203,6 +212,14 @@ public final class EventSubscriber
                         .strength(20)), "adamantite_block"),
                 setup(new Block(Block.Properties.of(Material.METAL)
                         .strength(5)), "mythril_block"),
+                setup(new Block(Block.Properties.of(Material.METAL)
+                        .strength(5)), "nosteel_block"),
+                setup(new Block(Block.Properties.of(Material.METAL)
+                        .strength(5)), "damascus_block"),
+                setup(new Block(Block.Properties.of(Material.STONE)
+                        .strength(25)), "damascus_ore"),
+                setup(new Block(Block.Properties.of(Material.STONE)
+                        .strength(25)), "nosteel_ore"),
                 setup(new Block(Block.Properties.of(Material.STONE)
                         .strength(25)), "orichalcum_ore"),
                 setup(new Block(Block.Properties.of(Material.STONE)

@@ -94,7 +94,7 @@ public class SmithingContainer extends Container
                 "minecraft:stick", "minecraft:iron_block", materials))
         {
             smithingOutput.setItem(0, new ItemStack(Items.GREATSWORD));
-        } else if(materialsContains("minecraft:iron_ingot",
+        } else if(materialsContains("danmachi:nosteel_ingot",
                 "minecraft:stick", "danmachi:lygerfang_fang", materials))
         {
             smithingOutput.setItem(0, new ItemStack(Items.KOTETSU));

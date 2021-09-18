@@ -16,4 +16,8 @@ public class Blocks
     public static final Block ORICHALCUM_WALL = null;
     public static final Block ADAMANTITE_WALL = null;
     public static final Block SMITHING_ANVIL = null;
+    public static final Block DAMASCUS_ORE = null;
+    public static final Block DAMASCUS_BLOCK = null;
+    public static final Block NOSTEEL_ORE = null;
+    public static final Block NOSTEEL_BLOCK = null;
 }

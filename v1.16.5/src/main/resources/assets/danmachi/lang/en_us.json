@@ -44,6 +44,7 @@
     "item.danmachi.supreme_black_sword": "Supreme Black Sword",
     "item.danmachi.kings_blade": "King's Blade",
     "item.danmachi.alfs_lumina": "Alf's Lumina",
+    "item.danmachi.nosteel_ingot": "Nosteel Ingot",
     "item.danmachi.hades_head": "Hades Head",
     "item.danmachi.guide_book": "Guide Book",
     "item.danmachi.hammer": "Hammer",
@@ -81,6 +82,10 @@
 
     "": "/blocks",
     "block.danmachi.adamantite_block": "Adamantite Block",
+    "block.danmachi.damascus_block": "Damascus Block",
+    "block.danmachi.nosteel_block": "Nosteel Block",
+    "block.danmachi.nosteel_ore": "Nosteel Ore",
+    "block.danmachi.damascus_ore": "Damascus Ore",
     "block.danmachi.mythril_block": "Mythril Block",
     "block.danmachi.adamantite_ore": "Adamantite Ore",
     "block.danmachi.mythril_ore": "Mythril Ore",
