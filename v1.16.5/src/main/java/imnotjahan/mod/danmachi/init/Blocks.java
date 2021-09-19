@@ -20,4 +20,5 @@ public class Blocks
     public static final Block DAMASCUS_BLOCK = null;
     public static final Block NOSTEEL_ORE = null;
     public static final Block NOSTEEL_BLOCK = null;
+    public static final Block DUNGEON_PORTAL = null;
 }

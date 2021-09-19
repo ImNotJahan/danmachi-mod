@@ -10,6 +10,7 @@ import imnotjahan.mod.danmachi.networking.PacketHandler;
 import imnotjahan.mod.danmachi.util.config.Config;
 import imnotjahan.mod.danmachi.util.events.ClientEventSubscriber;
 import imnotjahan.mod.danmachi.world.OreGen;
+import imnotjahan.mod.danmachi.world.dimension.Dimensions;
 import imnotjahan.mod.danmachi.world.structures.ConfiguredStructures;
 import imnotjahan.mod.danmachi.world.structures.Structures;
 import net.minecraft.item.ItemGroup;
@@ -71,7 +72,9 @@ public class Main
     {
         CapabilityManager.INSTANCE.register(IStatus.class, new StatusStorage(), Status::new);
 
+        // init
         PacketHandler.init();
+        Dimensions.init();
     }
 
     public static void registerDeferredRegistries(IEventBus modBus)
