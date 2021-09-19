@@ -6,6 +6,7 @@ import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.init.Items;
+import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
 import net.minecraft.client.gui.screen.AddServerScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.Widget;
@@ -157,7 +158,7 @@ public final class GodGui extends Screen
     protected IStatus GetStatus()
     {
         return minecraft.player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
-                .orElse(new Status());
+                .orElseThrow(MissingStatus::new);
     }
 
     void ClearButtons()

@@ -1,26 +1,15 @@
 package imnotjahan.mod.danmachi.util.exceptions;
 
-public class MissingStatus extends Exception
+public class MissingStatus extends RuntimeException
 {
-    private String code;
+    private static final long serialVersionUID = 2256477558314497008L;
 
-    public MissingStatus(String code, String message)
-    {
-        super(message);
-        this.setCode(code);
+    public MissingStatus() {
+        super();
     }
 
-    public MissingStatus(String code, String message, Throwable cause)
-    {
-        super(message, cause);
-        this.setCode(code);
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    /** @param s Details about the error */
+    public MissingStatus(String s) {
+        super(s);
     }
 }

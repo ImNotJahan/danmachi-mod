@@ -160,7 +160,7 @@ public class Status implements IStatus
 
     /** 0 falna, 1 strength, 2 endurance, 3 dexterity, 4 agility, 5 magic, 6 excelia, 7 level, 8 mind
      * 9 p strength, 10 p endurance, 11 p dexterity, 12 p agility, 13 p magic, 14 p excelia.
-     *
+     *  <br><br>
      * P stands for potential, as it isn't applied to the players actual status yet*/
     private int[] stats = new int[]{ 0, 0, 0, 0, 0, 0, 0, 1, 100, 0, 0, 0, 0, 0, 0 };
 

@@ -5,6 +5,7 @@ import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.util.STD;
 import imnotjahan.mod.danmachi.util.config.Config;
+import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
@@ -48,7 +49,7 @@ public class Bugbear extends PolarBearEntity
         {
             ServerPlayerEntity player = (ServerPlayerEntity) cause.getEntity();
             IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
-                    .orElse(new Status());
+                    .orElseThrow(MissingStatus::new);
 
             if (status.getFalna())
             {
@@ -57,7 +58,7 @@ public class Bugbear extends PolarBearEntity
 
                 for (int k = 0; k < 5; k++)
                 {
-                    status.increase(statusIncreases[k], k + 1);
+                    status.increase(statusIncreases[k], Status.POTENTIAL_START + k);
                 }
 
                 status.increase(statusIncreases[5], 7);

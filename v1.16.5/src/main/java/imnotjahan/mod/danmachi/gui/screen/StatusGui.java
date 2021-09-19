@@ -5,6 +5,7 @@ import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
+import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
@@ -31,7 +32,7 @@ public final class StatusGui extends Screen
         if(minecraft != null)
         {
             lazyStatus = minecraft.player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
-            status = lazyStatus.orElse(new Status());
+            status = lazyStatus.orElseThrow(MissingStatus::new);
         }
 
         if(status != null && status.getFalna())

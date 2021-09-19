@@ -5,6 +5,7 @@ import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.util.STD;
 import imnotjahan.mod.danmachi.util.config.Config;
+import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
@@ -62,7 +63,7 @@ public class RabbitBase extends RabbitEntity
         {
             ServerPlayerEntity player = (ServerPlayerEntity) cause.getEntity();
             IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
-                    .orElse(new Status());
+                    .orElseThrow(MissingStatus::new);
 
             if (status.getFalna())
             {

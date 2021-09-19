@@ -6,6 +6,7 @@ import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.init.Items;
 import imnotjahan.mod.danmachi.util.STD;
 import imnotjahan.mod.danmachi.util.config.Config;
+import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
 import net.minecraft.command.arguments.NBTTagArgument;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -77,7 +78,7 @@ public class MonsterBase extends ZombieEntity
         {
             ServerPlayerEntity player = (ServerPlayerEntity) cause.getEntity();
             IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
-                    .orElse(new Status());
+                    .orElseThrow(MissingStatus::new);
 
             ItemStack stone = new ItemStack(Items.MAGIC_STONE);
             CompoundNBT nbt = stone.getOrCreateTag();

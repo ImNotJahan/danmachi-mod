@@ -5,6 +5,7 @@ import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.util.STD;
 import imnotjahan.mod.danmachi.util.config.Config;
+import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
@@ -64,7 +65,7 @@ public class SmithingSlot extends Slot
             int requiredDex = requiredSmithingDex.get(output.getItem()
                     .getRegistryName().toString());
 
-            IStatus status = playerIn.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElse(new Status());
+            IStatus status = playerIn.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(MissingStatus::new);
             if (status.get(3) + (status.getLevel() - 1) * 1000 >= requiredDex)
             {
                 resetTags(tag);
