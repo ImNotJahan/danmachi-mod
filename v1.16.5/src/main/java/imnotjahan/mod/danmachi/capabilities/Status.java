@@ -151,219 +151,60 @@ public class Status implements IStatus
         }
     }
 
-    private int hasFalna = 0;
-    private int strength = 0;
-    private int endurance = 0;
-    private int dexterity = 0;
-    private int agility = 0;
-    private int magic = 0;
-    private int level = 1;
-    private int excelia = 0;
-    private int mind = 100;
-
     private String familia = "";
     private List<Skill> skills = new ArrayList<>();
     private List<Ability> abilities = new ArrayList<>();
     private List<Magic> spells = new ArrayList<>();
 
-    private int strengthP = 0;
-    private int enduranceP = 0;
-    private int dexterityP = 0;
-    private int agilityP = 0;
-    private int magicP = 0;
-    private int exceliaP = 0;
-
     public boolean canLevelUp = false;
+
+    /** 0 falna, 1 strength, 2 endurance, 3 dexterity, 4 agility, 5 magic, 6 excelia, 7 level, 8 mind
+     * 9 p strength, 10 p endurance, 11 p dexterity, 12 p agility, 13 p magic, 14 p excelia.
+     *
+     * P stands for potential, as it isn't applied to the players actual status yet*/
+    private int[] stats = new int[]{ 0, 0, 0, 0, 0, 0, 0, 1, 100, 0, 0, 0, 0, 0, 0 };
+
+    /** The index at which potential stats start */
+    public static final int POTENTIAL_START = 9;
+    private static final int NORMAL_STAT_AMOUNT = 6;
 
     @Override
     public void increase(int points, int id)
     {
         if(id != 7)
         {
-            for(int k = 0; k < level - 1; k++)
+            for(int k = 0; k < stats[7] - 1; k++)
             {
                 points /= 2;
             }
         }
 
-        points *= 1; //ModConfig.statMultiplier
-
-        switch(id)
-        {
-            case 0:
-                this.hasFalna += points;
-                break;
-
-            case 1:
-                this.strengthP += points;
-                break;
-
-            case 2:
-                this.enduranceP += points;
-                break;
-
-            case 3:
-                this.dexterityP += points;
-                break;
-
-            case 4:
-                this.agilityP += points;
-                break;
-
-            case 5:
-                this.magicP += points;
-                break;
-
-            case 6:
-                this.level += points;
-                break;
-
-            case 7:
-                this.exceliaP += points;
-                break;
-        }
+        if(id < stats.length) stats[id] += points;
     }
 
     @Override
     public void set(int id, int stat)
     {
-        switch(id)
-        {
-            case 0:
-                this.hasFalna = stat;
-                break;
-
-            case 1:
-                this.strength = stat;
-                break;
-
-            case 2:
-                this.endurance = stat;
-                break;
-
-            case 3:
-                this.dexterity = stat;
-                break;
-
-            case 4:
-                this.agility = stat;
-                break;
-
-            case 5:
-                this.magic = stat;
-                break;
-
-            case 6:
-                this.level = stat;
-                break;
-
-            case 7:
-                this.excelia = stat;
-                break;
-        }
-    }
-
-    @Override
-    public void setP(int id, int stat)
-    {
-        switch(id)
-        {
-            case 0:
-                this.strengthP = stat;
-                break;
-
-            case 1:
-                this.enduranceP = stat;
-                break;
-
-            case 2:
-                this.dexterityP = stat;
-                break;
-
-            case 3:
-                this.agilityP = stat;
-                break;
-
-            case 4:
-                this.magicP = stat;
-                break;
-
-            case 5:
-                this.exceliaP = stat;
-                break;
-        }
+        if(id < stats.length) stats[id] = stat;
     }
 
     @Override
     public int get(int id)
     {
-        switch(id)
-        {
-            case 0:
-                return this.hasFalna;
-
-            case 1:
-                return this.strength;
-
-            case 2:
-                return this.endurance;
-
-            case 3:
-                return this.dexterity;
-
-            case 4:
-                return this.agility;
-
-            case 5:
-                return this.magic;
-
-            case 6:
-                return this.level;
-
-            case 7:
-                return this.excelia;
-        }
-
-        return 0;
-    }
-
-    @Override
-    public int getP(int id)
-    {
-        switch (id)
-        {
-            case 0:
-                return this.strengthP;
-
-            case 1:
-                return this.enduranceP;
-
-            case 2:
-                return this.dexterityP;
-
-            case 3:
-                return this.agilityP;
-
-            case 4:
-                return this.magicP;
-
-            case 5:
-                return this.exceliaP;
-        }
-
-        return 0;
+        if(id < stats.length) return stats[id];
+        return -1;
     }
 
     @Override
     public void giveFalna()
     {
-        hasFalna = 1;
+        stats[0] = 1;
     }
 
     @Override
     public boolean getFalna()
     {
-        return (hasFalna == 1);
+        return (stats[0] == 1);
     }
 
     @Override
@@ -381,12 +222,13 @@ public class Status implements IStatus
     @Override
     public int getLevel()
     {
-        int level = this.level;
-        if(excelia / (300 * level) >= 1 && strength > 400 ||
-                endurance > 400 ||
-                dexterity > 400 ||
-                agility > 400 ||
-                magicP > 400)
+        int level = stats[7];
+        if(stats[6] / (300 * level) >= 1 &&
+                stats[1] > 400 ||
+                stats[2] > 400 ||
+                stats[3] > 400 ||
+                stats[4] > 400 ||
+                stats[5] > 400)
         {
             canLevelUp = true;
             level++;
@@ -398,14 +240,9 @@ public class Status implements IStatus
     @Override
     public Set<Ability> levelUp()
     {
-        level += 1;
-        excelia = 0;
+        stats[7] += 1;
 
-        strength = 0;
-        endurance = 0;
-        dexterity = 0;
-        agility = 0;
-        magic = 0;
+        for(int k = 0; k < NORMAL_STAT_AMOUNT; k++) stats[k + 1] = 0;
 
         canLevelUp = false;
 
@@ -421,22 +258,12 @@ public class Status implements IStatus
     @Override
     public int updateStatus()
     {
-        strength += strengthP;
-        endurance += enduranceP;
-        dexterity += dexterityP;
-        agility += agilityP;
-        magic += magicP;
-        excelia += exceliaP;
-        level = getLevel();
+        for(int k = 0; k < NORMAL_STAT_AMOUNT; k++) stats[k + 1] += stats[POTENTIAL_START + k];
+        stats[7] = getLevel();
 
-        int increase = exceliaP;
+        int increase = stats[POTENTIAL_START] + 5; // Excelia
 
-        strengthP = 0;
-        enduranceP = 0;
-        dexterityP = 0;
-        agilityP = 0;
-        magicP = 0;
-        exceliaP = 0;
+        for(int k = 0; k < NORMAL_STAT_AMOUNT; k++) stats[POTENTIAL_START + k] = 0;
 
         return increase;
     }
@@ -537,6 +364,18 @@ public class Status implements IStatus
         }
 
         return spellArray;
+    }
+
+    @Override
+    public int[] getArray()
+    {
+        return stats;
+    }
+
+    @Override
+    public void setArray(int[] array)
+    {
+        stats = array;
     }
 
     @Override

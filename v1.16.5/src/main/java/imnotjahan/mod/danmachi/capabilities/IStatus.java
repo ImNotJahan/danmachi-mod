@@ -26,20 +26,9 @@ public interface IStatus
     void set(int id, int amount);
 
     /**
-     * @param id the id of the stat your changing
-     * @param amount the amount your setting the stat to
-     */
-    void setP(int id, int amount);
-
-    /**
      * @param id the id of the stat your grabbing
      */
     int get(int id);
-
-    /**
-     * @param id the id of the stat your grabbing
-     */
-    int getP(int id);
 
     int updateStatus();
 
@@ -61,4 +50,7 @@ public interface IStatus
     Status.Ability[] getAbilities();
     Status.Skill[] getSkills();
     Status.Magic[] getSpells();
+
+    int[] getArray();
+    void setArray(int[] array);
 }

@@ -6,6 +6,7 @@ import imnotjahan.mod.danmachi.capabilities.StatusStorage;
 import imnotjahan.mod.danmachi.init.Entities;
 import imnotjahan.mod.danmachi.init.Items;
 import imnotjahan.mod.danmachi.init.Paintings;
+import imnotjahan.mod.danmachi.networking.PacketHandler;
 import imnotjahan.mod.danmachi.util.config.Config;
 import imnotjahan.mod.danmachi.util.events.ClientEventSubscriber;
 import imnotjahan.mod.danmachi.world.OreGen;
@@ -69,6 +70,8 @@ public class Main
     public void SetupCommon(final FMLCommonSetupEvent event)
     {
         CapabilityManager.INSTANCE.register(IStatus.class, new StatusStorage(), Status::new);
+
+        PacketHandler.init();
     }
 
     public static void registerDeferredRegistries(IEventBus modBus)

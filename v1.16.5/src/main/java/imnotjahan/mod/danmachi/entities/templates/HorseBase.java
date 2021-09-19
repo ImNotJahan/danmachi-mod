@@ -72,7 +72,7 @@ public class HorseBase extends AbstractHorseEntity
 
                 for (int k = 0; k < 5; k++)
                 {
-                    status.increase(statusIncreases[k], k + 1);
+                    status.increase(statusIncreases[k], Status.POTENTIAL_START + k);
                 }
 
                 status.increase(statusIncreases[5], 7);

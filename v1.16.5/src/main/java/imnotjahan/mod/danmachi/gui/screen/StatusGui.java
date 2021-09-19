@@ -36,7 +36,7 @@ public final class StatusGui extends Screen
 
         if(status != null && status.getFalna())
         {
-            int level = status.get(6);
+            int level = status.get(7);
             int strength = status.get(1);
             int endurance = status.get(2);
             int dexterity = status.get(3);
@@ -49,15 +49,25 @@ public final class StatusGui extends Screen
 
             drawCenteredString(stack, font, new StringTextComponent("Level " + level),
                     width / 2, this.height / 2, 0xFFFFFF);
-            drawCenteredString(stack, font, new StringTextComponent("Strength: " + strength),
+
+            drawCenteredString(stack, font, new StringTextComponent("Strength: "
+                            + getStatLetter(strength) + strength),
                     width / 2, this.height / 2 + 20, 0xFFFFFF);
-            drawCenteredString(stack, font, new StringTextComponent("Endurance: " + endurance),
+
+            drawCenteredString(stack, font, new StringTextComponent("Endurance: "
+                            + getStatLetter(endurance) + endurance),
                     width / 2, this.height / 2 + 40, 0xFFFFFF);
-            drawCenteredString(stack, font, new StringTextComponent("Dexterity: " + dexterity),
+
+            drawCenteredString(stack, font, new StringTextComponent("Dexterity: "
+                            + getStatLetter(dexterity) + dexterity),
                     width / 2, this.height / 2 + 60, 0xFFFFFF);
-            drawCenteredString(stack, font, new StringTextComponent("Agility: " + agility),
+
+            drawCenteredString(stack, font, new StringTextComponent("Agility: "
+                            + getStatLetter(agility) + agility),
                     width / 2, this.height / 2 + 80, 0xFFFFFF);
-            drawCenteredString(stack, font, new StringTextComponent("Magic: " + magic),
+
+            drawCenteredString(stack, font, new StringTextComponent("Magic: "
+                            + getStatLetter(magic) + magic),
                     width / 2, this.height / 2 + 100, 0xFFFFFF);
         } else
         {
