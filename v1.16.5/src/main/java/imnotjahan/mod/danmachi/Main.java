@@ -11,6 +11,7 @@ import imnotjahan.mod.danmachi.util.config.Config;
 import imnotjahan.mod.danmachi.util.events.ClientEventSubscriber;
 import imnotjahan.mod.danmachi.world.OreGen;
 import imnotjahan.mod.danmachi.world.dimension.Dimensions;
+import imnotjahan.mod.danmachi.world.structures.Structures;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -51,10 +52,9 @@ public class Main
         eventBus.addListener(this::SetupClient);
         eventBus.addListener(this::SetupCommon);
 
-        eventBus.addGenericListener(Structure.class, this::registerStructures);
-
         registerDeferredRegistries(eventBus);
         Paintings.PAINTING_TYPES.register(eventBus);
+        Structures.register(eventBus);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
 
@@ -73,16 +73,16 @@ public class Main
         // init
         PacketHandler.init();
         Dimensions.init();
+
+        event.enqueueWork(() ->
+        {
+            Structures.setupStructures();
+        });
     }
 
     public static void registerDeferredRegistries(IEventBus modBus)
     {
         Entities.ENTITY_DEFERRED.register(modBus);
-    }
-
-    public void registerStructures(final RegistryEvent.Register<Structure<?>> event)
-    {
-
     }
 
     /*

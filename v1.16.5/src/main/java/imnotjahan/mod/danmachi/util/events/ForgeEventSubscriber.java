@@ -1,5 +1,6 @@
 package imnotjahan.mod.danmachi.util.events;
 
+import com.mojang.serialization.Codec;
 import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
@@ -9,6 +10,8 @@ import imnotjahan.mod.danmachi.commands.DungeonCommand;
 import imnotjahan.mod.danmachi.networking.PacketHandler;
 import imnotjahan.mod.danmachi.networking.packets.MessageStatus;
 import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
+import imnotjahan.mod.danmachi.world.structures.StructureGeneration;
+import imnotjahan.mod.danmachi.world.structures.Structures;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -16,18 +19,31 @@ import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.FlatChunkGenerator;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.settings.DimensionStructuresSettings;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.ChunkEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.server.command.ConfigCommand;
+import org.apache.logging.log4j.LogManager;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -166,5 +182,47 @@ public class ForgeEventSubscriber
         ServerPlayerEntity player = (ServerPlayerEntity) event.getEntity();
         PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new MessageStatus(
                 player.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(ArithmeticException::new)));
+    }
+
+    // Structures
+    @SubscribeEvent
+    public static void biomeLoadingEvent(final BiomeLoadingEvent event)
+    {
+        StructureGeneration.generateStructures(event); // Put this line first
+    }
+
+    @SubscribeEvent
+    public static void addDimensionalSpacing(final WorldEvent.Load event)
+    {
+        if(event.getWorld() instanceof ServerWorld) {
+            ServerWorld serverWorld = (ServerWorld) event.getWorld();
+
+            try {
+                Method GETCODEC_METHOD =
+                        ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "codec");
+                ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey(
+                        (Codec<? extends ChunkGenerator>)GETCODEC_METHOD.invoke(serverWorld.getChunkSource().generator));
+
+                if (cgRL != null && cgRL.getNamespace().equals("terraforged")) {
+                    return;
+                }
+            } catch (Exception e) {
+                LogManager.getLogger().error("Was unable to check if " + serverWorld.dimension().location()
+                        + " is using Terraforged's ChunkGenerator.");
+            }
+
+            // Prevent spawning our structure in Vanilla's superflat world
+            if (serverWorld.getChunkSource().generator instanceof FlatChunkGenerator &&
+                    serverWorld.dimension().equals(World.OVERWORLD)) {
+                return;
+            }
+
+            // Adding our Structure to the Map
+            Map<Structure<?>, StructureSeparationSettings> tempMap =
+                    new HashMap<>(serverWorld.getChunkSource().generator.getSettings().structureConfig());
+            tempMap.putIfAbsent(Structures.HOUSE.get(),
+                    DimensionStructuresSettings.DEFAULTS.get(Structures.HOUSE.get()));
+            serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
+        }
     }
 }
