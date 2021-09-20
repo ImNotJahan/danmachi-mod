@@ -11,8 +11,6 @@ import imnotjahan.mod.danmachi.util.config.Config;
 import imnotjahan.mod.danmachi.util.events.ClientEventSubscriber;
 import imnotjahan.mod.danmachi.world.OreGen;
 import imnotjahan.mod.danmachi.world.dimension.Dimensions;
-import imnotjahan.mod.danmachi.world.structures.ConfiguredStructures;
-import imnotjahan.mod.danmachi.world.structures.Structures;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -84,8 +82,7 @@ public class Main
 
     public void registerStructures(final RegistryEvent.Register<Structure<?>> event)
     {
-        Structures.registerStructures(event);
-        ConfiguredStructures.registerConfiguredStructures();
+
     }
 
     /*

@@ -5,6 +5,7 @@ import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.commands.DanmachiLog;
+import imnotjahan.mod.danmachi.commands.DungeonCommand;
 import imnotjahan.mod.danmachi.networking.PacketHandler;
 import imnotjahan.mod.danmachi.networking.packets.MessageStatus;
 import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
@@ -134,6 +135,7 @@ public class ForgeEventSubscriber
     public static void onCommandsRegister(RegisterCommandsEvent event)
     {
         new DanmachiLog(event.getDispatcher());
+        new DungeonCommand(event.getDispatcher());
 
         ConfigCommand.register(event.getDispatcher());
     }
