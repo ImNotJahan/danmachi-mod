@@ -2,12 +2,16 @@ package imnotjahan.mod.danmachi.world.dimension.chunkgenerators;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import imnotjahan.mod.danmachi.init.Entities;
 import imnotjahan.mod.danmachi.world.CaveFloor;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.*;
@@ -79,6 +83,24 @@ public class DungeonChunkGenerator extends ChunkGeneratorBase
             stairChunks[k] = new Vector2f((int)(Math.random() * floorSize) - floorSize / 2,
                     (int)(Math.random() * floorSize)  - floorSize / 2);
         }
+    }
+
+    @Override
+    public List<MobSpawnInfo.Spawners> getMobsAt(Biome p_230353_1_, StructureManager p_230353_2_, EntityClassification p_230353_3_, BlockPos p_230353_4_)
+    {
+        List<MobSpawnInfo.Spawners> dungeonMonsters = new ArrayList<MobSpawnInfo.Spawners>()
+        {{
+            // Spawn chance, minimum count, maximum count
+            add(new MobSpawnInfo.Spawners(Entities.GOBLIN.get(), 20, 4, 10));
+            add(new MobSpawnInfo.Spawners(Entities.ALMIRAJ.get(), 20, 4, 10));
+            add(new MobSpawnInfo.Spawners(Entities.METAL_RABBIT.get(), 20, 4, 10));
+            add(new MobSpawnInfo.Spawners(Entities.BUGBEAR.get(), 20, 0, 5));
+            add(new MobSpawnInfo.Spawners(Entities.HELLHOUND.get(), 20, 0, 10));
+            add(new MobSpawnInfo.Spawners(Entities.KOBOLD.get(), 20, 0, 10));
+            add(new MobSpawnInfo.Spawners(Entities.MINOTAUR.get(), 20, 0, 5));
+            add(new MobSpawnInfo.Spawners(Entities.UNICORN.get(), 20, 0, 1));
+        }};
+        return super.getMobsAt(p_230353_1_, p_230353_2_, p_230353_3_, p_230353_4_);
     }
 
     @Override

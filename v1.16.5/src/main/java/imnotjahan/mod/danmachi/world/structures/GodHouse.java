@@ -1,6 +1,7 @@
 package imnotjahan.mod.danmachi.world.structures;
 
 import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.init.Entities;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedSeedRandom;
@@ -11,6 +12,7 @@ import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
@@ -24,6 +26,9 @@ import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GodHouse extends Structure<NoFeatureConfig>
 {
@@ -51,6 +56,21 @@ public class GodHouse extends Structure<NoFeatureConfig>
         BlockState topBlock = columnOfBlocks.getBlockState(centerOfChunk.above(landHeight));
 
         return topBlock.getFluidState().isEmpty();
+    }
+
+    @Override
+    public List<MobSpawnInfo.Spawners> getDefaultCreatureSpawnList()
+    {
+        List<MobSpawnInfo.Spawners> gods = new ArrayList<MobSpawnInfo.Spawners>()
+        {{
+            // Spawn chance, minimum count, maximum count
+            add(new MobSpawnInfo.Spawners(Entities.HESTIA.get(), 20, 0, 1));
+            add(new MobSpawnInfo.Spawners(Entities.HERMES.get(), 20, 0, 1));
+            add(new MobSpawnInfo.Spawners(Entities.LOKI.get(), 20, 0, 1));
+            add(new MobSpawnInfo.Spawners(Entities.SOMA.get(), 20, 0, 1));
+        }};
+
+        return gods;
     }
 
     @Override

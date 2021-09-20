@@ -1,16 +1,12 @@
 package imnotjahan.mod.danmachi.world.dimension.chunkgenerators;
 
-import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.DimensionSettings;
-import net.minecraft.world.gen.feature.structure.StructureManager;
+import net.minecraft.world.gen.NoiseChunkGenerator;
+import net.minecraft.world.gen.WorldGenRegion;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 public abstract class ChunkGeneratorBase extends NoiseChunkGenerator
