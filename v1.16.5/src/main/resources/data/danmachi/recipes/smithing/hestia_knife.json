@@ -1,0 +1,13 @@
+{
+  "type": "danmachi:smithing",
+  "inputs": [{
+    "item": "danmachi:mythril_ingot"
+  }, {
+    "item": "danmachi:ichor"
+  }, {
+    "item": "minecraft:stick"
+  }],
+  "output": {
+    "item": "danmachi:hestia_knife"
+  }
+}

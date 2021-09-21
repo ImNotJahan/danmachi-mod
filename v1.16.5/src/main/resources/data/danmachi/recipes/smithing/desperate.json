@@ -1,0 +1,16 @@
+{
+  "type": "danmachi:smithing",
+  "inputs": [{
+    "item": "danmachi:orichalcum_ingot"
+  },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:stick"
+    }
+  ],
+  "output": {
+    "item": "danmachi:desperate"
+  }
+}

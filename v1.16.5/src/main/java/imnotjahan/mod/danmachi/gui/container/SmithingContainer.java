@@ -2,21 +2,32 @@ package imnotjahan.mod.danmachi.gui.container;
 
 import imnotjahan.mod.danmachi.gui.container.slots.SmithingSlot;
 import imnotjahan.mod.danmachi.init.Items;
+import imnotjahan.mod.danmachi.init.Recipes;
 import imnotjahan.mod.danmachi.util.events.EventSubscriber;
+import imnotjahan.mod.danmachi.util.recipes.SmithingAnvilRecipe;
+import imnotjahan.mod.danmachi.util.recipes.SmithingRecipeSerializer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.FurnaceContainer;
-import net.minecraft.inventory.container.RepairContainer;
-import net.minecraft.inventory.container.Slot;
+import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipe;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 public class SmithingContainer extends Container
 {
@@ -29,11 +40,15 @@ public class SmithingContainer extends Container
     }
 
     private final IWorldPosCallable access;
+    private final World world;
+
     public SmithingContainer(int id, PlayerInventory playerInventory, IWorldPosCallable access)
     {
         super(EventSubscriber.smithingContainer, id);
 
         this.access = access;
+        world = playerInventory.player.level;
+        Recipes.RECIPE_MANAGER = world.getRecipeManager();
 
         this.addSlot(new Slot(smithingInventory, 0, 81, 10));
         this.addSlot(new Slot(smithingInventory, 1, 36, 35));
@@ -74,106 +89,28 @@ public class SmithingContainer extends Container
     {
         super.broadcastChanges();
 
-        //Just all the recipes more or less
-        ArrayList<String> materials = new ArrayList<>();
+        IRecipeType<?> type = Recipes.SMITHING_TYPE;
+        Map<ResourceLocation, IRecipe<?>> recipes = Recipes.getRecipes(type);
+        Collection<IRecipe<?>> mainRecipes = recipes.values();
 
-        for(int k = 0; k < smithingInventory.getContainerSize(); k++)
+        for(IRecipe<?> recipe : mainRecipes)
         {
-            materials.add(smithingInventory.getItem(k).getItem().getRegistryName().toString());
-        }
+            if(!(recipe instanceof SmithingAnvilRecipe)) return;
 
-        if(materialsContains("danmachi:adamantite_ingot",
-                "minecraft:stick", "minecraft:flint_and_steel", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.FIRE_MAGIC_SWORD));
-        } else if(materialsContains("danmachi:adamantite_ingot",
-                "minecraft:stick", "minecraft:ice", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.ICE_MAGIC_SWORD));
-        } else if(materialsContains("minecraft:iron_block",
-                "minecraft:stick", "minecraft:iron_block", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.GREATSWORD));
-        } else if(materialsContains("danmachi:nosteel_ingot",
-                "minecraft:stick", "danmachi:lygerfang_fang", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.KOTETSU));
-        } else if(materialsContains("danmachi:orichalcum_ingot",
-                "minecraft:stick", "minecraft:lapis_lazuli", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.DESPERATE));
-        } else if(materialsContains("minecraft:iron_ingot",
-                "minecraft:gold_ingot", "minecraft:gold_ingot", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.KODACHI_FUTABA));
-        } else if(materialsContains("minecraft:oak_planks",
-                "minecraft:iron_block", "minecraft:iron_block", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.GREAT_PODAO_ZAGA));
-        } else if(materialsContains("minecraft:iron_ingot",
-                "minecraft:gold_ingot", "minecraft:emerald", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.PROTAGONISTA));
-        } else if(materialsContains("danmachi:urga_blade",
-                "minecraft:stick", "danmachi:urga_blade", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.URGA));
-        } else if(materialsContains("danmachi:adamantite_ingot",
-                "minecraft:stick", "danmachi:unicorn_horn", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.HAKUGEN));
-        } else if(materialsContains("danmachi:adamantite_ingot",
-                "minecraft:iron_ingot", "danmachi:adamantite_ingot", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.URGA_BLADE));
-        } else if(materialsContains("danmachi:mythril_ingot",
-                "minecraft:stick", "danmachi:ichor", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.HESTIA_KNIFE));
-        } else if(materialsContains("minecraft:iron_ingot",
-                "minecraft:stick", "minecraft:air", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.DAGGER));
-        } else if(materialsContains("danmachi:minotaur_horn",
-                "minecraft:stick", "minecraft:air", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.USHIWAKAMARU));
-        } else if(materialsContains("danmachi:damascus_steel",
-                "minecraft:stick", "danmachi:damascus_steel", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.SWORD_AIR));
-        } else if(materialsContains("danmachi:adamantite_ingot",
-                "minecraft:stick", "danmachi:adamantite_ingot", materials))
-        {
-            smithingOutput.setItem(0, new ItemStack(Items.FORTIA_SPEAR));
-        } else
-        {
-            smithingOutput.setItem(0, ItemStack.EMPTY);
+            final SmithingAnvilRecipe smithingRecipe = (SmithingAnvilRecipe) recipe;
+
+            List<ItemStack> inputs = new ArrayList<ItemStack>()
+            {{
+                smithingInventory.getItem(0);
+                smithingInventory.getItem(1);
+                smithingInventory.getItem(2);
+            }};
+
+            if(smithingRecipe.valid(inputs, world)) smithingOutput.setItem(0, smithingRecipe.getResultItem());
+            else smithingOutput.setItem(0, ItemStack.EMPTY);
         }
 
         smithingOutput.setChanged();
-    }
-
-    private static boolean materialsContains(String item0, String item1, String item2, ArrayList<String> materials)
-    {
-        ArrayList<String> newMaterials = new ArrayList<>(materials);
-
-        if(newMaterials.contains(item0))
-        {
-            newMaterials.remove(item0);
-
-            if(newMaterials.contains(item1))
-            {
-                newMaterials.remove(item1);
-
-                if(newMaterials.contains(item2))
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
     }
 
     @Override

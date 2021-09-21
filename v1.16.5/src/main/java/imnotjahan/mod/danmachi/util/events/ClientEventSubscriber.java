@@ -4,6 +4,8 @@ import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.entities.rendering.*;
 import imnotjahan.mod.danmachi.gui.screen.SmithingScreen;
 import imnotjahan.mod.danmachi.init.Entities;
+import imnotjahan.mod.danmachi.init.Recipes;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.api.distmarker.Dist;

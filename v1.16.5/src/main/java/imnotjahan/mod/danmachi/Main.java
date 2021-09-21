@@ -6,12 +6,15 @@ import imnotjahan.mod.danmachi.capabilities.StatusStorage;
 import imnotjahan.mod.danmachi.init.Entities;
 import imnotjahan.mod.danmachi.init.Items;
 import imnotjahan.mod.danmachi.init.Paintings;
+import imnotjahan.mod.danmachi.init.Recipes;
 import imnotjahan.mod.danmachi.networking.PacketHandler;
 import imnotjahan.mod.danmachi.util.config.Config;
 import imnotjahan.mod.danmachi.util.events.ClientEventSubscriber;
 import imnotjahan.mod.danmachi.world.OreGen;
 import imnotjahan.mod.danmachi.world.dimension.Dimensions;
 import imnotjahan.mod.danmachi.world.structures.Structures;
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.JeiPlugin;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -55,6 +58,8 @@ public class Main
         registerDeferredRegistries(eventBus);
         Paintings.PAINTING_TYPES.register(eventBus);
         Structures.register(eventBus);
+        Recipes.RECIPE_SERIALIZERS.register(eventBus);
+        Recipes.init();
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
 
@@ -74,10 +79,7 @@ public class Main
         PacketHandler.init();
         Dimensions.init();
 
-        event.enqueueWork(() ->
-        {
-            Structures.setupStructures();
-        });
+        event.enqueueWork(Structures::setupStructures);
     }
 
     public static void registerDeferredRegistries(IEventBus modBus)
