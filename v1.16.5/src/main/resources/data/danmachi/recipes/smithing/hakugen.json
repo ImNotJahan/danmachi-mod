@@ -1,0 +1,16 @@
+{
+  "type": "danmachi:smithing",
+  "inputs": [{
+    "item": "danmachi:adamantite_ingot"
+  },
+    {
+      "item": "danmachi:minotaur_horn"
+    },
+    {
+      "item": "minecraft:stick"
+    }
+  ],
+  "output": {
+    "item": "danmachi:hakugen"
+  }
+}

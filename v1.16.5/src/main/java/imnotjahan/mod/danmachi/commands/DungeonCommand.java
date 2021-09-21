@@ -22,11 +22,21 @@ public class DungeonCommand
 
     private int CommandStuff(CommandSource source) throws CommandSyntaxException
     {
-        RegistryKey<World> dungeonKey = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(Reference.MODID,
-                "dungeon_dimension"));
-        ServerWorld dungeon = source.getLevel().getServer().getLevel(dungeonKey);
+        ServerPlayerEntity player = source.getPlayerOrException();
+        if(player.level.dimension().location().toString().equals("danmachi:dungeon_dimension"))
+        {
+            source.getPlayerOrException().teleportTo(source.getLevel().getServer().getLevel(World.OVERWORLD),
+                    0, 100, 0, 0, 0);
+        } else
+        {
+            RegistryKey<World> dungeonKey = RegistryKey.create(Registry.DIMENSION_REGISTRY,
+                    new ResourceLocation(Reference.MODID,
+                    "dungeon_dimension"));
+            ServerWorld dungeon = source.getLevel().getServer().getLevel(dungeonKey);
 
-        source.getPlayerOrException().teleportTo(dungeon, 0, 250, 0, 0, 0);
+            source.getPlayerOrException().teleportTo(dungeon, 0, 250, 0, 0,
+                    0);
+        }
         return 0;
     }
 }

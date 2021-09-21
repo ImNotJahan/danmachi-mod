@@ -1,0 +1,16 @@
+{
+  "type": "danmachi:smithing",
+  "inputs": [{
+    "item": "danmachi:damascus_steel"
+  },
+    {
+      "item": "danmachi:damascus_steel"
+    },
+    {
+      "item": "minecraft:stick"
+    }
+  ],
+  "output": {
+    "item": "danmachi:sword_air"
+  }
+}

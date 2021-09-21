@@ -1,0 +1,16 @@
+{
+  "type": "danmachi:smithing",
+  "inputs": [{
+    "item": "danmachi:adamantite_ingot"
+  },
+    {
+      "item": "danmachi:adamantite_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "output": {
+    "item": "danmachi:urga_blade"
+  }
+}

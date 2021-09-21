@@ -66,6 +66,8 @@ public class Config
             put("danmachi:ushiwakamaru", 1000);
             put("danmachi:sword_air", 500);
             put("danmachi:fortia_spear", 1400);
+            put("danmachi:kings_blade", 3000);
+            put("danmachi:alfs_lumina", 2000);
         }};
 
 

@@ -1,0 +1,16 @@
+{
+  "type": "danmachi:smithing",
+  "inputs": [{
+    "item": "danmachi:urga_blade"
+  },
+    {
+      "item": "danmachi:urga_blade"
+    },
+    {
+      "item": "minecraft:stick"
+    }
+  ],
+  "output": {
+    "item": "danmachi:urga"
+  }
+}

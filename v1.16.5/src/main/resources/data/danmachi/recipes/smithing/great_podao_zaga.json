@@ -1,0 +1,16 @@
+{
+  "type": "danmachi:smithing",
+  "inputs": [{
+    "item": "minecraft:iron_block"
+  },
+    {
+      "item": "minecraft:iron_block"
+    },
+    {
+      "item": "minecraft:wooden_plank"
+    }
+  ],
+  "output": {
+    "item": "danmachi:great_podao_zaga"
+  }
+}

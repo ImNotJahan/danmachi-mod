@@ -1,0 +1,16 @@
+{
+  "type": "danmachi:smithing",
+  "inputs": [{
+    "item": "danmachi:lygerfang_fang"
+  },
+    {
+      "item": "danmachi:nosteel_ingot"
+    },
+    {
+      "item": "minecraft:stick"
+    }
+  ],
+  "output": {
+    "item": "danmachi:kotetsu"
+  }
+}
