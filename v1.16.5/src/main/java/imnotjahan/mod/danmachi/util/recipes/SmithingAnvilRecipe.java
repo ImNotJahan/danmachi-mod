@@ -47,7 +47,6 @@ public class SmithingAnvilRecipe implements ISmithingAnvilRecipe
         for(int k = 0; k < MAX_SIZE; k++)
         {
             ItemStack mat = materials[k];
-            System.out.println(inputs.stream().anyMatch(c -> c.sameItem(mat)));
             if(!inputs.stream().anyMatch(c -> c.sameItem(mat))) return false;
             inputs.remove(materials[k]);
         }

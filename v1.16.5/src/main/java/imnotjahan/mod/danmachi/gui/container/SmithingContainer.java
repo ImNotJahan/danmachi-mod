@@ -106,8 +106,6 @@ public class SmithingContainer extends Container
                 smithingInventory.getItem(2);
             }};
 
-            System.out.println(smithingRecipe.valid(inputs, world));
-
             if(smithingRecipe.valid(inputs, world)) smithingOutput.setItem(0, smithingRecipe.getResultItem());
             else smithingOutput.setItem(0, ItemStack.EMPTY);
         }

@@ -31,4 +31,10 @@ public class SmithingScreen extends ContainerScreen<SmithingContainer>
 
         this.blit(stack, i, j, 0, 0, getXSize(), getYSize());
     }
+
+    public void render(MatrixStack p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_)
+    {
+        this.renderBackground(p_230430_1_);
+        super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
+    }
 }
