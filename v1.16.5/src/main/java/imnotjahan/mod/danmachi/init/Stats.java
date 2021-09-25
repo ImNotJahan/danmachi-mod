@@ -5,9 +5,7 @@ import net.minecraft.stats.IStatFormatter;
 import net.minecraft.stats.StatType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(Reference.MODID)
 public class Stats
 {
     public static final StatType<ResourceLocation> CUSTOM = makeRegistryStatType("custom", Registry.CUSTOM_STAT);

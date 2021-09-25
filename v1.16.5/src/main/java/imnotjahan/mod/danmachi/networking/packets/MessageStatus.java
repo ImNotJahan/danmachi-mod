@@ -3,6 +3,7 @@ package imnotjahan.mod.danmachi.networking.packets;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
+import imnotjahan.mod.danmachi.init.Stats;
 import imnotjahan.mod.danmachi.networking.ClientPacketHandler;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,8 +34,13 @@ public class MessageStatus
         ctx.get().enqueueWork(() ->
         {
             ServerPlayerEntity sender = ctx.get().getSender();
-            sender.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(ArithmeticException::new)
-                    .setArray(msg.status.getArray());
+
+            IStatus status = sender.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
+                    .orElseThrow(ArithmeticException::new);
+
+            if(status.getLevel() != msg.status.getLevel()) sender.awardStat(Stats.LEVEL);
+
+            status.setArray(msg.status.getArray());
         });
         ctx.get().setPacketHandled(true);
     }

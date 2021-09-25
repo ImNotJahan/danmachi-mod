@@ -82,6 +82,8 @@ public class ForgeEventSubscriber
             PlayerEntity player = (PlayerEntity) event.getEntity();
             IStatus status = player.getCapability(StatusProvider.STATUS_CAP).orElseThrow(MissingStatus::new);
 
+            if(!status.getFalna()) return;
+
             int level = status.get(7);
 
             double attack = status.get(1) * 1000 * level * statMultipliers.get("attack");

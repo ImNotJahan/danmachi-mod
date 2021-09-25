@@ -70,8 +70,6 @@ public final class GodGui extends Screen
 
                                     refreshServer();
 
-                                    minecraft.player.awardStat(Stats.LEVEL);
-
                                     buttons.add(
                                             new Button(this.width / 2 - 100, 100 + 30, 200,
                                                     20, new StringTextComponent("Thanks!"), (p_214288_3_) ->
@@ -108,8 +106,6 @@ public final class GodGui extends Screen
                                                         20, new StringTextComponent("Sure"), (p_214288_3_) ->
                                                 {
                                                     GetStatus().levelUp();
-
-                                                    minecraft.player.awardStat(Stats.LEVEL);
 
                                                     currentGodResponse = "Okay, andddd you're now level "
                                                             + GetStatus().getLevel() + "!";

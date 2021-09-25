@@ -162,7 +162,7 @@ public class Status implements IStatus
      * 9 p strength, 10 p endurance, 11 p dexterity, 12 p agility, 13 p magic, 14 p excelia.
      *  <br><br>
      * P stands for potential, as it isn't applied to the players actual status yet*/
-    private int[] stats = new int[]{ 0, 0, 0, 0, 0, 0, 0, 1, 100, 0, 0, 0, 0, 0, 0 };
+    private int[] stats = new int[]{ 0, 0, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0 };
 
     /** The index at which potential stats start */
     public static final int POTENTIAL_START = 9;
@@ -199,6 +199,7 @@ public class Status implements IStatus
     public void giveFalna()
     {
         stats[0] = 1;
+        stats[7]++;
     }
 
     @Override
