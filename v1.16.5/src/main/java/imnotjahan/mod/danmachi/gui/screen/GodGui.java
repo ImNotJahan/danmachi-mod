@@ -1,21 +1,18 @@
 package imnotjahan.mod.danmachi.gui.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.init.Items;
+import imnotjahan.mod.danmachi.init.Stats;
+import imnotjahan.mod.danmachi.networking.PacketHandler;
+import imnotjahan.mod.danmachi.networking.packets.MessageStatus;
 import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
-import net.minecraft.client.gui.screen.AddServerScreen;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.client.multiplayer.ServerData;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +68,10 @@ public final class GodGui extends Screen
                                     GetStatus().setFamilia(godName);
                                     GetStatus().giveFalna();
 
+                                    refreshServer();
+
+                                    minecraft.player.awardStat(Stats.LEVEL);
+
                                     buttons.add(
                                             new Button(this.width / 2 - 100, 100 + 30, 200,
                                                     20, new StringTextComponent("Thanks!"), (p_214288_3_) ->
@@ -95,16 +96,55 @@ public final class GodGui extends Screen
                                         20, new StringTextComponent("Okay"), (p_214288_2_) ->
                                 {
                                     ClearButtons();
-                                    currentGodResponse = "Anddd your status is now updated!";
-
                                     GetStatus().updateStatus();
 
-                                    buttons.add(
-                                            new Button(this.width / 2 - 100, 100 + 30, 200,
-                                                    20, new StringTextComponent("Nice"), (p_214288_3_) ->
-                                            {
-                                                minecraft.setScreen(null);
-                                            }));
+                                    if(GetStatus().canLevelUp())
+                                    {
+                                        currentGodResponse = "Oh hey, you could level up!";
+                                        currentGodResponse2 = "Want to?";
+
+                                        buttons.add(
+                                                new Button(this.width / 2 - 100, 100 + 30, 200,
+                                                        20, new StringTextComponent("Sure"), (p_214288_3_) ->
+                                                {
+                                                    GetStatus().levelUp();
+
+                                                    minecraft.player.awardStat(Stats.LEVEL);
+
+                                                    currentGodResponse = "Okay, andddd you're now level "
+                                                            + GetStatus().getLevel() + "!";
+                                                    currentGodResponse2 = "";
+
+                                                    new Button(this.width / 2 - 100, 100 + 30, 200,
+                                                            20, new StringTextComponent("Nice"),
+                                                            (p_214288_4_) ->
+                                                            minecraft.setScreen(null));
+                                                }));
+
+                                        buttons.add(
+                                                new Button(this.width / 2 - 100, 100 + 30, 200,
+                                                        20, new StringTextComponent("Not yet"),
+                                                        (p_214288_3_) ->
+                                                {
+                                                    currentGodResponse = "Okay, tell me when you decide you want to";
+                                                    currentGodResponse2 = "";
+
+                                                    new Button(this.width / 2 - 100, 100 + 30, 200,
+                                                            20, new StringTextComponent("Okay"),
+                                                            (p_214288_4_) ->
+                                                            minecraft.setScreen(null));
+                                                }));
+                                    } else
+                                    {
+                                        currentGodResponse = "Anddd your status is now updated!";
+
+                                        buttons.add(
+                                                new Button(this.width / 2 - 100, 100 + 30, 200,
+                                                        20, new StringTextComponent("Nice"), (p_214288_3_) ->
+                                                        minecraft.setScreen(null)));
+                                    }
+
+                                    refreshServer();
                                 }));
                     }
                     ));
@@ -159,6 +199,11 @@ public final class GodGui extends Screen
     {
         return minecraft.player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
                 .orElseThrow(MissingStatus::new);
+    }
+
+    void refreshServer()
+    {
+        PacketHandler.INSTANCE.sendToServer(new MessageStatus(GetStatus()));
     }
 
     void ClearButtons()

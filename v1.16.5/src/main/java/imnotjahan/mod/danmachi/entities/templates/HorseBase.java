@@ -76,7 +76,7 @@ public class HorseBase extends AbstractHorseEntity
                     status.increase(statusIncreases[k], Status.POTENTIAL_START + k);
                 }
 
-                status.increase(statusIncreases[5], 7);
+                status.increase(statusIncreases[5], 6);
             } else
             {
                 return;

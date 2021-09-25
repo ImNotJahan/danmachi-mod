@@ -61,7 +61,7 @@ public class Bugbear extends PolarBearEntity
                     status.increase(statusIncreases[k], Status.POTENTIAL_START + k);
                 }
 
-                status.increase(statusIncreases[5], 7);
+                status.increase(statusIncreases[5], 6);
             } else
             {
                 return;

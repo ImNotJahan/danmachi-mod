@@ -36,7 +36,7 @@ public class GodBase extends CreatureEntity
         ItemStack itemstack = player.getItemInHand(hand);
         boolean wantingBlood = itemstack.getItem() == Items.GLASS_BOTTLE;
 
-        if(hand == Hand.MAIN_HAND)
+        if(hand == Hand.MAIN_HAND && player.getCommandSenderWorld().isClientSide)
         {
             ClientThings.showGodGui(godName, wantingBlood);
         }

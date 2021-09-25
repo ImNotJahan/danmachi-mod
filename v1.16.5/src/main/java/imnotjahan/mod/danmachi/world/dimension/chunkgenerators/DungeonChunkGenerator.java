@@ -100,7 +100,13 @@ public class DungeonChunkGenerator extends ChunkGeneratorBase
             add(new MobSpawnInfo.Spawners(Entities.MINOTAUR.get(), 20, 0, 5));
             add(new MobSpawnInfo.Spawners(Entities.UNICORN.get(), 20, 0, 1));
         }};
-        return super.getMobsAt(p_230353_1_, p_230353_2_, p_230353_3_, p_230353_4_);
+        return dungeonMonsters;
+    }
+
+    @Override
+    public void applyBiomeDecoration(WorldGenRegion p_230351_1_, StructureManager p_230351_2_)
+    {
+
     }
 
     @Override

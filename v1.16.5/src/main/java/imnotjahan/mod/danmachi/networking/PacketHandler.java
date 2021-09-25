@@ -21,5 +21,7 @@ public class PacketHandler
     {
         INSTANCE.registerMessage(id++, MessageStatus.class,
                 MessageStatus::encode, MessageStatus::decode, MessageStatus::handle);
+        INSTANCE.registerMessage(id++, MessageStatus.class,
+                MessageStatus::encode, MessageStatus::decode, MessageStatus::handleClient);
     }
 }

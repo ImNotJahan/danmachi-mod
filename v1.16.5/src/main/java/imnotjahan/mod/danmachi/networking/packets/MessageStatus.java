@@ -27,6 +27,18 @@ public class MessageStatus
         ctx.get().setPacketHandled(true);
     }
 
+    // For when the name is changed on the client
+    public static void handleClient(MessageStatus msg, Supplier<NetworkEvent.Context> ctx)
+    {
+        ctx.get().enqueueWork(() ->
+        {
+            ServerPlayerEntity sender = ctx.get().getSender();
+            sender.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(ArithmeticException::new)
+                    .setArray(msg.status.getArray());
+        });
+        ctx.get().setPacketHandled(true);
+    }
+
     public static MessageStatus decode(PacketBuffer buf)
     {
         IStatus status = new Status();

@@ -13,11 +13,16 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierManager;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombieEntity;
+import net.minecraft.entity.monster.ZombifiedPiglinEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -66,7 +71,18 @@ public class MonsterBase extends ZombieEntity
     @Override
     protected void addBehaviourGoals()
     {
-        super.addBehaviourGoals();
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(net.minecraft.item.Items.GOLD_INGOT), false));
+        this.goalSelector.addGoal(6, new MoveThroughVillageGoal(this, 1.0D, true, 4, this::canBreakDoors));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+
+        if(!isXenos)
+        {
+            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglinEntity.class));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+            this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
+            this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+            this.goalSelector.addGoal(2, new ZombieAttackGoal(this, 1.0D, false));
+        }
     }
 
     @Override
@@ -98,7 +114,7 @@ public class MonsterBase extends ZombieEntity
                     status.increase(statusIncreases[k], Status.POTENTIAL_START + k);
                 }
 
-                status.increase(statusIncreases[5], 7);
+                status.increase(statusIncreases[5], 6);
             } else
             {
                 return;
@@ -134,6 +150,8 @@ public class MonsterBase extends ZombieEntity
             this.setCanBreakDoors(this.supportsBreakDoorGoal());
         }
     }
+
+    boolean isXenos = false;
 
     /*@Override
     protected void dropLoot(boolean wasRecentlyHit, int lootingModifier, DamageSource source)

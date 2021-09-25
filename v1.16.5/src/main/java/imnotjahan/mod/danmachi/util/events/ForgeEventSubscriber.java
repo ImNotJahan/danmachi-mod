@@ -177,11 +177,17 @@ public class ForgeEventSubscriber
     @SubscribeEvent
     public static void playerDeath(LivingDeathEvent event)
     {
-        if(!(event.getEntity() instanceof PlayerEntity)) return;
-
-        ServerPlayerEntity player = (ServerPlayerEntity) event.getEntity();
-        PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new MessageStatus(
-                player.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(ArithmeticException::new)));
+        if(event.getEntity() instanceof PlayerEntity)
+        {
+            ServerPlayerEntity player = (ServerPlayerEntity) event.getEntity();
+            PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new MessageStatus(
+                    player.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(ArithmeticException::new)));
+        } else if(event.getSource().getEntity() instanceof PlayerEntity)
+        {
+            ServerPlayerEntity player = (ServerPlayerEntity) event.getSource().getEntity();
+            PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new MessageStatus(
+                    player.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(ArithmeticException::new)));
+        }
     }
 
     // Structures

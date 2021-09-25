@@ -45,19 +45,6 @@ public class Goblin extends MonsterBase
     }
 
     @Override
-    protected void addBehaviourGoals()
-    {
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(Items.GOLD_INGOT), false));
-        this.goalSelector.addGoal(2, new ZombieAttackGoal(this, 1.0D, false));
-        this.goalSelector.addGoal(6, new MoveThroughVillageGoal(this, 1.0D, true, 4, this::canBreakDoors));
-        this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglinEntity.class));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-    }
-
-    @Override
     protected ResourceLocation getDefaultLootTable()
     {
         return new ResourceLocation("danmachi", "goblin");
