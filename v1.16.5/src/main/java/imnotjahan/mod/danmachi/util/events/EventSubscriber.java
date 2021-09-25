@@ -8,6 +8,7 @@ import imnotjahan.mod.danmachi.entities.gods.Hermes;
 import imnotjahan.mod.danmachi.entities.gods.Hestia;
 import imnotjahan.mod.danmachi.entities.gods.Loki;
 import imnotjahan.mod.danmachi.entities.gods.Soma;
+import imnotjahan.mod.danmachi.gui.container.GuildContainer;
 import imnotjahan.mod.danmachi.gui.container.SmithingContainer;
 import imnotjahan.mod.danmachi.init.Blocks;
 import imnotjahan.mod.danmachi.materials.ArmorMaterials;
@@ -32,10 +33,10 @@ import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemTier;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.*;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.potion.Potion;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.StatType;
 import net.minecraft.tileentity.TileEntityType;
@@ -167,14 +168,6 @@ public final class EventSubscriber
                 setup(new Item((new Item.Properties()).tab(Main.MaterialsGroup)
                                 .food(imnotjahan.mod.danmachi.init.Foods.CRYSTAL_DROP)), "crystal_drop"),
 
-                //drinks
-                setup(new Item((new Item.Properties())
-                        .food(imnotjahan.mod.danmachi.init.Foods.SOMA).tab(Main.MaterialsGroup)
-                        .stacksTo(16)), "soma"),
-                setup(new Item((new Item.Properties()).craftRemainder(GLASS_BOTTLE)
-                        .food(imnotjahan.mod.danmachi.init.Foods.MERMAID_BLOOD).
-                                tab(Main.MaterialsGroup).stacksTo(1)), "mermaid_blood"),
-
                 //blocks
                 setup(new BlockItem(Blocks.ORICHALCUM_BLOCK,
                         (new Item.Properties()).tab(Main.BlockGroup)), "orichalcum_block"),
@@ -203,6 +196,18 @@ public final class EventSubscriber
                 setup(new BlockItem(SMITHING_ANVIL,
                         (new Item.Properties()).tab(Main.BlockGroup)), "smithing_anvil")
             );
+    }
+
+    @SubscribeEvent
+    public static void registerPotions(RegistryEvent.Register<Potion> event)
+    {
+        event.getRegistry().registerAll(
+                setup(new Potion(new EffectInstance(Effects.HEAL, 2, 4)), "mermaid_blood"),
+                setup(new Potion(new EffectInstance(Effects.CONFUSION, 600, 4),
+                        new EffectInstance(Effects.BLINDNESS, 600, 0),
+                        new EffectInstance(Effects.WEAKNESS, 600, 1),
+                        new EffectInstance(Effects.HEALTH_BOOST, 600, 4)), "soma")
+        );
     }
 
     @SubscribeEvent
@@ -311,6 +316,7 @@ public final class EventSubscriber
     }
 
     public static ContainerType<SmithingContainer> smithingContainer;
+    public static ContainerType<GuildContainer> guildContainer;
 
     @SubscribeEvent
     public static void registerContainers(final RegistryEvent.Register<ContainerType<?>> event)
@@ -318,6 +324,10 @@ public final class EventSubscriber
         smithingContainer = IForgeContainerType.create(SmithingContainer::new);
         smithingContainer.setRegistryName("smithing_container");
         event.getRegistry().register(smithingContainer);
+
+        guildContainer = IForgeContainerType.create(GuildContainer::new);
+        guildContainer.setRegistryName("guild_container");
+        event.getRegistry().register(guildContainer);
     }
 
     public static TileEntityType<SmithingTile> smithingTile;

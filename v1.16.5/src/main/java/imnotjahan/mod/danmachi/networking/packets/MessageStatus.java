@@ -35,6 +35,8 @@ public class MessageStatus
         {
             ServerPlayerEntity sender = ctx.get().getSender();
 
+            if(sender == null) return;
+
             IStatus status = sender.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
                     .orElseThrow(ArithmeticException::new);
 

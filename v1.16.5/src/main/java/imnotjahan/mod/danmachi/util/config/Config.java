@@ -70,10 +70,37 @@ public class Config
             put("danmachi:alfs_lumina", 2000);
         }};
 
+        public static Map<String, Integer> dGuildTrades = new HashMap<String, Integer>(){{
+            put("danmachi:goblin_fang", 3);
+            put("danmachi:lygerfang_fang", 5);
+            put("danmachi:kobold_nail", 3);
+            put("danmachi:almiraj_fur", 4);
+            put("danmachi:lygerfang_fur", 5);
+            put("danmachi:minotaur_horn", 7);
+            put("danmachi:unicorn_horn", 10);
+        }};
+
+        public static Map<String, Integer> dStoneTrades = new HashMap<String, Integer>(){{
+            put("goblin", 1);
+            put("lygerfang", 4);
+            put("kobold", 1);
+            put("almiraj", 2);
+            put("killer ant", 2);
+            put("minotaur", 5);
+            put("unicorn", 7);
+            put("hellhound", 3);
+            put("bugbear", 4);
+            put("hobgoblin", 3);
+            put("sword_stag", 5);
+            put("metal_rabbit", 4);
+        }};
+
 
         public final ForgeConfigSpec.ConfigValue<String> statusIncreases;
         public final ForgeConfigSpec.ConfigValue<String> mobStats;
         public final ForgeConfigSpec.ConfigValue<String> requiredSmithingDex; //Dex stands for dexterity
+        public final ForgeConfigSpec.ConfigValue<String> stoneTrades;
+        public final ForgeConfigSpec.ConfigValue<String> guildTrades;
 
 
         public Common(ForgeConfigSpec.Builder builder)
@@ -84,6 +111,8 @@ public class Config
             this.mobStats = builder.comment("The order of their stats is: dmg, health, speed, armor")
                     .define("Mob Stats", STD.SDADictToString(dMobStats));
             this.requiredSmithingDex = builder.define("Required Smithing Dexterity", STD.SIDictToString(dRequiredSmithingDex));
+            this.stoneTrades = builder.define("Stone Trades", STD.SIDictToString(dStoneTrades));
+            this.guildTrades = builder.define("Guild Trades", STD.SIDictToString(dGuildTrades));
             builder.pop();
         }
     }

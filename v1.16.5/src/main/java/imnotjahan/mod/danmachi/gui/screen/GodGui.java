@@ -79,7 +79,7 @@ public final class GodGui extends Screen
                                 }));
                     }
                     ));
-        } else if(GetStatus().getFamilia() == godName)
+        } else if(GetStatus().getFamilia().equals(godName))
         {
             currentGodResponse = "Hey " + minecraft.player.getName().getString();
             buttons.add(

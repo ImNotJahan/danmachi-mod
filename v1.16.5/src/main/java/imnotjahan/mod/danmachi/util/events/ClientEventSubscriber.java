@@ -2,6 +2,7 @@ package imnotjahan.mod.danmachi.util.events;
 
 import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.entities.rendering.*;
+import imnotjahan.mod.danmachi.gui.screen.GuildScreen;
 import imnotjahan.mod.danmachi.gui.screen.SmithingScreen;
 import imnotjahan.mod.danmachi.init.Entities;
 import imnotjahan.mod.danmachi.init.Recipes;
@@ -35,6 +36,7 @@ public final class ClientEventSubscriber
     public static void onClientSetup(FMLClientSetupEvent event)
     {
         DeferredWorkQueue.runLater(() -> ScreenManager.register(EventSubscriber.smithingContainer, SmithingScreen::new));
+        DeferredWorkQueue.runLater(() -> ScreenManager.register(EventSubscriber.guildContainer, GuildScreen::new));
 
         // Entity renderers
         RenderingRegistry.registerEntityRenderingHandler(Entities.GOBLIN.get(),
