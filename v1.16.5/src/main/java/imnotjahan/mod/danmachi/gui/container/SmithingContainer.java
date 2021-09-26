@@ -33,6 +33,7 @@ public class SmithingContainer extends Container
 {
     private IInventory smithingInventory = new Inventory(3);
     private IInventory smithingOutput = new Inventory(1);
+    int dexterity = 0;
 
     public SmithingContainer(int id, PlayerInventory playerInventory, PacketBuffer extraData)
     {
@@ -54,7 +55,7 @@ public class SmithingContainer extends Container
         this.addSlot(new Slot(smithingInventory, 1, 36, 35));
         this.addSlot(new Slot(smithingInventory, 2, 81, 58));
 
-        this.addSlot(new SmithingSlot(smithingOutput, smithingInventory, 0, 144, 34));
+        this.addSlot(new SmithingSlot(smithingOutput, smithingInventory, dexterity, 0, 144, 34));
 
         for (int i = 0; i < 3; ++i)
         {
@@ -93,23 +94,28 @@ public class SmithingContainer extends Container
         Map<ResourceLocation, IRecipe<?>> recipes = Recipes.getRecipes(type);
         Collection<IRecipe<?>> mainRecipes = recipes.values();
 
+        List<ItemStack> inputs = new ArrayList<ItemStack>()
+        {{
+            add(smithingInventory.getItem(0));
+            add(smithingInventory.getItem(1));
+            add(smithingInventory.getItem(2));
+        }};
+
+
         for(IRecipe<?> recipe : mainRecipes)
         {
             if(!(recipe instanceof SmithingAnvilRecipe)) return;
 
             final SmithingAnvilRecipe smithingRecipe = (SmithingAnvilRecipe) recipe;
 
-            List<ItemStack> inputs = new ArrayList<ItemStack>()
-            {{
-                smithingInventory.getItem(0);
-                smithingInventory.getItem(1);
-                smithingInventory.getItem(2);
-            }};
-
-            if(smithingRecipe.valid(inputs, world)) smithingOutput.setItem(0, smithingRecipe.getResultItem());
+            if(smithingRecipe.valid(inputs, world))
+            {
+                smithingOutput.setItem(0, smithingRecipe.getResultItem());
+                smithingOutput.setChanged();
+                break;
+            }
             else smithingOutput.setItem(0, ItemStack.EMPTY);
         }
-
         smithingOutput.setChanged();
     }
 

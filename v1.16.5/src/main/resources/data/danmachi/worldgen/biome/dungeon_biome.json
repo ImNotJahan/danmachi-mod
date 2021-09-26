@@ -1,0 +1,131 @@
+{
+  "effects":
+  {
+    "mood_sound":
+    {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2
+    },
+    "sky_color": 729159,
+    "fog_color": 466240,
+    "water_color": 4159204,
+    "water_fog_color": 329011
+  },
+  "carvers":
+  {
+    "air":
+    [
+    ]
+  },
+  "starts":
+  [
+  ],
+  "features":
+  [
+    [
+    ],
+    [
+    ],
+    [
+    ],
+    [
+    ],
+    [
+    ],
+    [
+    ],
+    [
+      "danmachi:adamantite_ore",
+      "danmachi:orichalcum_ore"
+    ],
+    [
+    ],
+    [
+    ],
+    [
+    ]
+  ],
+  "spawners":
+  {
+    "ambient":
+    [
+      {
+        "type": "danmachi:goblin",
+        "minCount": 1,
+        "maxCount": 10,
+        "weight": 1
+      },
+      {
+        "type": "danmachi:almiraj",
+        "minCount": 1,
+        "maxCount": 10,
+        "weight": 1
+      },
+      {
+        "type": "danmachi:metal_rabbit",
+        "minCount": 1,
+        "maxCount": 10,
+        "weight": 1
+      },
+      {
+        "type": "danmachi:unicorn",
+        "minCount": 1,
+        "maxCount": 10,
+        "weight": 1
+      },
+      {
+        "type": "danmachi:minotaur",
+        "minCount": 1,
+        "maxCount": 10,
+        "weight": 1
+      },{
+      "type": "danmachi:bugbear",
+      "minCount": 1,
+      "maxCount": 10,
+      "weight": 1
+    },
+      {
+        "type": "danmachi:kobold",
+        "minCount": 1,
+        "maxCount": 10,
+        "weight": 1
+      },
+      {
+        "type": "danmachi:hellhound",
+        "minCount": 1,
+        "maxCount": 10,
+        "weight": 1
+      }
+
+    ],
+    "creature":
+    [
+    ],
+    "misc":
+    [
+    ],
+    "monster":
+    [
+    ],
+    "water_ambient":
+    [
+    ],
+    "water_creature":
+    [
+    ]
+  },
+  "category": "plains",
+  "precipitation": "none",
+  "surface_builder": "minecraft:stone",
+  "scale": 0.05,
+  "downfall": 0.4,
+  "depth": 0.12,
+  "temperature": 0.8,
+  "player_spawn_friendly": false,
+  "spawn_costs":
+  {
+  },
+  "creature_spawn_probability": 0.5
+}

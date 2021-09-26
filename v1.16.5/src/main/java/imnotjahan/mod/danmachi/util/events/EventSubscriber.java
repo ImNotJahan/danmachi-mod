@@ -116,19 +116,19 @@ public final class EventSubscriber
                         (new Item.Properties()).tab(Main.ToolGroup)), "greatsword"),
                 setup(new SwordItem(ItemTiers.KOTETSU, 4, -2.F,
                         (new Item.Properties()).tab(Main.ToolGroup)), "kotetsu"),
-                setup(new SwordItem(ItemTier.IRON, 4, -2.4F,
+                setup(new SwordItem(ItemTiers.KODACHI_FUTABA, 4, -2.4F,
                         (new Item.Properties()).tab(Main.ToolGroup)), "kodachi_futaba"),
-                setup(new SwordItem(ItemTiers.GREATSWORD, 4, -2.4F,
+                setup(new SwordItem(ItemTiers.GREAT_PODAO_ZAGA, 4, -2.4F,
                         (new Item.Properties()).tab(Main.ToolGroup)), "great_podao_zaga"),
                 setup(new SwordItem(ItemTiers.PROTAGONISTA, 4, -2.4F,
                         (new Item.Properties()).tab(Main.ToolGroup)), "protagonista"),
-                setup(new SwordItem(ItemTiers.HAKUGEN, 4, -2.4F,
+                setup(new SwordItem(ItemTiers.FORTIA_SPEAR, 4, -2.4F,
                         (new Item.Properties()).tab(Main.ToolGroup)), "fortia_spear"),
-                setup(new SwordItem(ItemTiers.HAKUGEN, 4, -2.4F,
+                setup(new SwordItem(ItemTiers.KINGS_BLADE, 4, -2.4F,
                         (new Item.Properties()).tab(Main.ToolGroup)), "kings_blade"), //change tier
-                setup(new SwordItem(ItemTiers.HAKUGEN, 4, -2.4F,
+                setup(new SwordItem(ItemTiers.SUPREME_BLACK_SWORD, 4, -2.4F,
                         (new Item.Properties()).tab(Main.ToolGroup)), "supreme_black_sword"), //change tier
-                setup(new SwordItem(ItemTiers.HAKUGEN, 4, -2.4F,
+                setup(new SwordItem(ItemTiers.ALFS_LUMINA, 4, -2.4F,
                         (new Item.Properties()).tab(Main.ToolGroup)), "alfs_lumina"), //change tier
 
                 //armor

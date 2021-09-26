@@ -4,13 +4,11 @@
     "item": "minecraft:iron_ingot"
   },
     {
-      "item": "minecraft:air"
-    },
-    {
       "item": "minecraft:stick"
     }
   ],
   "output": {
     "item": "danmachi:dagger"
-  }
+  },
+  "dexterity": 0
 }

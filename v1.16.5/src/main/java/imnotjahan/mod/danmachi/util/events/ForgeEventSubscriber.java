@@ -86,8 +86,8 @@ public class ForgeEventSubscriber
 
             int level = status.get(7);
 
-            double attack = status.get(1) * 1000 * level * statMultipliers.get("attack");
-            double vitality = status.get(2) * 1000 * level * statMultipliers.get("vitality");
+            double attack = Math.pow(status.get(1) * 1000 * level * statMultipliers.get("attack"), 1.4D);
+            double vitality = Math.pow(status.get(2) * 1000 * level * statMultipliers.get("vitality"), 1.1D);
             double movement = status.get(4) * 1000 * level * statMultipliers.get("movement");
             double atkSpeed = status.get(4) * 1000 * level * statMultipliers.get("atkspeed");
 

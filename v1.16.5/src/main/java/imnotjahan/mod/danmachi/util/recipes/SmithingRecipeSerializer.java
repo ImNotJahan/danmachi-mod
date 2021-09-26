@@ -21,8 +21,9 @@ public class SmithingRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializ
     {
         Ingredient inputs = Ingredient.fromJson(JSONUtils.getAsJsonArray(json, "inputs"));
         ItemStack output = CraftingHelper.getItemStack(JSONUtils.getAsJsonObject(json, "output"), true);
+        int requiredDex = JSONUtils.getAsInt(json, "dexterity");
 
-        return new SmithingAnvilRecipe(id, inputs, output);
+        return new SmithingAnvilRecipe(id, inputs, output, requiredDex);
     }
 
     @Nullable
@@ -31,8 +32,9 @@ public class SmithingRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializ
     {
         Ingredient inputs = Ingredient.fromNetwork(buf);
         ItemStack output = buf.readItem();
+        int requiredDex = buf.readInt();
 
-        return new SmithingAnvilRecipe(id, inputs, output);
+        return new SmithingAnvilRecipe(id, inputs, output, requiredDex);
     }
 
     @Override
@@ -40,5 +42,6 @@ public class SmithingRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializ
     {
         recipe.getIngredients().forEach(ingredient -> ingredient.toNetwork(buf));
         buf.writeItemStack(recipe.getResultItem(), false);
+        buf.writeInt(recipe.requiredDex);
     }
 }

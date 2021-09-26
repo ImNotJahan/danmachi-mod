@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "tag": "danmachi:orichalcum_ore"
+    "item": "danmachi:orichalcum_ore"
   },
   "result": "danmachi:orichalcum_ingot",
   "experience": 0.1,

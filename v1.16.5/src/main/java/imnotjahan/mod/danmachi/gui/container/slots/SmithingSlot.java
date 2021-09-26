@@ -22,10 +22,13 @@ public class SmithingSlot extends Slot
 {
     IInventory outputInventory;
     IInventory inputInventory;
-    public SmithingSlot(IInventory outputInventory, IInventory inputInventory, int index, int xPosition, int yPosition)
+    int dexterity;
+
+    public SmithingSlot(IInventory outputInventory, IInventory inputInventory, int dexterity, int index, int xPosition, int yPosition)
     {
         super(outputInventory, index, xPosition, yPosition);
         this.outputInventory = outputInventory;
+        this.dexterity = dexterity;
     }
 
     @Override
@@ -59,14 +62,10 @@ public class SmithingSlot extends Slot
                     .getList("Lore", Constants.NBT.TAG_STRING);
         }
 
-        if(requiredSmithingDex.containsKey(output.getItem()
-                .getRegistryName().toString()))
+        IStatus status = playerIn.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(MissingStatus::new);
+        if(status.getFalna())
         {
-            int requiredDex = requiredSmithingDex.get(output.getItem()
-                    .getRegistryName().toString());
-
-            IStatus status = playerIn.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(MissingStatus::new);
-            if (status.get(3) + (status.getLevel() - 1) * 1000 >= requiredDex)
+            if (status.get(3) + (status.getLevel() - 1) * 1000 >= dexterity)
             {
                 resetTags(tag);
                 return true;
@@ -76,6 +75,8 @@ public class SmithingSlot extends Slot
                 tag.add(StringNBT.valueOf("Not enough dexterity"));
             }
         }
+
+        tag.add(StringNBT.valueOf("You need a falna"));
 
         return false;
     }

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "lll"
+  ],
+  "key": {
+    "l": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "danmachi:amazon_armor_chest"
+  }
+}

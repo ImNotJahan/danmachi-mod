@@ -13,27 +13,29 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SmithingAnvilRecipe implements ISmithingAnvilRecipe
 {
-    private static final int MAX_SIZE = 3;
-
     ResourceLocation id;
+
     Ingredient inputs;
     ItemStack output;
+    public int requiredDex;
 
-    public SmithingAnvilRecipe(ResourceLocation id, Ingredient inputs, ItemStack output)
+    public SmithingAnvilRecipe(ResourceLocation id, Ingredient inputs, ItemStack output, int requiredDex)
     {
         this.id = id;
         this.inputs = inputs;
         this.output = output;
+        this.requiredDex = requiredDex;
     }
 
     @Override
     public boolean matches(RecipeWrapper inv, World world)
     {
-        for(int k = 0; k < MAX_SIZE; k++)
+        for(int k = 0; k < inv.getContainerSize(); k++)
         {
             if(inv.countItem(inputs.getItems()[k].getItem()) < 1) return false;
         }
@@ -44,11 +46,15 @@ public class SmithingAnvilRecipe implements ISmithingAnvilRecipe
     public boolean valid(List<ItemStack> inputs, World world)
     {
         ItemStack[] materials = this.inputs.getItems();
-        for(int k = 0; k < MAX_SIZE; k++)
+
+        List<Item> items = new ArrayList<>();
+        inputs.forEach(item -> items.add(item.getItem()));
+
+        for (ItemStack mat : materials)
         {
-            ItemStack mat = materials[k];
-            if(!inputs.stream().anyMatch(c -> c.sameItem(mat))) return false;
-            inputs.remove(materials[k]);
+            Item item = mat.getItem();
+            if (!items.contains(item)) return false;
+            items.remove(item);
         }
 
         return true;

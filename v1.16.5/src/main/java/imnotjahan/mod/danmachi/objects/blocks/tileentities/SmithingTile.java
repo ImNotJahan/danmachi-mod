@@ -2,6 +2,7 @@ package imnotjahan.mod.danmachi.objects.blocks.tileentities;
 
 import imnotjahan.mod.danmachi.gui.container.SmithingContainer;
 import imnotjahan.mod.danmachi.util.events.EventSubscriber;
+import net.minecraft.block.AnvilBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;

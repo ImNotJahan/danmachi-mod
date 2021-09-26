@@ -1,0 +1,15 @@
+{
+  "type": "danmachi:smithing",
+  "inputs": [
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:iron_helmet"
+    }
+  ],
+  "output": {
+    "item": "danmachi:hades_head"
+  },
+  "dexterity": 3000
+}

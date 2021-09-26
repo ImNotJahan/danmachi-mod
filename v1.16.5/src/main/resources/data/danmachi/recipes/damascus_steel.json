@@ -5,11 +5,11 @@
   ],
   "key": {
     "#": {
-      "item": "danmachi:orichalcum_block"
+      "item": "danmachi:damascus_block"
     }
   },
   "result": {
-    "item": "danmachi:orichalcum_ingot",
+    "item": "danmachi:damascus_steel",
     "count": 9
   }
 }

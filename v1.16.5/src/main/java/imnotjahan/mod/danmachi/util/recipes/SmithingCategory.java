@@ -10,6 +10,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
 public class SmithingCategory implements IRecipeCategory<SmithingAnvilRecipe>
@@ -66,9 +67,12 @@ public class SmithingCategory implements IRecipeCategory<SmithingAnvilRecipe>
         recipeLayout.getItemStacks().init(1, true, 35, 34);
         recipeLayout.getItemStacks().init(2, true, 80, 57);
         recipeLayout.getItemStacks().init(3, false, 143, 33);
-        recipeLayout.getItemStacks().set(0, recipe.getIngredients().get(0).getItems()[0]);
-        recipeLayout.getItemStacks().set(1, recipe.getIngredients().get(0).getItems()[1]);
-        recipeLayout.getItemStacks().set(2, recipe.getIngredients().get(0).getItems()[2]);
+
+        for(int k = 0; k < recipe.getIngredients().get(0).getItems().length; k++)
+        {
+            recipeLayout.getItemStacks().set(k, recipe.getIngredients().get(0).getItems()[k]);
+        }
+
         recipeLayout.getItemStacks().set(3, recipe.getResultItem());
     }
 }

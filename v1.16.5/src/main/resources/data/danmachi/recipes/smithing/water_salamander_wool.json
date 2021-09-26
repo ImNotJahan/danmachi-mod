@@ -1,0 +1,15 @@
+{
+  "type": "danmachi:smithing",
+  "inputs": [
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "output": {
+    "item": "danmachi:water_salamander_wool"
+  },
+  "dexterity": 3000
+}

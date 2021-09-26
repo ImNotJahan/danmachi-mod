@@ -1,14 +1,14 @@
 package imnotjahan.mod.danmachi.networking;
 
 import imnotjahan.mod.danmachi.Reference;
-import imnotjahan.mod.danmachi.networking.packets.MessageStatus;
+import imnotjahan.mod.danmachi.networking.packets.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 public class PacketHandler
 {
-    private static final String PROTOCOL_VERSION = "2";
+    private static final String PROTOCOL_VERSION = "3";
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
             new ResourceLocation(Reference.MODID, "main"),
             () -> PROTOCOL_VERSION,
@@ -21,7 +21,7 @@ public class PacketHandler
     {
         INSTANCE.registerMessage(id++, MessageStatus.class,
                 MessageStatus::encode, MessageStatus::decode, MessageStatus::handle);
-        INSTANCE.registerMessage(id++, MessageStatus.class,
-                MessageStatus::encode, MessageStatus::decode, MessageStatus::handleClient);
+        INSTANCE.registerMessage(id++, MessageClientStatus.class,
+                MessageClientStatus::encode, MessageClientStatus::decode, MessageClientStatus::handle);
     }
 }

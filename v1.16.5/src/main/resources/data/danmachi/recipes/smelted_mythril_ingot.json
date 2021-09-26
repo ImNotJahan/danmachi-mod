@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "tag": "danmachi:mythril_ore"
+    "item": "danmachi:mythril_ore"
   },
-  "result": "danmachi:mythril_ore",
+  "result": "danmachi:mythril_ingot",
   "experience": 0.1,
   "cookingtime": 200
 }

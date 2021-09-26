@@ -5,51 +5,58 @@ import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.init.Stats;
 import imnotjahan.mod.danmachi.networking.ClientPacketHandler;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class MessageStatus
+public class MessageClientStatus
 {
     public IStatus status;
 
-    // For when the name is changed on the server
-    public static void handle(MessageStatus msg, Supplier<NetworkEvent.Context> ctx)
+    public static void handle(MessageClientStatus msg, Supplier<NetworkEvent.Context> ctx)
     {
         ctx.get().enqueueWork(() ->
-                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientPacketHandler.handleStatus(msg, ctx)));
+        {
+            ServerPlayerEntity sender = ctx.get().getSender();
+
+            if(sender == null) return;
+
+            IStatus status = sender.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
+                    .orElseThrow(ArithmeticException::new);
+
+            if(status.getLevel() != msg.status.getLevel()) sender.awardStat(Stats.LEVEL);
+
+            status.setArray(msg.status.getArray());
+        });
         ctx.get().setPacketHandled(true);
     }
 
-    public static MessageStatus decode(PacketBuffer buf)
+    public static MessageClientStatus decode(PacketBuffer buf)
     {
         IStatus status = new Status();
 
         status.setFamilia(buf.readUtf());
         status.setArray(buf.readVarIntArray());
 
-        return new MessageStatus(status);
+        return new MessageClientStatus(status);
     }
 
-    public static void encode(MessageStatus message, PacketBuffer buf)
+    public static void encode(MessageClientStatus message, PacketBuffer buf)
     {
         buf.writeUtf(message.status.getFamilia());
         buf.writeVarIntArray(message.status.getArray());
     }
 
-    public MessageStatus(IStatus status)
+    public MessageClientStatus(IStatus status)
     {
         this.status = status;
     }
 
-    public MessageStatus()
+    public MessageClientStatus()
     {
         status = new Status();
     }

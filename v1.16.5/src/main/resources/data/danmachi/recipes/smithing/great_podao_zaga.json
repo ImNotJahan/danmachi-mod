@@ -7,10 +7,11 @@
       "item": "minecraft:iron_block"
     },
     {
-      "item": "minecraft:wooden_plank"
+      "item": "minecraft:oak_planks"
     }
   ],
   "output": {
     "item": "danmachi:great_podao_zaga"
-  }
+  },
+  "dexterity": 1000
 }

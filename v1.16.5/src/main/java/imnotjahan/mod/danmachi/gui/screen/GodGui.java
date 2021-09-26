@@ -7,6 +7,7 @@ import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.init.Items;
 import imnotjahan.mod.danmachi.init.Stats;
 import imnotjahan.mod.danmachi.networking.PacketHandler;
+import imnotjahan.mod.danmachi.networking.packets.MessageClientStatus;
 import imnotjahan.mod.danmachi.networking.packets.MessageStatus;
 import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
 import net.minecraft.client.gui.screen.Screen;
@@ -199,7 +200,7 @@ public final class GodGui extends Screen
 
     void refreshServer()
     {
-        PacketHandler.INSTANCE.sendToServer(new MessageStatus(GetStatus()));
+        PacketHandler.INSTANCE.sendToServer(new MessageClientStatus(GetStatus()));
     }
 
     void ClearButtons()

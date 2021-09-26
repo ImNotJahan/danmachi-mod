@@ -1,8 +1,6 @@
 {
   "type": "danmachi:smithing",
-  "inputs": [{
-    "item": "minecraft:air"
-  },
+  "inputs": [
     {
       "item": "danmachi:minotaur_horn"
     },
@@ -12,5 +10,6 @@
   ],
   "output": {
     "item": "danmachi:ushiwakamaru"
-  }
+  },
+  "dexterity": 1000
 }

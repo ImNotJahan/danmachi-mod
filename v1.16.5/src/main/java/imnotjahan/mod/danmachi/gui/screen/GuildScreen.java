@@ -18,7 +18,7 @@ public class GuildScreen extends ContainerScreen<GuildContainer>
 
     public GuildScreen(GuildContainer container, PlayerInventory playerInventory, ITextComponent title)
     {
-        super(container, playerInventory, new StringTextComponent("Smithing Anvil"));
+        super(container, playerInventory, new StringTextComponent("Guild Member"));
     }
 
     @Override
@@ -37,5 +37,6 @@ public class GuildScreen extends ContainerScreen<GuildContainer>
     {
         this.renderBackground(p_230430_1_);
         super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
+        this.renderTooltip(p_230430_1_, p_230430_2_, p_230430_3_);
     }
 }

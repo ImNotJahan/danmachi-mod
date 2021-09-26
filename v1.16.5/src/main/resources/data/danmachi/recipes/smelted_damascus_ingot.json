@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "tag": "danmachi:damascus_ore"
+    "item": "danmachi:damascus_ore"
   },
   "result": "danmachi:damascus_steel",
   "experience": 0.1,

@@ -22,34 +22,24 @@ import java.util.ArrayList;
 @Mod.EventBusSubscriber
 public class OreGen
 {
-    private static final ArrayList<ConfiguredFeature<?, ?>> overworldOres = new ArrayList<ConfiguredFeature<?, ?>>();
+    private static final ArrayList<ConfiguredFeature<?, ?>> overworldOres = new ArrayList<>();
 
     public static void registerOres()
     {
-        overworldOres.add(register("adamantite_ore", Feature.ORE.configured(new OreFeatureConfig(
-                OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.ADAMANTITE_ORE.getBlock().defaultBlockState(), 4)) //Vein Size
-                .range(64).squared()
-                .countRandom(64)));
-
-        overworldOres.add(register("orichalcum_ore", Feature.ORE.configured(new OreFeatureConfig(
-                OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.ORICHALCUM_ORE.getBlock().defaultBlockState(), 4)) //Vein Size
-                .range(64).squared()
-                .countRandom(64)));
-
         overworldOres.add(register("mythril_ore", Feature.ORE.configured(new OreFeatureConfig(
-                OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.MYTHRIL_ORE.getBlock().defaultBlockState(), 4)) //Vein Size
-                .range(64).squared()
-                .countRandom(64)));
+                OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.MYTHRIL_ORE.getBlock().defaultBlockState(), 9))
+                .range(32).squared()
+                .countRandom(2)));
 
         overworldOres.add(register("damascus_ore", Feature.ORE.configured(new OreFeatureConfig(
-                        OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.DAMASCUS_ORE.getBlock().defaultBlockState(), 4)) //Vein Size
-                .range(64).squared()
-                .countRandom(64)));
+                        OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.DAMASCUS_ORE.getBlock().defaultBlockState(), 3))
+                .range(16).squared()
+                .countRandom(2)));
 
         overworldOres.add(register("nosteel_ore", Feature.ORE.configured(new OreFeatureConfig(
-                        OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.NOSTEEL_ORE.getBlock().defaultBlockState(), 4)) //Vein Size
-                .range(64).squared()
-                .countRandom(64)));
+                        OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.NOSTEEL_ORE.getBlock().defaultBlockState(), 3))
+                .range(16).squared()
+                .countRandom(2)));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -65,7 +55,9 @@ public class OreGen
         }
     }
 
-    private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
+    private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?>
+    register(String name, ConfiguredFeature<FC, ?> configuredFeature)
+    {
         return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, Reference.MODID + ":" + name, configuredFeature);
     }
 

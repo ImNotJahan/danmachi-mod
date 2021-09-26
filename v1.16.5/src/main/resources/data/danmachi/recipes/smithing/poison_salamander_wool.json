@@ -1,0 +1,15 @@
+{
+  "type": "danmachi:smithing",
+  "inputs": [
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "output": {
+    "item": "danmachi:poison_salamander_wool"
+  },
+  "dexterity": 3000
+}
