@@ -10,7 +10,8 @@ public class CaveFloor
     static int birthLimit = 3;
     static int deathLimit = 3;
 
-    static public boolean[][] initialiseMap(boolean[][] map){
+    static public boolean[][] initialiseMap(boolean[][] map)
+    {
         for(int x=0; x<width; x++){
             for(int y=0; y<height; y++){
                 if(Math.random() < chanceToStartAlive){

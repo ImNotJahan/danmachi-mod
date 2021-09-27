@@ -61,9 +61,9 @@ public class DungeonChunkGenerator extends ChunkGeneratorBase
     int FLOOR_HEIGHT = 10;
     int DUNGEON_HEIGHT = 256;
 
-    private Vector2f[] stairChunks = new Vector2f[100];
-    private Boolean[] generatedStairs = new Boolean[100];
-    private boolean[][][] maps = new boolean[CaveFloor.width][CaveFloor.height][DUNGEON_HEIGHT / FLOOR_HEIGHT];
+    private final Vector2f[] stairChunks = new Vector2f[100];
+    private final Boolean[] generatedStairs = new Boolean[100];
+    private final boolean[][][] maps = new boolean[CaveFloor.width][CaveFloor.height][DUNGEON_HEIGHT / FLOOR_HEIGHT];
     List<BlockPos> dontPlaceHere = new ArrayList<>();
 
     private void generationInit()
@@ -120,7 +120,7 @@ public class DungeonChunkGenerator extends ChunkGeneratorBase
             BlockState iblockstate = Blocks.STONE.defaultBlockState();
 
             int height = DUNGEON_HEIGHT - y;
-            int floor = (int)Math.floor(height != 0 ? height / 10 : 0);
+            int floor = (int)Math.floor(height / 10);
 
             for (int xx = 0; xx < 16; xx++)
             {
