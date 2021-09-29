@@ -12,7 +12,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public class DragonBase extends EnderDragonEntity
+public class DragonBase extends EnderDragonEntity implements IMobStatus
 {
     private final String name;
     public DragonBase(EntityType<? extends EnderDragonEntity> entity, World world, String name)
@@ -22,31 +22,9 @@ public class DragonBase extends EnderDragonEntity
     }
 
     @Override
-    public void die(DamageSource cause)
+    public void die(DamageSource source)
     {
-        super.die(cause);
-
-        if(cause.getEntity() instanceof ServerPlayerEntity)
-        {
-            ServerPlayerEntity player = (ServerPlayerEntity) cause.getEntity();
-            IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
-                    .orElseThrow(MissingStatus::new);
-
-            if (status.getFalna())
-            {
-                Integer[] statusIncreases = STD.SIAStringToDict(
-                        Config.COMMON.statusIncreases.get()).get(name);
-
-                for (int k = 0; k < 5; k++)
-                {
-                    status.increase(statusIncreases[k], Status.POTENTIAL_START + k);
-                }
-
-                status.increase(statusIncreases[5], 6);
-            } else
-            {
-                return;
-            }
-        }
+        super.die(source);
+        this.die(source, name);
     }
 }

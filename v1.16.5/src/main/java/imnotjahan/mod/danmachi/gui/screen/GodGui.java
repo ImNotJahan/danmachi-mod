@@ -200,7 +200,7 @@ public final class GodGui extends Screen
 
     void refreshServer()
     {
-        PacketHandler.INSTANCE.sendToServer(new MessageClientStatus(GetStatus()));
+        PacketHandler.C2S_INSTANCE.sendToServer(new MessageClientStatus(GetStatus()));
     }
 
     void ClearButtons()

@@ -35,7 +35,7 @@ import net.minecraft.world.spawner.WorldEntitySpawner;
 import java.util.Map;
 import java.util.Random;
 
-public class MonsterBase extends ZombieEntity
+public class MonsterBase extends ZombieEntity implements IMobStatus
 {
     String name = "";
 
@@ -54,6 +54,13 @@ public class MonsterBase extends ZombieEntity
     public static boolean checkMonsterSpawnRules(EntityType<? extends MonsterEntity> p_223325_0_, IServerWorld p_223325_1_, SpawnReason p_223325_2_, BlockPos p_223325_3_, Random p_223325_4_)
     {
         return checkMobSpawnRules(p_223325_0_, p_223325_1_, p_223325_2_, p_223325_3_, p_223325_4_);
+    }
+
+    @Override
+    public void die(DamageSource source)
+    {
+        super.die(source);
+        this.die(source, name);
     }
 
     @Override
@@ -82,43 +89,6 @@ public class MonsterBase extends ZombieEntity
             this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
             this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
             this.goalSelector.addGoal(2, new ZombieAttackGoal(this, 1.0D, false));
-        }
-    }
-
-    @Override
-    public void die(DamageSource cause)
-    {
-        super.die(cause);
-
-        if(cause.getEntity() instanceof ServerPlayerEntity)
-        {
-            ServerPlayerEntity player = (ServerPlayerEntity) cause.getEntity();
-            IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
-                    .orElseThrow(MissingStatus::new);
-
-            ItemStack stone = new ItemStack(Items.MAGIC_STONE);
-            CompoundNBT nbt = stone.getOrCreateTag();
-
-            nbt.putString("droppedFrom", name);
-            nbt.putInt("value", 100);
-
-            player.addItem(stone);
-
-            if (status.getFalna())
-            {
-                Integer[] statusIncreases = STD.SIAStringToDict(
-                        Config.COMMON.statusIncreases.get()).get(name);
-
-                for (int k = 0; k < 5; k++)
-                {
-                    status.increase(statusIncreases[k], Status.POTENTIAL_START + k);
-                }
-
-                status.increase(statusIncreases[5], 6);
-            } else
-            {
-                return;
-            }
         }
     }
 

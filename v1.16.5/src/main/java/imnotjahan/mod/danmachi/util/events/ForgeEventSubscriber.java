@@ -5,7 +5,7 @@ import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
-import imnotjahan.mod.danmachi.commands.DanmachiLog;
+import imnotjahan.mod.danmachi.commands.ChangeStatus;
 import imnotjahan.mod.danmachi.commands.DungeonCommand;
 import imnotjahan.mod.danmachi.networking.PacketHandler;
 import imnotjahan.mod.danmachi.networking.packets.MessageStatus;
@@ -33,12 +33,10 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.server.command.ConfigCommand;
 import org.apache.logging.log4j.LogManager;
@@ -152,7 +150,7 @@ public class ForgeEventSubscriber
     @SubscribeEvent
     public static void onCommandsRegister(RegisterCommandsEvent event)
     {
-        new DanmachiLog(event.getDispatcher());
+        new ChangeStatus(event.getDispatcher());
         new DungeonCommand(event.getDispatcher());
 
         ConfigCommand.register(event.getDispatcher());
@@ -184,11 +182,6 @@ public class ForgeEventSubscriber
             if (event.getEntity() instanceof PlayerEntity)
             {
                 ServerPlayerEntity player = (ServerPlayerEntity) event.getEntity();
-                PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new MessageStatus(
-                        player.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(ArithmeticException::new)));
-            } else if (event.getSource().getEntity() instanceof PlayerEntity)
-            {
-                ServerPlayerEntity player = (ServerPlayerEntity) event.getSource().getEntity();
                 PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new MessageStatus(
                         player.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(ArithmeticException::new)));
             }

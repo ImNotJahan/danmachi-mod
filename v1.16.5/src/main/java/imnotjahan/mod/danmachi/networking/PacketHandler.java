@@ -8,7 +8,7 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 public class PacketHandler
 {
-    private static final String PROTOCOL_VERSION = "3";
+    private static final String PROTOCOL_VERSION = "4";
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
             new ResourceLocation(Reference.MODID, "main"),
             () -> PROTOCOL_VERSION,
@@ -16,12 +16,21 @@ public class PacketHandler
             PROTOCOL_VERSION::equals
     );
 
+    /** C2S = Client to server */
+    public static final SimpleChannel C2S_INSTANCE = NetworkRegistry.newSimpleChannel(
+            new ResourceLocation(Reference.MODID, "client"),
+            () -> PROTOCOL_VERSION,
+            PROTOCOL_VERSION::equals,
+            PROTOCOL_VERSION::equals
+    );
+
+
     private static int id = 0;
     public static void init()
     {
         INSTANCE.registerMessage(id++, MessageStatus.class,
                 MessageStatus::encode, MessageStatus::decode, MessageStatus::handle);
-        INSTANCE.registerMessage(id++, MessageClientStatus.class,
+        C2S_INSTANCE.registerMessage(id++, MessageClientStatus.class,
                 MessageClientStatus::encode, MessageClientStatus::decode, MessageClientStatus::handle);
     }
 }

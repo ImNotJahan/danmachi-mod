@@ -3,6 +3,7 @@ package imnotjahan.mod.danmachi.entities;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
+import imnotjahan.mod.danmachi.entities.templates.IMobStatus;
 import imnotjahan.mod.danmachi.util.STD;
 import imnotjahan.mod.danmachi.util.config.Config;
 import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
@@ -21,7 +22,7 @@ import net.minecraft.world.World;
 
 import java.util.function.Predicate;
 
-public class Bugbear extends PolarBearEntity
+public class Bugbear extends PolarBearEntity implements IMobStatus
 {
 
     public Bugbear(EntityType<? extends PolarBearEntity> p_i50249_1_, World p_i50249_2_)
@@ -44,30 +45,7 @@ public class Bugbear extends PolarBearEntity
     public void die(DamageSource cause)
     {
         super.die(cause);
-
-        if(cause.getEntity() instanceof ServerPlayerEntity)
-        {
-            ServerPlayerEntity player = (ServerPlayerEntity) cause.getEntity();
-            IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
-                    .orElseThrow(MissingStatus::new);
-
-            if (status.getFalna())
-            {
-                Integer[] statusIncreases = STD.SIAStringToDict(
-                        Config.COMMON.statusIncreases.get()).get("bugbear");
-
-                for (int k = 0; k < 5; k++)
-                {
-                    status.increase(statusIncreases[k], Status.POTENTIAL_START + k);
-                }
-
-                status.increase(statusIncreases[5], 6);
-            } else
-            {
-                return;
-            }
-
-        }
+        this.die(cause, "bugbear");
     }
 
     @Override
