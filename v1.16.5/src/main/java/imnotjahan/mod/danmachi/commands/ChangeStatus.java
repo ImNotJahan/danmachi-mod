@@ -6,7 +6,6 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
-import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
 import net.minecraft.command.CommandSource;
@@ -15,8 +14,6 @@ import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.util.text.StringTextComponent;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ChangeStatus
 {

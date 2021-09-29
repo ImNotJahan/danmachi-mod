@@ -84,10 +84,10 @@ public class ForgeEventSubscriber
 
             int level = status.get(7);
 
-            double attack = Math.pow(status.get(1) * 1000 * level * statMultipliers.get("attack"), 1.4D);
-            double vitality = Math.pow(status.get(2) * 1000 * level * statMultipliers.get("vitality"), 1.1D);
-            double movement = status.get(4) * 1000 * level * statMultipliers.get("movement");
-            double atkSpeed = status.get(4) * 1000 * level * statMultipliers.get("atkspeed");
+            double attack = Math.pow((status.get(1) + (1000 * (level - 1))) * statMultipliers.get("attack"), 1.4D);
+            double vitality = Math.pow((status.get(2) + (1000 * (level - 1))) * statMultipliers.get("vitality"), 1.1D);
+            double movement = (status.get(4) + (1000 * (level - 1))) * statMultipliers.get("movement");
+            double atkSpeed = (status.get(4) + (1000 * (level - 1))) * statMultipliers.get("atkspeed");
 
             if(attack != attackModifier.getAmount())
             {

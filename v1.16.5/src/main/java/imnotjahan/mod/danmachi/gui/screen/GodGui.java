@@ -107,6 +107,7 @@ public final class GodGui extends Screen
                                                         20, new StringTextComponent("Sure"), (p_214288_3_) ->
                                                 {
                                                     GetStatus().levelUp();
+                                                    ClearButtons();
 
                                                     currentGodResponse = "Okay, andddd you're now level "
                                                             + GetStatus().getLevel() + "!";
@@ -119,7 +120,7 @@ public final class GodGui extends Screen
                                                 }));
 
                                         buttons.add(
-                                                new Button(this.width / 2 - 100, 100 + 30, 200,
+                                                new Button(this.width / 2 - 100, 100 + 60, 200,
                                                         20, new StringTextComponent("Not yet"),
                                                         (p_214288_3_) ->
                                                 {
