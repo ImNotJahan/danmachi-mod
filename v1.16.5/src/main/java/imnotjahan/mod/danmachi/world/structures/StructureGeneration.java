@@ -23,6 +23,7 @@ public class StructureGeneration
 
             structures.add(() -> Structures.HOUSE.get().configured(IFeatureConfig.NONE));
             structures.add(() -> Structures.BABEL.get().configured(IFeatureConfig.NONE));
+            structures.add(() -> Structures.RAKIAN_OUTPOST.get().configured(IFeatureConfig.NONE));
         }
     }
 }

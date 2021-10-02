@@ -7,10 +7,12 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
+import imnotjahan.mod.danmachi.networking.PacketHandler;
 import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
 
 import java.util.Arrays;
@@ -38,7 +40,8 @@ public class ChangeStatus
 
     private int CommandStuff(CommandSource source, String action, String stat, int value) throws CommandSyntaxException
     {
-        IStatus status = source.getPlayerOrException().getCapability(StatusProvider.STATUS_CAP)
+        ServerPlayerEntity player = source.getPlayerOrException();
+        IStatus status = player.getCapability(StatusProvider.STATUS_CAP)
                 .orElseThrow(MissingStatus::new);
         final int statID = Arrays.asList(statSuggestions).indexOf(stat);
 
@@ -51,15 +54,19 @@ public class ChangeStatus
 
             case "set":
                 status.set(statID, value);
+                PacketHandler.refreshClient(player);
+
                 source.sendSuccess(new StringTextComponent("Set " + stat + " to " + value), false);
                 return 0;
 
             case "increase":
                 status.increase(statID, value);
+                PacketHandler.refreshClient(player);
                 break;
 
             case "decrease":
                 status.increase(statID, -value);
+                PacketHandler.refreshClient(player);
                 break;
 
             default:

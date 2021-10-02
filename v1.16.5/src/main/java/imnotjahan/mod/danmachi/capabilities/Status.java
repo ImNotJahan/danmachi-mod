@@ -220,6 +220,27 @@ public class Status implements IStatus
         this.familia = familia;
     }
 
+    Map<String, Integer> familias = new HashMap<String, Integer>()
+    {{
+        put("hestia", 0);
+        put("hermes", 1);
+        put("soma", 2);
+        put("loki", 3);
+    }};
+
+    @Override
+    public int getFamiliaNO()
+    {
+        return familias.getOrDefault(familia, -1);
+    }
+
+    @Override
+    public void setFamiliaNO(int familia)
+    {
+        if(!familias.containsValue(familia)) return;
+        this.familia = (String) familias.keySet().toArray()[familia];
+    }
+
     @Override
     public int getLevel()
     {

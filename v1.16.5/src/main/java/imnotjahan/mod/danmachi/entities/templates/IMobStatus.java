@@ -5,7 +5,6 @@ import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.init.Items;
 import imnotjahan.mod.danmachi.networking.PacketHandler;
-import imnotjahan.mod.danmachi.networking.packets.MessageStatus;
 import imnotjahan.mod.danmachi.util.STD;
 import imnotjahan.mod.danmachi.util.config.Config;
 import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
@@ -13,7 +12,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.fml.network.PacketDistributor;
 
 public interface IMobStatus
 {
@@ -45,9 +43,7 @@ public interface IMobStatus
 
                 status.increase(statusIncreases[5], 6);
 
-                PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new MessageStatus(
-                        player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
-                                .orElseThrow(ArithmeticException::new)));
+                PacketHandler.refreshClient(player);
             }
         }
     }

@@ -1,5 +1,6 @@
 package imnotjahan.mod.danmachi.objects.armor;
 
+import imnotjahan.mod.danmachi.util.ClientThings;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.entity.LivingEntity;
@@ -25,6 +26,6 @@ public class SizeableArmor extends ArmorItem
     @Override
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default)
     {
-        return (A) new PlayerModel(size, false);
+        return ClientThings.getPlayerModel(size);
     }
 }

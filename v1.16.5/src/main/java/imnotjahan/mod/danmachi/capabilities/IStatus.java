@@ -8,8 +8,11 @@ public interface IStatus
     boolean getFalna();
 
     String getFamilia();
-
     void setFamilia(String familiaName);
+
+    /** NO = Number */
+    int getFamiliaNO();
+    void setFamiliaNO(int number);
 
     /**
      * @param points how much the stat should increase by,

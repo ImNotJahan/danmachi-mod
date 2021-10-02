@@ -65,6 +65,10 @@ public final class ClientEventSubscriber
                 UnicornRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.KOBOLD.get(),
                 KoboldRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.RAKIAN_SOLDIER.get(),
+                RakianSoldierRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.RAKIAN_BLACKSMITH.get(),
+                RakianBlacksmithRenderer::new);
     }
 
     public static void init() {}

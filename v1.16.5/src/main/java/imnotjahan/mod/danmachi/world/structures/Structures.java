@@ -25,6 +25,8 @@ public class Structures
             STRUCTURES.register("god_house", GodHouse::new);
     public static final RegistryObject<Structure<NoFeatureConfig>> BABEL =
             STRUCTURES.register("babel", Babel::new);
+    public static final RegistryObject<Structure<NoFeatureConfig>> RAKIAN_OUTPOST =
+            STRUCTURES.register("rakian_outpost", RakianOutpost::new);
 
     /* average distance apart in chunks between spawn attempts */
     /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/
@@ -36,6 +38,9 @@ public class Structures
                 new StructureSeparationSettings(100,50, 1234567890),
                 true);
         setupMapSpacingAndLand(BABEL.get(),
+                new StructureSeparationSettings(100,50, 1234567890),
+                true);
+        setupMapSpacingAndLand(RAKIAN_OUTPOST.get(),
                 new StructureSeparationSettings(100,50, 1234567890),
                 true);
     }

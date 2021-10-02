@@ -285,6 +285,10 @@ public final class EventSubscriber
                 Heightmap.Type.WORLD_SURFACE, Unicorn::checkMobSpawnRules);
         EntitySpawnPlacementRegistry.register(KOBOLD.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
                 Heightmap.Type.WORLD_SURFACE, Kobold::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(RAKIAN_SOLDIER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, RakianSoldier::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(RAKIAN_BLACKSMITH.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, RakianBlacksmith::checkMobSpawnRules);
     }
 
     @SubscribeEvent
@@ -303,6 +307,8 @@ public final class EventSubscriber
         event.put(HELLHOUND.get(), Hellhound.createAttributes().build());
         event.put(UNICORN.get(), Unicorn.createAttributes().build());
         event.put(KOBOLD.get(), Kobold.createAttributes().build());
+        event.put(RAKIAN_SOLDIER.get(), RakianSoldier.createAttributes().build());
+        event.put(RAKIAN_BLACKSMITH.get(), RakianBlacksmith.createAttributes().build());
     }
 
     @SubscribeEvent

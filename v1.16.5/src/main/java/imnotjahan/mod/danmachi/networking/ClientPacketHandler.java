@@ -1,8 +1,10 @@
 package imnotjahan.mod.danmachi.networking;
 
+import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.networking.packets.MessageStatus;
+import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -16,8 +18,11 @@ public class ClientPacketHandler
         ctx.get().enqueueWork(() ->
         {
             ClientPlayerEntity sender = Minecraft.getInstance().player;
-            sender.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(ArithmeticException::new)
-                    .setArray(msg.status.getArray());
+
+            IStatus status = sender.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(MissingStatus::new);
+
+            status.setArray(msg.status.getArray());
+            status.setFamilia(msg.status.getFamilia());
         });
         ctx.get().setPacketHandled(true);
     }

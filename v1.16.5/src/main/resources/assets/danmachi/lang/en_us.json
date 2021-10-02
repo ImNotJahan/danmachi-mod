@@ -78,6 +78,8 @@
     "item.danmachi.bugbear_spawn_egg": "Bugbear Spawn Egg",
     "item.danmachi.unicorn_spawn_egg": "Unicorn Spawn Egg",
     "item.danmachi.kobold_spawn_egg": "Kobold Spawn Egg",
+    "item.danmachi.rakian_soldier_spawn_egg": "Rakian Soldier Spawn Egg",
+    "item.danmachi.rakian_blacksmith_spawn_egg": "Rakian Blacksmith Spawn Egg",
     "item.danmachi.needle": "Needle",
 
     "": "/blocks",
@@ -120,6 +122,8 @@
     "entity.hobgoblin": "Hobgoblin",
     "entity.sword_stag": "Sword Stag",
     "entity.metal_rabbit": "Metal Rabbit",
+    "entity.rakian_soldier": "Rakian Soldier",
+    "entity.rakian_blacksmith": "Rakian Blacksmith",
 
     "": "/item groups",
     "itemGroup.danmachi_materials": "Danmachi Materials",

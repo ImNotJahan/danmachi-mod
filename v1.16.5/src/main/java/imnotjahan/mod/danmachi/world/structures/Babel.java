@@ -105,11 +105,6 @@ public class Babel extends Structure<NoFeatureConfig>
             this.pieces.forEach(piece -> piece.getBoundingBox().y0 -= 1); // y0 = minimum y
 
             this.calculateBoundingBox();
-
-            LogManager.getLogger().log(Level.DEBUG, "Babel at " +
-                    this.pieces.get(0).getBoundingBox().x0 + " " +
-                    this.pieces.get(0).getBoundingBox().y0 + " " +
-                    this.pieces.get(0).getBoundingBox().z0); // x, y, or z 0 is minimum, while 1 is maximum
         }
     }
 }

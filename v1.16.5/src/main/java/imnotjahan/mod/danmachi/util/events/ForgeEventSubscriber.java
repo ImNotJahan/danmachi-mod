@@ -170,22 +170,39 @@ public class ForgeEventSubscriber
     public static void playerLoggedIn(PlayerEvent.PlayerLoggedInEvent event)
     {
         ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
-        PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new MessageStatus(
-                player.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(ArithmeticException::new)));
+        PacketHandler.refreshClient(player);
     }
 
     @SubscribeEvent
     public static void playerDeath(LivingDeathEvent event)
     {
-        if(!event.getEntity().getCommandSenderWorld().isClientSide)
-        {
-            if (event.getEntity() instanceof PlayerEntity)
-            {
-                ServerPlayerEntity player = (ServerPlayerEntity) event.getEntity();
-                PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new MessageStatus(
-                        player.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(ArithmeticException::new)));
-            }
-        }
+        if(!(event.getEntity() instanceof PlayerEntity)) return;
+
+        ServerPlayerEntity player = (ServerPlayerEntity) event.getEntity();
+        PacketHandler.refreshClient(player);
+    }
+
+    @SubscribeEvent
+    public static void changedDimension(PlayerEvent.PlayerChangedDimensionEvent event)
+    {
+        PacketHandler.refreshClient((ServerPlayerEntity) event.getPlayer());
+    }
+
+    @SubscribeEvent
+    public static void playerRespawned(PlayerEvent.PlayerRespawnEvent event)
+    {
+        PacketHandler.refreshClient((ServerPlayerEntity) event.getPlayer());
+    }
+
+    // For keeping status on death
+    @SubscribeEvent
+    public static void changeBackPlayersStatus(PlayerEvent.Clone event)
+    {
+        IStatus status = event.getPlayer().getCapability(StatusProvider.STATUS_CAP).orElseThrow(MissingStatus::new);
+        IStatus oldStatus = event.getOriginal().getCapability(StatusProvider.STATUS_CAP).orElseThrow(MissingStatus::new);
+
+        status.setArray(oldStatus.getArray());
+        status.setFamilia(oldStatus.getFamilia());
     }
 
     // Structures

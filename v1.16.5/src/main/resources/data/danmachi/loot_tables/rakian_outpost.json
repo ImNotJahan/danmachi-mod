@@ -1,0 +1,51 @@
+{
+  "pools": [
+    {
+      "rolls": {
+        "min": 3,
+        "max": 5
+      },
+      "bonus_rolls": {
+        "min": 0,
+        "max": 2
+      },
+      "entries": [
+        {
+          "type": "item",
+          "name": "danmachi:fire_magic_sword",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "danmachi:ice_magic_sword",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "danmachi:greatsword",
+          "weight": 3
+        },
+        {
+          "type": "item",
+          "name": "danmachi:adamantite_ingot",
+          "weight": 2
+        },
+        {
+          "type": "item",
+          "name": "danmachi:orichalcum_ingot",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "danmachi:mythril_ingot",
+          "weight": 3
+        },
+        {
+          "type": "item",
+          "name": "danmachi:nosteel_ingot",
+          "weight": 2
+        }
+      ]
+    }
+  ]
+}

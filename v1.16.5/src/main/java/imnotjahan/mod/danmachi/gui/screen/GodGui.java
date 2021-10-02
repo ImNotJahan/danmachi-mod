@@ -5,9 +5,7 @@ import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.init.Items;
-import imnotjahan.mod.danmachi.init.Stats;
 import imnotjahan.mod.danmachi.networking.PacketHandler;
-import imnotjahan.mod.danmachi.networking.packets.MessageClientStatus;
 import imnotjahan.mod.danmachi.networking.packets.MessageStatus;
 import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
 import net.minecraft.client.gui.screen.Screen;
@@ -69,7 +67,7 @@ public final class GodGui extends Screen
                                     GetStatus().setFamilia(godName);
                                     GetStatus().giveFalna();
 
-                                    refreshServer();
+                                    PacketHandler.refreshServer(GetStatus());
 
                                     buttons.add(
                                             new Button(this.width / 2 - 100, 100 + 30, 200,
@@ -142,7 +140,7 @@ public final class GodGui extends Screen
                                                         minecraft.setScreen(null)));
                                     }
 
-                                    refreshServer();
+                                    PacketHandler.refreshServer(GetStatus());
                                 }));
                     }
                     ));
@@ -173,9 +171,7 @@ public final class GodGui extends Screen
                                 buttons.add(
                                         new Button(this.width / 2 - 100, 100 + 30, 200,
                                                 20, new StringTextComponent("Thanks"), (p_214288_3_) ->
-                                        {
-                                            minecraft.setScreen(null);
-                                        }));
+                                                minecraft.setScreen(null)));
                             }));
                 }));
         }
@@ -193,15 +189,10 @@ public final class GodGui extends Screen
         super.render(stack, mouseX, mouseY, tick);
     }
 
-    protected IStatus GetStatus()
+    private IStatus GetStatus()
     {
         return minecraft.player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
                 .orElseThrow(MissingStatus::new);
-    }
-
-    void refreshServer()
-    {
-        PacketHandler.C2S_INSTANCE.sendToServer(new MessageClientStatus(GetStatus()));
     }
 
     void ClearButtons()
