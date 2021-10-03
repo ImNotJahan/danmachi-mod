@@ -15,14 +15,14 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class RakianBlacksmith extends MonsterBase
+public class RakianBlacksmith extends ZombieEntity
 {
     private static final int SOLDIER_TYPES = 1;
     private static final DataParameter<Integer> ID = EntityDataManager.defineId(RakianBlacksmith.class, DataSerializers.INT);
 
     public RakianBlacksmith(EntityType<? extends ZombieEntity> entityType, World world)
     {
-        super(entityType, world, "rakian_blacksmith");
+        super(entityType, world);
     }
 
     @Override

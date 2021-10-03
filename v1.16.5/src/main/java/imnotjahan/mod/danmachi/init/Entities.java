@@ -51,6 +51,8 @@ public class Entities
             1, 1, 0, 16777215);
     public static final RegistryObject<EntityType<Kobold>> KOBOLD = createEntity("kobold", Kobold::new,
             1, 1, 9736335, 5196618);
+    public static final RegistryObject<EntityType<Goliath>> GOLIATH = createEntity("goliath", Goliath::new,
+            3, 8, 9736335, 5196618);
 
     // Rakia
     public static final RegistryObject<EntityType<RakianSoldier>> RAKIAN_SOLDIER = createEntity("rakian_soldier",

@@ -3,12 +3,16 @@ package imnotjahan.mod.danmachi.networking.packets;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
+import imnotjahan.mod.danmachi.gui.container.ArmorDressContainer;
+import imnotjahan.mod.danmachi.gui.container.GuildContainer;
 import imnotjahan.mod.danmachi.init.Stats;
 import imnotjahan.mod.danmachi.networking.ClientPacketHandler;
 import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -18,11 +22,14 @@ import java.util.function.Supplier;
 public class MessageStatus
 {
     public IStatus status;
+    public final String container;
     private final boolean clientSide;
 
     // For when the name is changed on the server
     public static void handle(MessageStatus msg, Supplier<NetworkEvent.Context> ctx)
     {
+        if(checkContainer(msg, ctx)) ctx.get().setPacketHandled(true);
+
         if(!msg.clientSide)
         {
             ctx.get().enqueueWork(() ->
@@ -63,22 +70,45 @@ public class MessageStatus
         buf.writeVarIntArray(message.status.getArray());
     }
 
+    private static boolean checkContainer(MessageStatus msg, Supplier<NetworkEvent.Context> ctx)
+    {
+        switch(msg.container)
+        {
+            case "armor_dress":
+                ctx.get().enqueueWork(() ->
+                        ctx.get().getSender().openMenu(new SimpleNamedContainerProvider((id, inventory, type)
+                                -> new ArmorDressContainer(id, inventory),
+                                new StringTextComponent("Armor Dress"))));
+                ctx.get().setPacketHandled(true);
+                return true;
+        }
+
+        return false;
+    }
+
+    // Constructors
+
     /** If you're calling this from the client, make clientSide true */
     public MessageStatus(IStatus status, boolean clientSide)
     {
         this.status = status;
         this.clientSide = clientSide;
+        this.container = "";
     }
 
+    /** Same as MessageStatus(status, false) */
     public MessageStatus(IStatus status)
     {
         this.status = status;
         clientSide = false;
+        container = "";
     }
 
-    public MessageStatus()
+    /** For opening a container from the client */
+    public MessageStatus(String container)
     {
-        status = new Status();
+        this.status = new Status();
         clientSide = false;
+        this.container = container;
     }
 }

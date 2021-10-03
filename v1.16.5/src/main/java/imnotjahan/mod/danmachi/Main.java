@@ -32,6 +32,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import software.bernie.geckolib3.GeckoLib;
 
 @Mod(Reference.MODID)
 public class Main
@@ -64,6 +65,8 @@ public class Main
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
 
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGHEST, OreGen::gen);
+
+        GeckoLib.initialize();
     }
 
     public void SetupClient(final FMLClientSetupEvent event)

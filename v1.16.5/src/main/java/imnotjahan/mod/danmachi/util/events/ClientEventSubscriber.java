@@ -2,6 +2,8 @@ package imnotjahan.mod.danmachi.util.events;
 
 import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.entities.rendering.*;
+import imnotjahan.mod.danmachi.entities.rendering.geo.GoliathRenderer;
+import imnotjahan.mod.danmachi.gui.screen.ArmorDressScreen;
 import imnotjahan.mod.danmachi.gui.screen.GuildScreen;
 import imnotjahan.mod.danmachi.gui.screen.SmithingScreen;
 import imnotjahan.mod.danmachi.init.Entities;
@@ -35,8 +37,10 @@ public final class ClientEventSubscriber
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event)
     {
+        // Container screens
         DeferredWorkQueue.runLater(() -> ScreenManager.register(EventSubscriber.smithingContainer, SmithingScreen::new));
         DeferredWorkQueue.runLater(() -> ScreenManager.register(EventSubscriber.guildContainer, GuildScreen::new));
+        DeferredWorkQueue.runLater(() -> ScreenManager.register(EventSubscriber.armorDressContainer, ArmorDressScreen::new));
 
         // Entity renderers
         RenderingRegistry.registerEntityRenderingHandler(Entities.GOBLIN.get(),
@@ -69,6 +73,8 @@ public final class ClientEventSubscriber
                 RakianSoldierRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.RAKIAN_BLACKSMITH.get(),
                 RakianBlacksmithRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.GOLIATH.get(),
+                GoliathRenderer::new);
     }
 
     public static void init() {}

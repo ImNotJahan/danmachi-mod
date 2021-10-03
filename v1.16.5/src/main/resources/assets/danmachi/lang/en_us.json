@@ -80,6 +80,7 @@
     "item.danmachi.kobold_spawn_egg": "Kobold Spawn Egg",
     "item.danmachi.rakian_soldier_spawn_egg": "Rakian Soldier Spawn Egg",
     "item.danmachi.rakian_blacksmith_spawn_egg": "Rakian Blacksmith Spawn Egg",
+    "item.danmachi.goliath_spawn_egg": "Goliath Spawn Egg",
     "item.danmachi.needle": "Needle",
 
     "": "/blocks",
@@ -124,6 +125,7 @@
     "entity.metal_rabbit": "Metal Rabbit",
     "entity.rakian_soldier": "Rakian Soldier",
     "entity.rakian_blacksmith": "Rakian Blacksmith",
+    "entity.goliath": "Goliath",
 
     "": "/item groups",
     "itemGroup.danmachi_materials": "Danmachi Materials",
@@ -199,26 +201,6 @@
 
     "": "/magic",
     "spell.firebolt": "Firebolt",
-
-    "": "/entities",
-    "entity.danmachi.goblin": "Goblin",
-    "entity.danmachi.kobold": "Kobold",
-    "entity.danmachi.unicorn": "Unicorn",
-    "entity.danmachi.almiraj": "Almiraj",
-    "entity.danmachi.needle_rabbit": "Needle Rabbit",
-    "entity.danmachi.minotaur": "Minotaur",
-    "entity.danmachi.lygerfang": "Lygerfang",
-    "entity.danmachi.killer_ant": "Killer Ant",
-    "entity.danmachi.hestia": "Hestia",
-    "entity.danmachi.guild": "Guild Member",
-    "entity.danmachi.loki": "Loki",
-    "entity.danmachi.hellhound": "Hellhound",
-    "entity.danmachi.hermes": "Hermes",
-    "entity.danmachi.soma": "Soma",
-    "entity.danmachi.bugbear": "Bugbear",
-    "entity.danmachi.hobgoblin": "Hobgoblin",
-    "entity.danmachi.sword_stag": "Sword Stag",
-    "entity.danmachi.metal_rabbit": "Metal Rabbit",
 
     "": "/end tag"
 }

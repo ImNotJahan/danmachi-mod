@@ -31,6 +31,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -163,6 +164,18 @@ public class ForgeEventSubscriber
 
         event.addCapability(new ResourceLocation(Reference.MODID, "status"),
                 new StatusProvider());
+    }
+
+    // Make monsters only spawn on certain floors of the dungeon
+    @SubscribeEvent
+    public static void entitySpawn(LivingSpawnEvent event)
+    {
+        if(!event.getEntity().level.dimension().location().toString().equals("danmachi:dungeon_dimension")) return;
+
+        switch(event.getEntity().getType().getRegistryName().toString())
+        {
+
+        }
     }
 
     // Network refreshing

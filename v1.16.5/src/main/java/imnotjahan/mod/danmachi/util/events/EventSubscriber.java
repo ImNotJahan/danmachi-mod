@@ -8,6 +8,7 @@ import imnotjahan.mod.danmachi.entities.gods.Hermes;
 import imnotjahan.mod.danmachi.entities.gods.Hestia;
 import imnotjahan.mod.danmachi.entities.gods.Loki;
 import imnotjahan.mod.danmachi.entities.gods.Soma;
+import imnotjahan.mod.danmachi.gui.container.ArmorDressContainer;
 import imnotjahan.mod.danmachi.gui.container.GuildContainer;
 import imnotjahan.mod.danmachi.gui.container.SmithingContainer;
 import imnotjahan.mod.danmachi.init.Blocks;
@@ -289,6 +290,8 @@ public final class EventSubscriber
                 Heightmap.Type.WORLD_SURFACE, RakianSoldier::checkMobSpawnRules);
         EntitySpawnPlacementRegistry.register(RAKIAN_BLACKSMITH.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
                 Heightmap.Type.WORLD_SURFACE, RakianBlacksmith::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(GOLIATH.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.WORLD_SURFACE, Goliath::checkMobSpawnRules);
     }
 
     @SubscribeEvent
@@ -309,6 +312,7 @@ public final class EventSubscriber
         event.put(KOBOLD.get(), Kobold.createAttributes().build());
         event.put(RAKIAN_SOLDIER.get(), RakianSoldier.createAttributes().build());
         event.put(RAKIAN_BLACKSMITH.get(), RakianBlacksmith.createAttributes().build());
+        event.put(GOLIATH.get(), Goliath.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -323,6 +327,7 @@ public final class EventSubscriber
 
     public static ContainerType<SmithingContainer> smithingContainer;
     public static ContainerType<GuildContainer> guildContainer;
+    public static ContainerType<ArmorDressContainer> armorDressContainer;
 
     @SubscribeEvent
     public static void registerContainers(final RegistryEvent.Register<ContainerType<?>> event)
@@ -334,6 +339,10 @@ public final class EventSubscriber
         guildContainer = IForgeContainerType.create(GuildContainer::new);
         guildContainer.setRegistryName("guild_container");
         event.getRegistry().register(guildContainer);
+
+        armorDressContainer = IForgeContainerType.create(ArmorDressContainer::new);
+        armorDressContainer.setRegistryName("dress_container");
+        event.getRegistry().register(armorDressContainer);
     }
 
     public static TileEntityType<SmithingTile> smithingTile;

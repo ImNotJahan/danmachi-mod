@@ -41,4 +41,9 @@ public class PacketHandler
                 player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
                         .orElseThrow(MissingStatus::new)));
     }
+
+    public static void openArmorDress()
+    {
+        PacketHandler.INSTANCE.sendToServer(new MessageStatus("armor_dress"));
+    }
 }
