@@ -2,13 +2,31 @@ package imnotjahan.mod.danmachi.world;
 
 public class CaveFloor
 {
-    public static int width = 500;
+    public static int width = 16;
     public static int height = width;
 
     static float chanceToStartAlive = 0.3f;
-    static int numberOfSteps = 2;
+    static int numberOfSteps = 5;
     static int birthLimit = 3;
     static int deathLimit = 3;
+
+    public static void main(String[] args)
+    {
+        boolean[][] map = initialiseMap(new boolean[width][height]);
+        String dungeon = "";
+
+        for(boolean[] walls : map)
+        {
+            for(boolean wall : walls)
+            {
+                dungeon += wall ? "\u25A0" : "\u25A1";
+            }
+
+            dungeon += "\n";
+        }
+
+        System.out.println(dungeon);
+    }
 
     static public boolean[][] initialiseMap(boolean[][] map)
     {

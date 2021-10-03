@@ -96,12 +96,31 @@ public class Config
             put("metal_rabbit", 4);
         }};
 
+        public static final Map<String, Integer[]> dSpawnableFloors = new HashMap<String, Integer[]>()
+        {{
+            put("goblin", new Integer[]{1, 2, 3, 4, 8, 9});
+            put("kobold", new Integer[]{1, 2, 3, 4, 8, 9});
+            put("killer_ant", new Integer[]{5, 6, 7});
+            put("needle_rabbit", new Integer[]{6, 7});
+            put("almiraj", new Integer[]{13, 14});
+            put("lygerfang", new Integer[]{14, 15, 16, 17});
+            put("minotaur", new Integer[]{15, 16, 17});
+            put("unicorn", new Integer[]{27});
+            put("hellhound", new Integer[]{13, 14, 15, 16, 17});
+            put("bugbear", new Integer[]{18, 19});
+            put("hobgoblin", new Integer[]{23, 24, 25});
+            put("sword_stag", new Integer[]{20, 21, 22, 23, 24});
+            put("metal_rabbit", new Integer[]{24, 25, 26});
+            put("goliath", new Integer[]{17});
+        }};
+
 
         public final ForgeConfigSpec.ConfigValue<String> statusIncreases;
         public final ForgeConfigSpec.ConfigValue<String> mobStats;
         public final ForgeConfigSpec.ConfigValue<String> requiredSmithingDex; //Dex stands for dexterity
         public final ForgeConfigSpec.ConfigValue<String> stoneTrades;
         public final ForgeConfigSpec.ConfigValue<String> guildTrades;
+        public final ForgeConfigSpec.ConfigValue<String> spawnableFloors;
 
 
         public Common(ForgeConfigSpec.Builder builder)
@@ -114,6 +133,7 @@ public class Config
             this.requiredSmithingDex = builder.define("Required Smithing Dexterity", STD.SIDictToString(dRequiredSmithingDex));
             this.stoneTrades = builder.define("Stone Trades", STD.SIDictToString(dStoneTrades));
             this.guildTrades = builder.define("Guild Trades", STD.SIDictToString(dGuildTrades));
+            this.spawnableFloors = builder.define("Spawnable Floors", STD.SIADictToString(dSpawnableFloors));
             builder.pop();
         }
     }

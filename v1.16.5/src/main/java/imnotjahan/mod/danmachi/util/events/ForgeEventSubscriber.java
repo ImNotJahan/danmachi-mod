@@ -3,13 +3,14 @@ package imnotjahan.mod.danmachi.util.events;
 import com.mojang.serialization.Codec;
 import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
-import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.commands.ChangeStatus;
 import imnotjahan.mod.danmachi.commands.DungeonCommand;
 import imnotjahan.mod.danmachi.networking.PacketHandler;
-import imnotjahan.mod.danmachi.networking.packets.MessageStatus;
+import imnotjahan.mod.danmachi.util.STD;
+import imnotjahan.mod.danmachi.util.config.Config;
 import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
+import imnotjahan.mod.danmachi.world.dimension.chunkgenerators.DungeonChunkGenerator;
 import imnotjahan.mod.danmachi.world.structures.StructureGeneration;
 import imnotjahan.mod.danmachi.world.structures.Structures;
 import net.minecraft.entity.Entity;
@@ -38,11 +39,12 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.server.command.ConfigCommand;
 import org.apache.logging.log4j.LogManager;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -172,9 +174,15 @@ public class ForgeEventSubscriber
     {
         if(!event.getEntity().level.dimension().location().toString().equals("danmachi:dungeon_dimension")) return;
 
-        switch(event.getEntity().getType().getRegistryName().toString())
-        {
+        final String registryName = event.getEntity().getType().getRegistryName().toString();
+        final Map<String, Integer[]> spawnableFloors = STD.SIAStringToDict(Config.COMMON.spawnableFloors.get());
+        final int oppositeY = DungeonChunkGenerator.DUNGEON_HEIGHT - (int)event.getY();
+        final int floor = (int)Math.floor(oppositeY != 0 ? oppositeY / DungeonChunkGenerator.FLOOR_HEIGHT + 1 : 1);
 
+        if(spawnableFloors.containsKey(registryName))
+        {
+            System.out.println("contains");
+            event.setCanceled(!Arrays.asList(spawnableFloors.get(registryName)).contains(floor));
         }
     }
 

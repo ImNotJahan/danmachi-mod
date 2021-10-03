@@ -1,9 +1,5 @@
 {
   "variants": {
-    "": [
-      { "model": "danmachi:block/smithing_anvil_undamaged" },
-    { "model": "danmachi:block/smithing_anvil_undamaged", "y": 90 },
-    { "model": "danmachi:block/smithing_anvil_undamaged", "y": 180 },
-    { "model": "danmachi:block/smithing_anvil_undamaged", "y": 270 }]
+    "":  { "model": "danmachi:block/smithing_anvil_undamaged" }
   }
 }
