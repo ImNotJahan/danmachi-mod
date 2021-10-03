@@ -1,17 +1,8 @@
 package imnotjahan.mod.danmachi.entities.templates;
 
-import imnotjahan.mod.danmachi.capabilities.IStatus;
-import imnotjahan.mod.danmachi.capabilities.Status;
-import imnotjahan.mod.danmachi.capabilities.StatusProvider;
-import imnotjahan.mod.danmachi.init.Items;
-import imnotjahan.mod.danmachi.util.STD;
-import imnotjahan.mod.danmachi.util.config.Config;
-import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
-import net.minecraft.command.arguments.NBTTagArgument;
-import net.minecraft.entity.*;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.AttributeModifierManager;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
@@ -20,19 +11,14 @@ import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.*;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.spawner.WorldEntitySpawner;
+import net.minecraft.world.IServerWorld;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 
-import java.util.Map;
 import java.util.Random;
 
 public class MonsterBase extends ZombieEntity implements IMobStatus
