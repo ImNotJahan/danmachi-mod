@@ -1,6 +1,6 @@
 {
   "parent": "danmachi:block/smithing_anvil",
   "textures": {
-    "top": "danmachi:block/anvil_top"
+    "top": "danmachi:blocks/smithing_anvil_top"
   }
 }
