@@ -1,7 +1,7 @@
 package imnotjahan.mod.danmachi.gui.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
@@ -9,7 +9,6 @@ import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.util.LazyOptional;
 
 import java.util.Collections;
@@ -45,7 +44,7 @@ public final class StatusGui extends Screen
             int magic = status.get(5);
 
             minecraft.getTextureManager().bind(new ResourceLocation(String.format("%s:textures/gui/falnas/%s.png",
-                    Reference.MODID, status.getFamilia())));
+                    Main.MODID, status.getFamilia())));
             blit(stack, 0, 0, 0, 0, width, height, width, height);
 
             drawCenteredString(stack, font, new StringTextComponent("Level " + level),

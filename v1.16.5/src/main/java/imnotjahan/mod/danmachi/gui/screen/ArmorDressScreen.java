@@ -2,23 +2,17 @@ package imnotjahan.mod.danmachi.gui.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.gui.container.ArmorDressContainer;
-import imnotjahan.mod.danmachi.gui.container.SmithingContainer;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.inventory.ChestScreen;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.ChestContainer;
-import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
 public class ArmorDressScreen extends ContainerScreen<ArmorDressContainer>
 {
-    private static final ResourceLocation GuiTextures = new ResourceLocation(Reference.MODID
+    private static final ResourceLocation GuiTextures = new ResourceLocation(Main.MODID
             + ":textures/gui/container/armor_dress.png");
 
     public ArmorDressScreen(ArmorDressContainer container, PlayerInventory playerInventory, ITextComponent title)

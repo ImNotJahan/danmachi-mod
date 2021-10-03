@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.util.recipes;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
@@ -9,7 +9,7 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 public interface ISmithingAnvilRecipe extends IRecipe<RecipeWrapper>
 {
-    ResourceLocation TYPE_ID = new ResourceLocation(Reference.MODID, "smithing");
+    ResourceLocation TYPE_ID = new ResourceLocation(Main.MODID, "smithing");
 
     @Override
     default IRecipeType<?> getType()

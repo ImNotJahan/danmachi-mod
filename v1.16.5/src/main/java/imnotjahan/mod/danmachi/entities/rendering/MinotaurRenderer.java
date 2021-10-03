@@ -1,9 +1,7 @@
 package imnotjahan.mod.danmachi.entities.rendering;
 
-import imnotjahan.mod.danmachi.Reference;
-import imnotjahan.mod.danmachi.entities.Goblin;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.entities.Minotaur;
-import imnotjahan.mod.danmachi.entities.models.GoblinModel;
 import imnotjahan.mod.danmachi.entities.models.MinotaurModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -22,6 +20,6 @@ public class MinotaurRenderer extends MobRenderer<Minotaur, MinotaurModel>
     @Override
     public ResourceLocation getTextureLocation(Minotaur p_110775_1_)
     {
-        return new ResourceLocation(Reference.MODID, "textures/entity/minotaur.png");
+        return new ResourceLocation(Main.MODID, "textures/entity/minotaur.png");
     }
 }

@@ -2,7 +2,7 @@ package imnotjahan.mod.danmachi.world.structures;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class Structures
 {
     public static final DeferredRegister<Structure<?>> STRUCTURES =
-            DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, Reference.MODID);
+            DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, Main.MODID);
 
     public static final RegistryObject<Structure<NoFeatureConfig>> HOUSE =
             STRUCTURES.register("god_house", GodHouse::new);

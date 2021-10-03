@@ -1,10 +1,10 @@
 package imnotjahan.mod.danmachi.init;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import net.minecraft.block.Block;
 import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(Reference.MODID)
+@ObjectHolder(Main.MODID)
 public class Blocks
 {
     public static final Block ORICHALCUM_BLOCK = null;

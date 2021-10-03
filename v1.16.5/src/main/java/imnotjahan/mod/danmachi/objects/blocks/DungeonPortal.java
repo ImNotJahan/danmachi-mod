@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.objects.blocks;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -26,7 +26,7 @@ public class DungeonPortal extends Block
     {
         if(!(entity instanceof ServerPlayerEntity)) return;
 
-        RegistryKey<World> dungeonKey = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(Reference.MODID,
+        RegistryKey<World> dungeonKey = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(Main.MODID,
                 "dungeon_dimension"));
         ServerWorld dungeon = entity.getCommandSenderWorld().getServer().getLevel(dungeonKey);
 

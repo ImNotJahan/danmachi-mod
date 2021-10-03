@@ -21,7 +21,7 @@ public class JEI implements IModPlugin
     @Override
     public ResourceLocation getPluginUid()
     {
-        return new ResourceLocation(Reference.MODID, "jei");
+        return new ResourceLocation(Main.MODID, "jei");
     }
 
     @Override
@@ -41,6 +41,6 @@ public class JEI implements IModPlugin
                         Minecraft.getInstance().level.getRecipeManager(), "recipes");
 
         registration.addRecipes(recipes.get(Recipes.SMITHING_TYPE).values(),
-                new ResourceLocation(Reference.MODID, "smithing"));
+                new ResourceLocation(Main.MODID, "smithing"));
     }
 }

@@ -1,7 +1,6 @@
 package imnotjahan.mod.danmachi.util.events;
 
-import imnotjahan.mod.danmachi.Reference;
-import imnotjahan.mod.danmachi.gui.screen.ArmorDressScreen;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.gui.screen.StatusGui;
 import imnotjahan.mod.danmachi.networking.PacketHandler;
 import net.minecraft.client.Minecraft;
@@ -11,7 +10,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = Reference.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = Main.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ClientForgeEventSubscriber
 {
     @SubscribeEvent

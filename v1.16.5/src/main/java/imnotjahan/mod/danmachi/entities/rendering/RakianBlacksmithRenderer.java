@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.entities.rendering;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.entities.RakianBlacksmith;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -22,6 +22,6 @@ public class RakianBlacksmithRenderer extends MobRenderer<RakianBlacksmith, Play
     public ResourceLocation getTextureLocation(RakianBlacksmith soldier)
     {
         int type = soldier.getSoldier();
-        return new ResourceLocation(Reference.MODID, "textures/entity/rakia/blacksmith" + type + ".png");
+        return new ResourceLocation(Main.MODID, "textures/entity/rakia/blacksmith" + type + ".png");
     }
 }

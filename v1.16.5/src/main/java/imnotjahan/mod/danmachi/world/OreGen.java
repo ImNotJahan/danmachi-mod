@@ -1,16 +1,14 @@
 package imnotjahan.mod.danmachi.world;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.init.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.template.BlockMatchRuleTest;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -58,7 +56,7 @@ public class OreGen
     private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?>
     register(String name, ConfiguredFeature<FC, ?> configuredFeature)
     {
-        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, Reference.MODID + ":" + name, configuredFeature);
+        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, Main.MODID + ":" + name, configuredFeature);
     }
 
 }

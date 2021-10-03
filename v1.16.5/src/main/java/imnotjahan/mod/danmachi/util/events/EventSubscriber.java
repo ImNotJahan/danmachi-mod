@@ -2,7 +2,6 @@ package imnotjahan.mod.danmachi.util.events;
 
 import com.google.common.base.Preconditions;
 import imnotjahan.mod.danmachi.Main;
-import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.entities.*;
 import imnotjahan.mod.danmachi.entities.gods.Hermes;
 import imnotjahan.mod.danmachi.entities.gods.Hestia;
@@ -38,11 +37,8 @@ import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.potion.Potion;
-import net.minecraft.stats.Stat;
-import net.minecraft.stats.StatType;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -54,10 +50,8 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import static imnotjahan.mod.danmachi.init.Blocks.SMITHING_ANVIL;
 import static imnotjahan.mod.danmachi.init.Entities.*;
-import static net.minecraft.item.Items.GLASS_BOTTLE;
-import static net.minecraft.item.Items.SMITHING_TABLE;
 
-@Mod.EventBusSubscriber(modid = Reference.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Main.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class EventSubscriber
 {
     @SubscribeEvent
@@ -247,7 +241,7 @@ public final class EventSubscriber
 
     public static <T extends IForgeRegistryEntry<T>> T setup(final T entry, final String name)
     {
-        return setup(entry, new ResourceLocation(Reference.MODID, name));
+        return setup(entry, new ResourceLocation(Main.MODID, name));
     }
 
     public static <T extends IForgeRegistryEntry<T>> T setup(final T entry, final ResourceLocation registryName)

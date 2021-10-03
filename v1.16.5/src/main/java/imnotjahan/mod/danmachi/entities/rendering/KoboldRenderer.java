@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.entities.rendering;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.entities.Kobold;
 import imnotjahan.mod.danmachi.entities.models.KoboldModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -20,6 +20,6 @@ public class KoboldRenderer extends MobRenderer<Kobold, KoboldModel<Kobold>>
     @Override
     public ResourceLocation getTextureLocation(Kobold p_110775_1_)
     {
-        return new ResourceLocation(Reference.MODID, "textures/entity/kobold.png");
+        return new ResourceLocation(Main.MODID, "textures/entity/kobold.png");
     }
 }

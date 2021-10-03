@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.init;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.util.recipes.ISmithingAnvilRecipe;
 import imnotjahan.mod.danmachi.util.recipes.SmithingAnvilRecipe;
 import imnotjahan.mod.danmachi.util.recipes.SmithingRecipeSerializer;
@@ -25,7 +25,7 @@ public class Recipes
     public static final IRecipeType<ISmithingAnvilRecipe> SMITHING_TYPE = registerType(ISmithingAnvilRecipe.TYPE_ID);
 
     public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(
-            ForgeRegistries.RECIPE_SERIALIZERS, Reference.MODID);
+            ForgeRegistries.RECIPE_SERIALIZERS, Main.MODID);
 
     public static final RegistryObject<IRecipeSerializer<?>> SMITHING_SERIALIZER =
             RECIPE_SERIALIZERS.register("smithing",

@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.entities.rendering;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.entities.Goblin;
 import imnotjahan.mod.danmachi.entities.models.GoblinModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -20,6 +20,6 @@ public class GoblinRenderer extends MobRenderer<Goblin, GoblinModel>
     @Override
     public ResourceLocation getTextureLocation(Goblin p_110775_1_)
     {
-        return new ResourceLocation(Reference.MODID, "textures/entity/goblin.png");
+        return new ResourceLocation(Main.MODID, "textures/entity/goblin.png");
     }
 }

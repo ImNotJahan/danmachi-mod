@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.init;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import net.minecraft.entity.item.PaintingType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -9,7 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class Paintings
 {
     public static DeferredRegister<PaintingType> PAINTING_TYPES =
-            DeferredRegister.create(ForgeRegistries.PAINTING_TYPES, Reference.MODID);
+            DeferredRegister.create(ForgeRegistries.PAINTING_TYPES, Main.MODID);
 
 
     public static RegistryObject<PaintingType> THE_RESOLUTION =

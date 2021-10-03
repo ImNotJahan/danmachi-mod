@@ -2,7 +2,6 @@ package imnotjahan.mod.danmachi.init;
 
 import com.google.common.collect.Lists;
 import imnotjahan.mod.danmachi.Main;
-import imnotjahan.mod.danmachi.Reference;
 import imnotjahan.mod.danmachi.entities.*;
 import imnotjahan.mod.danmachi.entities.gods.Hermes;
 import imnotjahan.mod.danmachi.entities.gods.Hestia;
@@ -31,7 +30,7 @@ Sword stag
  */
 public class Entities
 {
-    public static final DeferredRegister<EntityType<?>> ENTITY_DEFERRED = DeferredRegister.create(ForgeRegistries.ENTITIES, Reference.MODID);
+    public static final DeferredRegister<EntityType<?>> ENTITY_DEFERRED = DeferredRegister.create(ForgeRegistries.ENTITIES, Main.MODID);
     public static final List<Item> SPAWN_EGGS = Lists.newArrayList();
 
     //Monsters
@@ -77,11 +76,11 @@ public class Entities
     private static <T extends Entity> RegistryObject<EntityType<T>>
     createEntity(String name, EntityType.IFactory<T> factory, float width, float height, int primaryEgg, int secondaryEgg)
     {
-        ResourceLocation location = new ResourceLocation(Reference.MODID, name);
+        ResourceLocation location = new ResourceLocation(Main.MODID, name);
         EntityType<T> entity = EntityType.Builder.of(factory, EntityClassification.MONSTER).sized(width, height)
                 .setTrackingRange(64).setUpdateInterval(1).build(location.toString());
         Item spawnEgg = new SpawnEggItem(entity, primaryEgg, secondaryEgg, (new Item.Properties()).tab(Main.EggGroup));
-        spawnEgg.setRegistryName(new ResourceLocation(Reference.MODID, name + "_spawn_egg"));
+        spawnEgg.setRegistryName(new ResourceLocation(Main.MODID, name + "_spawn_egg"));
         SPAWN_EGGS.add(spawnEgg);
 
         return ENTITY_DEFERRED.register(name, () -> entity);

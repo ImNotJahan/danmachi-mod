@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.init;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import net.minecraft.stats.IStatFormatter;
 import net.minecraft.stats.StatType;
 import net.minecraft.util.ResourceLocation;
@@ -14,7 +14,7 @@ public class Stats
 
     private static ResourceLocation makeCustomStat(String p_199084_0_, IStatFormatter p_199084_1_)
     {
-        ResourceLocation resourcelocation = new ResourceLocation(Reference.MODID, p_199084_0_);
+        ResourceLocation resourcelocation = new ResourceLocation(Main.MODID, p_199084_0_);
         Registry.register(Registry.CUSTOM_STAT, p_199084_0_, resourcelocation);
         CUSTOM.get(resourcelocation, p_199084_1_);
         return resourcelocation;

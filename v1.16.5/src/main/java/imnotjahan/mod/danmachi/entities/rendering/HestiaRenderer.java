@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.entities.rendering;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.entities.gods.Hestia;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -20,6 +20,6 @@ public class HestiaRenderer extends MobRenderer<Hestia, PlayerModel<Hestia>>
     @Override
     public ResourceLocation getTextureLocation(Hestia p_110775_1_)
     {
-        return new ResourceLocation(Reference.MODID, "textures/entity/hestia.png");
+        return new ResourceLocation(Main.MODID, "textures/entity/hestia.png");
     }
 }

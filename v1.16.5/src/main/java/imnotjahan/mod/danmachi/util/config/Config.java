@@ -26,9 +26,10 @@ public class Config
             put("infant_dragon", new Integer[]{5, 4, 5, 6, 0, 6}); //change this
             put("dragon", new Integer[]{5, 4, 5, 6, 0, 6}); //change this
             put("bugbear", new Integer[]{6, 6, 2, 6, 0, 7});
-            put("hobgoblin", new Integer[]{6, 6, 2, 6, 0, 7}); //change this
+            put("hobgoblin", new Integer[]{8, 7, 3, 3, 0, 9});
             put("sword_stag", new Integer[]{6, 6, 2, 6, 0, 7}); //change this
             put("metal_rabbit", new Integer[]{6, 6, 2, 6, 0, 7}); //change this
+            put("goliath", new Integer[]{20, 25, 12, 13, 0, 20});
         }};
 
         // The order of their stats is: dmg, health, speed, armor

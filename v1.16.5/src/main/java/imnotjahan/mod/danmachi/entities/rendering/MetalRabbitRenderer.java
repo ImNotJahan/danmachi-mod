@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.entities.rendering;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.entities.MetalRabbit;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -20,6 +20,6 @@ public class MetalRabbitRenderer extends MobRenderer<MetalRabbit, RabbitModel<Me
     @Override
     public ResourceLocation getTextureLocation(MetalRabbit p_110775_1_)
     {
-        return new ResourceLocation(Reference.MODID, "textures/entity/metal_rabbit.png");
+        return new ResourceLocation(Main.MODID, "textures/entity/metal_rabbit.png");
     }
 }

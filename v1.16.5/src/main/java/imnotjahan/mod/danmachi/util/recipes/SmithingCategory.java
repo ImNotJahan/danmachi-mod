@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.util.recipes;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.init.Items;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -9,8 +9,6 @@ import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
 public class SmithingCategory implements IRecipeCategory<SmithingAnvilRecipe>
@@ -25,7 +23,7 @@ public class SmithingCategory implements IRecipeCategory<SmithingAnvilRecipe>
     @Override
     public ResourceLocation getUid()
     {
-        return new ResourceLocation(Reference.MODID, "smithing");
+        return new ResourceLocation(Main.MODID, "smithing");
     }
 
     @Override
@@ -43,7 +41,7 @@ public class SmithingCategory implements IRecipeCategory<SmithingAnvilRecipe>
     @Override
     public IDrawable getBackground()
     {
-        return helper.getGuiHelper().createDrawable(new ResourceLocation(Reference.MODID
+        return helper.getGuiHelper().createDrawable(new ResourceLocation(Main.MODID
                 + ":textures/gui/container/smithing_jei.png"), 0, 0, 176, 85);
     }
 

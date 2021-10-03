@@ -1,8 +1,7 @@
 package imnotjahan.mod.danmachi.entities.rendering;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.entities.gods.Hermes;
-import imnotjahan.mod.danmachi.entities.gods.Hestia;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
@@ -21,6 +20,6 @@ public class HermesRenderer extends MobRenderer<Hermes, PlayerModel<Hermes>>
     @Override
     public ResourceLocation getTextureLocation(Hermes p_110775_1_)
     {
-        return new ResourceLocation(Reference.MODID, "textures/entity/hermes.png");
+        return new ResourceLocation(Main.MODID, "textures/entity/hermes.png");
     }
 }

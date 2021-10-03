@@ -1,7 +1,7 @@
 package imnotjahan.mod.danmachi.util.events;
 
 import com.mojang.serialization.Codec;
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.commands.ChangeStatus;
@@ -42,14 +42,13 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.server.command.ConfigCommand;
 import org.apache.logging.log4j.LogManager;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-@Mod.EventBusSubscriber(modid = Reference.MODID)
+@Mod.EventBusSubscriber(modid = Main.MODID)
 public class ForgeEventSubscriber
 {
     // Making status do stuff
@@ -164,7 +163,7 @@ public class ForgeEventSubscriber
     {
         if (!(event.getObject() instanceof PlayerEntity)) return;
 
-        event.addCapability(new ResourceLocation(Reference.MODID, "status"),
+        event.addCapability(new ResourceLocation(Main.MODID, "status"),
                 new StatusProvider());
     }
 

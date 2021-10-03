@@ -2,7 +2,7 @@ package imnotjahan.mod.danmachi.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -30,7 +30,7 @@ public class DungeonCommand
         } else
         {
             RegistryKey<World> dungeonKey = RegistryKey.create(Registry.DIMENSION_REGISTRY,
-                    new ResourceLocation(Reference.MODID,
+                    new ResourceLocation(Main.MODID,
                     "dungeon_dimension"));
             ServerWorld dungeon = source.getLevel().getServer().getLevel(dungeonKey);
 

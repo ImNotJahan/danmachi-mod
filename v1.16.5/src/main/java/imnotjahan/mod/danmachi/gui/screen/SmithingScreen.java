@@ -2,7 +2,7 @@ package imnotjahan.mod.danmachi.gui.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.gui.container.SmithingContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
@@ -12,7 +12,7 @@ import net.minecraft.util.text.StringTextComponent;
 
 public class SmithingScreen extends ContainerScreen<SmithingContainer>
 {
-    private static final ResourceLocation GuiTextures = new ResourceLocation(Reference.MODID
+    private static final ResourceLocation GuiTextures = new ResourceLocation(Main.MODID
             + ":textures/gui/container/smithing.png");
 
     public SmithingScreen(SmithingContainer container, PlayerInventory playerInventory, ITextComponent title)

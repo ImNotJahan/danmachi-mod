@@ -1,14 +1,12 @@
 package imnotjahan.mod.danmachi.util.events;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.entities.rendering.*;
 import imnotjahan.mod.danmachi.entities.rendering.geo.GoliathRenderer;
 import imnotjahan.mod.danmachi.gui.screen.ArmorDressScreen;
 import imnotjahan.mod.danmachi.gui.screen.GuildScreen;
 import imnotjahan.mod.danmachi.gui.screen.SmithingScreen;
 import imnotjahan.mod.danmachi.init.Entities;
-import imnotjahan.mod.danmachi.init.Recipes;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.api.distmarker.Dist;
@@ -20,7 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.lwjgl.glfw.GLFW;
 
-@Mod.EventBusSubscriber(modid = Reference.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Main.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class ClientEventSubscriber
 {
     public static final KeyBinding STATUS = new KeyBinding("key.status", GLFW.GLFW_KEY_V,

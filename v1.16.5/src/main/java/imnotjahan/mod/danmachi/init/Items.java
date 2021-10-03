@@ -1,10 +1,10 @@
 package imnotjahan.mod.danmachi.init;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
-@ObjectHolder(Reference.MODID)
+@ObjectHolder(Main.MODID)
 public class Items
 {
     public static final Item MINOTAUR_HORN = null;

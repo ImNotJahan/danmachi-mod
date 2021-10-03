@@ -1,9 +1,7 @@
 package imnotjahan.mod.danmachi.entities.rendering;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.entities.Bugbear;
-import imnotjahan.mod.danmachi.entities.Goblin;
-import imnotjahan.mod.danmachi.entities.models.GoblinModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.PolarBearModel;
@@ -22,6 +20,6 @@ public class BugbearRenderer extends MobRenderer<Bugbear, PolarBearModel<Bugbear
     @Override
     public ResourceLocation getTextureLocation(Bugbear p_110775_1_)
     {
-        return new ResourceLocation(Reference.MODID, "textures/entity/bugbear.png");
+        return new ResourceLocation(Main.MODID, "textures/entity/bugbear.png");
     }
 }

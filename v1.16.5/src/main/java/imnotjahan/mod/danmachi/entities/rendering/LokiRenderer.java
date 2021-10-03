@@ -1,7 +1,6 @@
 package imnotjahan.mod.danmachi.entities.rendering;
 
-import imnotjahan.mod.danmachi.Reference;
-import imnotjahan.mod.danmachi.entities.gods.Hermes;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.entities.gods.Loki;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -21,6 +20,6 @@ public class LokiRenderer extends MobRenderer<Loki, PlayerModel<Loki>>
     @Override
     public ResourceLocation getTextureLocation(Loki p_110775_1_)
     {
-        return new ResourceLocation(Reference.MODID, "textures/entity/loki.png");
+        return new ResourceLocation(Main.MODID, "textures/entity/loki.png");
     }
 }

@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.networking;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
@@ -16,7 +16,7 @@ public class PacketHandler
 {
     private static final String PROTOCOL_VERSION = "5";
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(Reference.MODID, "main"),
+            new ResourceLocation(Main.MODID, "main"),
             () -> PROTOCOL_VERSION,
             PROTOCOL_VERSION::equals,
             PROTOCOL_VERSION::equals

@@ -13,15 +13,11 @@ import imnotjahan.mod.danmachi.util.events.ClientEventSubscriber;
 import imnotjahan.mod.danmachi.world.OreGen;
 import imnotjahan.mod.danmachi.world.dimension.Dimensions;
 import imnotjahan.mod.danmachi.world.structures.Structures;
-import mezz.jei.api.IModPlugin;
-import mezz.jei.api.JeiPlugin;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -34,20 +30,22 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import software.bernie.geckolib3.GeckoLib;
 
-@Mod(Reference.MODID)
+@Mod(Main.MODID)
 public class Main
 {
+    public static final String MODID = "danmachi";
+
     public static final ItemGroup ToolGroup =
-            new MenuGroup(Reference.MODID + "_tools", () -> new ItemStack(Items.DESPERATE));
+            new MenuGroup(MODID + "_tools", () -> new ItemStack(Items.DESPERATE));
 
     public static final ItemGroup MaterialsGroup =
-            new MenuGroup(Reference.MODID + "_materials", () -> new ItemStack(Items.MINOTAUR_HORN));
+            new MenuGroup(MODID + "_materials", () -> new ItemStack(Items.MINOTAUR_HORN));
 
     public static final ItemGroup BlockGroup =
-            new MenuGroup(Reference.MODID + "_blocks", () -> new ItemStack(Items.ADAMANTITE_ORE));
+            new MenuGroup(MODID + "_blocks", () -> new ItemStack(Items.ADAMANTITE_ORE));
 
     public static final ItemGroup EggGroup =
-            new MenuGroup(Reference.MODID + "_eggs", () -> new ItemStack(Items.GOBLIN_SPAWN_EGG));
+            new MenuGroup(MODID + "_eggs", () -> new ItemStack(Items.GOBLIN_SPAWN_EGG));
 
     public Main()
     {
@@ -94,7 +92,7 @@ public class Main
      * Helper method to quickly register features, blocks, items, structures, biomes, anything that can be registered.
      */
     public static <T extends IForgeRegistryEntry<T>> T register(IForgeRegistry<T> registry, T entry, String registryKey) {
-        entry.setRegistryName(new ResourceLocation(Reference.MODID, registryKey));
+        entry.setRegistryName(new ResourceLocation(MODID, registryKey));
         registry.register(entry);
         return entry;
     }

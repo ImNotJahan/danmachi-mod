@@ -1,6 +1,6 @@
 package imnotjahan.mod.danmachi.entities.rendering;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.entities.Unicorn;
 import imnotjahan.mod.danmachi.entities.models.UnicornModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -20,6 +20,6 @@ public class UnicornRenderer extends MobRenderer<Unicorn, UnicornModel<Unicorn>>
     @Override
     public ResourceLocation getTextureLocation(Unicorn p_110775_1_)
     {
-        return new ResourceLocation(Reference.MODID, "textures/entity/unicorn.png");
+        return new ResourceLocation(Main.MODID, "textures/entity/unicorn.png");
     }
 }

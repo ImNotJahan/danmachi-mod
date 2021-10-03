@@ -1,11 +1,8 @@
 package imnotjahan.mod.danmachi.world.structures;
 
-import imnotjahan.mod.danmachi.Reference;
+import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.init.Entities;
-import imnotjahan.mod.danmachi.init.Loot;
 import net.minecraft.block.BlockState;
-import net.minecraft.loot.LootTables;
-import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -14,7 +11,6 @@ import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IServerWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.biome.provider.BiomeProvider;
@@ -31,7 +27,6 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class RakianOutpost extends Structure<NoFeatureConfig>
 {
@@ -99,7 +94,7 @@ public class RakianOutpost extends Structure<NoFeatureConfig>
 
             JigsawManager.addPieces(dynamicRegistryManager,
                     new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
-                            .get(new ResourceLocation(Reference.MODID, "rakian_outpost/start_pool")),
+                            .get(new ResourceLocation(Main.MODID, "rakian_outpost/start_pool")),
                             10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn,
                     blockpos, this.pieces, this.random,false,true);
 
