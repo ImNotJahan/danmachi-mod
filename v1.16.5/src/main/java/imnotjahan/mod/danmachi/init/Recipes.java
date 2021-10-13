@@ -11,7 +11,6 @@ import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -38,8 +37,7 @@ public class Recipes
     @Nonnull
     public static Map<ResourceLocation, IRecipe<?>> getRecipes (IRecipeType<?> recipeType)
     {
-        final Map<IRecipeType<?>, Map<ResourceLocation, IRecipe<?>>> recipesMap =
-                ObfuscationReflectionHelper.getPrivateValue(RecipeManager.class, RECIPE_MANAGER, "recipes");
+        final Map<IRecipeType<?>, Map<ResourceLocation, IRecipe<?>>> recipesMap = RECIPE_MANAGER.recipes;
 
         if(recipesMap != null && recipesMap.get(recipeType) != null) return recipesMap.get(recipeType);
         else return new HashMap<>();

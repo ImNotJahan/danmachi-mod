@@ -62,7 +62,7 @@ public class SmithingSlot extends Slot
                     .getList("Lore", Constants.NBT.TAG_STRING);
         }
 
-        IStatus status = playerIn.getCapability(StatusProvider.STATUS_CAP, Status.capSide).orElseThrow(MissingStatus::new);
+        IStatus status = playerIn.getCapability(StatusProvider.STATUS_CAP).orElseThrow(MissingStatus::new);
         if(status.getFalna())
         {
             if (status.get(3) + (status.getLevel() - 1) * 1000 >= dexterity)

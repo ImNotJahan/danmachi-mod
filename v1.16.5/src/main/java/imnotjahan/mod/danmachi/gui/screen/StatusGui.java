@@ -5,6 +5,7 @@ import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.Status;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
+import imnotjahan.mod.danmachi.networking.PacketHandler;
 import imnotjahan.mod.danmachi.util.exceptions.MissingStatus;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
@@ -21,6 +22,7 @@ public final class StatusGui extends Screen
     public StatusGui()
     {
         super(new StringTextComponent("StatusGui"));
+        PacketHandler.refreshClientFromClient();
     }
 
     @Override
@@ -30,7 +32,7 @@ public final class StatusGui extends Screen
 
         if(minecraft != null)
         {
-            lazyStatus = minecraft.player.getCapability(StatusProvider.STATUS_CAP, Status.capSide);
+            lazyStatus = minecraft.player.getCapability(StatusProvider.STATUS_CAP);
             status = lazyStatus.orElseThrow(MissingStatus::new);
         }
 

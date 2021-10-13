@@ -20,7 +20,7 @@ public interface IMobStatus
         if(cause.getEntity() instanceof ServerPlayerEntity)
         {
             ServerPlayerEntity player = (ServerPlayerEntity) cause.getEntity();
-            IStatus status = player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
+            IStatus status = player.getCapability(StatusProvider.STATUS_CAP)
                     .orElseThrow(MissingStatus::new);
 
             ItemStack stone = new ItemStack(Items.MAGIC_STONE);

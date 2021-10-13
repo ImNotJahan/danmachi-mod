@@ -37,11 +37,8 @@ public class Structures
         setupMapSpacingAndLand(HOUSE.get(),
                 new StructureSeparationSettings(100,50, 1234567890),
                 true);
-        setupMapSpacingAndLand(BABEL.get(),
-                new StructureSeparationSettings(100,50, 1234567890),
-                true);
         setupMapSpacingAndLand(RAKIAN_OUTPOST.get(),
-                new StructureSeparationSettings(100,50, 1234567890),
+                new StructureSeparationSettings(100,50, 1234567820),
                 true);
     }
 

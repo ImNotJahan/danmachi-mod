@@ -41,6 +41,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -210,29 +211,29 @@ public final class EventSubscriber
     {
         event.getRegistry().registerAll(
                 setup(new Block(Block.Properties.of(Material.HEAVY_METAL)
-                        .strength(50)), "orichalcum_block"),
+                        .strength(50).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "orichalcum_block"),
                 setup(new Block(Block.Properties.of(Material.HEAVY_METAL)
-                        .strength(20)), "adamantite_block"),
+                        .strength(20).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "adamantite_block"),
                 setup(new Block(Block.Properties.of(Material.METAL)
-                        .strength(5)), "mythril_block"),
+                        .strength(5).harvestLevel(3).harvestTool(ToolType.PICKAXE)), "mythril_block"),
                 setup(new Block(Block.Properties.of(Material.METAL)
-                        .strength(5)), "nosteel_block"),
+                        .strength(5).harvestLevel(3).harvestTool(ToolType.PICKAXE)), "nosteel_block"),
                 setup(new Block(Block.Properties.of(Material.METAL)
-                        .strength(5)), "damascus_block"),
+                        .strength(5).harvestLevel(3).harvestTool(ToolType.PICKAXE)), "damascus_block"),
                 setup(new Block(Block.Properties.of(Material.STONE)
-                        .strength(25)), "damascus_ore"),
+                        .strength(25).harvestLevel(3).harvestTool(ToolType.PICKAXE)), "damascus_ore"),
                 setup(new Block(Block.Properties.of(Material.STONE)
-                        .strength(25)), "nosteel_ore"),
+                        .strength(25).harvestLevel(3).harvestTool(ToolType.PICKAXE)), "nosteel_ore"),
                 setup(new Block(Block.Properties.of(Material.STONE)
-                        .strength(25)), "orichalcum_ore"),
+                        .strength(25).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "orichalcum_ore"),
                 setup(new Block(Block.Properties.of(Material.STONE)
-                        .strength(10)), "adamantite_ore"),
+                        .strength(10).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "adamantite_ore"),
                 setup(new Block(Block.Properties.of(Material.STONE)
-                        .strength(3)), "mythril_ore"),
+                        .strength(3).harvestLevel(3).harvestTool(ToolType.PICKAXE)), "mythril_ore"),
                 setup(new Block(Block.Properties.of(Material.HEAVY_METAL)
-                        .strength(45)), "orichalcum_wall"),
+                        .strength(45).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "orichalcum_wall"),
                 setup(new Block(Block.Properties.of(Material.HEAVY_METAL)
-                        .strength(15)), "adamantite_wall"),
+                        .strength(15).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "adamantite_wall"),
                 setup(new DungeonPortal(), "dungeon_portal"),
                 setup(new SmithingAnvil(AbstractBlock.Properties.of(Material.HEAVY_METAL, MaterialColor.METAL)),
                         "smithing_anvil")

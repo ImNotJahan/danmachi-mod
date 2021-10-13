@@ -5,7 +5,7 @@ license="MIT LICENSE"
 
 [[mods]]
 modId="danmachi"
-version="1.0.0"
+version="1.1.2"
 displayName="Danmachi Mod"
 updateJSONURL="https://raw.githubusercontent.com/ImNotJahan/danmachi-mod/master/update.json"
 authors="ImNotJahan"
@@ -13,3 +13,10 @@ credits="flammeprinsessen1, Xanax"
 description='''
 Adds stuff from the wonderful world of danmachi.
 '''
+
+[[dependencies.danmachi]]
+        modId="geckolib3"
+        mandatory=true
+        versionRange="3.0.0-beta.8,"
+        ordering="BEFORE"
+        side="BOTH"

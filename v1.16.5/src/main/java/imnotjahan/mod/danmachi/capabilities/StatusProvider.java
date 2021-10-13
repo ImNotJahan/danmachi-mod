@@ -26,12 +26,12 @@ public class StatusProvider implements ICapabilitySerializable<INBT>
     @Override
     public INBT serializeNBT()
     {
-        return STATUS_CAP.getStorage().writeNBT(STATUS_CAP, this.lazyStatus.orElseThrow(MissingStatus::new), Status.capSide);
+        return STATUS_CAP.getStorage().writeNBT(STATUS_CAP, this.lazyStatus.orElseThrow(MissingStatus::new), null);
     }
 
     @Override
     public void deserializeNBT(INBT nbt)
     {
-        STATUS_CAP.getStorage().readNBT(STATUS_CAP, this.lazyStatus.orElseThrow(MissingStatus::new), Status.capSide, nbt);
+        STATUS_CAP.getStorage().readNBT(STATUS_CAP, this.lazyStatus.orElseThrow(MissingStatus::new), null, nbt);
     }
 }

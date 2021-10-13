@@ -23,35 +23,27 @@ public class MessageStatus
 {
     public IStatus status;
     public final String container;
-    private final boolean clientSide;
 
     // For when the name is changed on the server
     public static void handle(MessageStatus msg, Supplier<NetworkEvent.Context> ctx)
     {
         if(checkContainer(msg, ctx)) ctx.get().setPacketHandled(true);
 
-        if(!msg.clientSide)
+        ctx.get().enqueueWork(() ->
         {
-            ctx.get().enqueueWork(() ->
-                    DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientPacketHandler.handleStatus(msg, ctx)));
-        } else
-        {
-            ctx.get().enqueueWork(() ->
-            {
-                ServerPlayerEntity sender = ctx.get().getSender();
+            ServerPlayerEntity sender = ctx.get().getSender();
 
-                if(sender == null) return;
+            if(sender == null) return;
 
-                IStatus status = sender.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
-                        .orElseThrow(MissingStatus::new);
+            IStatus status = sender.getCapability(StatusProvider.STATUS_CAP)
+                    .orElseThrow(MissingStatus::new);
 
-                if(status.getLevel() != msg.status.getLevel()) sender.awardStat(Stats.LEVEL);
+            //if(status.getLevel() != msg.status.getLevel()) sender.awardStat(Stats.LEVEL);
 
-                status.setArray(msg.status.getArray());
-                status.setFamiliaNO(msg.status.getFamiliaNO());
-            });
-            ctx.get().setPacketHandled(true);
-        }
+            status.setArray(msg.status.getArray());
+            status.setFamiliaNO(msg.status.getFamiliaNO());
+        });
+        ctx.get().setPacketHandled(true);
     }
 
     public static MessageStatus decode(PacketBuffer buf)
@@ -89,26 +81,16 @@ public class MessageStatus
     // Constructors
 
     /** If you're calling this from the client, make clientSide true */
-    public MessageStatus(IStatus status, boolean clientSide)
-    {
-        this.status = status;
-        this.clientSide = clientSide;
-        this.container = "";
-    }
-
-    /** Same as MessageStatus(status, false) */
     public MessageStatus(IStatus status)
     {
         this.status = status;
-        clientSide = false;
-        container = "";
+        this.container = "";
     }
 
     /** For opening a container from the client */
     public MessageStatus(String container)
     {
         this.status = new Status();
-        clientSide = false;
         this.container = container;
     }
 }

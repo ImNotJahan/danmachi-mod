@@ -6,6 +6,7 @@ import imnotjahan.mod.danmachi.capabilities.IStatus;
 import imnotjahan.mod.danmachi.capabilities.StatusProvider;
 import imnotjahan.mod.danmachi.commands.ChangeStatus;
 import imnotjahan.mod.danmachi.commands.DungeonCommand;
+import imnotjahan.mod.danmachi.commands.RefreshStatus;
 import imnotjahan.mod.danmachi.networking.PacketHandler;
 import imnotjahan.mod.danmachi.util.STD;
 import imnotjahan.mod.danmachi.util.config.Config;
@@ -154,6 +155,7 @@ public class ForgeEventSubscriber
     {
         new ChangeStatus(event.getDispatcher());
         new DungeonCommand(event.getDispatcher());
+        new RefreshStatus(event.getDispatcher());
 
         ConfigCommand.register(event.getDispatcher());
     }

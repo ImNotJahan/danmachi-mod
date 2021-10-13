@@ -5,8 +5,6 @@ import java.util.*;
 
 public class Status implements IStatus
 {
-    public static final Direction capSide = Direction.UP;
-
     public enum Ability
     {
         AbnormalResistance(0),
@@ -238,14 +236,14 @@ public class Status implements IStatus
     public void setFamiliaNO(int familia)
     {
         if(!familias.containsValue(familia)) return;
-        this.familia = (String) familias.keySet().toArray()[familia];
+        this.familia = (String) familias.keySet().toArray()[3 - familia];
     }
 
     @Override
     public int getLevel()
     {
         int level = stats[7];
-        if(stats[6] / (300 * level) >= 1 &&
+        if(stats[6] / (300 * (level + 1)) >= 1 &&
                 stats[1] > 400 ||
                 stats[2] > 400 ||
                 stats[3] > 400 ||

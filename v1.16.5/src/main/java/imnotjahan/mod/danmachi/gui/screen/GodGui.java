@@ -72,9 +72,7 @@ public final class GodGui extends Screen
                                     buttons.add(
                                             new Button(this.width / 2 - 100, 100 + 30, 200,
                                                     20, new StringTextComponent("Thanks!"), (p_214288_3_) ->
-                                            {
-                                                minecraft.setScreen(null);
-                                            }));
+                                                    minecraft.setScreen(null)));
                                 }));
                     }
                     ));
@@ -191,7 +189,7 @@ public final class GodGui extends Screen
 
     private IStatus GetStatus()
     {
-        return minecraft.player.getCapability(StatusProvider.STATUS_CAP, Status.capSide)
+        return minecraft.player.getCapability(StatusProvider.STATUS_CAP)
                 .orElseThrow(MissingStatus::new);
     }
 
