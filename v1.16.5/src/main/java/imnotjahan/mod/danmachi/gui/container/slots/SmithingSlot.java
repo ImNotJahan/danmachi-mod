@@ -28,6 +28,7 @@ public class SmithingSlot extends Slot
     {
         super(outputInventory, index, xPosition, yPosition);
         this.outputInventory = outputInventory;
+        this.inputInventory = inputInventory;
         this.dexterity = dexterity;
     }
 

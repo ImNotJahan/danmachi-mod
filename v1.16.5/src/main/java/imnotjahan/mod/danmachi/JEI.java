@@ -36,9 +36,7 @@ public class JEI implements IModPlugin
     {
         IModPlugin.super.registerRecipes(registration);
 
-        Map<IRecipeType<?>, Map<ResourceLocation, IRecipe<?>>> recipes =
-                ObfuscationReflectionHelper.getPrivateValue(RecipeManager.class,
-                        Minecraft.getInstance().level.getRecipeManager(), "recipes");
+        Map<IRecipeType<?>, Map<ResourceLocation, IRecipe<?>>> recipes = Minecraft.getInstance().level.getRecipeManager().recipes;
 
         registration.addRecipes(recipes.get(Recipes.SMITHING_TYPE).values(),
                 new ResourceLocation(Main.MODID, "smithing"));
