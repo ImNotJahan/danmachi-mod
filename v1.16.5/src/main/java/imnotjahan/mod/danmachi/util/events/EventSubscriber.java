@@ -7,6 +7,7 @@ import imnotjahan.mod.danmachi.entities.gods.Hermes;
 import imnotjahan.mod.danmachi.entities.gods.Hestia;
 import imnotjahan.mod.danmachi.entities.gods.Loki;
 import imnotjahan.mod.danmachi.entities.gods.Soma;
+import imnotjahan.mod.danmachi.data.LootGenerator;
 import imnotjahan.mod.danmachi.gui.container.ArmorDressContainer;
 import imnotjahan.mod.danmachi.gui.container.GuildContainer;
 import imnotjahan.mod.danmachi.gui.container.SmithingContainer;
@@ -47,6 +48,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import static imnotjahan.mod.danmachi.init.Blocks.SMITHING_ANVIL;
@@ -249,6 +251,13 @@ public final class EventSubscriber
     {
         entry.setRegistryName(registryName);
         return entry;
+    }
+
+    // Generated
+    @SubscribeEvent
+    public static void makeLootTables(GatherDataEvent event)
+    {
+        if(event.includeServer()) event.getGenerator().addProvider(new LootGenerator(event.getGenerator()));
     }
 
     //Entities

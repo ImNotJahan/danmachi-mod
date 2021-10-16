@@ -7,6 +7,7 @@ import imnotjahan.mod.danmachi.gui.screen.ArmorDressScreen;
 import imnotjahan.mod.danmachi.gui.screen.GuildScreen;
 import imnotjahan.mod.danmachi.gui.screen.SmithingScreen;
 import imnotjahan.mod.danmachi.init.Entities;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.api.distmarker.Dist;
@@ -28,8 +29,11 @@ public final class ClientEventSubscriber
 
     static
     {
-        ClientRegistry.registerKeyBinding(STATUS);
-        ClientRegistry.registerKeyBinding(ARMOR_DRESS);
+        if(Minecraft.getInstance() != null)
+        {
+            ClientRegistry.registerKeyBinding(STATUS);
+            ClientRegistry.registerKeyBinding(ARMOR_DRESS);
+        }
     }
 
     @SubscribeEvent
