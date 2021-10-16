@@ -4,9 +4,11 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import imnotjahan.mod.danmachi.init.Entities;
 import imnotjahan.mod.danmachi.world.CaveFloor;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.world.IWorld;
@@ -19,6 +21,7 @@ import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -86,24 +89,6 @@ public class DungeonChunkGenerator extends ChunkGeneratorBase
     }
 
     @Override
-    public List<MobSpawnInfo.Spawners> getMobsAt(Biome p_230353_1_, StructureManager p_230353_2_, EntityClassification p_230353_3_, BlockPos p_230353_4_)
-    {
-        List<MobSpawnInfo.Spawners> dungeonMonsters = new ArrayList<MobSpawnInfo.Spawners>()
-        {{
-            // Spawn chance, minimum count, maximum count
-            add(new MobSpawnInfo.Spawners(Entities.GOBLIN.get(), 20, 4, 10));
-            add(new MobSpawnInfo.Spawners(Entities.ALMIRAJ.get(), 20, 4, 10));
-            add(new MobSpawnInfo.Spawners(Entities.METAL_RABBIT.get(), 20, 4, 10));
-            add(new MobSpawnInfo.Spawners(Entities.BUGBEAR.get(), 20, 0, 5));
-            add(new MobSpawnInfo.Spawners(Entities.HELLHOUND.get(), 20, 0, 10));
-            add(new MobSpawnInfo.Spawners(Entities.KOBOLD.get(), 20, 0, 10));
-            add(new MobSpawnInfo.Spawners(Entities.MINOTAUR.get(), 20, 0, 5));
-            add(new MobSpawnInfo.Spawners(Entities.UNICORN.get(), 20, 0, 1));
-        }};
-        return dungeonMonsters;
-    }
-
-    @Override
     public void applyBiomeDecoration(WorldGenRegion p_230351_1_, StructureManager p_230351_2_)
     {
 
@@ -117,8 +102,6 @@ public class DungeonChunkGenerator extends ChunkGeneratorBase
 
         for (int y = 0; y < DUNGEON_HEIGHT; y++)
         {
-            BlockState iblockstate = Blocks.STONE.defaultBlockState();
-
             int height = DUNGEON_HEIGHT - y;
             int floor = (int)Math.floor(height / 10);
 
@@ -141,7 +124,7 @@ public class DungeonChunkGenerator extends ChunkGeneratorBase
 
                                 chunk.setBlockState(new BlockPos(stairX, Math.max(0, y + 2 + k - FLOOR_HEIGHT),
                                                 k + j),
-                                        iblockstate, false);
+                                        getFillerBlock(floor), false);
 
                                 dontPlaceHere.add(realPos);
                             }
@@ -160,28 +143,28 @@ public class DungeonChunkGenerator extends ChunkGeneratorBase
                     }
 
                     BlockPos pos = new BlockPos(x * 16 + xx, y, z * 16 + zz);
-                    if(!(xx + 16 * x <= DUNGEON_HEIGHT - y + 25)
-                            || !(zz + 16 * z <= DUNGEON_HEIGHT - y + 25)
-                            || !(xx + 16 * x >= -DUNGEON_HEIGHT + y - 25)
-                            || !(zz + 16 * z >= -DUNGEON_HEIGHT + y - 25)
-                            || y % FLOOR_HEIGHT == 0
-                            || iblockstate == imnotjahan.mod.danmachi.init.Blocks.DUNGEON_PORTAL.defaultBlockState())
-                    {
 
-                        if(!dontPlaceHere.contains(pos))
+                    if(y == DUNGEON_HEIGHT - 1) chunk.setBlockState(new BlockPos(xx, y, zz), imnotjahan.mod.danmachi.init.Blocks.DUNGEON_PORTAL.defaultBlockState(), false);
+                    else
+                    {
+                        if (!(xx + 16 * x <= DUNGEON_HEIGHT - y + 25)
+                                || !(zz + 16 * z <= DUNGEON_HEIGHT - y + 25)
+                                || !(xx + 16 * x >= -DUNGEON_HEIGHT + y - 25)
+                                || !(zz + 16 * z >= -DUNGEON_HEIGHT + y - 25)
+                                || y % FLOOR_HEIGHT == 0)
                         {
-                            chunk.setBlockState(new BlockPos(xx, y, zz), iblockstate, false);
+                            chunk.setBlockState(new BlockPos(xx, y, zz), getFillerBlock(floor), false);
                         }
-                    }
 
-                    if(maps[floor][(Math.max(x, 0) * 16 + xx) % (CaveFloor.width - 1)]
-                            [(Math.max(z, 0) * 16 + zz) % (CaveFloor.height - 1)]
-                             && y % FLOOR_HEIGHT == 1 &&
-                            !dontPlaceHere.contains(pos))
-                    {
-                        for(int k = 0; k < FLOOR_HEIGHT; k++)
+                        if (maps[floor][(Math.max(x, 0) * 16 + xx) % (CaveFloor.width - 1)]
+                                [(Math.max(z, 0) * 16 + zz) % (CaveFloor.height - 1)]
+                                && y % FLOOR_HEIGHT == 1 &&
+                                !dontPlaceHere.contains(pos))
                         {
-                            chunk.setBlockState(new BlockPos(xx, y + k, zz), iblockstate, false);
+                            for (int k = 0; k < FLOOR_HEIGHT; k++)
+                            {
+                                chunk.setBlockState(new BlockPos(xx, y + k, zz), getFillerBlock(floor), false);
+                            }
                         }
                     }
                 }
@@ -193,5 +176,70 @@ public class DungeonChunkGenerator extends ChunkGeneratorBase
     public int getGenDepth()
     {
         return DUNGEON_HEIGHT;
+    }
+
+    private static final BlockState[] greenBlocks = new BlockState[]{ Blocks.MYCELIUM.defaultBlockState(),
+            Blocks.MOSSY_COBBLESTONE.defaultBlockState(), Blocks.COARSE_DIRT.defaultBlockState(), Blocks.DIRT.defaultBlockState() };
+    private static final BlockState[] commonBlocks = new BlockState[]{ Blocks.COBBLESTONE.defaultBlockState(),
+            Blocks.MOSSY_COBBLESTONE.defaultBlockState(), Blocks.COARSE_DIRT.defaultBlockState() };
+    private static final BlockState[] iceBlocks = new BlockState[]{ Blocks.ICE.defaultBlockState(),
+            Blocks.PACKED_ICE.defaultBlockState(), Blocks.SNOW_BLOCK.defaultBlockState() };
+    private static final BlockState[] mistBlocks = new BlockState[]{ Blocks.DIRT.defaultBlockState(),
+            Blocks.GRASS_BLOCK.defaultBlockState(), Blocks.SAND.defaultBlockState(), Blocks.SANDSTONE.defaultBlockState() };
+    private static final BlockState[] caveBlocks = new BlockState[]{ Blocks.DIRT.defaultBlockState(),
+            Blocks.PACKED_ICE.defaultBlockState(), Blocks.BASALT.defaultBlockState(), Blocks.GRAVEL.defaultBlockState(), Blocks.GRANITE.defaultBlockState() };
+
+    private static final BlockState[] uncommonBlocks = new BlockState[]{ imnotjahan.mod.danmachi.init.Blocks.ADAMANTITE_ORE.defaultBlockState()};
+    private static final BlockState[] rareBlocks = new BlockState[]{ imnotjahan.mod.danmachi.init.Blocks.ORICHALCUM_ORE.defaultBlockState() };
+    private BlockState getFillerBlock(int floor)
+    {
+        int chance = (int) (Math.random() * 100);
+
+        if(floor <= 4)
+        {
+            if (chance < 33)
+            {
+                return commonBlocks[(int) (Math.random() * commonBlocks.length)];
+            }
+
+            return Blocks.STONE.defaultBlockState();
+        } else if(floor <= 9)
+        {
+            if (chance < 33)
+            {
+                return greenBlocks[(int) (Math.random() * greenBlocks.length)];
+            }
+
+            return Blocks.COARSE_DIRT.defaultBlockState();
+        } else if(floor <= 12)
+        {
+            if (chance < 33)
+            {
+                if (chance < 6) return uncommonBlocks[(int) (Math.random() * uncommonBlocks.length)];
+                return mistBlocks[(int) (Math.random() * mistBlocks.length)];
+            }
+
+            return Blocks.COARSE_DIRT.defaultBlockState();
+        } else if(floor <= 17)
+        {
+            if (chance < 33)
+            {
+                if (chance < 1) return rareBlocks[(int) (Math.random() * rareBlocks.length)];
+                if (chance < 6) return uncommonBlocks[(int) (Math.random() * uncommonBlocks.length)];
+                return caveBlocks[(int) (Math.random() * caveBlocks.length)];
+            }
+
+            return Blocks.COARSE_DIRT.defaultBlockState();
+        } else
+        {
+            if (chance < 33)
+            {
+                if (chance < 1) return rareBlocks[(int) (Math.random() * rareBlocks.length)];
+                if (chance < 6) return uncommonBlocks[(int) (Math.random() * uncommonBlocks.length)];
+                return iceBlocks[(int) (Math.random() * iceBlocks.length)];
+            }
+
+            return Blocks.STONE.defaultBlockState();
+        }
     }
 }

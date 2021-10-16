@@ -5,7 +5,7 @@ license="MIT LICENSE"
 
 [[mods]]
 modId="danmachi"
-version="1.1.2"
+version="1.2.1"
 displayName="Danmachi Mod"
 updateJSONURL="https://raw.githubusercontent.com/ImNotJahan/danmachi-mod/master/update.json"
 authors="ImNotJahan"

@@ -51,54 +51,6 @@
   {
     "ambient":
     [
-      {
-        "type": "danmachi:goblin",
-        "minCount": 1,
-        "maxCount": 10,
-        "weight": 1
-      },
-      {
-        "type": "danmachi:almiraj",
-        "minCount": 1,
-        "maxCount": 10,
-        "weight": 1
-      },
-      {
-        "type": "danmachi:metal_rabbit",
-        "minCount": 1,
-        "maxCount": 10,
-        "weight": 1
-      },
-      {
-        "type": "danmachi:unicorn",
-        "minCount": 1,
-        "maxCount": 10,
-        "weight": 1
-      },
-      {
-        "type": "danmachi:minotaur",
-        "minCount": 1,
-        "maxCount": 10,
-        "weight": 1
-      },{
-      "type": "danmachi:bugbear",
-      "minCount": 1,
-      "maxCount": 10,
-      "weight": 1
-    },
-      {
-        "type": "danmachi:kobold",
-        "minCount": 1,
-        "maxCount": 10,
-        "weight": 1
-      },
-      {
-        "type": "danmachi:hellhound",
-        "minCount": 1,
-        "maxCount": 10,
-        "weight": 1
-      }
-
     ],
     "creature":
     [
@@ -108,6 +60,53 @@
     ],
     "monster":
     [
+      {
+        "type": "danmachi:goblin",
+        "minCount": 1,
+        "maxCount": 10,
+        "weight": 100
+      },
+      {
+        "type": "danmachi:almiraj",
+        "minCount": 1,
+        "maxCount": 10,
+        "weight": 100
+      },
+      {
+        "type": "danmachi:metal_rabbit",
+        "minCount": 1,
+        "maxCount": 10,
+        "weight": 100
+      },
+      {
+        "type": "danmachi:unicorn",
+        "minCount": 1,
+        "maxCount": 10,
+        "weight": 100
+      },
+      {
+        "type": "danmachi:minotaur",
+        "minCount": 1,
+        "maxCount": 10,
+        "weight": 100
+      },{
+      "type": "danmachi:bugbear",
+      "minCount": 1,
+      "maxCount": 10,
+      "weight": 100
+    },
+      {
+        "type": "danmachi:kobold",
+        "minCount": 1,
+        "maxCount": 10,
+        "weight": 100
+      },
+      {
+        "type": "danmachi:hellhound",
+        "minCount": 1,
+        "maxCount": 10,
+        "weight": 100
+      }
     ],
     "water_ambient":
     [
@@ -118,7 +117,7 @@
   },
   "category": "plains",
   "precipitation": "none",
-  "surface_builder": "minecraft:stone",
+  "surface_builder": "danmachi:dungeon_builder",
   "scale": 0.05,
   "downfall": 0.4,
   "depth": 0.12,
@@ -126,6 +125,5 @@
   "player_spawn_friendly": false,
   "spawn_costs":
   {
-  },
-  "creature_spawn_probability": 0.5
+  }
 }

@@ -9,8 +9,6 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Main.MODID)
 public class Dimensions
 {
-    public static long seed;
-
     public static void init()
     {
         Registry.register(Registry.CHUNK_GENERATOR, new ResourceLocation(Main.MODID, "dungeon"),

@@ -171,18 +171,17 @@ public class ForgeEventSubscriber
 
     // Make monsters only spawn on certain floors of the dungeon
     @SubscribeEvent
-    public static void entitySpawn(LivingSpawnEvent event)
+    public static void entitySpawn(LivingSpawnEvent.SpecialSpawn event)
     {
         if(!event.getEntity().level.dimension().location().toString().equals("danmachi:dungeon_dimension")) return;
 
-        final String registryName = event.getEntity().getType().getRegistryName().toString();
+        final String registryName = event.getEntity().getType().getRegistryName().getPath();
         final Map<String, Integer[]> spawnableFloors = STD.SIAStringToDict(Config.COMMON.spawnableFloors.get());
         final int oppositeY = DungeonChunkGenerator.DUNGEON_HEIGHT - (int)event.getY();
         final int floor = (int)Math.floor(oppositeY != 0 ? oppositeY / DungeonChunkGenerator.FLOOR_HEIGHT + 1 : 1);
 
         if(spawnableFloors.containsKey(registryName))
         {
-            System.out.println("contains");
             event.setCanceled(!Arrays.asList(spawnableFloors.get(registryName)).contains(floor));
         }
     }
