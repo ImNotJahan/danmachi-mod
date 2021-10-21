@@ -2,6 +2,7 @@ package imnotjahan.mod.danmachi.util.events;
 
 import com.google.common.base.Preconditions;
 import imnotjahan.mod.danmachi.Main;
+import imnotjahan.mod.danmachi.data.BlockStates;
 import imnotjahan.mod.danmachi.entities.*;
 import imnotjahan.mod.danmachi.entities.gods.Hermes;
 import imnotjahan.mod.danmachi.entities.gods.Hestia;
@@ -257,7 +258,11 @@ public final class EventSubscriber
     @SubscribeEvent
     public static void makeLootTables(GatherDataEvent event)
     {
-        if(event.includeServer()) event.getGenerator().addProvider(new LootGenerator(event.getGenerator()));
+        if(event.includeServer())
+        {
+            event.getGenerator().addProvider(new LootGenerator(event.getGenerator()));
+            event.getGenerator().addProvider(new BlockStates(event.getGenerator()));
+        }
     }
 
     //Entities

@@ -5,10 +5,7 @@ import imnotjahan.mod.danmachi.init.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.*;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -24,20 +21,9 @@ public class OreGen
 
     public static void registerOres()
     {
-        overworldOres.add(register("mythril_ore", Feature.ORE.configured(new OreFeatureConfig(
-                OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.MYTHRIL_ORE.getBlock().defaultBlockState(), 9))
-                .range(32).squared()
-                .countRandom(2)));
-
-        overworldOres.add(register("damascus_ore", Feature.ORE.configured(new OreFeatureConfig(
-                        OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.DAMASCUS_ORE.getBlock().defaultBlockState(), 3))
-                .range(16).squared()
-                .countRandom(2)));
-
-        overworldOres.add(register("nosteel_ore", Feature.ORE.configured(new OreFeatureConfig(
-                        OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.NOSTEEL_ORE.getBlock().defaultBlockState(), 3))
-                .range(16).squared()
-                .countRandom(2)));
+        overworldOres.add(register("mythril_ore", Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.MYTHRIL_ORE.defaultBlockState(), 4)).range(16).squared()));
+        overworldOres.add(register("damascus_ore", Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.DAMASCUS_ORE.defaultBlockState(), 4)).range(16).squared()));
+        overworldOres.add(register("nosteel_ore", Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.NOSTEEL_ORE.defaultBlockState(), 4)).range(16).squared()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
