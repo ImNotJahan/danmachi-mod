@@ -168,33 +168,13 @@ public final class EventSubscriber
                                 .food(imnotjahan.mod.danmachi.init.Foods.CRYSTAL_DROP)), "crystal_drop"),
 
                 //blocks
-                setup(new BlockItem(Blocks.ORICHALCUM_BLOCK,
-                        (new Item.Properties()).tab(Main.BlockGroup)), "orichalcum_block"),
-                setup(new BlockItem(Blocks.ADAMANTITE_BLOCK,
-                        (new Item.Properties()).tab(Main.BlockGroup)), "adamantite_block"),
-                setup(new BlockItem(Blocks.MYTHRIL_BLOCK,
-                        (new Item.Properties()).tab(Main.BlockGroup)), "mythril_block"),
-                setup(new BlockItem(Blocks.ORICHALCUM_ORE,
-                        (new Item.Properties()).tab(Main.BlockGroup)), "orichalcum_ore"),
-                setup(new BlockItem(Blocks.ADAMANTITE_ORE,
-                        (new Item.Properties()).tab(Main.BlockGroup)), "adamantite_ore"),
-                setup(new BlockItem(Blocks.MYTHRIL_ORE,
-                        (new Item.Properties()).tab(Main.BlockGroup)), "mythril_ore"),
-                setup(new BlockItem(Blocks.DAMASCUS_ORE,
-                        (new Item.Properties()).tab(Main.BlockGroup)), "damascus_ore"),
-                setup(new BlockItem(Blocks.NOSTEEL_ORE,
-                        (new Item.Properties()).tab(Main.BlockGroup)), "nosteel_ore"),
-                setup(new BlockItem(Blocks.ORICHALCUM_WALL,
-                        (new Item.Properties()).tab(Main.BlockGroup)), "orichalcum_wall"),
-                setup(new BlockItem(Blocks.ADAMANTITE_WALL,
-                        (new Item.Properties()).tab(Main.BlockGroup)), "adamantite_wall"),
-                setup(new BlockItem(Blocks.DAMASCUS_BLOCK,
-                        (new Item.Properties()).tab(Main.BlockGroup)), "damascus_block"),
-                setup(new BlockItem(Blocks.NOSTEEL_BLOCK,
-                        (new Item.Properties()).tab(Main.BlockGroup)), "nosteel_block"),
                 setup(new BlockItem(SMITHING_ANVIL,
                         (new Item.Properties()).tab(Main.BlockGroup)), "smithing_anvil")
             );
+
+        // Registers all "normal blocks" the usual way
+        BlockStates.normalBlocks.forEach(block ->
+                event.getRegistry().register(setup(new BlockItem(block, (new Item.Properties()).tab(Main.BlockGroup)), block.getRegistryName().getPath())));
     }
 
     @SubscribeEvent
@@ -231,6 +211,18 @@ public final class EventSubscriber
                         .strength(25).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "orichalcum_ore"),
                 setup(new Block(Block.Properties.of(Material.STONE)
                         .strength(10).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "adamantite_ore"),
+                setup(new Block(Block.Properties.of(Material.STONE)
+                        .strength(10).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "basalt_adamantite_ore"),
+                setup(new Block(Block.Properties.of(Material.STONE)
+                        .strength(10).harvestLevel(4).harvestTool(ToolType.SHOVEL)), "dirt_adamantite_ore"),
+                setup(new Block(Block.Properties.of(Material.STONE)
+                        .strength(10).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "end_adamantite_ore"),
+                setup(new Block(Block.Properties.of(Material.STONE)
+                        .strength(10).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "ice_adamantite_ore"),
+                setup(new Block(Block.Properties.of(Material.STONE)
+                        .strength(10).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "nether_adamantite_ore"),
+                setup(new Block(Block.Properties.of(Material.STONE)
+                        .strength(10).harvestLevel(4).harvestTool(ToolType.SHOVEL)), "sand_adamantite_ore"),
                 setup(new Block(Block.Properties.of(Material.STONE)
                         .strength(3).harvestLevel(3).harvestTool(ToolType.PICKAXE)), "mythril_ore"),
                 setup(new Block(Block.Properties.of(Material.HEAVY_METAL)

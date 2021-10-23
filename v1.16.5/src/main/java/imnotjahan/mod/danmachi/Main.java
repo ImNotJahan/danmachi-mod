@@ -30,6 +30,11 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import software.bernie.geckolib3.GeckoLib;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Mod(Main.MODID)
 public class Main
 {
@@ -95,5 +100,10 @@ public class Main
         entry.setRegistryName(new ResourceLocation(MODID, registryKey));
         registry.register(entry);
         return entry;
+    }
+
+    public static <T> List<T> concatenateLists(List<T>... collections)
+    {
+        return Arrays.stream(collections).flatMap(Collection::stream).collect(Collectors.toList());
     }
 }
