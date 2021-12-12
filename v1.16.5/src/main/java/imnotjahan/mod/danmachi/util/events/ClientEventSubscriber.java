@@ -2,7 +2,7 @@ package imnotjahan.mod.danmachi.util.events;
 
 import imnotjahan.mod.danmachi.Main;
 import imnotjahan.mod.danmachi.entities.rendering.*;
-import imnotjahan.mod.danmachi.entities.rendering.geo.GoliathRenderer;
+import imnotjahan.mod.danmachi.entities.rendering.geo.*;
 import imnotjahan.mod.danmachi.gui.screen.ArmorDressScreen;
 import imnotjahan.mod.danmachi.gui.screen.GuildScreen;
 import imnotjahan.mod.danmachi.gui.screen.SmithingScreen;

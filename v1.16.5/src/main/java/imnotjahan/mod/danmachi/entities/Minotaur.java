@@ -9,13 +9,21 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.world.World;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class Minotaur extends MonsterBase
+public class Minotaur extends MonsterBase implements IAnimatable
 {
     public Minotaur(EntityType<? extends ZombieEntity> p_i48549_1_, World p_i48549_2_)
     {
         super(p_i48549_1_, p_i48549_2_, "minotaur");
     }
+
 
     public static AttributeModifierMap.MutableAttribute createAttributes()
     {
@@ -27,5 +35,41 @@ public class Minotaur extends MonsterBase
                 .add(Attributes.MOVEMENT_SPEED, attributes[2])
                 .add(Attributes.ARMOR, attributes[3])
                 .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
+    }
+
+    private final AnimationFactory factory = new AnimationFactory(this);
+
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
+    {
+        if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))
+        {
+            setAnimation(event, "animation.goliath.idle");
+        } else if (attackAnim != 0)
+        {
+            setAnimation(event, "animation.goliath.slam");
+        } else
+        {
+            setAnimation(event, "animation.goliath.idle");
+        }
+
+        return PlayState.CONTINUE;
+    }
+
+    private static void setAnimation(AnimationEvent event, String animation)
+    {
+        event.getController().setAnimation(new AnimationBuilder().addAnimation(animation, true));
+    }
+
+    @Override
+    public void registerControllers(AnimationData data)
+    {
+        data.addAnimationController(new AnimationController(this, "controller", 5,
+                this::predicate));
+    }
+
+    @Override
+    public AnimationFactory getFactory()
+    {
+        return factory;
     }
 }

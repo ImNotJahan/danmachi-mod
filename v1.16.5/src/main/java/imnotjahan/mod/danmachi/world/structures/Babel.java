@@ -24,6 +24,7 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,11 @@ public class Babel extends Structure<NoFeatureConfig>
 
         return topBlock.getFluidState().isEmpty();
     }
+
+    /*@Override
+    public final ChunkPos getPotentialFeatureChunk(StructureSeparationSettings p_236392_1_, long p_236392_2_, SharedSeedRandom p_236392_4_, int p_236392_5_, int p_236392_6_) {
+        return new ChunkPos(0, 0);
+    }*/
 
     @Override
     public IStartFactory<NoFeatureConfig> getStartFactory()

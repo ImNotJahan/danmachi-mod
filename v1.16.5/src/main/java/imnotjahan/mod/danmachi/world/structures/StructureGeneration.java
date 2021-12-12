@@ -18,14 +18,13 @@ public class StructureGeneration
         RegistryKey<Biome> key = RegistryKey.create(Registry.BIOME_REGISTRY, event.getName());
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
 
-        if(types.contains(BiomeDictionary.Type.PLAINS)) {
+        if(types.contains(BiomeDictionary.Type.PLAINS))
+        {
             List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 
             structures.add(() -> Structures.HOUSE.get().configured(IFeatureConfig.NONE));
             structures.add(() -> Structures.BABEL.get().configured(IFeatureConfig.NONE));
             structures.add(() -> Structures.RAKIAN_OUTPOST.get().configured(IFeatureConfig.NONE));
         }
-
-        //Structures.BABEL.get().generate();
     }
 }

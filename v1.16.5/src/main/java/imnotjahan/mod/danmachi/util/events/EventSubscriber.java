@@ -224,6 +224,18 @@ public final class EventSubscriber
                 setup(new Block(Block.Properties.of(Material.STONE)
                         .strength(10).harvestLevel(4).harvestTool(ToolType.SHOVEL)), "sand_adamantite_ore"),
                 setup(new Block(Block.Properties.of(Material.STONE)
+                        .strength(10).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "basalt_orichalcum_ore"),
+                setup(new Block(Block.Properties.of(Material.STONE)
+                        .strength(10).harvestLevel(4).harvestTool(ToolType.SHOVEL)), "dirt_orichalcum_ore"),
+                setup(new Block(Block.Properties.of(Material.STONE)
+                        .strength(10).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "end_orichalcum_ore"),
+                setup(new Block(Block.Properties.of(Material.STONE)
+                        .strength(10).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "ice_orichalcum_ore"),
+                setup(new Block(Block.Properties.of(Material.STONE)
+                        .strength(10).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "nether_orichalcum_ore"),
+                setup(new Block(Block.Properties.of(Material.STONE)
+                        .strength(10).harvestLevel(4).harvestTool(ToolType.SHOVEL)), "sand_orichalcum_ore"),
+                setup(new Block(Block.Properties.of(Material.STONE)
                         .strength(3).harvestLevel(3).harvestTool(ToolType.PICKAXE)), "mythril_ore"),
                 setup(new Block(Block.Properties.of(Material.HEAVY_METAL)
                         .strength(45).harvestLevel(4).harvestTool(ToolType.PICKAXE)), "orichalcum_wall"),

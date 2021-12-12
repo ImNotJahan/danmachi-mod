@@ -40,6 +40,9 @@ public class Structures
         setupMapSpacingAndLand(RAKIAN_OUTPOST.get(),
                 new StructureSeparationSettings(100,50, 1234567820),
                 true);
+        setupBabel(BABEL.get(),
+                new StructureSeparationSettings(100,50, 1234567820),
+                true);
     }
 
     /**
@@ -105,6 +108,42 @@ public class Structures
              *
              * structureConfig requires AccessTransformer  (See resources/META-INF/accesstransformer.cfg)
              */
+            if (structureMap instanceof ImmutableMap)
+            {
+                Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(structureMap);
+                tempMap.put(structure, structureSeparationSettings);
+                settings.getValue().structureSettings().structureConfig();
+            } else
+            {
+                structureMap.put(structure, structureSeparationSettings);
+            }
+        });
+    }
+
+    public static <F extends Structure<?>> void setupBabel(F structure, StructureSeparationSettings structureSeparationSettings,
+                                                                       boolean transformSurroundingLand)
+    {
+        Structure.STRUCTURES_REGISTRY.put(structure.getRegistryName().toString(), structure);
+
+        if (transformSurroundingLand)
+        {
+            Structure.NOISE_AFFECTING_FEATURES = ImmutableList.<Structure<?>>builder()
+                    .addAll(Structure.NOISE_AFFECTING_FEATURES)
+                    .add(structure)
+                    .build();
+        }
+
+        DimensionStructuresSettings.DEFAULTS =
+                ImmutableMap.<Structure<?>, StructureSeparationSettings>builder()
+                        .putAll(DimensionStructuresSettings.DEFAULTS)
+                        .put(structure, structureSeparationSettings)
+                        .build();
+
+        WorldGenRegistries.NOISE_GENERATOR_SETTINGS.entrySet().forEach(settings ->
+        {
+            Map<Structure<?>, StructureSeparationSettings> structureMap =
+                    settings.getValue().structureSettings().structureConfig();
+
             if (structureMap instanceof ImmutableMap)
             {
                 Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(structureMap);

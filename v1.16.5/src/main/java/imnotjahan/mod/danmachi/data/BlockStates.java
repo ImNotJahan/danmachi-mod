@@ -54,6 +54,12 @@ public class BlockStates extends BlockStateProvider
         add(Blocks.ICE_ADAMANTITE_ORE);
         add(Blocks.NETHER_ADAMANTITE_ORE);
         add(Blocks.SAND_ADAMANTITE_ORE);
+        add(Blocks.BASALT_ORICHALCUM_ORE);
+        add(Blocks.DIRT_ORICHALCUM_ORE);
+        add(Blocks.END_ORICHALCUM_ORE);
+        add(Blocks.ICE_ORICHALCUM_ORE);
+        add(Blocks.NETHER_ORICHALCUM_ORE);
+        add(Blocks.SAND_ORICHALCUM_ORE);
     }};
 
     @Override
